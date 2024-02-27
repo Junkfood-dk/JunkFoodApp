@@ -24,7 +24,7 @@ jobs:
         run: flutter pub get
 
       - name: Build Flutter App
-        run: flutter build
+        run: flutter build web
 
       - name: Run Flutter Test
         run: flutter test
