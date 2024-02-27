@@ -4,6 +4,8 @@ A new Flutter project.
 
 ## Getting Started
 
+JunkFood is awersome.
+
 This project is a starting point for a Flutter application.
 
 A few resources to get you started if this is your first Flutter project:
@@ -17,6 +19,7 @@ samples, guidance on mobile development, and a full API reference.
 #JunkFoodApp
 
 # Commit template
+
 git commit -m"<commitmessage>
 
 <description>
@@ -27,4 +30,4 @@ Co-authored-by: Lukas <lupa@itu.dk>
 Co-authored-by: Jonas <kram@itu.dk>
 Co-authored-by: Johan <jsbe@itu.dk>
 Co-authored-by: Lauritz <lana@itu.dk>
-Co-authored by: Allan <asia@itu.dk>" 
+Co-authored by: Allan <asia@itu.dk>"
