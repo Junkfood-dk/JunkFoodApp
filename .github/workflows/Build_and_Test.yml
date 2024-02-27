@@ -1,9 +1,8 @@
-name: Flutter Test
+name: Flutter Build and Test
 on:
   push:
-    branches: [ master ]
-  pull_request:
-    branches: [ master ]
+    branches:
+      - main
 
   workflow_dispatch:
 
@@ -23,6 +22,9 @@ jobs:
 
       - name: Get all Flutter Packages
         run: flutter pub get
+
+      - name: Build Flutter App
+        run: flutter build
 
       - name: Run Flutter Test
         run: flutter test
