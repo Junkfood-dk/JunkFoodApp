@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:provider/provider.dart';
+import 'package:userapp/model/language.dart';
 import 'model/locale.dart';
 
 void main() {
@@ -46,8 +47,10 @@ class MyApp extends StatelessWidget {
                     GlobalCupertinoLocalizations.delegate,
                   ],
                   supportedLocales: AppLocalizations.supportedLocales,
+                  locale: localeModel.locale,
                   home:
                       const MyHomePage(title: 'User app starting application'),
+                  debugShowCheckedModeBanner: false,
                 )));
   }
 }
@@ -100,7 +103,25 @@ class _MyHomePageState extends State<MyHomePage> {
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
         // Here we take the value from the MyHomePage object that was created by
         // the App.build method, and use it to set our appbar title.
-        title: Text(widget.title),
+        title: Text(AppLocalizations.of(context)!.homePageTitle),
+        actions: <Widget>[
+          Consumer<LocaleModel>(
+            builder: (context, localeModel, child) => PopupMenuButton<Language>(
+              onSelected: (Language language) {
+                localeModel.set(Locale(language.languageCode));
+              },
+              icon: const Icon(Icons.language),
+              itemBuilder: (BuildContext context) {
+                List<PopupMenuEntry<Language>> menuItems =
+                  Language.languageList().map((e) {
+                    return PopupMenuItem<Language>(
+                      value: e,
+                      child: Text(e.name));
+                  }).toList();
+                  return menuItems;
+              }),
+            ),
+        ],
       ),
       body: Center(
         // Center is a layout widget. It takes a single child and positions it
@@ -121,9 +142,7 @@ class _MyHomePageState extends State<MyHomePage> {
           // wireframe for each widget.
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            const Text(
-              'You have pushed the button this many times:',
-            ),
+            Text(AppLocalizations.of(context)!.punchText),
             Text(
               '$_counter',
               style: Theme.of(context).textTheme.headlineMedium,
