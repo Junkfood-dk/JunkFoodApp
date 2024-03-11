@@ -5,6 +5,7 @@ import 'package:provider/provider.dart';
 import 'package:userapp/model/language.dart';
 import 'model/locale.dart';
 
+// Allan made this comment!
 void main() {
   runApp(const MyApp());
 }
