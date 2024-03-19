@@ -6,5 +6,21 @@
   "punchText": "You have punched the button this many times:",
   "@punchText": {
     "description": "The text in the middle, describing how many times you have punched the button"
+  },
+  "calories": "Calories",
+  "@calories": {
+    "description": "Calories info on dish page"
+  },
+  "mainCourse": "Main Course",
+  "@mainCourse": {
+    "description": "Main course dish type."
+  },
+  "dessert": "Dessert",
+  "@dessert": {
+    "description": "Dessert dish type."
+  },
+  "dishOfTheDay": "Dish of the day",
+  "@dishOfTheDay": {
+    "description": "Title of the dish of the day page"
   }
 }

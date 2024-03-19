@@ -53,7 +53,7 @@ class DishOfTheDayModel extends ChangeNotifier {
         calories: 10,
         imageUrl:
             'https://cdn.sanity.io/images/2aoj8j2d/gastrologik/a7d05b4deaaacc0ab9f55f821ad61c8c38d12692-2048x1365.jpg?rect=1,0,2047,1365&w=1024&h=683&auto=format',
-        dishType: 1,
+        dishType: 0,
       ));
       _dishOfTheDay.add(DishModel(
         title: 'Vaffelis',
@@ -61,7 +61,7 @@ class DishOfTheDayModel extends ChangeNotifier {
         calories: 5000,
         imageUrl:
             'https://miro.medium.com/v2/resize:fit:1400/format:webp/1*9Lhb5e44WqRdM50iJ1T-XA.jpeg',
-        dishType: 2,
+        dishType: 1,
       ));
     }
     return _dishOfTheDay.isNotEmpty;

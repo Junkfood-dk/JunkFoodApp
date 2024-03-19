@@ -14,7 +14,7 @@ class HomePage extends StatelessWidget {
     return Consumer<LocaleModel>(
       builder: (context, localeModel, child) => Scaffold(
         appBar: AppBar(
-          title: Text("Dish of the day"),
+          title: Text(AppLocalizations.of(context)!.dishOfTheDay),
           actions: [LanguageDropdown()],
           automaticallyImplyLeading: false,
         ),
