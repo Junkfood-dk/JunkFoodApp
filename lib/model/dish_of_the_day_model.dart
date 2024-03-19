@@ -40,18 +40,28 @@ class DishOfTheDayModel extends ChangeNotifier {
     //THIS IS FOR LOCAL TESTING
     if (_dishOfTheDay.isEmpty) {
       _dishOfTheDay.add(DishModel(
-        title: 'Test MainCourse',
-        description: 'Test Description',
+        title: 'Flæskesteg',
+        description: 'Flæskesteg med brunede kartofler og sovs.',
         calories: 200,
         imageUrl:
             'https://voresmad.dk/-/media/voresmad/recipes/f/flaeskesteg-af-svinekam-med-sproedt-svaer-og-traditionelt-tilbehoer2.jpg',
+        dishType: 0,
       ));
       _dishOfTheDay.add(DishModel(
-        title: 'Test Dessert',
-        description: 'Test Description',
+        title: 'Knolselleri-steg',
+        description: 'Vegetarisk alternativ til flæskesteg',
+        calories: 10,
+        imageUrl:
+            'https://cdn.sanity.io/images/2aoj8j2d/gastrologik/a7d05b4deaaacc0ab9f55f821ad61c8c38d12692-2048x1365.jpg?rect=1,0,2047,1365&w=1024&h=683&auto=format',
+        dishType: 1,
+      ));
+      _dishOfTheDay.add(DishModel(
+        title: 'Vaffelis',
+        description: 'Lækker dessert, mulighed for chokolade- og vaniljesmag',
         calories: 5000,
         imageUrl:
             'https://miro.medium.com/v2/resize:fit:1400/format:webp/1*9Lhb5e44WqRdM50iJ1T-XA.jpeg',
+        dishType: 2,
       ));
     }
     return _dishOfTheDay.isNotEmpty;

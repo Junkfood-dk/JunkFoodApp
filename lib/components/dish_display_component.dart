@@ -28,16 +28,17 @@ class DishDisplayComponent extends StatelessWidget {
                       children: [
                         (Column(
                           children: [
+                            Text(dishTypeTranslator(i.dishType)),
                             const SizedBox(
-                          width: 20,
-                        ),
-                        SizedBox(
-                          width: MediaQuery.sizeOf(context).width * 0.4,
-                          child: ClipRRect(
-                              borderRadius:
-                                  const BorderRadius.all(Radius.circular(15)),
-                              child: Image.network(i.imageUrl)),
-                        ),
+                              width: 20,
+                            ),
+                            SizedBox(
+                              width: MediaQuery.sizeOf(context).width * 0.4,
+                              child: ClipRRect(
+                                  borderRadius:
+                                      const BorderRadius.all(Radius.circular(15)),
+                                  child: Image.network(i.imageUrl)),
+                            ),
                             Text(
                               i.title,
                               style:
@@ -59,4 +60,13 @@ class DishDisplayComponent extends StatelessWidget {
         ,
       );
   }
+}
+
+Map<int, String> dishTypeMap() {
+  return {0: "Main course", 1: "Alternative course", 2: "Dessert"};
+}
+
+String dishTypeTranslator(int id) {
+  return dishTypeMap()[id] ??
+      "Unknown"; // Using ?? operator to handle cases where id is not found
 }

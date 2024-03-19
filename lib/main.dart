@@ -5,7 +5,7 @@ import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:userapp/Constants.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:userapp/pages/homepage.dart';
+import 'package:userapp/pages/dish_of_the_day.dart';
 import 'model/locale.dart';
 
 Future<void> main() async {
