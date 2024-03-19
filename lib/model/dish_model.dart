@@ -1,16 +1,20 @@
+import 'dart:ui';
+
 class DishModel {
+  int id;
   String title;
   String description;
   int calories;
   String imageUrl;
-  int dishType;
+  String dishType;
 
   DishModel(
       {required this.title,
       this.description = "",
       this.calories = 0,
       this.imageUrl = "",
-      this.dishType = -1});
+      this.dishType = "",
+      this.id = -1});
 
   Map<String, dynamic> toJson() {
     return {
@@ -18,12 +22,15 @@ class DishModel {
       'description': description,
       'calories': calories,
       'image': imageUrl,
-      'dishType': dishType
+      'dishType': dishType,
     };
   }
 
   static DishModel fromJson(Map<String, dynamic> input) {
     return DishModel(
+        id: input.containsKey("id")
+          ? input["id"]
+          : throw Exception("No id provided"),
         title: input.containsKey("title")
             ? input["title"]
             : throw Exception("No title provided"),
@@ -31,6 +38,6 @@ class DishModel {
             input.containsKey("description") ? input["description"] : "",
         calories: input.containsKey("calories") ? input["calories"] : 0,
         imageUrl: input.containsKey("image") ? input["image"] : "",
-        dishType: input.containsKey("dishType") ? input["dishType"] : -1);
+        dishType: input.containsKey("dish_type") ? input["dish_type"] : "",);
   }
 }
