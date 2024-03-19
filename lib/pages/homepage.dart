@@ -27,7 +27,7 @@ class HomePage extends StatelessWidget {
                     return const CircularProgressIndicator();
                   } else {
                     if (!snapshot.data!) {
-                      return Text("No dish -> Implementation kommer");
+                      return Text("No dish -> Implementation kommer JI-88");
                     } else {
                       return Column(
                         children: [

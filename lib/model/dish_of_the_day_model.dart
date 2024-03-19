@@ -2,11 +2,10 @@ import 'package:userapp/model/dish_model.dart';
 import 'package:flutter/material.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
-
 class DishOfTheDayModel extends ChangeNotifier {
   final SupabaseClient database;
   DishOfTheDayModel({required this.database});
-  DishModel? _dishOfTheDay;
+  List<DishModel> _dishOfTheDay = [];
 
   Future<void> fetchDishOfTheDay() async {
     Future.microtask(() async {
@@ -19,25 +18,43 @@ class DishOfTheDayModel extends ChangeNotifier {
             .from("Dishes")
             .select()
             .filter("id", "eq", response[0]["id"]);
-        _dishOfTheDay = DishModel.fromJson(dishOfTheDay[0]);
+        _dishOfTheDay = [DishModel.fromJson(dishOfTheDay[0])];
       } else {
-        _dishOfTheDay = null;
+        _dishOfTheDay = List.empty();
       }
       notifyListeners();
     });
   }
 
-  DishModel get dishOfTheDay {
-    if (_dishOfTheDay != null) {
-      return _dishOfTheDay!;
+  List<DishModel> get dishOfTheDay {
+    if (_dishOfTheDay.isNotEmpty) {
+      return _dishOfTheDay;
     } else {
-      return DishModel(title: "There is no dish of the day");
+      return [DishModel(title: "There is no dish of the day")];
     }
   }
 
   Future<bool> get hasDishOfTheDay async {
-    await fetchDishOfTheDay();
-    return _dishOfTheDay != null;
+    // await fetchDishOfTheDay();
+
+    //THIS IS FOR LOCAL TESTING
+    if (_dishOfTheDay.isEmpty) {
+      _dishOfTheDay.add(DishModel(
+        title: 'Test MainCourse',
+        description: 'Test Description',
+        calories: 200,
+        imageUrl:
+            'https://voresmad.dk/-/media/voresmad/recipes/f/flaeskesteg-af-svinekam-med-sproedt-svaer-og-traditionelt-tilbehoer2.jpg',
+      ));
+      _dishOfTheDay.add(DishModel(
+        title: 'Test Dessert',
+        description: 'Test Description',
+        calories: 5000,
+        imageUrl:
+            'https://miro.medium.com/v2/resize:fit:1400/format:webp/1*9Lhb5e44WqRdM50iJ1T-XA.jpeg',
+      ));
+    }
+    return _dishOfTheDay.isNotEmpty;
   }
 
   Future<int> postDishOfTheDay(

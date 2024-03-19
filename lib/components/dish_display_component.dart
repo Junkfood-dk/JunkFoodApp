@@ -1,42 +1,62 @@
 import 'package:userapp/model/dish_model.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_carousel_widget/flutter_carousel_widget.dart';
 
 class DishDisplayComponent extends StatelessWidget {
-  final DishModel dish;
+  final List<DishModel> dish;
   const DishDisplayComponent({super.key, required this.dish});
 
   @override
   Widget build(BuildContext context) {
-    return IntrinsicWidth(
-      child: Container(
+    return Container(
         padding: const EdgeInsets.all(10),
         decoration: BoxDecoration(
             border: Border.all(color: Colors.black),
             borderRadius: const BorderRadius.all(Radius.circular(15))),
-        child: Row(
-          children: [
-            (Column(
-              children: [
-                Text(
-                  dish.title,
-                  style: const TextStyle(fontWeight: FontWeight.bold),
-                ),
-                Text(dish.description),
-                Text("Calories: ${dish.calories}"),
-              ],
-            )),
-            const SizedBox(
-              width: 20,
-            ),
-            SizedBox(
-              width: MediaQuery.sizeOf(context).width * 0.4,
-              child: ClipRRect(
-                  borderRadius: const BorderRadius.all(Radius.circular(15)),
-                  child: Image.network(dish.imageUrl)),
-            )
-          ],
-        ),
-      ),
-    );
+        child: FlutterCarousel(
+          options: CarouselOptions(
+            height: 400.0, 
+            showIndicator: true,
+            slideIndicator: CircularSlideIndicator(),
+          ),
+          items: dish.map((i) {
+            return Builder(
+              builder: (BuildContext context) {
+                return Container(
+                  margin: EdgeInsets.symmetric(horizontal: 5.0),
+                  child: Column(
+                      children: [
+                        (Column(
+                          children: [
+                            const SizedBox(
+                          width: 20,
+                        ),
+                        SizedBox(
+                          width: MediaQuery.sizeOf(context).width * 0.4,
+                          child: ClipRRect(
+                              borderRadius:
+                                  const BorderRadius.all(Radius.circular(15)),
+                              child: Image.network(i.imageUrl)),
+                        ),
+                            Text(
+                              i.title,
+                              style:
+                                  const TextStyle(fontWeight: FontWeight.bold),
+                            ),
+                            Text(i.description),
+                            Text("Calories: ${i.calories}"),
+                          ],
+                        )),
+                      ],
+                    )
+                );
+              },
+            );
+          }).toList(),
+        )
+        
+        
+        ,
+      );
   }
 }
