@@ -10,32 +10,29 @@ class DishOfTheDayModel extends ChangeNotifier {
 
   Future<void> fetchDishOfTheDay() async {
     Future.microtask(() async {
-      var response = await database
-          .from("Dish_Schedule")
-          .select()
-          .filter("date", "eq", DateTime.now().toIso8601String());
+      var response = await database.rpc('get_dishes_of_current_day');
           print(response);
-      if (response.isNotEmpty) {
-        var fetchedDishes = [];
-        for (var row in response) {
-          fetchedDishes.add(await fetchDishById(row["id"]));
-        }
-        for (var fetchedDish in fetchedDishes) {
-          bool exists = false;
-          for (var existingDish in _dishOfTheDay) {
-            if (fetchedDish.id == existingDish.id) {
-              exists = true;
-              break;
-            }
-          }
-          if (!exists) {
-            _dishOfTheDay.add(fetchedDish);
-          }
-        }
-        debugPrint(fetchedDishes.length.toString());
-      } else {
-        _dishOfTheDay = List.empty();
-      }
+      // if (response.isNotEmpty) {
+      //   var fetchedDishes = [];
+      //   for (var row in response) {
+      //     fetchedDishes.add(await fetchDishById(row["id"]));
+      //   }
+      //   for (var fetchedDish in fetchedDishes) {
+      //     bool exists = false;
+      //     for (var existingDish in _dishOfTheDay) {
+      //       if (fetchedDish.id == existingDish.id) {
+      //         exists = true;
+      //         break;
+      //       }
+      //     }
+      //     if (!exists) {
+      //       _dishOfTheDay.add(fetchedDish);
+      //     }
+      //   }
+      //   debugPrint(fetchedDishes.length.toString());
+      // } else {
+      //   _dishOfTheDay = List.empty();
+      // }
       notifyListeners();
     });
   }
