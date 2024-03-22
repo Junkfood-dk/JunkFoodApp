@@ -6,5 +6,9 @@
   "punchText": "Du har slået knappen så mange gange:",
   "@punchText": {
     "description": "The text in the middle, describing how many times you have punched the button"
+  },
+  "noDishText": "Dagens ret er ikke offentliggjort endnu, kig tilbage senere",
+  "@noDishText": {
+    "description": "Text to show when no dish for todays date has been posted"
   }
 }

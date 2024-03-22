@@ -6,5 +6,9 @@
   "punchText": "You have punched the button this many times:",
   "@punchText": {
     "description": "The text in the middle, describing how many times you have punched the button"
+  },
+  "noDishText": "Todays dish has not been posted yet, check back later",
+  "@noDishText": {
+    "description": "Text to show when no dish for todays date has been posted"
   }
 }
