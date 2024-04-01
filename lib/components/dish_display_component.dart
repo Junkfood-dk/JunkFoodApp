@@ -5,8 +5,7 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class DishDisplayComponent extends StatelessWidget {
   final List<DishModel> dish;
-  final Map<int,String> dishTypeMap;
-  const DishDisplayComponent({super.key, required this.dish, required this.dishTypeMap});
+  const DishDisplayComponent({super.key, required this.dish});
 
   @override
   Widget build(BuildContext context) {
@@ -63,11 +62,6 @@ class DishDisplayComponent extends StatelessWidget {
         }).toList(),
       ),
     );
-  }
-
-  String dishTypeTranslator(int dishType, BuildContext context) {
-    return dishTypeMap[dishType] ??
-        "Unknown"; // Using ?? operator to handle cases where id is not found
   }
 }
 

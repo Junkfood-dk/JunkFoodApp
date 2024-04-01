@@ -28,8 +28,8 @@ class DishModel {
 
   static DishModel fromJson(Map<String, dynamic> input) {
     return DishModel(
-        id: input.containsKey("id")
-          ? input["id"]
+        id: input.containsKey("dish_id")
+          ? input["dish_id"]
           : throw Exception("No id provided"),
         title: input.containsKey("title")
             ? input["title"]

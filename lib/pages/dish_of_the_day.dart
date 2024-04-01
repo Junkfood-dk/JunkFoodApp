@@ -33,8 +33,7 @@ class HomePage extends StatelessWidget {
                         children: [
                           Center(
                               child: DishDisplayComponent(
-                                  dish: state.dishOfTheDay,
-                                  dishTypeMap: state.dishTypeMap))
+                                  dish: state.dishOfTheDay))
                                   
                         ],
                       );

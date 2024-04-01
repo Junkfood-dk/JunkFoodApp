@@ -1,3 +1,5 @@
+
+
 import 'package:userapp/model/dish_model.dart';
 import 'package:flutter/material.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
@@ -12,27 +14,12 @@ class DishOfTheDayModel extends ChangeNotifier {
     Future.microtask(() async {
       var response = await database.rpc('get_dishes_of_current_day');
           print(response);
-      // if (response.isNotEmpty) {
-      //   var fetchedDishes = [];
-      //   for (var row in response) {
-      //     fetchedDishes.add(await fetchDishById(row["id"]));
-      //   }
-      //   for (var fetchedDish in fetchedDishes) {
-      //     bool exists = false;
-      //     for (var existingDish in _dishOfTheDay) {
-      //       if (fetchedDish.id == existingDish.id) {
-      //         exists = true;
-      //         break;
-      //       }
-      //     }
-      //     if (!exists) {
-      //       _dishOfTheDay.add(fetchedDish);
-      //     }
-      //   }
-      //   debugPrint(fetchedDishes.length.toString());
-      // } else {
-      //   _dishOfTheDay = List.empty();
-      // }
+      if (response.isNotEmpty) {
+          _dishOfTheDay.add(DishModel.fromJson(response));
+        
+      } else {
+        _dishOfTheDay = List.empty();
+      }
       notifyListeners();
     });
   }
@@ -82,8 +69,9 @@ class DishOfTheDayModel extends ChangeNotifier {
   }
 
   Future<bool> get hasDishOfTheDay async {
-    await fetchDishOfTheDay();
-    await fetchDishTypeMap();
+    if (_dishOfTheDay.isEmpty) {
+      await fetchDishOfTheDay();
+    }
 
     // //THIS IS FOR LOCAL TESTING
     // if (_dishOfTheDay.isEmpty) {
