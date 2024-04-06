@@ -27,9 +27,29 @@ class ShowPage extends StatelessWidget {
                   if (!snapshot.hasData) {
                     return const CircularProgressIndicator();
                   } else {
-                    if (!snapshot.data!) {
-                      return Text("no data?");
-                    } else {
+                   if (!snapshot.data!) {
+                      return Column(
+                        mainAxisAlignment: MainAxisAlignment
+                            .center, // Center content horizontally
+                        children: [
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment
+                                .center, // Center content horizontally
+                            children: [
+                              Text(AppLocalizations.of(context)!.noDishText),
+                              const SizedBox(width: 10.0), // Spacing
+                              Image.network(
+                                'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTRuVuPxx1Ez15siEcgCMlOZ6nU4E6xzjsNe8QmRIUOJA&s',
+                                width: 100.0,
+                                height: 100.0,
+                              ),
+                            ],
+                          ),
+                          const SizedBox(
+                              height: 10.0), // Add spacing below the row
+                        ],
+                      );
+                    } else  {
                       return  Column(
                         children: [
                           Center(

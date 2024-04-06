@@ -3,11 +3,9 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:provider/provider.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
-import 'package:userapp/components/language_dropdown_component.dart';
-import 'package:userapp/model/dish_model.dart';
+
 import 'package:userapp/model/show_page.dart';
 import 'package:userapp/model/dish_of_the_day_model.dart';
-import 'package:userapp/model/language.dart';
 import 'model/locale.dart';
 import 'package:userapp/Constants.dart';
 
