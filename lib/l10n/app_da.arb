@@ -22,5 +22,9 @@
   "dishOfTheDay": "Dagens ret",
   "@dishOfTheDay": {
     "description": "Title of the dish of the day page"
+  },
+  "servingHasEndedText" : "Servering af dagens ret er slut, vend tilbage i morgen",
+  "@servingHasEndedText" : {
+    "description" : "Text for today's dish serving is over"
   }
 }

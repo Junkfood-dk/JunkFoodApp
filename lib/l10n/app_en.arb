@@ -22,5 +22,9 @@
   "dishOfTheDay": "Dish of the day",
   "@dishOfTheDay": {
     "description": "Title of the dish of the day page"
+  },
+  "servingHasEndedText" : "Today's serving has ended, please check back tomorrow",
+  "@servingHasEndedText" : {
+    "description": "Text for today's dish serving is over"
   }
 }
