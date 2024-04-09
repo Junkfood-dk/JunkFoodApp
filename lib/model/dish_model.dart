@@ -6,7 +6,8 @@ class DishModel {
   String description;
   int calories;
   String imageUrl;
-  String dishType;
+  int dishTypeId;
+  String dishTypeName;
   List<String> allergens;
 
   DishModel(
@@ -14,7 +15,8 @@ class DishModel {
       this.description = "",
       this.calories = 0,
       this.imageUrl = "",
-      this.dishType = "",
+      this.dishTypeId = -1,
+      this.dishTypeName = "",
       this.id = -1,
       this.allergens = const [],
       });
@@ -25,7 +27,7 @@ class DishModel {
       'description': description,
       'calories': calories,
       'image': imageUrl,
-      'dishType': dishType,
+      'dishType': dishTypeName,
     };
   }
 
@@ -40,7 +42,8 @@ class DishModel {
       description: input.containsKey("description") ? input["description"] : "",
       calories: input.containsKey("calories") ? input["calories"] : 0,
       imageUrl: input.containsKey("image") ? input["image"] : "",
-      dishType: input.containsKey("dish_type") ? input["dish_type"] : "",
+      dishTypeName: input.containsKey("Dish_type") ? input["Dish_type"]["dish_type"] : "",
+      dishTypeId: input.containsKey("Dish_type") ? input["Dish_type"]["id"] : throw Exception("No dishTypeId provided"),
     );
   }
 }

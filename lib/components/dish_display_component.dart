@@ -31,7 +31,7 @@ class DishDisplayComponent extends StatelessWidget {
                       Column(
                         children: [
                           Text(
-                            i.dishType,
+                            i.dishTypeName,
                             style: Theme.of(context).textTheme.headlineMedium,
                           ),
                           const SizedBox(
@@ -54,17 +54,19 @@ class DishDisplayComponent extends StatelessWidget {
                             style: Theme.of(context).textTheme.titleLarge,
                           ),
                           Text(i.description),
-                          Text(AppLocalizations.of(context)!.calories +
-                              ": ${i.calories}"),
-                          const Text(
-                            "Allergens:",
-                            style: TextStyle(
-                              fontWeight: FontWeight.bold
-                            ),
+                          Text(
+                            AppLocalizations.of(context)!.calories + ":",
+                            style: TextStyle(fontWeight: FontWeight.bold),
                           ),
-                          if (i.allergens.isNotEmpty) 
+                          Text("${i.calories}"),
+                          Text(
+                            AppLocalizations.of(context)!.allergens + ":",
+                            style: TextStyle(fontWeight: FontWeight.bold),
+                          ),
+                          if (i.allergens.isNotEmpty)
                             for (var allergen in i.allergens) Text(allergen)
-                          else const Text("Ingen allergener")
+                          else
+                            Text(AppLocalizations.of(context)!.noAllergens)
                         ],
                       ),
                     ],

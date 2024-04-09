@@ -22,5 +22,13 @@
   "dishOfTheDay": "Dagens ret",
   "@dishOfTheDay": {
     "description": "Title of the dish of the day page"
+  },
+  "allergens": "Allergener",
+  "@allergens": {
+    "description": "Display of allergens title"
+  },
+  "noAllergens": "Ingen allergener",
+  "@noAllergens": {
+    "description": "Display message for when no allergens"
   }
 }

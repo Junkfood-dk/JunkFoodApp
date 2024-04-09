@@ -13,7 +13,7 @@ class DishOfTheDayModel extends ChangeNotifier {
       List<DishModel> dishes = await database
           .from("Dish_Schedule")
           .select(
-              "Dishes(id, title, description, calories, Dish_type(dish_type), image)")
+              "Dishes(id, title, description, calories, Dish_type(id, dish_type), image)")
           .filter("date", "eq", DateTime.now().toIso8601String())
           .then((rows) =>
               rows.map((json) => DishModel.fromJson(json["Dishes"])).toList());
@@ -27,6 +27,7 @@ class DishOfTheDayModel extends ChangeNotifier {
             rows.map((json) => json["Allergens"]["allergen_name"].toString()).toList());
         dish.allergens = allergens;
       }
+      dishes.sort(((a, b) => a.dishTypeId.compareTo(b.dishTypeId)));
       _dishOfTheDay = dishes;
       notifyListeners();
     });
