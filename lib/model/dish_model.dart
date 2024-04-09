@@ -7,6 +7,7 @@ class DishModel {
   int calories;
   String imageUrl;
   String dishType;
+  List<String> allergens;
 
   DishModel(
       {required this.title,
@@ -14,7 +15,9 @@ class DishModel {
       this.calories = 0,
       this.imageUrl = "",
       this.dishType = "",
-      this.id = -1});
+      this.id = -1,
+      this.allergens = const [],
+      });
 
   Map<String, dynamic> toJson() {
     return {

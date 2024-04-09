@@ -10,15 +10,24 @@ class DishOfTheDayModel extends ChangeNotifier {
 
   Future<void> fetchDishOfTheDay() async {
     Future.microtask(() async {
-      var response = await database
+      List<DishModel> dishes = await database
           .from("Dish_Schedule")
           .select(
               "Dishes(id, title, description, calories, Dish_type(dish_type), image)")
           .filter("date", "eq", DateTime.now().toIso8601String())
           .then((rows) =>
               rows.map((json) => DishModel.fromJson(json["Dishes"])).toList());
-      print("hello dude!");
-      _dishOfTheDay = response;
+      for (DishModel dish in dishes) {
+        var allergens = await database
+          .from("Allergens_to_Dishes")
+          .select(
+            "Allergens(allergen_name)")
+          .filter("dish_id", "eq", dish.id)
+          .then((rows) => 
+            rows.map((json) => json["Allergens"]["allergen_name"].toString()).toList());
+        dish.allergens = allergens;
+      }
+      _dishOfTheDay = dishes;
       notifyListeners();
     });
   }
