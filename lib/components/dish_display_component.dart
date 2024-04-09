@@ -41,8 +41,12 @@ class DishDisplayComponent extends StatelessWidget {
                             width: MediaQuery.of(context).size.width * 0.4,
                             child: ClipRRect(
                               borderRadius:
-                                  const BorderRadius.all(Radius.circular(15)),
-                              child: Image.network(i.imageUrl),
+                                  BorderRadius.all(Radius.circular(15)),
+                              child: AspectRatio(
+                                aspectRatio: 16 / 9,
+                                child: Image.network(i.imageUrl,
+                                    fit: BoxFit.cover),
+                              ),
                             ),
                           ),
                           Text(
@@ -50,7 +54,8 @@ class DishDisplayComponent extends StatelessWidget {
                             style: Theme.of(context).textTheme.titleLarge,
                           ),
                           Text(i.description),
-                          Text(AppLocalizations.of(context)!.calories + ": ${i.calories}"),
+                          Text(AppLocalizations.of(context)!.calories +
+                              ": ${i.calories}"),
                         ],
                       ),
                     ],
