@@ -18,38 +18,40 @@ class HomePage extends StatelessWidget {
           actions: [LanguageDropdown()],
           automaticallyImplyLeading: false,
         ),
-        body: RefreshIndicator(
-          onRefresh: () async {
-            print("Refreshing");
-          },
-          child: ListView(
-            children: [
-              Center(
-                child:
-                    Consumer<DishOfTheDayModel>(builder: (context, state, _) {
-                  return FutureBuilder(
-                      future: state.hasDishOfTheDay, //state is the dish_of_the
-                      builder: (context, snapshot) {
-                        if (!snapshot.hasData) {
-                          return const CircularProgressIndicator();
-                        } else {
-                          if (!snapshot.data!) {
-                            return Text(
-                                "No dish -> Implementation kommer JI-88");
+        body: Consumer<DishOfTheDayModel>(
+          builder: (context, dishOfTheDayModel, child) => RefreshIndicator(
+            onRefresh: () async {
+              dishOfTheDayModel.fetchDishOfTheDay();
+            },
+            child: ListView(
+              children: [
+                Center(
+                  child:
+                      Consumer<DishOfTheDayModel>(builder: (context, state, _) {
+                    return FutureBuilder(
+                        future: state.hasDishOfTheDay, //state is the dish_of_the
+                        builder: (context, snapshot) {
+                          if (!snapshot.hasData) {
+                            return const CircularProgressIndicator();
                           } else {
-                            return Column(
-                              children: [
-                                Center(
-                                    child: DishDisplayComponent(
-                                        dish: state.dishOfTheDay))
-                              ],
-                            );
+                            if (!snapshot.data!) {
+                              return Text(
+                                  "No dish -> Implementation kommer JI-88");
+                            } else {
+                              return Column(
+                                children: [
+                                  Center(
+                                      child: DishDisplayComponent(
+                                          dish: state.dishOfTheDay))
+                                ],
+                              );
+                            }
                           }
-                        }
-                      });
-                }),
-              )
-            ],
+                        });
+                  }),
+                )
+              ],
+            ),
           ),
         ),
       ),
