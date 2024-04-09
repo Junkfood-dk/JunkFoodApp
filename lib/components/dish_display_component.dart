@@ -56,8 +56,15 @@ class DishDisplayComponent extends StatelessWidget {
                           Text(i.description),
                           Text(AppLocalizations.of(context)!.calories +
                               ": ${i.calories}"),
-                          Text("Allergens:"),
-                          for (var allergen in i.allergens) Text(allergen)
+                          const Text(
+                            "Allergens:",
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold
+                            ),
+                          ),
+                          if (i.allergens.isNotEmpty) 
+                            for (var allergen in i.allergens) Text(allergen)
+                          else const Text("Ingen allergener")
                         ],
                       ),
                     ],
