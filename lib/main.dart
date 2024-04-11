@@ -6,6 +6,7 @@ import 'package:userapp/Constants.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:userapp/pages/dish_of_the_day.dart';
+import 'package:userapp/services/time_provider.dart';
 import 'model/locale.dart';
 
 Future<void> main() async {
@@ -51,7 +52,7 @@ class MyApp extends StatelessWidget {
           supportedLocales: AppLocalizations.supportedLocales,
           locale: localeModel.locale,
           debugShowCheckedModeBanner: false,
-          home: HomePage(),
+          home: HomePage(timeProvider: TimeProvider()),
         ),
       ),
       );

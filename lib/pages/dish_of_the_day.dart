@@ -5,15 +5,17 @@ import 'package:userapp/components/dish_display_component.dart';
 import 'package:userapp/components/language_dropdown_component.dart';
 import 'package:userapp/model/dish_of_the_day_model.dart';
 import 'package:userapp/model/locale.dart';
+import 'package:userapp/services/service_time_checker.dart';
+import 'package:userapp/services/time_provider.dart';
 
 class HomePage extends StatelessWidget {
-  const HomePage({super.key});
+  final TimeProvider timeProvider;
+
+  const HomePage({super.key, required this.timeProvider});
 
   @override
   Widget build(BuildContext context) {
-    // Edit this line to test time functionality
-    final now = DateTime(
-        DateTime.now().year, DateTime.now().month, DateTime.now().day, 22, 00);
+    final serviceTimeChecker = ServiceTimeChecker(timeProvider);
 
     return Consumer<LocaleModel>(
       builder: (context, localeModel, child) => Scaffold(
@@ -24,21 +26,14 @@ class HomePage extends StatelessWidget {
         ),
         body: RefreshIndicator(
           onRefresh: () async {
-            print("Refreshing");
+            debugPrint("Refreshing");
           },
           child: ListView(
             children: [
               Center(
                 child:
                     Consumer<DishOfTheDayModel>(builder: (context, state, _) {
-                  final startTime =
-                      DateTime(now.year, now.month, now.day, 20, 59);
-                  final endTime =
-                      DateTime(now.year, now.month, now.day, 24, 00);
-
-                  final isServingEnded =
-                      now.isAfter(startTime) && now.isBefore(endTime);
-
+                  final isServingEnded = serviceTimeChecker.isServiceEnded();
                   return FutureBuilder(
                       future: state.hasDishOfTheDay,
                       builder: (context, snapshot) {
@@ -47,14 +42,14 @@ class HomePage extends StatelessWidget {
                             mainAxisSize: MainAxisSize.min,
                             children: [
                               Image.network("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTRuVuPxx1Ez15siEcgCMlOZ6nU4E6xzjsNe8QmRIUOJA&s",width: 200),
-                              SizedBox(height: 20),
+                              const SizedBox(height: 20),
                               Text(AppLocalizations.of(context)!.servingHasEndedText),
                             ],
                           );
                         } else if (!snapshot.hasData) {
                           return const CircularProgressIndicator();
                         } else if (!snapshot.data!) {
-                          return Text("No dish -> Implementation kommer JI-88");
+                          return const Text("No dish -> Implementation kommer JI-88");
                         } else {
                           return Column(
                             children: [
