@@ -1,4 +1,11 @@
 {
-    "cmake.configureOnOpen": true,
-    "FSharp.suggestGitignore": false
+  "[typescript]": {
+    "editor.defaultFormatter": "denoland.vscode-deno"
+  },
+  "cmake.configureOnOpen": true,
+  "deno.enablePaths": [
+    "supabase/functions"
+  ],
+  "deno.lint": true,
+  "deno.unstable": true
 }
