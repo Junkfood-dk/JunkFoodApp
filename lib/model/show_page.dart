@@ -32,22 +32,14 @@ class ShowPage extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment
                             .center, // Center content horizontally
                         children: [
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment
-                                .center, // Center content horizontally
-                            children: [
-                              Text(AppLocalizations.of(context)!.noDishText),
-                              const SizedBox(width: 10.0), // Spacing
                               Image.network(
-                                'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTRuVuPxx1Ez15siEcgCMlOZ6nU4E6xzjsNe8QmRIUOJA&s',
-                                width: 100.0,
-                                height: 100.0,
+                                'https://raw.githubusercontent.com/Junkfood-dk/JunkFoodApp/main/lib/logo.png',
+                                width: 200.0,
+                                height: 200.0,
                               ),
+                              const SizedBox(height: 10.0), // Spacing
+                              Text(AppLocalizations.of(context)!.noDishText),                              
                             ],
-                          ),
-                          const SizedBox(
-                              height: 10.0), // Add spacing below the row
-                        ],
                       );
                     } else  {
                       return  Column(
