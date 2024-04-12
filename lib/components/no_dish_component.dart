@@ -3,8 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class NoDishComponent extends StatelessWidget {
-  final List<DishModel> dishes;
-  const NoDishComponent({super.key, required this.dishes});
+  const NoDishComponent({super.key});
 
   @override
   Widget build(BuildContext context) {

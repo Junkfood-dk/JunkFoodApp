@@ -37,11 +37,7 @@ class DishOfTheDay extends StatelessWidget {
                           } else {
                             if (!snapshot.data!) {
                               return Column(
-                                children: [
-                                  Center(
-                                      child: NoDishComponent(
-                                          dishes: state.dishOfTheDay))
-                                ],
+                                children: [Center(child: NoDishComponent())],
                               );
                             } else {
                               return Text("Show dish -> JI-3");
