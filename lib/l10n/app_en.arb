@@ -11,6 +11,7 @@
   "noDishText": "Todays dish has not been posted yet, check back later",
   "@noDishText": {
     "description": "Text to show when no dish for todays date has been posted"
+}
 
   "calories": "Calories",
   "@calories": {
