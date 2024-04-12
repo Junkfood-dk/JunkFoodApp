@@ -6,8 +6,8 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
-class HomePage extends StatelessWidget {
-  const HomePage({super.key});
+class DishOfTheDay extends StatelessWidget {
+  const DishOfTheDay({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -42,7 +42,7 @@ class HomePage extends StatelessWidget {
                                 children: [
                                   Center(
                                       child: DishDisplayComponent(
-                                          dish: state.dishOfTheDay))
+                                          dishes: state.dishOfTheDay))
                                 ],
                               );
                             }

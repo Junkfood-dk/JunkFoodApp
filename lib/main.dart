@@ -51,7 +51,7 @@ class MyApp extends StatelessWidget {
           supportedLocales: AppLocalizations.supportedLocales,
           locale: localeModel.locale,
           debugShowCheckedModeBanner: false,
-          home: HomePage(),
+          home: DishOfTheDay(),
         ),
       ),
       );
