@@ -1,30 +1,25 @@
-import 'package:flutter_carousel_widget/flutter_carousel_widget.dart';
-import 'package:userapp/components/dish_display_component.dart';
-import 'package:userapp/components/language_dropdown_component.dart';
-import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:userapp/model/dish_model.dart';
+import 'package:userapp/components/no_dish_component.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:userapp/model/locale.dart';
-import 'package:userapp/pages/dish_of_the_day.dart';
+
 
 void main() {
 //Test if locale changes when language is selected in dropdown-menu
-  testWidgets('dish_display_component_displays_nothing_when_no_dishes',
+  testWidgets('no_dish_component_displays_no_dish_text_when_no_dishes',
       (WidgetTester tester) async {
     //Arrange
-    List<DishModel> testData = List.empty();
     await tester
-        .pumpWidget(MaterialApp(home: DishDisplayComponent(dishes: testData,)));
+        .pumpWidget(MaterialApp(home: NoDishComponent()));
 
     //Act
-    final carouselFinder = find.byType(FlutterCarousel);
-    final carouselWidget = tester.widget<FlutterCarousel>(carouselFinder);
+    final noDishText = AppLocalizations.of(context as BuildContext)?.noDishText;
+    final textFinder = find.text(noDishText!);
 
     //Assert
-    expect(carouselFinder, findsOneWidget);
-    expect(carouselWidget.items, isEmpty);
+    expect(textFinder, find.text("Todays menu is not ready yet. Please check back later."));
   });
+}
+
+mixin context {
 }
