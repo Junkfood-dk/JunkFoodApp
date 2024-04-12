@@ -10,5 +10,21 @@
   "noDishText": "Todays dish has not been posted yet, check back later",
   "@noDishText": {
     "description": "Text to show when no dish for todays date has been posted"
+  },
+  "calories": "Calories",
+  "@calories": {
+    "description": "Calories info on dish page"
+  },
+  "mainCourse": "Main Course",
+  "@mainCourse": {
+    "description": "Main course dish type."
+  },
+  "dessert": "Dessert",
+  "@dessert": {
+    "description": "Dessert dish type."
+  },
+  "dishOfTheDay": "Dish of the day",
+  "@dishOfTheDay": {
+    "description": "Title of the dish of the day page"
   }
 }

@@ -10,5 +10,22 @@
   "noDishText": "Dagens ret er ikke offentliggjort endnu, kig tilbage senere",
   "@noDishText": {
     "description": "Text to show when no dish for todays date has been posted"
+  },
+  "calories": "Kalorier",
+  "@calories": {
+    "description": "Calories info on dish page"
+  },
+  "mainCourse": "Hovedret",
+  "@mainCourse": {
+    "description": "Main course dish type."
+  },
+  "dessert": "Dessert",
+  "@dessert": {
+    "description": "Dessert dish type."
+  },
+  "dishOfTheDay": "Dagens ret",
+  "@dishOfTheDay": {
+    "description": "Title of the dish of the day page"
+
   }
 }
