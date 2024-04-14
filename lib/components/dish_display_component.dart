@@ -52,7 +52,7 @@ class DishDisplayComponent extends StatelessWidget {
                                   // Display placeholder or error message when image loading fails
                                   return Container(
                                     color: Colors.grey, // Placeholder color
-                                    child: Center(
+                                    child: const Center(
                                       child: Icon(
                                         Icons.error_outline,
                                         color: Colors.red, // Error icon color
