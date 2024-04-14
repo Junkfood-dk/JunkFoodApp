@@ -30,5 +30,21 @@
   "noAllergens": "Ingen allergener",
   "@noAllergens": {
     "description": "Display message for when no allergens"
+  },
+  "noDescription": "Ingen beskrivelse",
+  "@noDescription": {
+    "description": "Display message for when no description"
+  },
+  "noCalories": "Ingen kalorier",
+  "@noCalories": {
+    "description": "Display message for when no calories"
+  },
+  "noTitle": "Ingen titel",
+  "@noTitle": {
+    "description": "Display message for when no title"
+  },
+  "noDishType": "Ingen type ret",
+  "@noDishType": {
+    "description": "Display message for when no dishtype"
   }
 }

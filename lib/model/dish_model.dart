@@ -40,10 +40,10 @@ class DishModel {
           ? input["title"]
           : throw Exception("No title provided"),
       description: input.containsKey("description") ? input["description"] : "",
-      calories: input.containsKey("calories") ? input["calories"] : 0,
+      calories: input["calories"] ?? 0,
       imageUrl: input.containsKey("image") ? input["image"] : "",
-      dishTypeName: input.containsKey("Dish_type") ? input["Dish_type"]["dish_type"] : "",
-      dishTypeId: input.containsKey("Dish_type") ? input["Dish_type"]["id"] : throw Exception("No dishTypeId provided"),
+      dishTypeName: input["Dish_type"] != null ? input["Dish_type"]["dish_type"] : "",
+      dishTypeId: input["Dish_type"] != null ? input["Dish_type"]["id"] : -1,
     );
   }
 }
