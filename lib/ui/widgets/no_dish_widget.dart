@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
-class NoDishComponent extends StatelessWidget {
-  const NoDishComponent({super.key});
+class NoDishWidget extends StatelessWidget {
+  const NoDishWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -11,10 +11,9 @@ class NoDishComponent extends StatelessWidget {
           MainAxisAlignment.center, // Center content horizontally
       children: [
         Image.network(
-          'https://raw.githubusercontent.com/Junkfood-dk/JunkFoodApp/main/lib/logo.png',
-          width: 200.0,
-          height: 200.0,
-          errorBuilder: (context, error, stackTrace) {
+            'https://raw.githubusercontent.com/Junkfood-dk/JunkFoodApp/main/lib/logo.png',
+            width: 200.0,
+            height: 200.0, errorBuilder: (context, error, stackTrace) {
           // Display placeholder or error message when image loading fails
           return Container(
             color: Colors.grey, // Placeholder color
@@ -26,8 +25,7 @@ class NoDishComponent extends StatelessWidget {
               ),
             ),
           );
-        }
-        ),
+        }),
         const SizedBox(height: 10.0), // Spacing
         Text(AppLocalizations.of(context)!.noDishText),
       ],

@@ -1,12 +1,11 @@
-import 'package:userapp/Constants.dart';
-import 'package:userapp/model/dish_of_the_day_model.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:userapp/pages/dish_of_the_day.dart';
-import 'model/locale.dart';
+import 'package:userapp/ui/controllers/locale_controller.dart';
+import 'package:userapp/ui/pages/dish_of_the_day.dart';
+import 'package:userapp/utilities/Constants.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized(); //Create Database reference
@@ -14,46 +13,33 @@ Future<void> main() async {
     url: Constants.supabaseUrl,
     anonKey: Constants.supabaseAnonKey,
   );
-  runApp(MultiProvider(providers: [
-    ChangeNotifierProvider(
-      create: (context) => DishOfTheDayModel(database: _supabase), //pass db
-    ),
-  ], child: const MyApp()));
+  runApp(const ProviderScope(child: MyApp()));
 }
 
 final _supabase = Supabase.instance.client;
 
-class MyApp extends StatelessWidget {
+class MyApp extends ConsumerWidget {
   const MyApp({super.key});
 
-    @override
-  Widget build(BuildContext context) {
-    return MultiProvider(
-      providers: [
-        ChangeNotifierProvider(create: (context) => LocaleModel()),
-        ChangeNotifierProvider(
-            create: (context) => DishOfTheDayModel(database: _supabase)),
-      ],
-      child: Consumer<LocaleModel>(
-        builder: (context, localeModel, child) => MaterialApp(
-          title: 'User App',
-          theme: ThemeData(
-            colorScheme: ColorScheme.fromSeed(
-                seedColor: Color.fromARGB(255, 180, 14, 39)),
-            useMaterial3: true,
-          ),
-          localizationsDelegates: const [
-            AppLocalizations.delegate,
-            GlobalMaterialLocalizations.delegate,
-            GlobalWidgetsLocalizations.delegate,
-            GlobalCupertinoLocalizations.delegate,
-          ],
-          supportedLocales: AppLocalizations.supportedLocales,
-          locale: localeModel.locale,
-          debugShowCheckedModeBanner: false,
-          home: DishOfTheDay(),
-        ),
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    return MaterialApp(
+      title: 'User App',
+      theme: ThemeData(
+        colorScheme:
+            ColorScheme.fromSeed(seedColor: Color.fromARGB(255, 180, 14, 39)),
+        useMaterial3: true,
       ),
+      localizationsDelegates: const [
+        AppLocalizations.delegate,
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
+      ],
+      supportedLocales: AppLocalizations.supportedLocales,
+      locale: ref.watch(localeControllerProvider),
+      debugShowCheckedModeBanner: false,
+      home: DishOfTheDay(),
     );
   }
 }

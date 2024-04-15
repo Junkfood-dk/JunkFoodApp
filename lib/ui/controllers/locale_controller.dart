@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-class LocaleModel extends ChangeNotifier {
-  Locale? _locale;
+part 'locale_controller.g.dart';
 
-  Locale? get locale => _locale;
+@riverpod
+class LocaleController extends _$LocaleController {
+  Locale? build() {
+    return null;
+  }
 
   void set(Locale locale) {
-    _locale = locale;
-    notifyListeners();
+    state = locale;
   }
 }
