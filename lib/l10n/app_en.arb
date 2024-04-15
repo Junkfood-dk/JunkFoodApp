@@ -26,5 +26,29 @@
   "dishOfTheDay": "Dish of the day",
   "@dishOfTheDay": {
     "description": "Title of the dish of the day page"
+  },
+  "allergens": "Allergens",
+  "@allergens": {
+    "description": "Display of allergens title"
+  },
+  "noAllergens": "No allergens",
+  "@noAllergens": {
+    "description": "Display message for when no allergens"
+  },
+  "noDescription": "No description",
+  "@noDescription": {
+    "description": "Display message for when no description"
+  },
+  "noCalories": "No calories",
+  "@noCalories": {
+    "description": "Display message for when no calories"
+  },
+  "noTitle": "No title",
+  "@noTitle": {
+    "description": "Display message for when no title"
+  },
+  "noDishType": "No dishtype",
+  "@noDishType": {
+    "description": "Display message for when no dishtype"
   }
 }
