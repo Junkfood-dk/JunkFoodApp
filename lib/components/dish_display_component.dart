@@ -104,13 +104,3 @@ class DishDisplayComponent extends StatelessWidget {
     );
   }
 }
-
-// Map<int, String> dishTypeMap(BuildContext context) {
-//   return {0: AppLocalizations.of(context)!.mainCourse, 1: AppLocalizations.of(context)!.dessert
-//   };
-// }
-
-// String dishTypeTranslator(int id, BuildContext context) {
-//   return dishTypeMap(context)[id] ??
-//       "Unknown"; // Using ?? operator to handle cases where id is not found
-// }
