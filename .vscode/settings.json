@@ -3,6 +3,11 @@
     "editor.defaultFormatter": "denoland.vscode-deno"
   },
   "cmake.configureOnOpen": true,
+    "cSpell.words": [
+        "Componenet",
+        "supabase",
+        "userapp"
+    ],
   "deno.enablePaths": [
     "supabase/functions"
   ],
