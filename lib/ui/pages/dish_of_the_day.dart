@@ -1,3 +1,4 @@
+import 'package:userapp/data/dish_repository.dart';
 import 'package:userapp/dish_of_the_day_model.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -19,7 +20,8 @@ class DishOfTheDay extends StatelessWidget {
         ),
         body: RefreshIndicator(
             onRefresh: () async {
-              //dishOfTheDayModel.fetchDishOfTheDay();
+              ref.read(dishRepositoryProvider).fetchDishOfTheDay; // old: dishOfTheDayModel.fetchDishOfTheDay(); SHIT DOESNT WORK
+
             },
             child: ListView(
               children: [
