@@ -1,15 +1,14 @@
-import 'package:userapp/model/language.dart';
-import 'package:userapp/model/locale.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:userapp/domain/model/langueage_model.dart';
 
 class LanguageDropdown extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Consumer<LocaleModel>(
+    return Consumer<Locale>(
       builder: (context, localeModel, child) => PopupMenuButton<Language>(
           onSelected: (Language language) {
-            localeModel.set(Locale(language.languageCode));
+          //  localeModel.set(Locale(language.languageCode));
           },
           icon: const Icon(Icons.language),
           itemBuilder: (BuildContext context) {

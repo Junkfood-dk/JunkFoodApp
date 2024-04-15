@@ -16,8 +16,6 @@ Future<void> main() async {
   runApp(const ProviderScope(child: MyApp()));
 }
 
-final _supabase = Supabase.instance.client;
-
 class MyApp extends ConsumerWidget {
   const MyApp({super.key});
 

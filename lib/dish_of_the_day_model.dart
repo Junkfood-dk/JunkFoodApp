@@ -1,6 +1,6 @@
-import 'package:userapp/model/dish_model.dart';
 import 'package:flutter/material.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
+import 'package:userapp/domain/model/dish_model.dart';
 
 class DishOfTheDayModel extends ChangeNotifier {
   final SupabaseClient database;
