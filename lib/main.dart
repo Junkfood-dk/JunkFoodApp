@@ -1,3 +1,4 @@
+import 'package:userapp/Constants.dart';
 import 'package:userapp/model/dish_of_the_day_model.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -7,8 +8,17 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:userapp/pages/dish_of_the_day.dart';
 import 'model/locale.dart';
 
-void main() {
-  runApp(const MyApp());
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized(); //Create Database reference
+  await Supabase.initialize(
+    url: Constants.supabaseUrl,
+    anonKey: Constants.supabaseAnonKey,
+  );
+  runApp(MultiProvider(providers: [
+    ChangeNotifierProvider(
+      create: (context) => DishOfTheDayModel(database: _supabase), //pass db
+    ),
+  ], child: const MyApp()));
 }
 
 final _supabase = Supabase.instance.client;
