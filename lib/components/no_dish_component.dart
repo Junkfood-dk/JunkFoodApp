@@ -10,14 +10,13 @@ class NoDishComponent extends StatelessWidget {
       mainAxisAlignment:
           MainAxisAlignment.center, // Center content horizontally
       children: [
-        /*Image.network(
+        Image.network(
           'https://raw.githubusercontent.com/Junkfood-dk/JunkFoodApp/main/lib/logo.png',
           width: 200.0,
           height: 200.0,
-        ),*/
+        ),
         const SizedBox(height: 10.0), // Spacing
         Text(AppLocalizations.of(context)!.noDishText),
-        Text("Fuck så af"),
       ],
     );
   }

@@ -1,5 +1,6 @@
 import 'package:userapp/components/dish_display_component.dart';
 import 'package:userapp/components/language_dropdown_component.dart';
+import 'package:userapp/components/no_dish_component.dart';
 import 'package:userapp/model/dish_of_the_day_model.dart';
 import 'package:userapp/model/locale.dart';
 import 'package:flutter/material.dart';
@@ -35,8 +36,9 @@ class DishOfTheDay extends StatelessWidget {
                             return const CircularProgressIndicator();
                           } else {
                             if (!snapshot.data!) {
-                              return Text(
-                                  "No dish -> Implementation kommer JI-88");
+                              return Column(
+                                children: [Center(child: NoDishComponent())],
+                              );
                             } else {
                               return Column(
                                 children: [
