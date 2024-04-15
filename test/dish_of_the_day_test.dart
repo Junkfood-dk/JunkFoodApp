@@ -68,7 +68,7 @@ void main() {
     expect(cardFinder, findsExactly(1));
   });
 
-  testWidgets('dish_display_component_displays_one_card_when_multiple dishes',
+  testWidgets('dish_display_component_displays_multiple_cards_when_multiple dishes',
       (WidgetTester tester) async {
     //Arrange
     List<DishModel> testData = [
