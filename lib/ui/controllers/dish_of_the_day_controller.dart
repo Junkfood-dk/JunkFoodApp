@@ -10,4 +10,10 @@ class DishOfTheDayController extends _$DishOfTheDayController {
     var dishRepo = ref.read(dishRepositoryProvider);
     return dishRepo.fetchDishOfTheDay();
   }
+
+  Future<void> refetchDishOfTheDay() async {
+      state = AsyncData(await ref.read(dishRepositoryProvider).fetchDishOfTheDay()); 
+  }
 }
+
+

@@ -3,10 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_carousel_widget/flutter_carousel_widget.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
-class DishDisplayComponent extends StatelessWidget {
+class DishDisplayWidget extends StatelessWidget {
   final List<DishModel> dishes;
-  const DishDisplayComponent.DishDisplayWidget(
-      {super.key, required this.dishes});
+  const DishDisplayWidget({super.key, required this.dishes});
 
   @override
   Widget build(BuildContext context) {
