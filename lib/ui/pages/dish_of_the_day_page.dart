@@ -9,15 +9,15 @@ import 'package:userapp/ui/widgets/dish_display_widget.dart';
 import 'package:userapp/ui/widgets/language_dropdown_widget.dart';
 import 'package:userapp/ui/widgets/no_dish_widget.dart';
 
-class DishOfTheDay extends ConsumerWidget {
-  const DishOfTheDay({super.key});
+class DishOfTheDayPage extends ConsumerWidget {
+  const DishOfTheDayPage({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
       appBar: AppBar(
         title: Text(AppLocalizations.of(context)!.dishOfTheDay),
-        actions: [LanguageDropdown()],
+        actions: [LanguageDropdownWidget()],
         automaticallyImplyLeading: false,
       ),
       body: RefreshIndicator(

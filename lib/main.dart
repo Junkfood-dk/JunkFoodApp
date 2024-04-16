@@ -4,7 +4,7 @@ import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:userapp/ui/controllers/locale_controller.dart';
-import 'package:userapp/ui/pages/dish_of_the_day.dart';
+import 'package:userapp/ui/pages/dish_of_the_day_page.dart';
 import 'package:userapp/utilities/Constants.dart';
 
 Future<void> main() async {
@@ -37,7 +37,7 @@ class MyApp extends ConsumerWidget {
       supportedLocales: AppLocalizations.supportedLocales,
       locale: ref.watch(localeControllerProvider),
       debugShowCheckedModeBanner: false,
-      home: DishOfTheDay(),
+      home: DishOfTheDayPage(),
     );
   }
 }
