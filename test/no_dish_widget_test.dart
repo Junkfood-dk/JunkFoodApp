@@ -5,7 +5,7 @@ import 'package:userapp/ui/widgets/no_dish_widget.dart';
 
 
 void main() {
-  testWidgets('no_dish_widget_displays_no_dish_text_when_no_dishes',
+  testWidgets('no_dish_component_displays_no_dish_text_when_no_dishes',
       (WidgetTester tester) async {
     // Arrange
     await tester.pumpWidget(const MaterialApp(

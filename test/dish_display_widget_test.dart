@@ -1,19 +1,19 @@
 import 'package:flutter_carousel_widget/flutter_carousel_widget.dart';
-import 'package:userapp/components/dish_display_component.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:userapp/model/dish_model.dart';
+import 'package:userapp/domain/model/dish_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:userapp/ui/widgets/dish_display_widget.dart';
 
 void main() {
 //Test if locale changes when language is selected in dropdown-menu
-  testWidgets('dish_display_component_displays_nothing_when_no_dishes',
+  testWidgets('dish_display_widget_displays_nothing_when_no_dishes',
       (WidgetTester tester) async {
     //Arrange
     List<DishModel> testData = List.empty();
     await tester.pumpWidget(MaterialApp(
-      home: DishDisplayComponent(
+      home: DishDisplayWidget(
         dishes: testData,
       ),
       localizationsDelegates: const [
@@ -34,7 +34,7 @@ void main() {
     expect(carouselWidget.items, isEmpty);
   });
 
-  testWidgets('dish_display_component_displays_one_card_when_one_dish',
+  testWidgets('dish_display_widget_displays_one_card_when_one_dish',
       (WidgetTester tester) async {
     //Arrange
     List<DishModel> testData = [
@@ -49,7 +49,7 @@ void main() {
     ];
 
     await tester.pumpWidget(MaterialApp(
-      home: DishDisplayComponent(
+      home: DishDisplayWidget(
         dishes: testData,
       ),
       localizationsDelegates: const [
@@ -68,7 +68,7 @@ void main() {
     expect(cardFinder, findsExactly(1));
   });
 
-  testWidgets('dish_display_component_displays_multiple_cards_when_multiple dishes',
+  testWidgets('dish_display_widget_displays_multiple_cards_when_multiple dishes',
       (WidgetTester tester) async {
     //Arrange
     List<DishModel> testData = [
@@ -91,7 +91,7 @@ void main() {
     ];
 
     await tester.pumpWidget(MaterialApp(
-      home: DishDisplayComponent(
+      home: DishDisplayWidget(
         dishes: testData,
       ),
       localizationsDelegates: const [
@@ -110,7 +110,7 @@ void main() {
     expect(cardFinder, findsExactly(2));
   });
 
-  testWidgets('dish_display_component_displays_information_from_fetched_data',
+  testWidgets('dish_display_widget_displays_information_from_fetched_data',
       (WidgetTester tester) async {
     //Arrange
     List<DishModel> testData = [
@@ -125,7 +125,7 @@ void main() {
     ];
 
     await tester.pumpWidget(MaterialApp(
-      home: DishDisplayComponent(
+      home: DishDisplayWidget(
         dishes: testData,
       ),
       localizationsDelegates: const [
@@ -151,7 +151,7 @@ void main() {
   });
 
   testWidgets(
-      'dish_display_component_displays_information_from_fetched_data_when_bad_data',
+      'dish_display_widget_displays_information_from_fetched_data_when_bad_data',
       (WidgetTester tester) async {
     //Arrange
     List<DishModel> testData = [
@@ -166,7 +166,7 @@ void main() {
     ];
 
     await tester.pumpWidget(MaterialApp(
-      home: DishDisplayComponent(
+      home: DishDisplayWidget(
         dishes: testData,
       ),
       localizationsDelegates: const [
