@@ -40,7 +40,11 @@ dependencies:
     sdk: flutter
   intl: any
   provider: ^6.1.2
-  supabase_flutter: ^2.3.4
+  supabase_flutter: ^2.4.0
+  riverpod_annotation: ^2.3.5
+  supabase_auth_ui: ^0.4.3
+  hooks_riverpod: ^2.5.1
+  build_runner: ^2.4.9
 
 dev_dependencies:
   flutter_test:
@@ -52,6 +56,11 @@ dev_dependencies:
   # package. See that file for information about deactivating specific lint
   # rules and activating additional ones.
   flutter_lints: ^3.0.0
+  mockito: ^5.4.4
+  riverpod_generator: ^2.4.0
+  custom_lint: ^0.6.4
+  riverpod_lint: ^2.3.10
+
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

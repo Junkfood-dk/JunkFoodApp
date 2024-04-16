@@ -1,0 +1,78 @@
+{
+  "homePageTitle": "Startside",
+  "@homePageTitle": {
+    "description": "This is the title banner of the Homepage"
+  },
+  "punchText": "Du har slået knappen så mange gange:",
+  "@punchText": {
+    "description": "The text in the middle, describing how many times you have punched the button"
+  },
+  "calories": "Kalorier",
+  "@calories": {
+    "description": "Calories info on dish page"
+  },
+  "mainCourse": "Hovedret",
+  "@mainCourse": {
+    "description": "Main course dish type."
+  },
+  "dessert": "Dessert",
+  "@dessert": {
+    "description": "Dessert dish type."
+  },
+  "dishOfTheDay": "Dagens ret",
+  "@dishOfTheDay": {
+    "description": "Title of the dish of the day page"
+  },
+  "allergens": "Allergener",
+  "@allergens": {
+    "description": "Display of allergens title"
+  },
+  "noAllergens": "Ingen allergener",
+  "@noAllergens": {
+    "description": "Display message for when no allergens"
+  },
+  "noDishText": "Dagens ret er ikke offentliggjort endnu. Tjek siden senere.",
+  "@noDishText": {
+    "description": "Text to show when no dish for todays date has been posted"
+  },
+  "calories": "Kalorier",
+  "@calories": {
+    "description": "Calories info on dish page"
+  },
+  "mainCourse": "Hovedret",
+  "@mainCourse": {
+    "description": "Main course dish type."
+  },
+  "dessert": "Dessert",
+  "@dessert": {
+    "description": "Dessert dish type."
+  },
+  "dishOfTheDay": "Dagens ret",
+  "@dishOfTheDay": {
+    "description": "Title of the dish of the day page"
+  },
+  "allergens": "Allergener",
+  "@allergens": {
+    "description": "Display of allergens title"
+  },
+  "noAllergens": "Ingen allergener",
+  "@noAllergens": {
+    "description": "Display message for when no allergens"
+  },
+  "noDescription": "Ingen beskrivelse",
+  "@noDescription": {
+    "description": "Display message for when no description"
+  },
+  "noCalories": "Ingen kalorier",
+  "@noCalories": {
+    "description": "Display message for when no calories"
+  },
+  "noTitle": "Ingen titel",
+  "@noTitle": {
+    "description": "Display message for when no title"
+  },
+  "noDishType": "Ingen type ret",
+  "@noDishType": {
+    "description": "Display message for when no dishtype"
+  }
+}

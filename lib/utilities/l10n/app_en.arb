@@ -1,0 +1,78 @@
+{
+  "homePageTitle": "Homepage",
+  "@homePageTitle": {
+    "description": "This is the title banner of the Homepage"
+  },
+  "punchText": "You have punched the button this many times:",
+  "@punchText": {
+    "description": "The text in the middle, describing how many times you have punched the button"
+  },
+  "calories": "Calories",
+  "@calories": {
+    "description": "Calories info on dish page"
+  },
+  "mainCourse": "Main Course",
+  "@mainCourse": {
+    "description": "Main course dish type."
+  },
+  "dessert": "Dessert",
+  "@dessert": {
+    "description": "Dessert dish type."
+  },
+  "dishOfTheDay": "Dish of the day",
+  "@dishOfTheDay": {
+    "description": "Title of the dish of the day page"
+  },
+  "allergens": "Allergens",
+  "@allergens": {
+    "description": "Display of allergens title"
+  },
+  "noAllergens": "No allergens",
+  "@noAllergens": {
+    "description": "Display message for when no allergens"
+  },
+   "noDishText": "Todays menu is not ready yet. Please check back later.",
+  "@noDishText": {
+    "description": "Text to show when no dish for todays date has been posted"
+  },
+  "calories": "Calories",
+  "@calories": {
+    "description": "Calories info on dish page"
+  },
+  "mainCourse": "Main Course",
+  "@mainCourse": {
+    "description": "Main course dish type."
+  },
+  "dessert": "Dessert",
+  "@dessert": {
+    "description": "Dessert dish type."
+  },
+  "dishOfTheDay": "Dish of the day",
+  "@dishOfTheDay": {
+    "description": "Title of the dish of the day page"
+  },
+  "allergens": "Allergens",
+  "@allergens": {
+    "description": "Display of allergens title"
+  },
+  "noAllergens": "No allergens",
+  "@noAllergens": {
+    "description": "Display message for when no allergens"
+  },
+  "noDescription": "No description",
+  "@noDescription": {
+    "description": "Display message for when no description"
+  },
+  "noCalories": "No calories",
+  "@noCalories": {
+    "description": "Display message for when no calories"
+  },
+  "noTitle": "No title",
+  "@noTitle": {
+    "description": "Display message for when no title"
+  },
+  "noDishType": "No dishtype",
+  "@noDishType": {
+    "description": "Display message for when no dishtype"
+  }
+}
