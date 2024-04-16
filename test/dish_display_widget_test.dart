@@ -8,7 +8,7 @@ import 'package:userapp/ui/widgets/dish_display_widget.dart';
 
 void main() {
 //Test if locale changes when language is selected in dropdown-menu
-  testWidgets('dish_display_component_displays_nothing_when_no_dishes',
+  testWidgets('dish_display_widget_displays_nothing_when_no_dishes',
       (WidgetTester tester) async {
     //Arrange
     List<DishModel> testData = List.empty();
@@ -34,7 +34,7 @@ void main() {
     expect(carouselWidget.items, isEmpty);
   });
 
-  testWidgets('dish_display_component_displays_one_card_when_one_dish',
+  testWidgets('dish_display_widget_displays_one_card_when_one_dish',
       (WidgetTester tester) async {
     //Arrange
     List<DishModel> testData = [
@@ -68,7 +68,7 @@ void main() {
     expect(cardFinder, findsExactly(1));
   });
 
-  testWidgets('dish_display_component_displays_multiple_cards_when_multiple dishes',
+  testWidgets('dish_display_widget_displays_multiple_cards_when_multiple dishes',
       (WidgetTester tester) async {
     //Arrange
     List<DishModel> testData = [
@@ -110,7 +110,7 @@ void main() {
     expect(cardFinder, findsExactly(2));
   });
 
-  testWidgets('dish_display_component_displays_information_from_fetched_data',
+  testWidgets('dish_display_widget_displays_information_from_fetched_data',
       (WidgetTester tester) async {
     //Arrange
     List<DishModel> testData = [
@@ -151,7 +151,7 @@ void main() {
   });
 
   testWidgets(
-      'dish_display_component_displays_information_from_fetched_data_when_bad_data',
+      'dish_display_widget_displays_information_from_fetched_data_when_bad_data',
       (WidgetTester tester) async {
     //Arrange
     List<DishModel> testData = [
