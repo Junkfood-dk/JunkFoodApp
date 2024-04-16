@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:provider/provider.dart';
 import 'package:userapp/domain/model/language_model.dart';
 import 'package:userapp/ui/controllers/locale_controller.dart';
 
