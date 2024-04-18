@@ -11,7 +11,7 @@ class NoDishWidget extends StatelessWidget {
           MainAxisAlignment.center, // Center content horizontally
       children: [
         Image.network(
-            'https://raw.githubusercontent.com/Junkfood-dk/JunkFoodApp/main/lib/logo.png',
+            'https://raw.githubusercontent.com/Junkfood-dk/JunkFoodApp/main/lib/resources/logo.png',
             width: 200.0,
             height: 200.0, errorBuilder: (context, error, stackTrace) {
           // Display placeholder or error message when image loading fails
