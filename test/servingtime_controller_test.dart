@@ -1,4 +1,3 @@
-import 'package:mockito/annotations.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:userapp/ui/controllers/servingtime_controller.dart';
@@ -20,6 +19,7 @@ ProviderContainer createContainer({
 
   return container;
 }
+
 void main() {
   test('should return true when time is after service end time', () {
     //Arrange
