@@ -1,37 +1,50 @@
+import 'package:mockito/annotations.dart';
+import 'package:mockito/mockito.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:userapp/ui/controllers/servingtime_controller.dart';
 
-void main() {
-  group('ServiceTimeChecker', () {
-    late MockTimeProvider mockTimeProvider;
-    late ServiceTimeChecker serviceTimeChecker;
+import 'servingtime_controller_test.mocks.dart';
 
-    setUp(() {
-      // You need to initialize it with a specific time for each test
-      mockTimeProvider =
-          MockTimeProvider(mockCurrentTime: DateTime(2024, 4, 10, 21, 0));
-      serviceTimeChecker = ServiceTimeChecker(mockTimeProvider);
-    });
+ProviderContainer createContainer({
+  ProviderContainer? parent,
+  List<Override> overrides = const [],
+  List<ProviderObserver>? observers,
+}) {
+  // Create a ProviderContainer, and optionally allow specifying parameters.
+  final container = ProviderContainer(
+    parent: parent,
+    overrides: overrides,
+    observers: observers,
+  );
 
-    test('should return true when time is after service end time', () {
-      // Set the mock time to after the service end time
-      mockTimeProvider.mockCurrentTime = DateTime(2024, 4, 10, 21, 0);
-      expect(serviceTimeChecker.isServiceEnded(), isTrue);
-    });
+  // When the test ends, dispose the container.
+  addTearDown(container.dispose);
 
-    test('should return false when time is before service end time', () {
-      // Set the mock time to before the service end time
-      mockTimeProvider.mockCurrentTime = DateTime(2024, 4, 10, 20, 58);
-      expect(serviceTimeChecker.isServiceEnded(), isFalse);
-    });
-  });
+  return container;
 }
 
-// MockTimeProvider should simply override the getCurrentTime method
-class MockTimeProvider extends TimeProvider {
-  DateTime mockCurrentTime;
+@GenerateNiceMocks([MockSpec<ServingtimeController>()])
+void main() {
+  test('should return true when time is after service end time', () {
+    //Arrange
+    final container = createContainer();
+    //Act
+    var result = container
+        .read(servingtimeControllerProvider.notifier)
+        .hasServiceEnded(DateTime(2024, 4, 10, 21, 0));
+    //Assert
+    expect(result, isTrue);
+  });
 
-  MockTimeProvider({required this.mockCurrentTime});
-
-  @override
-  DateTime getCurrentTime() => mockCurrentTime;
+  test('should return false when time is before service end time', () {
+    //Arrange
+    final container = createContainer();
+    //Act
+    var result = container
+        .read(servingtimeControllerProvider.notifier)
+        .hasServiceEnded(DateTime(2024, 4, 10, 20, 58));
+    //Assert
+    expect(result, isFalse);
+  });
 }
