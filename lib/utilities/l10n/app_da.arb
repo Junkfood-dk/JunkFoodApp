@@ -74,5 +74,9 @@
   "noDishType": "Ingen type ret",
   "@noDishType": {
     "description": "Display message for when no dishtype"
+  },
+  "servingHasEndedText" : "Servering af dagens ret er slut, vend tilbage i morgen",
+  "@servingHasEndedText" : {
+    "description" : "Text for today's dish serving is over"
   }
 }
