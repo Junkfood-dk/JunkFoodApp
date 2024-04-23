@@ -20,8 +20,6 @@ ProviderContainer createContainer({
 
   return container;
 }
-
-@GenerateNiceMocks([MockSpec<ServingtimeController>()])
 void main() {
   test('should return true when time is after service end time', () {
     //Arrange
