@@ -6,6 +6,7 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:userapp/ui/controllers/locale_controller.dart';
 import 'package:userapp/ui/pages/dish_of_the_day_page.dart';
 import 'package:userapp/utilities/Constants.dart';
+import 'package:userapp/utilities/theming/text_theming.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized(); //Create Database reference
@@ -26,6 +27,7 @@ class MyApp extends ConsumerWidget {
       theme: ThemeData(
         colorScheme:
             ColorScheme.fromSeed(seedColor: Color.fromARGB(255, 180, 14, 39)),
+        textTheme: appTextTheme,
         useMaterial3: true,
       ),
       localizationsDelegates: const [
