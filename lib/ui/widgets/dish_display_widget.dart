@@ -1,6 +1,11 @@
+import 'package:flutter/widgets.dart';
+import 'package:gradient_elevated_button/gradient_elevated_button.dart';
 import 'package:userapp/domain/model/dish_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:userapp/utilities/theming/color_theme.dart';
+import 'package:userapp/utilities/theming/text_theming.dart';
+import 'package:userapp/utilities/widgets/gradiant_button_widget.dart';
 import 'package:userapp/utilities/widgets/text_wrapper.dart';
 
 class DishDisplayWidget extends StatelessWidget {
@@ -88,7 +93,14 @@ class DishDisplayWidget extends StatelessWidget {
                         return BodyText(
                             text: allergen + (!isLast ? " • " : ""));
                       }).toList())
-                    : Text(AppLocalizations.of(context)!.noAllergens)
+                    : Text(AppLocalizations.of(context)!.noAllergens),
+                Container(
+                    width: MediaQuery.of(context).size.width * 0.9,
+                    child: gradiantButton(
+                        child: Text(
+                            AppLocalizations.of(context)!.rateButtonText,
+                            style: appTextTheme.labelMedium),
+                        onPressed: () {}))
               ],
             ),
           )

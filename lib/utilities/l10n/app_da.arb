@@ -78,5 +78,9 @@
   "servingHasEndedText" : "Servering af dagens ret er slut, vend tilbage i morgen",
   "@servingHasEndedText" : {
     "description" : "Text for today's dish serving is over"
+  },
+  "rateButtonText" : "Bedøm denne ret",
+  "@rateButtonText" : {
+    "description" : "The text on the rate the dish button"
   }
 }
