@@ -5,8 +5,7 @@ import 'package:userapp/utilities/widgets/text_wrapper.dart';
 
 class DishDisplayWidget extends StatelessWidget {
   final DishModel dish;
-  List<String> allergens = ["Cheese", "Butter", "Milk"];
-  DishDisplayWidget({super.key, required this.dish});
+  const DishDisplayWidget({super.key, required this.dish});
 
   @override
   Widget build(BuildContext context) {
@@ -82,16 +81,14 @@ class DishDisplayWidget extends StatelessWidget {
                 BodyBoldText(
                   text: "${AppLocalizations.of(context)!.allergens}:",
                 ),
-                Row(
-                  children: allergens.map((allergen) {
-                    bool isLast = allergen == allergens.last;
-                    return BodyText(text: allergen + (!isLast ? " • " : ""));
-                  }).toList(),
-                )
-                /*if (dish.allergens.isNotEmpty)
-                  for (var allergen in dish.allergens) Text(allergen)
-                else
-                  Text(AppLocalizations.of(context)!.noAllergens)*/
+                dish.allergens.isNotEmpty
+                    ? Row(
+                        children: dish.allergens.map((allergen) {
+                        bool isLast = allergen == dish.allergens.last;
+                        return BodyText(
+                            text: allergen + (!isLast ? " • " : ""));
+                      }).toList())
+                    : Text(AppLocalizations.of(context)!.noAllergens)
               ],
             ),
           )
