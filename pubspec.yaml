@@ -45,6 +45,7 @@ dependencies:
   supabase_auth_ui: ^0.4.3
   hooks_riverpod: ^2.5.1
   build_runner: ^2.4.9
+  gradient_elevated_button: ^0.0.8
 
 dev_dependencies:
   flutter_launcher_icons: "^0.13.1"
