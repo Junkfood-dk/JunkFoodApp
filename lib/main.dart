@@ -28,7 +28,7 @@ class MyApp extends ConsumerWidget {
         colorScheme:
             ColorScheme.fromSeed(seedColor: Color.fromARGB(255, 180, 14, 39)),
         textTheme: appTextTheme,
-        useMaterial3: false,
+        useMaterial3: true,
       ),
       localizationsDelegates: const [
         AppLocalizations.delegate,
