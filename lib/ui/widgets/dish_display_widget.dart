@@ -83,9 +83,10 @@ class DishDisplayWidget extends StatelessWidget {
                   text: "${AppLocalizations.of(context)!.allergens}:",
                 ),
                 Row(
-                  children: allergens
-                      .map((allergen) => BodyText(text: allergen))
-                      .toList(),
+                  children: allergens.map((allergen) {
+                    bool isLast = allergen == allergens.last;
+                    return BodyText(text: allergen + (!isLast ? " • " : ""));
+                  }).toList(),
                 )
                 /*if (dish.allergens.isNotEmpty)
                   for (var allergen in dish.allergens) Text(allergen)
