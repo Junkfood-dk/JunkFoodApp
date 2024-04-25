@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:userapp/domain/model/language_model.dart';
 import 'package:userapp/ui/controllers/locale_controller.dart';
+import 'package:userapp/utilities/widgets/gradiant_wrapper.dart';
 
 class LanguageDropdownWidget extends ConsumerWidget {
   const LanguageDropdownWidget({super.key});
@@ -14,7 +15,7 @@ class LanguageDropdownWidget extends ConsumerWidget {
             .read(localeControllerProvider.notifier)
             .set(Locale(language.languageCode));
       },
-      icon: const Icon(Icons.language),
+      icon: primaryGradiantWidget(child: const Icon(Icons.language )),
       itemBuilder: (BuildContext context) {
         List<PopupMenuEntry<Language>> menuItems =
             Language.languageList().map((e) {

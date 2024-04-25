@@ -1,18 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
-BoxDecoration primaryGradiant = BoxDecoration(
-  gradient: LinearGradient(
-    begin: Alignment.centerLeft,
-    end: Alignment.centerRight,
-    colors: <Color> [
-      colorTheme.primary,
-      colorTheme.secondary,
-      colorTheme.tertiary,
-    ],
-    tileMode: TileMode.mirror)
-);
-
 const ColorScheme colorTheme = ColorScheme(
   brightness: Brightness.dark, 
   primary: Color(0xFF935FA2),
