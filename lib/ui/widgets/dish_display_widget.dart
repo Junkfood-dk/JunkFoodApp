@@ -6,6 +6,7 @@ import 'package:flutter_carousel_widget/flutter_carousel_widget.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:userapp/utilities/theming/color_theme.dart';
 import 'package:userapp/utilities/theming/text_theming.dart';
+import 'package:userapp/utilities/widgets/gradiant_button_widget.dart';
 
 class DishDisplayWidget extends StatelessWidget {
   final List<DishModel> dishes;
@@ -97,24 +98,13 @@ class DishDisplayWidget extends StatelessWidget {
                           else
                             Text(AppLocalizations.of(context)!.noAllergens),
                           Container(
-                            width: MediaQuery.of(context).size.width * 0.9,
-                            child: GradientElevatedButton(
-                              onPressed: () {},
-                              style:GradientElevatedButton.styleFrom(
-                                gradient: LinearGradient(
-                                  colors: [
-                                    Color(0xFF935FA2),
-                                    Color(0xFFE52E42),
-                                    Color(0xFFF5A334),
-                                  ],
-                                  begin: Alignment.centerLeft,
-                                  end: Alignment.centerRight,
-                                ),
-                              ),
-                              child:
-                                  Text(AppLocalizations.of(context)!.rateButtonText, style: appTextTheme.labelMedium),
-                            ),
-                          ),
+                              width: MediaQuery.of(context).size.width * 0.9,
+                              child: gradiantButton(
+                                  child: Text(
+                                      AppLocalizations.of(context)!
+                                          .rateButtonText,
+                                      style: appTextTheme.labelMedium),
+                                  onPressed: () {})),
                         ],
                       ),
                     ],
