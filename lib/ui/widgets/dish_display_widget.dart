@@ -19,22 +19,31 @@ class DishDisplayWidget extends StatelessWidget {
                   clipBehavior: Clip.none,
                   alignment: Alignment.bottomLeft,
                   children: [
-                    AspectRatio(
-                      aspectRatio: 16 / 9,
-                      child: Image.network(dish.imageUrl, fit: BoxFit.cover,
-                          errorBuilder: (context, error, stackTrace) {
-                        // Display placeholder or error message when image loading fails
-                        return Container(
-                          color: Colors.grey, // Placeholder color
-                          child: const Center(
-                            child: Icon(
-                              Icons.error_outline,
-                              color: Colors.red, // Error icon color
-                              size: 48.0,
+                    ShaderMask(
+                      blendMode: BlendMode.srcOver,
+                      shaderCallback: (bounds) => LinearGradient(
+                              begin: Alignment.bottomCenter,
+                              end: Alignment.topCenter,
+                              colors: [Colors.black, Colors.transparent])
+                          .createShader(
+                              Rect.fromLTWH(0, 0, bounds.width, bounds.height)),
+                      child: AspectRatio(
+                        aspectRatio: 16 / 9,
+                        child: Image.network(dish.imageUrl, fit: BoxFit.cover,
+                            errorBuilder: (context, error, stackTrace) {
+                          // Display placeholder or error message when image loading fails
+                          return Container(
+                            color: Colors.grey, // Placeholder color
+                            child: const Center(
+                              child: Icon(
+                                Icons.error_outline,
+                                color: Colors.red, // Error icon color
+                                size: 48.0,
+                              ),
                             ),
-                          ),
-                        );
-                      }),
+                          );
+                        }),
+                      ),
                     ),
                     if (dish.title != "")
                       Positioned(
@@ -42,21 +51,12 @@ class DishDisplayWidget extends StatelessWidget {
                         left: 16,
                         child: SizedBox(
                           width: MediaQuery.of(context).size.width * 0.5,
-                          child: ShaderMask(
-                            blendMode: BlendMode.srcIn,
-                            shaderCallback: (bounds) => LinearGradient(
-                                    begin: Alignment.bottomCenter,
-                                    end: Alignment.topCenter,
-                                    colors: [Colors.black, Colors.transparent])
-                                .createShader(Rect.fromLTWH(
-                                    0, 0, bounds.width, bounds.height)),
-                            child: Text(
-                              dish.title,
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .titleLarge!
-                                  .merge(TextStyle(color: Colors.white)),
-                            ),
+                          child: Text(
+                            dish.title,
+                            style: Theme.of(context)
+                                .textTheme
+                                .titleLarge!
+                                .merge(TextStyle(color: Colors.white)),
                           ),
                         ),
                       )
