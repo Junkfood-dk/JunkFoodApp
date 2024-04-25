@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:userapp/utilities/widgets/text_wrapper.dart';
 
 class NoDishWidget extends StatelessWidget {
   const NoDishWidget({super.key});
@@ -27,9 +28,7 @@ class NoDishWidget extends StatelessWidget {
           );
         }),
         const SizedBox(height: 10.0), // Spacing
-        Text(AppLocalizations.of(context)!.noDishText,
-          style: Theme.of(context).textTheme.bodyMedium,
-        ),
+        BodyText(text: AppLocalizations.of(context)!.noDishText),
       ],
     );
   }
