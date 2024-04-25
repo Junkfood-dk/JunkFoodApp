@@ -16,9 +16,9 @@ class primaryGradiantWidget extends StatelessWidget {
           begin: Alignment.centerLeft,
           end: Alignment.centerRight,
           colors: <Color>[
-          colorTheme.primary,
-          colorTheme.secondary,
-            colorTheme.tertiary,
+          Color(0xFF935FA2),
+          Color(0xFFE52E42),
+            Color(0xFFF5A334),
       ],
           tileMode: TileMode.mirror,
         ).createShader(bounds);

@@ -78,5 +78,9 @@
   "servingHasEndedText" : "Today's serving has ended, please check back tomorrow",
   "@servingHasEndedText" : {
     "description": "Text for today's dish serving is over"
+  },
+  "rateButtonText" : "Rate this dish",
+  "@rateButtonText" : {
+    "description" : "The text on the rate the dish button"
   }
 }

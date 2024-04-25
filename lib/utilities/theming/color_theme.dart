@@ -3,12 +3,12 @@ import 'package:flutter/widgets.dart';
 
 const ColorScheme colorTheme = ColorScheme(
   brightness: Brightness.dark, 
-  primary: Color(0xFF935FA2),
-  onPrimary: Color(0xFFFFFFFF), 
-  secondary: Color(0xFFE52E42),
-  onSecondary: Color(0xFFFFFFFF), 
-  tertiary: Color(0xFFF5A334),
-  onTertiary: Color(0xFFFFFFFF),
+  primary: Color(0xFFFFFFFF),
+  onPrimary: Color(0xFF202020), 
+  secondary: Color(0xFFFFFFFF),
+  onSecondary: Color(0xFF202020), 
+  tertiary: Color(0xFFFFFFFF),
+  onTertiary: Color(0xFF202020),
   error: Color(0xFFb3261e), 
   onError: Color(0xFFFFFFFF), 
   background: Color(0xFF202020), 
