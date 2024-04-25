@@ -1,93 +1,99 @@
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/widgets.dart';
 import 'package:userapp/domain/model/dish_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:userapp/utilities/widgets/text_wrapper.dart';
 
 class DishDisplayWidget extends StatelessWidget {
   final DishModel dish;
-  const DishDisplayWidget({super.key, required this.dish});
+  List<String> allergens = ["Cheese", "Butter", "Milk"];
+  DishDisplayWidget({super.key, required this.dish});
 
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       child: Column(
         children: [
-          Column(
-            children: [
-              Stack(
-                  clipBehavior: Clip.none,
-                  alignment: Alignment.bottomLeft,
-                  children: [
-                    ShaderMask(
-                      blendMode: BlendMode.srcOver,
-                      shaderCallback: (bounds) => LinearGradient(
-                              begin: Alignment.bottomCenter,
-                              end: Alignment.topCenter,
-                              colors: [Colors.black, Colors.transparent])
-                          .createShader(
-                              Rect.fromLTWH(0, 0, bounds.width, bounds.height)),
-                      child: AspectRatio(
-                        aspectRatio: 16 / 9,
-                        child: Image.network(dish.imageUrl, fit: BoxFit.cover,
-                            errorBuilder: (context, error, stackTrace) {
-                          // Display placeholder or error message when image loading fails
-                          return Container(
-                            color: Colors.grey, // Placeholder color
-                            child: const Center(
-                              child: Icon(
-                                Icons.error_outline,
-                                color: Colors.red, // Error icon color
-                                size: 48.0,
-                              ),
-                            ),
-                          );
-                        }),
-                      ),
-                    ),
-                    if (dish.title != "")
-                      Positioned(
-                        top: 190,
-                        left: 16,
-                        child: SizedBox(
-                          width: MediaQuery.of(context).size.width * 0.5,
-                          child: Text(
-                            dish.title,
-                            style: Theme.of(context)
-                                .textTheme
-                                .titleLarge!
-                                .merge(TextStyle(color: Colors.white)),
+          Stack(
+              clipBehavior: Clip.none,
+              alignment: Alignment.bottomLeft,
+              children: [
+                ShaderMask(
+                  blendMode: BlendMode.srcOver,
+                  shaderCallback: (bounds) => LinearGradient(
+                      begin: Alignment.bottomCenter,
+                      end: Alignment.center,
+                      colors: [
+                        Color.fromRGBO(99, 99, 99, 1),
+                        Colors.transparent
+                      ]).createShader(
+                      Rect.fromLTWH(0, 0, bounds.width, bounds.height)),
+                  child: AspectRatio(
+                    aspectRatio: 16 / 9,
+                    child: Image.network(dish.imageUrl, fit: BoxFit.cover,
+                        errorBuilder: (context, error, stackTrace) {
+                      // Display placeholder or error message when image loading fails
+                      return Container(
+                        color: Colors.grey, // Placeholder color
+                        child: const Center(
+                          child: Icon(
+                            Icons.error_outline,
+                            color: Colors.red, // Error icon color
+                            size: 48.0,
                           ),
                         ),
-                      )
-                    else
-                      Text(AppLocalizations.of(context)!.noTitle),
-                  ]),
-              SizedBox(
-                height: 50,
-              ),
-              if (dish.description != "")
-                Text(dish.description)
-              else
-                Text(AppLocalizations.of(context)!.noDescription),
-              Text(
-                "${AppLocalizations.of(context)!.calories}:",
-                style: const TextStyle(fontWeight: FontWeight.bold),
-              ),
-              if (dish.calories > 0)
-                Text("${dish.calories}")
-              else
-                Text(AppLocalizations.of(context)!.noCalories),
-              Text(
-                "${AppLocalizations.of(context)!.allergens}:",
-                style: const TextStyle(fontWeight: FontWeight.bold),
-              ),
-              if (dish.allergens.isNotEmpty)
-                for (var allergen in dish.allergens) Text(allergen)
-              else
-                Text(AppLocalizations.of(context)!.noAllergens)
-            ],
+                      );
+                    }),
+                  ),
+                ),
+                if (dish.title != "")
+                  Positioned(
+                    top: 190,
+                    left: 16,
+                    child: SizedBox(
+                      width: MediaQuery.of(context).size.width * 0.5,
+                      child: TitleLargeText(
+                        text: dish.title,
+                      ),
+                    ),
+                  )
+                else
+                  Text(AppLocalizations.of(context)!.noTitle),
+              ]),
+          SizedBox(
+            height: 50,
           ),
+          Container(
+            margin: EdgeInsets.only(left: 16, right: 16),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                BodyText(
+                    text: dish.description != ""
+                        ? dish.description
+                        : AppLocalizations.of(context)!.noDescription),
+                BodyBoldText(
+                  text: "${AppLocalizations.of(context)!.calories}:",
+                ),
+                BodyText(
+                    text: dish.calories > 0
+                        ? "${dish.calories}"
+                        : AppLocalizations.of(context)!.noCalories),
+                Divider(),
+                BodyBoldText(
+                  text: "${AppLocalizations.of(context)!.allergens}:",
+                ),
+                Row(
+                  children: allergens
+                      .map((allergen) => BodyText(text: allergen))
+                      .toList(),
+                )
+                /*if (dish.allergens.isNotEmpty)
+                  for (var allergen in dish.allergens) Text(allergen)
+                else
+                  Text(AppLocalizations.of(context)!.noAllergens)*/
+              ],
+            ),
+          )
         ],
       ),
     );

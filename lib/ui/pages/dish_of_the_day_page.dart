@@ -17,6 +17,7 @@ class DishOfTheDayPage extends ConsumerWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text(DateFormat("EEEE \n d. MMMM").format(DateTime.now())),
+        centerTitle: false,
         actions: [LanguageDropdownWidget()],
         automaticallyImplyLeading: false,
       ),
@@ -39,6 +40,8 @@ class DishOfTheDayPage extends ConsumerWidget {
                           ? FlutterCarousel(
                               options: CarouselOptions(
                                 viewportFraction: 1,
+                                height:
+                                    MediaQuery.of(context).size.height * 0.6,
                                 showIndicator: true,
                                 slideIndicator: CircularSlideIndicator(),
                               ),
@@ -68,11 +71,3 @@ class DishOfTheDayPage extends ConsumerWidget {
     );
   }
 }
-
-// switch (ref.watch(dishOfTheDayControllerProvider)) {
-//               AsyncData(:final value) => value.isNotEmpty
-//                   ? DishDisplayWidget(dishes: value)
-//                   : const NoDishWidget(),
-//               AsyncError(:final error) => Text(error.toString()),
-//               _ => const CircularProgressIndicator()
-//             }
