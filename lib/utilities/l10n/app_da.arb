@@ -82,5 +82,13 @@
   "rateButtonText" : "Bedøm denne ret",
   "@rateButtonText" : {
     "description" : "The text on the rate the dish button"
+  },
+  "ratingTitle" : "Hvordan smagte dagens ret?",
+  "@ratingTitle" : {
+    "description" : "title for rating widget"
+  },
+  "ratingFeedback" : "Med din feedback, bliver vi klogere på om retten skal serveres igen.",
+  "@ratingFeedback" : {
+    "description" : "feedback text for rating widget"
   }
 }

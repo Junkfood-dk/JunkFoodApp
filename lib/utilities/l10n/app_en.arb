@@ -82,5 +82,13 @@
   "rateButtonText" : "Rate this dish",
   "@rateButtonText" : {
     "description" : "The text on the rate the dish button"
+  },
+  "ratingTitle" : "How did you like todays dish?",
+  "@ratingTitle" : {
+    "description" : "title for rating widget"
+  },
+  "ratingFeedback" : "With your feedback, we become wiser about whether the dish should be served again.",
+  "@ratingFeedback" : {
+    "description" : "feedback text for rating widget"
   }
 }
