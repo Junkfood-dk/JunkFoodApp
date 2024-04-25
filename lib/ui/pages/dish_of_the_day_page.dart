@@ -1,3 +1,4 @@
+import 'package:flutter_carousel_widget/flutter_carousel_widget.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -27,12 +28,23 @@ class DishOfTheDayPage extends ConsumerWidget {
         },
         child: ListView(
           children: [
+            SizedBox(
+              height: 22,
+            ),
             Center(
                 child: switch (ref.watch(servingtimeControllerProvider)) {
               AsyncData(:final value) => !value
                   ? switch (ref.watch(dishOfTheDayControllerProvider)) {
                       AsyncData(:final value) => value.isNotEmpty
-                          ? DishDisplayWidget(dishes: value)
+                          ? FlutterCarousel(
+                              options: CarouselOptions(
+                                viewportFraction: 1,
+                                showIndicator: true,
+                                slideIndicator: CircularSlideIndicator(),
+                              ),
+                              items: value.map((i) {
+                                return DishDisplayWidget(dish: i);
+                              }).toList())
                           : const NoDishWidget(),
                       AsyncError(:final error) => Text(error.toString()),
                       _ => const CircularProgressIndicator()
