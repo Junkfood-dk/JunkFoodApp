@@ -1,6 +1,7 @@
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:intl/intl.dart';
 import 'package:userapp/ui/controllers/dish_of_the_day_controller.dart';
 import 'package:userapp/ui/controllers/servingtime_controller.dart';
 import 'package:userapp/ui/widgets/dish_display_widget.dart';
@@ -14,7 +15,7 @@ class DishOfTheDayPage extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(AppLocalizations.of(context)!.dishOfTheDay),
+        title: Text(DateFormat("EEEE \n d. MMMM").format(DateTime.now())),
         actions: [LanguageDropdownWidget()],
         automaticallyImplyLeading: false,
       ),
