@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/widgets.dart';
 import 'package:userapp/domain/model/dish_model.dart';
 import 'package:flutter/material.dart';
@@ -14,40 +15,56 @@ class DishDisplayWidget extends StatelessWidget {
         children: [
           Column(
             children: [
-              AspectRatio(
-                aspectRatio: 16 / 9,
-                child: Stack(
+              Stack(
+                  clipBehavior: Clip.none,
                   alignment: Alignment.bottomLeft,
                   children: [
-                    Image.network(dish.imageUrl, fit: BoxFit.cover,
-                        errorBuilder: (context, error, stackTrace) {
-                      // Display placeholder or error message when image loading fails
-                      return Container(
-                        color: Colors.grey, // Placeholder color
-                        child: const Center(
-                          child: Icon(
-                            Icons.error_outline,
-                            color: Colors.red, // Error icon color
-                            size: 48.0,
+                    AspectRatio(
+                      aspectRatio: 16 / 9,
+                      child: Image.network(dish.imageUrl, fit: BoxFit.cover,
+                          errorBuilder: (context, error, stackTrace) {
+                        // Display placeholder or error message when image loading fails
+                        return Container(
+                          color: Colors.grey, // Placeholder color
+                          child: const Center(
+                            child: Icon(
+                              Icons.error_outline,
+                              color: Colors.red, // Error icon color
+                              size: 48.0,
+                            ),
                           ),
-                        ),
-                      );
-                    }),
+                        );
+                      }),
+                    ),
                     if (dish.title != "")
                       Positioned(
-                        top: 20,
+                        top: 190,
+                        left: 16,
                         child: SizedBox(
                           width: MediaQuery.of(context).size.width * 0.5,
-                          child: Text(
-                            dish.title,
-                            style: Theme.of(context).textTheme.titleLarge,
+                          child: ShaderMask(
+                            blendMode: BlendMode.srcIn,
+                            shaderCallback: (bounds) => LinearGradient(
+                                    begin: Alignment.bottomCenter,
+                                    end: Alignment.topCenter,
+                                    colors: [Colors.black, Colors.transparent])
+                                .createShader(Rect.fromLTWH(
+                                    0, 0, bounds.width, bounds.height)),
+                            child: Text(
+                              dish.title,
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .titleLarge!
+                                  .merge(TextStyle(color: Colors.white)),
+                            ),
                           ),
                         ),
                       )
                     else
-                      Text(AppLocalizations.of(context)!.noTitle)
-                  ],
-                ),
+                      Text(AppLocalizations.of(context)!.noTitle),
+                  ]),
+              SizedBox(
+                height: 50,
               ),
               if (dish.description != "")
                 Text(dish.description)
