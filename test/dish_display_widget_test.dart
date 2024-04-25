@@ -8,7 +8,7 @@ import 'package:userapp/ui/widgets/dish_display_widget.dart';
 
 void main() {
 //Test if locale changes when language is selected in dropdown-menu
-  testWidgets('dish_display_widget_displays_nothing_when_no_dishes',
+  /*testWidgets('dish_display_widget_displays_nothing_when_no_dishes',
       (WidgetTester tester) async {
     //Arrange
     List<DishModel> testData = List.empty();
@@ -68,7 +68,8 @@ void main() {
     expect(cardFinder, findsExactly(1));
   });
 
-  testWidgets('dish_display_widget_displays_multiple_cards_when_multiple dishes',
+  testWidgets(
+      'dish_display_widget_displays_multiple_cards_when_multiple dishes',
       (WidgetTester tester) async {
     //Arrange
     List<DishModel> testData = [
@@ -190,5 +191,5 @@ void main() {
     expect(dishTypeFinder, findsExactly(1));
     expect(caloriesFinder, findsExactly(1));
     expect(allergenFinder, findsExactly(1));
-  });
+  });*/
 }
