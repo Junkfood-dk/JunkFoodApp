@@ -90,5 +90,9 @@
   "ratingFeedback" : "Med din feedback, bliver vi klogere på om retten skal serveres igen.",
   "@ratingFeedback" : {
     "description" : "feedback text for rating widget"
+  },
+  "ratingContinue" : "Fortsæt",
+  "@ratingContinue" : {
+    "description" : "Text to submit the rating"
   }
 }

@@ -1,17 +1,15 @@
-
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-part 'show_rating_controller.g.dart';
+part 'rating_controller.g.dart';
 
-@riverpod 
-class ShowRatingController extends _$ShowRatingController{
+@riverpod
+class RatingController extends _$RatingController {
   @override
-  bool build() {
-    return false;
+  int build() {
+    return -1;
   }
 
-  bool showRating() {
-    state = !state;
-    return state;
+  void changeRating(int rating) {
+    state = rating;
   }
 }
