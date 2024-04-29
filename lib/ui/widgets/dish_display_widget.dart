@@ -11,12 +11,10 @@ import 'package:userapp/utilities/theming/text_theming.dart';
 import 'package:userapp/utilities/widgets/gradiant_button_widget.dart';
 import 'package:userapp/utilities/widgets/text_wrapper.dart';
 
-
 class DishDisplayWidget extends HookConsumerWidget {
   final DishModel dish;
-  
+
   const DishDisplayWidget({super.key, required this.dish});
-  
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -72,8 +70,7 @@ class DishDisplayWidget extends HookConsumerWidget {
           SizedBox(
             height: 50,
           ),
-          ref.watch(showRatingControllerProvider)
-              ? Container (
+          Container(
             height: 400,
             margin: EdgeInsets.only(left: 16, right: 16),
             child: Column(
@@ -104,7 +101,7 @@ class DishDisplayWidget extends HookConsumerWidget {
                     : Text(AppLocalizations.of(context)!.noAllergens),
               ],
             ),
-          ) :  RatingWidget(),
+          ),
           //Rating button
           Container(
               width: MediaQuery.of(context).size.width * 0.9,
@@ -112,7 +109,11 @@ class DishDisplayWidget extends HookConsumerWidget {
                   child: ButtonText(
                       text: AppLocalizations.of(context)!.rateButtonText),
                   onPressed: () {
-                    ref.read(showRatingControllerProvider.notifier).showRating();
+                    showModalBottomSheet<void>(
+                        context: context,
+                        builder: (BuildContext context) {
+                          return Container(child: RatingWidget());
+                        });
                   }))
         ],
       ),
