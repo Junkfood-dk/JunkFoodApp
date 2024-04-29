@@ -16,14 +16,14 @@ class DishOfTheDayPage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    var locale = ref.watch(localeControllerProvider);
     var time = DateTime.now();
     var formattedDanish = DateFormat("EEEE \n d. MMMM", 'da_DK').format(time);
     var formattedEnglish = DateFormat("EEEE \n d. MMMM").format(time);
     return Scaffold(
       appBar: AppBar(
-        title: Text(
-            locale?.languageCode == 'da' ? formattedDanish : formattedEnglish),
+        title: Text(AppLocalizations.of(context)?.localeName == 'da'
+            ? formattedDanish
+            : formattedEnglish),
         centerTitle: false,
         actions: [LanguageDropdownWidget()],
         automaticallyImplyLeading: false,
