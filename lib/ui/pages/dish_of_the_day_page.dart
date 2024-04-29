@@ -21,7 +21,7 @@ class DishOfTheDayPage extends ConsumerWidget {
     var formattedEnglish = DateFormat("EEEE \n d. MMMM").format(time);
     return Scaffold(
       appBar: AppBar(
-        title: Text(AppLocalizations.of(context)?.localeName == 'da'
+        title: Text(AppLocalizations.of(context)!.localeHelper == "da"
             ? formattedDanish
             : formattedEnglish),
         centerTitle: false,

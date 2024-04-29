@@ -82,5 +82,9 @@
   "rateButtonText" : "Bedøm denne ret",
   "@rateButtonText" : {
     "description" : "The text on the rate the dish button"
+  },
+  "localeHelper" : "da",
+  "@localeHelper" : {
+    "description" : "The text on the rate the dish button"
   }
 }
