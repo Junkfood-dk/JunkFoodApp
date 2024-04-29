@@ -1,18 +1,29 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
-import 'package:flutter/widgets.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:userapp/ui/controllers/rating_controller.dart';
+import 'package:userapp/ui/controllers/shared_preference_controller.dart';
 import 'package:userapp/utilities/widgets/gradiant_button_widget.dart';
 import 'package:userapp/utilities/widgets/gradiant_wrapper.dart';
 import 'package:userapp/utilities/widgets/text_wrapper.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class RatingWidget extends ConsumerWidget {
+  const RatingWidget({super.key});
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    var prefs = ref.watch(sharedPreferencesControllerProvider.notifier);
     var rating = ref.watch(ratingControllerProvider);
+
+    void setLocalRating(int rating){
+      if(prefs.getUserId() != 0){
+        prefs.setUserRating(rating);
+      }else{
+        prefs.setUserId();
+        prefs.setUserRating(rating);
+      }
+    }
+
     return Column(children: [
       SizedBox(height: MediaQuery.of(context).size.height * 0.06),
       BodyBoldText(text: AppLocalizations.of(context)!.ratingTitle),
@@ -29,6 +40,7 @@ class RatingWidget extends ConsumerWidget {
               icon: Icon(Icons.sentiment_dissatisfied_rounded,
                   size: MediaQuery.of(context).size.height * 0.1),
               onPressed: () {
+                setLocalRating(0);
                 ref.read(ratingControllerProvider.notifier).changeRating(0);
               },
             ),
@@ -41,6 +53,7 @@ class RatingWidget extends ConsumerWidget {
               icon: Icon(Icons.sentiment_neutral_rounded,
                   size: MediaQuery.of(context).size.height * 0.1),
               onPressed: () {
+                setLocalRating(1);
                 ref.read(ratingControllerProvider.notifier).changeRating(1);
               },
             ),
@@ -53,6 +66,7 @@ class RatingWidget extends ConsumerWidget {
               icon: Icon(Icons.sentiment_satisfied_alt_rounded,
                   size: MediaQuery.of(context).size.height * 0.1),
               onPressed: () {
+                setLocalRating(2);
                 ref.read(ratingControllerProvider.notifier).changeRating(2);
               },
             ),
