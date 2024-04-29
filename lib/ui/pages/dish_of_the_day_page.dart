@@ -34,45 +34,53 @@ class DishOfTheDayPage extends ConsumerWidget {
               .read(dishOfTheDayControllerProvider.notifier)
               .refetchDishOfTheDay();
         },
-        child: ListView(
-          children: [
-            SizedBox(
-              height: 22,
+        child: Center(
+          child: ConstrainedBox(
+            constraints: BoxConstraints(maxWidth: 650),
+            child: SingleChildScrollView(
+              child: Column(
+                children: [
+                  SizedBox(
+                    height: 22,
+                  ),
+                  switch (ref.watch(servingtimeControllerProvider)) {
+                    AsyncData(:final value) => !value
+                        ? switch (ref.watch(dishOfTheDayControllerProvider)) {
+                            AsyncData(:final value) => value.isNotEmpty
+                                ? FlutterCarousel(
+                                    options: CarouselOptions(
+                                      viewportFraction: 1,
+                                      height:
+                                          MediaQuery.of(context).size.height *
+                                              0.9,
+                                      showIndicator: true,
+                                      slideIndicator: CircularSlideIndicator(),
+                                    ),
+                                    items: value.map((i) {
+                                      return DishDisplayWidget(dish: i);
+                                    }).toList())
+                                : const NoDishWidget(),
+                            AsyncError(:final error) => Text(error.toString()),
+                            _ => const CircularProgressIndicator()
+                          }
+                        : Column(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              Image.network(
+                                  "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTRuVuPxx1Ez15siEcgCMlOZ6nU4E6xzjsNe8QmRIUOJA&s",
+                                  width: 200),
+                              const SizedBox(height: 20),
+                              Text(AppLocalizations.of(context)!
+                                  .servingHasEndedText),
+                            ],
+                          ),
+                    AsyncError(:final error) => Text(error.toString()),
+                    _ => const CircularProgressIndicator()
+                  },
+                ],
+              ),
             ),
-            Center(
-                child: switch (ref.watch(servingtimeControllerProvider)) {
-              AsyncData(:final value) => !value
-                  ? switch (ref.watch(dishOfTheDayControllerProvider)) {
-                      AsyncData(:final value) => value.isNotEmpty
-                          ? FlutterCarousel(
-                              options: CarouselOptions(
-                                viewportFraction: 1,
-                                height:
-                                    MediaQuery.of(context).size.height * 0.6,
-                                showIndicator: true,
-                                slideIndicator: CircularSlideIndicator(),
-                              ),
-                              items: value.map((i) {
-                                return DishDisplayWidget(dish: i);
-                              }).toList())
-                          : const NoDishWidget(),
-                      AsyncError(:final error) => Text(error.toString()),
-                      _ => const CircularProgressIndicator()
-                    }
-                  : Column(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        Image.network(
-                            "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTRuVuPxx1Ez15siEcgCMlOZ6nU4E6xzjsNe8QmRIUOJA&s",
-                            width: 200),
-                        const SizedBox(height: 20),
-                        Text(AppLocalizations.of(context)!.servingHasEndedText),
-                      ],
-                    ),
-              AsyncError(:final error) => Text(error.toString()),
-              _ => const CircularProgressIndicator()
-            }),
-          ],
+          ),
         ),
       ),
     );
