@@ -75,7 +75,7 @@
   "@noDishType": {
     "description": "Display message for when no dishtype"
   },
-  "servingHasEndedText" : "Today's serving has ended, please check back tomorrow",
+  "servingHasEndedText" : "Today's serving has ended,\nplease check back tomorrow",
   "@servingHasEndedText" : {
     "description": "Text for today's dish serving is over"
   },
