@@ -99,7 +99,7 @@
   "@ratingAcknowledgeText" : {
     "description" : "Text for the page that acknowlegde the user for spending their time on rating the dish"
   },
-  "ratingAcknowledgeButton" : "Back to the dish",
+  "ratingAcknowledgeButton" : "Return to homepage",
   "@ratingAcknowledgeButton" : {
     "description" : "Text for the button to navigate user back to the frontpage"
   },
