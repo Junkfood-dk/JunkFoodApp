@@ -22,7 +22,8 @@ class DishOfTheDayPage extends ConsumerWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text(AppLocalizations.of(context)!.localeHelper == "da"
-            ? formattedDanish
+            ? formattedDanish.substring(0, 1).toUpperCase() +
+                formattedDanish.substring(1)
             : formattedEnglish),
         centerTitle: false,
         actions: [LanguageDropdownWidget()],
