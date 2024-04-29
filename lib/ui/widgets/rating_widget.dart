@@ -54,9 +54,7 @@ class RatingWidget extends ConsumerWidget {
               child: ButtonText(
                 text: AppLocalizations.of(context)!.ratingContinue,
               ),
-              onPressed: (){
-                true ? null : () {};
-              } )
-    )]);
+              onPressed: ref.watch(ratingControllerProvider)==-1 ? null : (){}))
+    ]);
   }
 }
