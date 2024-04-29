@@ -8,6 +8,9 @@ import 'package:userapp/ui/controllers/servingtime_controller.dart';
 import 'package:userapp/ui/widgets/dish_display_widget.dart';
 import 'package:userapp/ui/widgets/language_dropdown_widget.dart';
 import 'package:userapp/ui/widgets/no_dish_widget.dart';
+import 'package:userapp/utilities/theming/color_theme.dart';
+import 'package:userapp/utilities/widgets/comments_sheet.dart';
+import 'package:userapp/utilities/widgets/gradiant_wrapper.dart';
 
 class DishOfTheDayPage extends ConsumerWidget {
   const DishOfTheDayPage({super.key});
@@ -18,7 +21,19 @@ class DishOfTheDayPage extends ConsumerWidget {
       appBar: AppBar(
         title: Text(DateFormat("EEEE \n d. MMMM").format(DateTime.now())),
         centerTitle: false,
-        actions: [LanguageDropdownWidget()],
+        actions: [
+          LanguageDropdownWidget(),
+          IconButton(
+            icon: primaryGradiantWidget(
+              child: Icon(Icons.chat_bubble_outline),
+            ),
+            color: Theme.of(context).colorScheme.onBackground,
+            onPressed: () {
+              Navigator.of(context).push(
+                  MaterialPageRoute(builder: (context) => const CommentPage()));
+            },
+          ),
+        ],
         automaticallyImplyLeading: false,
       ),
       body: RefreshIndicator(
