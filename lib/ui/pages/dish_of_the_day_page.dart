@@ -4,22 +4,26 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:intl/intl.dart';
 import 'package:userapp/ui/controllers/dish_of_the_day_controller.dart';
+import 'package:userapp/ui/controllers/locale_controller.dart';
 import 'package:userapp/ui/controllers/servingtime_controller.dart';
 import 'package:userapp/ui/widgets/dish_display_widget.dart';
 import 'package:userapp/ui/widgets/language_dropdown_widget.dart';
 import 'package:userapp/ui/widgets/no_dish_widget.dart';
 import 'package:intl/date_symbol_data_local.dart';
 
-var formattedDanish = DateFormat("EEEE \n d. MMMM", 'da_DK');
-
 class DishOfTheDayPage extends ConsumerWidget {
   const DishOfTheDayPage({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    var locale = ref.watch(localeControllerProvider);
+    var time = DateTime.now();
+    var formattedDanish = DateFormat("EEEE \n d. MMMM", 'da_DK').format(time);
+    var formattedEnglish = DateFormat("EEEE \n d. MMMM").format(time);
     return Scaffold(
       appBar: AppBar(
-        title: Text(formattedDanish.format(DateTime.now())),
+        title: Text(
+            locale?.languageCode == 'da' ? formattedDanish : formattedEnglish),
         centerTitle: false,
         actions: [LanguageDropdownWidget()],
         automaticallyImplyLeading: false,
