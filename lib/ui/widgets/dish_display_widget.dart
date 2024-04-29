@@ -1,11 +1,6 @@
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/rendering.dart';
-import 'package:flutter/widgets.dart';
-import 'package:gradient_elevated_button/gradient_elevated_button.dart';
 import 'package:userapp/domain/model/dish_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:userapp/utilities/theming/color_theme.dart';
 import 'package:userapp/utilities/theming/text_theming.dart';
 import 'package:userapp/utilities/widgets/gradiant_button_widget.dart';
 import 'package:userapp/utilities/widgets/text_wrapper.dart';
@@ -64,18 +59,14 @@ class DishDisplayWidget extends StatelessWidget {
                         : 650 * ((9 / 16) * 0.4),
                     left: 16,
                     child: MediaQuery.of(context).size.width > 370
-                        ? Expanded(
-                            child: DisplayMediumText(
-                                text: dish.title,
-                                maxLines: 2,
-                                overflow: TextOverflow.ellipsis),
-                          )
-                        : Expanded(
-                            child: BodyBoldText(
-                              text: dish.title,
-                              overflow: TextOverflow.ellipsis,
-                              maxLines: 2,
-                            ),
+                        ? DisplayMediumText(
+                            text: dish.title,
+                            maxLines: 2,
+                            overflow: TextOverflow.ellipsis)
+                        : BodyBoldText(
+                            text: dish.title,
+                            overflow: TextOverflow.ellipsis,
+                            maxLines: 2,
                           ),
                   )
                 else
