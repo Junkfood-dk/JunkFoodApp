@@ -18,4 +18,15 @@ class RatingModel {
       'dish_id': dish_id,
     };
   }
+
+  static RatingModel fromJson(Map<String, dynamic> input) {
+    return RatingModel(
+        rating: input.containsKey(
+                "rating")     // if contains key from database (name of column in db)
+            ? input["rating"] // then insert the value from the name
+            : throw Exception("Missing rating input"),
+        dish_id: input.containsKey("dish_id")
+            ? input["dish_id"]
+            : throw Exception("Missing dish_id input"));
+  }
 }
