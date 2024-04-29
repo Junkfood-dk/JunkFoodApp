@@ -4,6 +4,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:userapp/domain/model/dish_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:userapp/ui/controllers/show_rating_controller.dart';
 import 'package:userapp/ui/widgets/rating_widget.dart';
 import 'package:userapp/utilities/theming/color_theme.dart';
 import 'package:userapp/utilities/theming/text_theming.dart';
@@ -71,7 +72,8 @@ class DishDisplayWidget extends HookConsumerWidget {
           SizedBox(
             height: 50,
           ),
-          Container(
+          ref.watch(showRatingControllerProvider)
+              ? Container (
             height: 400,
             margin: EdgeInsets.only(left: 16, right: 16),
             child: Column(
@@ -102,14 +104,16 @@ class DishDisplayWidget extends HookConsumerWidget {
                     : Text(AppLocalizations.of(context)!.noAllergens),
               ],
             ),
-          ),
+          ) :  RatingWidget(),
           //Rating button
           Container(
               width: MediaQuery.of(context).size.width * 0.9,
               child: gradiantButton(
                   child: ButtonText(
                       text: AppLocalizations.of(context)!.rateButtonText),
-                  onPressed: () {}))
+                  onPressed: () {
+                    ref.read(showRatingControllerProvider.notifier).showRating();
+                  }))
         ],
       ),
     );
