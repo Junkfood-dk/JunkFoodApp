@@ -1,4 +1,7 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
+import 'package:flutter/widgets.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:userapp/ui/controllers/rating_controller.dart';
 import 'package:userapp/utilities/widgets/gradiant_button_widget.dart';
@@ -18,31 +21,41 @@ class RatingWidget extends ConsumerWidget {
           textAlign: TextAlign.center),
       SizedBox(height: MediaQuery.of(context).size.height * 0.05),
       Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-        primaryGradiantWidget(
-          child: IconButton(
-            icon: Icon(Icons.sentiment_dissatisfied_rounded,
-                size: MediaQuery.of(context).size.height * 0.1),
-            onPressed: () {
-              ref.read(ratingControllerProvider.notifier).changeRating(0);
-            },
+        // SAD BUTTON
+        Opacity(
+          opacity: (rating == -1 || rating == 0 ? 1 : 0.3),
+          child: primaryGradiantWidget(
+            child: IconButton(
+              icon: Icon(Icons.sentiment_dissatisfied_rounded,
+                  size: MediaQuery.of(context).size.height * 0.1),
+              onPressed: () {
+                ref.read(ratingControllerProvider.notifier).changeRating(0);
+              },
+            ),
           ),
         ),
-        primaryGradiantWidget(
-          child: IconButton(
-            icon: Icon(Icons.sentiment_neutral_rounded,
-                size: MediaQuery.of(context).size.height * 0.1),
-            onPressed: () {
-              ref.read(ratingControllerProvider.notifier).changeRating(1);
-            },
+        Opacity( // NEUTRAL BUTTON
+          opacity: (rating == -1 || rating == 1 ? 1 : 0.3),
+          child: primaryGradiantWidget(
+            child: IconButton(
+              icon: Icon(Icons.sentiment_neutral_rounded,
+                  size: MediaQuery.of(context).size.height * 0.1),
+              onPressed: () {
+                ref.read(ratingControllerProvider.notifier).changeRating(1);
+              },
+            ),
           ),
-        ),
-        primaryGradiantWidget(
-          child: IconButton(
-            icon: Icon(Icons.sentiment_satisfied_alt_rounded,
-                size: MediaQuery.of(context).size.height * 0.1),
-            onPressed: () {
-              ref.read(ratingControllerProvider.notifier).changeRating(2);
-            },
+        ), // HAPPY BUTTON
+        Opacity(
+          opacity: (rating == -1 || rating == 2 ? 1 : 0.3),
+          child: primaryGradiantWidget(
+            child: IconButton(
+              icon: Icon(Icons.sentiment_satisfied_alt_rounded,
+                  size: MediaQuery.of(context).size.height * 0.1),
+              onPressed: () {
+                ref.read(ratingControllerProvider.notifier).changeRating(2);
+              },
+            ),
           ),
         )
       ]),
