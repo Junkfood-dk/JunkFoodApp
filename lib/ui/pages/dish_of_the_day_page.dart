@@ -8,6 +8,9 @@ import 'package:userapp/ui/controllers/servingtime_controller.dart';
 import 'package:userapp/ui/widgets/dish_display_widget.dart';
 import 'package:userapp/ui/widgets/language_dropdown_widget.dart';
 import 'package:userapp/ui/widgets/no_dish_widget.dart';
+import 'package:intl/date_symbol_data_local.dart';
+
+var formattedDanish = DateFormat("EEEE \n d. MMMM", 'da_DK');
 
 class DishOfTheDayPage extends ConsumerWidget {
   const DishOfTheDayPage({super.key});
@@ -16,7 +19,7 @@ class DishOfTheDayPage extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(DateFormat("EEEE \n d. MMMM").format(DateTime.now())),
+        title: Text(formattedDanish.format(DateTime.now())),
         centerTitle: false,
         actions: [LanguageDropdownWidget()],
         automaticallyImplyLeading: false,
