@@ -71,7 +71,7 @@ class DishOfTheDayPage extends ConsumerWidget {
                       mainAxisSize: MainAxisSize.min,
                       children: [
                         Image.network(
-                            "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTRuVuPxx1Ez15siEcgCMlOZ6nU4E6xzjsNe8QmRIUOJA&s",
+                            "https://raw.githubusercontent.com/Junkfood-dk/JunkFoodApp/main/lib/resources/logo.png",
                             width: 200),
                         const SizedBox(height: 20),
                         Text(AppLocalizations.of(context)!.servingHasEndedText),
