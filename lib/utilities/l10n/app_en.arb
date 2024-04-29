@@ -91,6 +91,18 @@
   "@ratingFeedback" : {
     "description" : "feedback text for rating widget"
   },
+  "ratingAcknowledgeTitle" : "Thank you for rating!",
+  "@ratingAcknowledgeTitle" : {
+    "description" : "Title for the page that acknowlegde the user for spending their time on rating the dish"
+  },
+  "ratingAcknowledgeText" : "You are always welcome to send us a message.\nYour opinion means a lot to us",
+  "@ratingAcknowledgeText" : {
+    "description" : "Text for the page that acknowlegde the user for spending their time on rating the dish"
+  },
+  "ratingAcknowledgeButton" : "Return to homepage",
+  "@ratingAcknowledgeButton" : {
+    "description" : "Text for the button to navigate user back to the frontpage"
+  },
   "ratingContinue" : "Continue",
   "@ratingContinue" : {
     "description" : "Text to submit the rating"
