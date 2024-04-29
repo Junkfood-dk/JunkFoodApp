@@ -16,12 +16,8 @@ class RatingWidget extends ConsumerWidget {
     var rating = ref.watch(ratingControllerProvider);
 
     void setLocalRating(int rating){
-      if(prefs.getUserId() != 0){
-        prefs.setUserRating(rating);
-      }else{
-        prefs.setUserId();
-        prefs.setUserRating(rating);
-      }
+      prefs.setUserId();
+      prefs.setUserRating(rating);
     }
 
     return Column(children: [

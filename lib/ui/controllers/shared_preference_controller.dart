@@ -13,22 +13,20 @@ class SharedPreferencesController extends _$SharedPreferencesController {
     return prefs;
   }
 
-  void setUserId() async{
-    var random = Random();
-    var userId = random.nextInt(1000000);
-    prefs!.setInt('userId', userId);
+  //If the user dos not have a a userId a new will be assigned and returned
+  Future<int?> setUserId() async{
+    var userId = prefs!.getInt('userId');
+    if (userId != null) {
+      return userId;
+    } else {
+      var random = Random();
+      var newUserId = random.nextInt(1000000);
+      prefs!.setInt('userId', newUserId);
+      return newUserId;
+    }
   }
 
   void setUserRating(int rating) async{
     prefs!.setInt('rating', rating);
-  }
-
-  int? getUserId() {
-    var userId = prefs!.getInt('userId');
-    if(userId != 0){
-      return userId;
-    } else {
-      return 0;
-    }
   }
 }

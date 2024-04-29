@@ -7,7 +7,7 @@ part of 'shared_preference_controller.dart';
 // **************************************************************************
 
 String _$sharedPreferencesControllerHash() =>
-    r'eaf3f9469017cd7eb87f5031a3ea6f57832f8e47';
+    r'35e209a248fb4974a341621df81e732cd079b3c1';
 
 /// See also [SharedPreferencesController].
 @ProviderFor(SharedPreferencesController)
