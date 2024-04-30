@@ -75,12 +75,16 @@
   "@noDishType": {
     "description": "Display message for when no dishtype"
   },
-  "servingHasEndedText" : "Today's serving has ended, please check back tomorrow",
+  "servingHasEndedText" : "Today's serving has ended,\nplease check back tomorrow",
   "@servingHasEndedText" : {
     "description": "Text for today's dish serving is over"
   },
   "rateButtonText" : "Rate this dish",
   "@rateButtonText" : {
+    "description" : "The text on the rate the dish button"
+  },
+  "localeHelper" : "en",
+  "@localeHelper" : {
     "description" : "The text on the rate the dish button"
   },
   "ratingTitle" : "How did you like todays dish?",
@@ -90,6 +94,22 @@
   "ratingFeedback" : "With your feedback, we become wiser about whether the dish should be served again.",
   "@ratingFeedback" : {
     "description" : "feedback text for rating widget"
+  },
+  "ratingAcknowledgeTitle" : "Thank you for rating!",
+  "@ratingAcknowledgeTitle" : {
+    "description" : "Title for the page that acknowlegde the user for spending their time on rating the dish"
+  },
+  "ratingAcknowledgeText" : "You are always welcome to send us a message.\nYour opinion means a lot to us",
+  "@ratingAcknowledgeText" : {
+    "description" : "Text for the page that acknowlegde the user for spending their time on rating the dish"
+  },
+  "ratingAcknowledgeButton" : "Return to homepage",
+  "@ratingAcknowledgeButton" : {
+    "description" : "Text for the button to navigate user back to the frontpage"
+  },
+  "ratingContinue" : "Continue",
+  "@ratingContinue" : {
+    "description" : "Text to submit the rating"
   },
   "commentHeading" : "We want to hear from you",
   "@commentHeading" : {

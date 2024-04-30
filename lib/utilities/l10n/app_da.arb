@@ -75,12 +75,16 @@
   "@noDishType": {
     "description": "Display message for when no dishtype"
   },
-  "servingHasEndedText" : "Servering af dagens ret er slut, vend tilbage i morgen",
+  "servingHasEndedText" : "Servering af dagens ret er slut,\nvend tilbage i morgen",
   "@servingHasEndedText" : {
     "description" : "Text for today's dish serving is over"
   },
   "rateButtonText" : "Bedøm denne ret",
   "@rateButtonText" : {
+    "description" : "The text on the rate the dish button"
+  },
+  "localeHelper" : "da",
+  "@localeHelper" : {
     "description" : "The text on the rate the dish button"
   },
   "ratingTitle" : "Hvordan smagte dagens ret?",
@@ -90,6 +94,22 @@
   "ratingFeedback" : "Med din feedback, bliver vi klogere på om retten skal serveres igen.",
   "@ratingFeedback" : {
     "description" : "feedback text for rating widget"
+  },
+  "ratingAcknowledgeTitle" : "Tak for din bedømmelse!",
+  "@ratingAcknowledgeTitle" : {
+    "description" : "Title for the page that acknowlegde the user for spending their time on rating the dish"
+  },
+  "ratingAcknowledgeText" : "Du er altid velkommen til at sende os en besked.\nDin mening betyder meget for os",
+  "@ratingAcknowledgeTitle" : {
+    "description" : "Text for the page that acknowlegde the user for spending their time on rating the dish"
+  },
+  "ratingAcknowledgeButton" : "Tilbage til forsiden",
+  "@ratingAcknowledgeButton" : {
+    "description" : "Text for the button to navigate user back to the frontpage"
+  },
+  "ratingContinue" : "Fortsæt",
+  "@ratingContinue" : {
+    "description" : "Text to submit the rating"
   },
   "commentHeading" : "Vi vil gerne høre fra dig",
   "@commentHeading" : {
