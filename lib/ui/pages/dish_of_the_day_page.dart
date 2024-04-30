@@ -51,6 +51,7 @@ class DishOfTheDayPage extends ConsumerWidget {
           child: ConstrainedBox(
             constraints: const BoxConstraints(maxWidth: 650),
             child: SingleChildScrollView(
+              physics: AlwaysScrollableScrollPhysics(),
               child: Column(
                 children: [
                   const SizedBox(
@@ -65,7 +66,7 @@ class DishOfTheDayPage extends ConsumerWidget {
                                       viewportFraction: 1,
                                       height:
                                           MediaQuery.of(context).size.height *
-                                              0.9,
+                                              0.8,
                                       showIndicator: true,
                                       slideIndicator: CircularSlideIndicator(),
                                     ),
