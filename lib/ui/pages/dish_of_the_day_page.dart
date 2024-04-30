@@ -30,13 +30,21 @@ class DishOfTheDayPage extends ConsumerWidget {
         actions: [
           const LanguageDropdownWidget(),
           IconButton(
-            icon: const PrimaryGradiantWidget(
-              child: Icon(Icons.chat_bubble_outline),
+            icon: Container(
+              decoration: BoxDecoration(
+                color: Theme.of(context).colorScheme.outline, 
+                shape: BoxShape.circle,
+              ),
+              padding: const EdgeInsets.all(8), 
+              child: Icon(
+                Icons.chat_bubble_outline,
+                color: Theme.of(context).colorScheme.background, 
+              ),
             ),
-            color: Theme.of(context).colorScheme.onBackground,
             onPressed: () {
               Navigator.of(context).push(
-                  MaterialPageRoute(builder: (context) => const CommentPage()));
+                MaterialPageRoute(builder: (context) => const CommentPage()),
+              );
             },
           ),
         ],
@@ -52,7 +60,7 @@ class DishOfTheDayPage extends ConsumerWidget {
           child: ConstrainedBox(
             constraints: const BoxConstraints(maxWidth: 650),
             child: SingleChildScrollView(
-              physics: AlwaysScrollableScrollPhysics(),
+              physics: const AlwaysScrollableScrollPhysics(),
               child: Column(
                 children: [
                   const SizedBox(
@@ -69,7 +77,7 @@ class DishOfTheDayPage extends ConsumerWidget {
                                           MediaQuery.of(context).size.height *
                                               0.8,
                                       showIndicator: true,
-                                      slideIndicator: CircularSlideIndicator(),
+                                      slideIndicator: const CircularSlideIndicator(),
                                     ),
                                     items: value.map((i) {
                                       return DishDisplayWidget(dish: i);
