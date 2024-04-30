@@ -58,6 +58,8 @@ grant truncate on table "public"."Ratings" to "service_role";
 grant update on table "public"."Ratings" to "service_role";
 
 -- Ratings
-create policy "Enable insert for authenticated anon only" on "public"."Ratings" as permissive for insert to anon with check (true);
+create policy "Enable read access for all users" on "public"."Ratings" as permissive for select to public using (true);
+
+create policy "Enable insert for anon_key" on "public"."Ratings" as permissive for insert to public with check (true);
 
 
