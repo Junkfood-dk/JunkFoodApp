@@ -1,7 +1,4 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
-import 'package:flutter/widgets.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:userapp/ui/controllers/rating_controller.dart';
 import 'package:userapp/utilities/widgets/gradiant_button_widget.dart';
@@ -10,6 +7,8 @@ import 'package:userapp/utilities/widgets/text_wrapper.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class RatingWidget extends ConsumerWidget {
+  const RatingWidget({super.key});
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     var rating = ref.watch(ratingControllerProvider);
@@ -24,7 +23,7 @@ class RatingWidget extends ConsumerWidget {
         // SAD BUTTON
         Opacity(
           opacity: (rating == -1 || rating == 0 ? 1 : 0.3),
-          child: primaryGradiantWidget(
+          child: PrimaryGradiantWidget(
             child: IconButton(
               icon: Icon(Icons.sentiment_dissatisfied_rounded,
                   size: MediaQuery.of(context).size.height * 0.1),
@@ -34,9 +33,10 @@ class RatingWidget extends ConsumerWidget {
             ),
           ),
         ),
-        Opacity( // NEUTRAL BUTTON
+        Opacity(
+          // NEUTRAL BUTTON
           opacity: (rating == -1 || rating == 1 ? 1 : 0.3),
-          child: primaryGradiantWidget(
+          child: PrimaryGradiantWidget(
             child: IconButton(
               icon: Icon(Icons.sentiment_neutral_rounded,
                   size: MediaQuery.of(context).size.height * 0.1),
@@ -48,7 +48,7 @@ class RatingWidget extends ConsumerWidget {
         ), // HAPPY BUTTON
         Opacity(
           opacity: (rating == -1 || rating == 2 ? 1 : 0.3),
-          child: primaryGradiantWidget(
+          child: PrimaryGradiantWidget(
             child: IconButton(
               icon: Icon(Icons.sentiment_satisfied_alt_rounded,
                   size: MediaQuery.of(context).size.height * 0.1),
@@ -63,11 +63,12 @@ class RatingWidget extends ConsumerWidget {
       Container(
           width: MediaQuery.of(context).size.width * 0.9,
           height: MediaQuery.of(context).size.height * 0.08,
-          child: gradiantButton(
-              child: ButtonText(
-                text: AppLocalizations.of(context)!.ratingContinue,
-              ),
-              onPressed: ref.watch(ratingControllerProvider)==-1 ? null : (){}))
+          child: GradiantButton(
+            onPressed: ref.watch(ratingControllerProvider) == -1 ? null : () {},
+            child: ButtonText(
+              text: AppLocalizations.of(context)!.ratingContinue,
+            ),
+          ))
     ]);
   }
 }
