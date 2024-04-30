@@ -86,5 +86,49 @@
   "localeHelper" : "da",
   "@localeHelper" : {
     "description" : "The text on the rate the dish button"
+  },
+  "ratingTitle" : "Hvordan smagte dagens ret?",
+  "@ratingTitle" : {
+    "description" : "title for rating widget"
+  },
+  "ratingFeedback" : "Med din feedback, bliver vi klogere på om retten skal serveres igen.",
+  "@ratingFeedback" : {
+    "description" : "feedback text for rating widget"
+  },
+  "ratingAcknowledgeTitle" : "Tak for din bedømmelse!",
+  "@ratingAcknowledgeTitle" : {
+    "description" : "Title for the page that acknowlegde the user for spending their time on rating the dish"
+  },
+  "ratingAcknowledgeText" : "Du er altid velkommen til at sende os en besked.\nDin mening betyder meget for os",
+  "@ratingAcknowledgeTitle" : {
+    "description" : "Text for the page that acknowlegde the user for spending their time on rating the dish"
+  },
+  "ratingAcknowledgeButton" : "Tilbage til forsiden",
+  "@ratingAcknowledgeButton" : {
+    "description" : "Text for the button to navigate user back to the frontpage"
+  },
+  "ratingContinue" : "Fortsæt",
+  "@ratingContinue" : {
+    "description" : "Text to submit the rating"
+  },
+  "commentHeading" : "Vi vil gerne høre fra dig",
+  "@commentHeading" : {
+    "description": "heading for comment page"
+  },
+  "commentPageParagraph": "Har du en idé til, hvad vi kunne lave til dagen måltid? Eller måske noget andet, du gerne vil dele med os? Uanset om det er ris eller ros, eller et særligt ønske, dagens ret på dine fødselsdag mm., vil vi elske at høre dine tanker. Du er altid velkommen til at sende os en besked. Din mening betyder meget for os!",
+  "@commentPageParagraph": {
+    "description": "paragraph for comment page"
+  },
+  "yourNameHintText" : "Dit navn",
+  "@yourNameHintText" : {
+    "description": "hint text for inputting name in comment page"
+  },
+  "writeCommentText" : "Skriv din feedback her",
+  "@writeCommentText" : {
+    "description": "hint text for inputting the actual comment in comment page"
+  },
+  "commentPageSubmitButton" : "Indsend", 
+  "@commentPageSubmitButton" : {
+    "description": "text for submit button"
   }
 }

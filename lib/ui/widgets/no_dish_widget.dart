@@ -28,7 +28,7 @@ class NoDishWidget extends StatelessWidget {
           );
         }),
         const SizedBox(height: 10.0), // Spacing
-        BodyText(text: AppLocalizations.of(context)!.noDishText),
+        BodyText(text: AppLocalizations.of(context)!.noDishText, textAlign: TextAlign.center,),
       ],
     );
   }

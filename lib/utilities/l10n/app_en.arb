@@ -86,5 +86,49 @@
   "localeHelper" : "en",
   "@localeHelper" : {
     "description" : "The text on the rate the dish button"
+  },
+  "ratingTitle" : "How did you like todays dish?",
+  "@ratingTitle" : {
+    "description" : "title for rating widget"
+  },
+  "ratingFeedback" : "With your feedback, we become wiser about whether the dish should be served again.",
+  "@ratingFeedback" : {
+    "description" : "feedback text for rating widget"
+  },
+  "ratingAcknowledgeTitle" : "Thank you for rating!",
+  "@ratingAcknowledgeTitle" : {
+    "description" : "Title for the page that acknowlegde the user for spending their time on rating the dish"
+  },
+  "ratingAcknowledgeText" : "You are always welcome to send us a message.\nYour opinion means a lot to us",
+  "@ratingAcknowledgeText" : {
+    "description" : "Text for the page that acknowlegde the user for spending their time on rating the dish"
+  },
+  "ratingAcknowledgeButton" : "Return to homepage",
+  "@ratingAcknowledgeButton" : {
+    "description" : "Text for the button to navigate user back to the frontpage"
+  },
+  "ratingContinue" : "Continue",
+  "@ratingContinue" : {
+    "description" : "Text to submit the rating"
+  },
+  "commentHeading" : "We want to hear from you",
+  "@commentHeading" : {
+    "description": "heading for comment page"
+  },
+  "commentPageParagraph" : "Do you have an idea for what could be today's dish? Or maybe something else you woud like to share with us? Whether it's praise or feedback, or a special request, dish of the day for your birthday, etc., we would love to hear your thoughts. You are always welcome to send us a message. Your opionion means a lot to us! ",
+  "@commentPageParagraph": {
+    "description": "paragraph for comment page"
+  },
+  "yourNameHintText" : "Your name",
+  "@yourNameHintText" : {
+    "description": "hint text for inputting name in comment page"
+  },
+  "writeCommentText" : "Write your feedback here",
+  "@writeCommentText" : {
+    "description": "hint text for inputting the actual comment in comment page"
+  }, 
+  "commentPageSubmitButton" : "Submit", 
+  "@commentPageSubmitButton" : {
+    "description": "text for submit button"
   }
 }
