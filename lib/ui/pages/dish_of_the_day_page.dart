@@ -31,12 +31,12 @@ class DishOfTheDayPage extends ConsumerWidget {
           const LanguageDropdownWidget(),
           IconButton(
             icon: Container(
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                 color: Colors.white, 
                 shape: BoxShape.circle,
               ),
-              padding: EdgeInsets.all(8), 
-              child: Icon(
+              padding: const EdgeInsets.all(8), 
+              child: const Icon(
                 Icons.chat_bubble_outline,
                 color: Colors.black, 
               ),
@@ -60,7 +60,7 @@ class DishOfTheDayPage extends ConsumerWidget {
           child: ConstrainedBox(
             constraints: const BoxConstraints(maxWidth: 650),
             child: SingleChildScrollView(
-              physics: AlwaysScrollableScrollPhysics(),
+              physics: const AlwaysScrollableScrollPhysics(),
               child: Column(
                 children: [
                   const SizedBox(
@@ -77,7 +77,7 @@ class DishOfTheDayPage extends ConsumerWidget {
                                           MediaQuery.of(context).size.height *
                                               0.8,
                                       showIndicator: true,
-                                      slideIndicator: CircularSlideIndicator(),
+                                      slideIndicator: const CircularSlideIndicator(),
                                     ),
                                     items: value.map((i) {
                                       return DishDisplayWidget(dish: i);
