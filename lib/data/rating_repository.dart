@@ -13,7 +13,7 @@ class RatingRepository implements IRatingRepository {
   RatingRepository({required this.database});
 
   @override
-  Future<RatingModel> postNewRating(int rating, int dish /*Guid user*/) async {
+  void postNewRating(int rating, int dish /*Guid user*/) async {
     final ratingToPost = RatingModel(rating: rating, dish_id: dish);
 
     try {

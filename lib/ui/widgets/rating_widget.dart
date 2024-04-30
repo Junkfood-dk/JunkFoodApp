@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/widgets.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:userapp/data/rating_repository.dart';
+import 'package:userapp/domain/model/dish_model.dart';
 import 'package:userapp/ui/controllers/rating_controller.dart';
 import 'package:userapp/utilities/widgets/gradiant_button_widget.dart';
 import 'package:userapp/utilities/widgets/gradiant_wrapper.dart';
@@ -10,6 +12,9 @@ import 'package:userapp/utilities/widgets/text_wrapper.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class RatingWidget extends ConsumerWidget {
+  final DishModel dish;
+
+  const RatingWidget({super.key, required this.dish});
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     var rating = ref.watch(ratingControllerProvider);
@@ -34,7 +39,8 @@ class RatingWidget extends ConsumerWidget {
             ),
           ),
         ),
-        Opacity( // NEUTRAL BUTTON
+        Opacity(
+          // NEUTRAL BUTTON
           opacity: (rating == -1 || rating == 1 ? 1 : 0.3),
           child: primaryGradiantWidget(
             child: IconButton(
@@ -67,7 +73,13 @@ class RatingWidget extends ConsumerWidget {
               child: ButtonText(
                 text: AppLocalizations.of(context)!.ratingContinue,
               ),
-              onPressed: ref.watch(ratingControllerProvider)==-1 ? null : (){}))
+              onPressed: ref.watch(ratingControllerProvider) == -1
+                  ? null
+                  : () {
+                      ref
+                          .read(ratingRepositoryProvider)
+                          .postNewRating(rating, dish.id);
+                    }))
     ]);
   }
 }

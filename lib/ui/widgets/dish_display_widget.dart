@@ -111,7 +111,7 @@ class DishDisplayWidget extends HookConsumerWidget {
                     showModalBottomSheet<void>(
                         context: context,
                         builder: (BuildContext context) {
-                          return Container(child: RatingWidget());
+                          return Container(child: RatingWidget(dish: dish));
                         });
                   }))
         ],

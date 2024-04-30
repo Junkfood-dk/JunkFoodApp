@@ -1,5 +1,5 @@
 import 'package:userapp/domain/model/rating_model.dart';
 
 abstract interface class IRatingRepository {
-  Future<RatingModel> postNewRating(int rating, int dish);
+  void postNewRating(int rating, int dish);
 }
