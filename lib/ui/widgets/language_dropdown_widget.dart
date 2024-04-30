@@ -15,7 +15,7 @@ class LanguageDropdownWidget extends ConsumerWidget {
             .read(localeControllerProvider.notifier)
             .set(Locale(language.languageCode));
       },
-      icon: primaryGradiantWidget(child: const Icon(Icons.language )),
+      icon: const PrimaryGradiantWidget(child: Icon(Icons.language)),
       itemBuilder: (BuildContext context) {
         List<PopupMenuEntry<Language>> menuItems =
             Language.languageList().map((e) {
