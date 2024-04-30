@@ -1,4 +1,5 @@
 import 'package:riverpod_annotation/riverpod_annotation.dart';
+import 'package:userapp/data/rating_repository.dart';
 
 part 'rating_controller.g.dart';
 
@@ -11,5 +12,9 @@ class RatingController extends _$RatingController {
 
   void changeRating(int rating) {
     state = rating;
+  }
+
+  void postRating(int dishId){
+    ref.read(ratingRepositoryProvider).postNewRating(state, dishId);
   }
 }
