@@ -4,12 +4,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:intl/intl.dart';
 import 'package:userapp/ui/controllers/dish_of_the_day_controller.dart';
-import 'package:userapp/ui/controllers/locale_controller.dart';
 import 'package:userapp/ui/controllers/servingtime_controller.dart';
 import 'package:userapp/ui/widgets/dish_display_widget.dart';
 import 'package:userapp/ui/widgets/language_dropdown_widget.dart';
 import 'package:userapp/ui/widgets/no_dish_widget.dart';
-import 'package:intl/date_symbol_data_local.dart';
 
 class DishOfTheDayPage extends ConsumerWidget {
   const DishOfTheDayPage({super.key});
