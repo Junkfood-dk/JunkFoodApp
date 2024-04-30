@@ -1,7 +1,6 @@
-import 'dart:math';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
+import 'package:flutter_guid/flutter_guid.dart';
 part 'shared_preference_controller.g.dart';
 
 @riverpod 
@@ -14,15 +13,14 @@ class SharedPreferencesController extends _$SharedPreferencesController {
   }
 
   //If the user dos not have a a userId a new will be assigned and returned
-  Future<int?> setUserId() async{
-    var userId = prefs!.getInt('userId');
+  Future<Guid?> setUserId() async{
+    var userId = prefs!.getString('userId');
     if (userId != null) {
-      return userId;
+      return Guid(userId);
     } else {
-      var random = Random();
-      var newUserId = random.nextInt(1000000);
-      prefs!.setInt('userId', newUserId);
-      return newUserId;
+      var newId = Guid.newGuid;
+      prefs!.setString('userId', newId.toString());
+      return newId;
     }
   }
 

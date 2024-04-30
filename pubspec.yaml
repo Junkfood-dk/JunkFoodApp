@@ -46,6 +46,7 @@ dependencies:
   build_runner: ^2.4.9
   gradient_elevated_button: ^0.0.8
   shared_preferences: ^2.2.3
+  flutter_guid: ^0.3.1
 
 dev_dependencies:
   flutter_launcher_icons: "^0.13.1"
