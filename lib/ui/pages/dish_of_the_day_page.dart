@@ -24,13 +24,21 @@ class DishOfTheDayPage extends ConsumerWidget {
         actions: [
           LanguageDropdownWidget(),
           IconButton(
-            icon: primaryGradiantWidget(
-              child: Icon(Icons.chat_bubble_outline),
+            icon: Container(
+              decoration: BoxDecoration(
+                color: Colors.white, 
+                shape: BoxShape.circle,
+              ),
+              padding: EdgeInsets.all(8), 
+              child: Icon(
+                Icons.chat_bubble_outline,
+                color: Colors.black, 
+              ),
             ),
-            color: Theme.of(context).colorScheme.onBackground,
             onPressed: () {
               Navigator.of(context).push(
-                  MaterialPageRoute(builder: (context) => const CommentPage()));
+                MaterialPageRoute(builder: (context) => const CommentPage()),
+              );
             },
           ),
         ],
