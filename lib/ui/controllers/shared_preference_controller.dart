@@ -24,10 +24,12 @@ class SharedPreferencesController extends _$SharedPreferencesController {
       for (var json in dateRating) {
         var userMap = jsonDecode(json) as Map<String, dynamic>;
         var decoded = _RatingStore.fromJsonString(userMap);
-        if (decoded.dishId == dishId && decoded.rating != rating) {
-          // Make DB call to decoded.ratingId;
-          decoded.rating = rating;
+        if (decoded.dishId == dishId) {
           dishHasBeenUpdated = true;
+          if (decoded.rating != rating) {
+            // Make DB call to decoded.ratingId;
+            decoded.rating = rating;
+          }
         }
         var encoded = jsonEncode(decoded);
         save.add(encoded);
