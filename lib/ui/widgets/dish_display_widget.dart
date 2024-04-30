@@ -1,12 +1,8 @@
-import 'package:flutter/widgets.dart';
-import 'package:gradient_elevated_button/gradient_elevated_button.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:userapp/domain/model/dish_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:userapp/ui/widgets/rating_widget.dart';
-import 'package:userapp/utilities/theming/color_theme.dart';
-import 'package:userapp/utilities/theming/text_theming.dart';
 import 'package:userapp/utilities/widgets/gradiant_button_widget.dart';
 import 'package:userapp/utilities/widgets/text_wrapper.dart';
 
@@ -26,7 +22,7 @@ class DishDisplayWidget extends HookConsumerWidget {
               children: [
                 ShaderMask(
                   blendMode: BlendMode.srcOver,
-                  shaderCallback: (bounds) => LinearGradient(
+                  shaderCallback: (bounds) => const LinearGradient(
                       begin: Alignment.bottomCenter,
                       end: Alignment.center,
                       colors: [
@@ -54,66 +50,81 @@ class DishDisplayWidget extends HookConsumerWidget {
                 ),
                 if (dish.title != "")
                   Positioned(
-                    top: 190,
+                    width: MediaQuery.of(context).size.width < 650
+                        ? MediaQuery.of(context).size.width * 0.8
+                        : 650,
+                    top: MediaQuery.of(context).size.width < 650
+                        ? MediaQuery.of(context).size.width * ((9 / 16) * 0.8)
+                        : 650 * ((9 / 16) * 0.9),
+                    height: MediaQuery.of(context).size.width < 650
+                        ? MediaQuery.of(context).size.width * ((9 / 16) * 0.4)
+                        : 650 * ((9 / 16) * 0.4),
                     left: 16,
-                    child: SizedBox(
-                      width: MediaQuery.of(context).size.width * 0.5,
-                      child: TitleLargeText(
-                        text: dish.title,
-                      ),
-                    ),
+                    child: MediaQuery.of(context).size.width > 370
+                        ? DisplayMediumText(
+                            text: dish.title,
+                            maxLines: 2,
+                            overflow: TextOverflow.ellipsis)
+                        : BodyBoldText(
+                            text: dish.title,
+                            overflow: TextOverflow.ellipsis,
+                            maxLines: 2,
+                          ),
                   )
                 else
                   Text(AppLocalizations.of(context)!.noTitle),
               ]),
           SizedBox(
-            height: 50,
+            height: MediaQuery.of(context).size.width < 650
+                ? MediaQuery.of(context).size.width * ((9 / 16) * 0.2)
+                : 650 * ((9 / 16) * 0.2),
           ),
-          Container(
-            height: 400,
-            margin: EdgeInsets.only(left: 16, right: 16),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                BodyText(
-                    text: dish.description != ""
-                        ? dish.description
-                        : AppLocalizations.of(context)!.noDescription),
-                BodyBoldText(
-                  text: "${AppLocalizations.of(context)!.calories}:",
-                ),
-                BodyText(
-                    text: dish.calories > 0
-                        ? "${dish.calories}"
-                        : AppLocalizations.of(context)!.noCalories),
-                Divider(),
-                BodyBoldText(
-                  text: "${AppLocalizations.of(context)!.allergens}:",
-                ),
-                dish.allergens.isNotEmpty
-                    ? Row(
-                        children: dish.allergens.map((allergen) {
-                        bool isLast = allergen == dish.allergens.last;
-                        return BodyText(
-                            text: allergen + (!isLast ? " • " : ""));
-                      }).toList())
-                    : Text(AppLocalizations.of(context)!.noAllergens),
-              ],
+          FittedBox(
+            child: Container(
+              margin: EdgeInsets.only(left: 16, right: 16),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  BodyText(
+                      text: dish.description != ""
+                          ? dish.description
+                          : AppLocalizations.of(context)!.noDescription),
+                  BodyBoldText(
+                    text: "${AppLocalizations.of(context)!.calories}:",
+                  ),
+                  BodyText(
+                      text: dish.calories > 0
+                          ? "${dish.calories}"
+                          : AppLocalizations.of(context)!.noCalories),
+                  Divider(),
+                  BodyBoldText(
+                    text: "${AppLocalizations.of(context)!.allergens}:",
+                  ),
+                  dish.allergens.isNotEmpty
+                      ? Row(
+                          children: dish.allergens.map((allergen) {
+                          bool isLast = allergen == dish.allergens.last;
+                          return BodyText(
+                              text: allergen + (!isLast ? " • " : ""));
+                        }).toList())
+                      : Text(AppLocalizations.of(context)!.noAllergens),
+                  Container(
+                      width: MediaQuery.of(context).size.width * 0.9,
+                      child: GradiantButton(
+                          child: ButtonText(
+                              text:
+                                  AppLocalizations.of(context)!.rateButtonText),
+                          onPressed: () {
+                            showModalBottomSheet<void>(
+                                context: context,
+                                builder: (BuildContext context) {
+                                  return Container(child: RatingWidget(dish: dish));
+                                });
+                          }))
+                ],
+              ),
             ),
-          ),
-          //Rating button
-          Container(
-              width: MediaQuery.of(context).size.width * 0.9,
-              child: gradiantButton(
-                  child: ButtonText(
-                      text: AppLocalizations.of(context)!.rateButtonText),
-                  onPressed: () {
-                    showModalBottomSheet<void>(
-                        context: context,
-                        builder: (BuildContext context) {
-                          return Container(child: RatingWidget(dish: dish));
-                        });
-                  }))
+          )
         ],
       ),
     );

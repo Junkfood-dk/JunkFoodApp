@@ -1,7 +1,4 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
-import 'package:flutter/widgets.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:userapp/data/rating_repository.dart';
 import 'package:userapp/domain/model/dish_model.dart';
@@ -29,7 +26,7 @@ class RatingWidget extends ConsumerWidget {
         // SAD BUTTON
         Opacity(
           opacity: (rating == -1 || rating == 0 ? 1 : 0.3),
-          child: primaryGradiantWidget(
+          child: PrimaryGradiantWidget(
             child: IconButton(
               icon: Icon(Icons.sentiment_dissatisfied_rounded,
                   size: MediaQuery.of(context).size.height * 0.1),
@@ -42,7 +39,7 @@ class RatingWidget extends ConsumerWidget {
         Opacity(
           // NEUTRAL BUTTON
           opacity: (rating == -1 || rating == 1 ? 1 : 0.3),
-          child: primaryGradiantWidget(
+          child: PrimaryGradiantWidget(
             child: IconButton(
               icon: Icon(Icons.sentiment_neutral_rounded,
                   size: MediaQuery.of(context).size.height * 0.1),
@@ -54,7 +51,7 @@ class RatingWidget extends ConsumerWidget {
         ), // HAPPY BUTTON
         Opacity(
           opacity: (rating == -1 || rating == 2 ? 1 : 0.3),
-          child: primaryGradiantWidget(
+          child: PrimaryGradiantWidget(
             child: IconButton(
               icon: Icon(Icons.sentiment_satisfied_alt_rounded,
                   size: MediaQuery.of(context).size.height * 0.1),

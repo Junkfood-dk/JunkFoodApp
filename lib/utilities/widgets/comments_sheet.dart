@@ -11,18 +11,17 @@ class CommentPage extends StatelessWidget {
         title: Text(AppLocalizations.of(context)!.commentHeading),
       ),
       body: Padding(
-        padding: EdgeInsets.all(16),
+        padding: const EdgeInsets.all(16),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             Text(AppLocalizations.of(context)!.commentPageParagraph),
-            SizedBox(height: 15),
+            const SizedBox(height: 15),
             TextField(
               decoration: InputDecoration(
                 hintText: AppLocalizations.of(context)!.yourNameHintText,
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(16)
-                ),
+                border:
+                    OutlineInputBorder(borderRadius: BorderRadius.circular(16)),
               ),
               keyboardType: TextInputType.text,
               maxLines: 2,
@@ -32,32 +31,32 @@ class CommentPage extends StatelessWidget {
             TextField(
               decoration: InputDecoration(
                 hintText: AppLocalizations.of(context)!.writeCommentText,
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(16)
-                ),
+                border:
+                    OutlineInputBorder(borderRadius: BorderRadius.circular(16)),
               ),
               keyboardType: TextInputType.text,
               maxLines: null,
-              minLines: 1, 
+              minLines: 1,
             ),
             SizedBox(height: 20),
             // Gradient button
             Container(
-              width: double.infinity, 
-              height: 50.0, 
+              width: double.infinity,
+              height: 50.0,
               decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(16), 
+                borderRadius: BorderRadius.circular(16),
               ),
               child: ElevatedButton(
                 onPressed: () {
                   // Logic to handle comment submission
                 },
                 style: ElevatedButton.styleFrom(
-                  padding: EdgeInsets.zero, backgroundColor: Colors.transparent, 
+                  padding: EdgeInsets.zero,
+                  backgroundColor: Colors.transparent,
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(16),
-                  ), 
-                  shadowColor: Colors.transparent, 
+                  ),
+                  shadowColor: Colors.transparent,
                 ),
                 child: Ink(
                   decoration: BoxDecoration(
@@ -74,7 +73,8 @@ class CommentPage extends StatelessWidget {
                   ),
                   child: Container(
                     alignment: Alignment.center,
-                    constraints: BoxConstraints(minWidth: double.infinity, minHeight: 50.0), 
+                    constraints: BoxConstraints(
+                        minWidth: double.infinity, minHeight: 50.0),
                     child: Text(
                       AppLocalizations.of(context)!.commentPageSubmitButton,
                       textAlign: TextAlign.center,

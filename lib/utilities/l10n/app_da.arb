@@ -83,6 +83,10 @@
   "@rateButtonText" : {
     "description" : "The text on the rate the dish button"
   },
+  "localeHelper" : "da",
+  "@localeHelper" : {
+    "description" : "The text on the rate the dish button"
+  },
   "ratingTitle" : "Hvordan smagte dagens ret?",
   "@ratingTitle" : {
     "description" : "title for rating widget"
@@ -90,6 +94,18 @@
   "ratingFeedback" : "Med din feedback, bliver vi klogere på om retten skal serveres igen.",
   "@ratingFeedback" : {
     "description" : "feedback text for rating widget"
+  },
+  "ratingAcknowledgeTitle" : "Tak for din bedømmelse!",
+  "@ratingAcknowledgeTitle" : {
+    "description" : "Title for the page that acknowlegde the user for spending their time on rating the dish"
+  },
+  "ratingAcknowledgeText" : "Du er altid velkommen til at sende os en besked.\nDin mening betyder meget for os",
+  "@ratingAcknowledgeTitle" : {
+    "description" : "Text for the page that acknowlegde the user for spending their time on rating the dish"
+  },
+  "ratingAcknowledgeButton" : "Tilbage til forsiden",
+  "@ratingAcknowledgeButton" : {
+    "description" : "Text for the button to navigate user back to the frontpage"
   },
   "ratingContinue" : "Fortsæt",
   "@ratingContinue" : {
