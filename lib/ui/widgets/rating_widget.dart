@@ -74,8 +74,8 @@ class RatingWidget extends ConsumerWidget {
                   ? null
                   : () {
                       ref
-                          .read(ratingRepositoryProvider)
-                          .postNewRating(rating, dish.id);
+                          .read(ratingControllerProvider.notifier)
+                          .postRating(dish.id);
                     }))
     ]);
   }
