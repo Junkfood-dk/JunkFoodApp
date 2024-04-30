@@ -19,7 +19,7 @@ class RatingWidget extends ConsumerWidget {
     var rating = ref.watch(ratingControllerProvider);
 
     void setLocalRating(int rating) {
-      prefs.setRating(rating);
+      ref.watch(ratingControllerProvider.notifier).setRating(rating);
     }
 
     return Column(children: [
@@ -39,7 +39,7 @@ class RatingWidget extends ConsumerWidget {
                   size: MediaQuery.of(context).size.height * 0.1),
               onPressed: () {
                 setLocalRating(0);
-                ref.read(ratingControllerProvider.notifier).changeRating(0);
+                ref.read(ratingControllerProvider.notifier).setRating(0);
               },
             ),
           ),
@@ -53,7 +53,7 @@ class RatingWidget extends ConsumerWidget {
                   size: MediaQuery.of(context).size.height * 0.1),
               onPressed: () {
                 setLocalRating(1);
-                ref.read(ratingControllerProvider.notifier).changeRating(1);
+                ref.read(ratingControllerProvider.notifier).setRating(1);
               },
             ),
           ),
@@ -66,7 +66,7 @@ class RatingWidget extends ConsumerWidget {
                   size: MediaQuery.of(context).size.height * 0.1),
               onPressed: () {
                 setLocalRating(2);
-                ref.read(ratingControllerProvider.notifier).changeRating(2);
+                ref.read(ratingControllerProvider.notifier).setRating(2);
               },
             ),
           ),
@@ -86,7 +86,11 @@ class RatingWidget extends ConsumerWidget {
                       ref
                           .read(ratingRepositoryProvider)
                           .postNewRating(rating, dish.id);
-                      prefs.setUserRating(dish.id, prefs.getRating());
+                      prefs.setUserRating(
+                          dish.id,
+                          ref
+                              .watch(ratingControllerProvider.notifier)
+                              .getRating());
                     }))
     ]);
   }

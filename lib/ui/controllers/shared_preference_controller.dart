@@ -7,7 +7,6 @@ part 'shared_preference_controller.g.dart';
 
 @riverpod
 class SharedPreferencesController extends _$SharedPreferencesController {
-  int rating = -1;
   SharedPreferences? prefs;
   @override
   Future<SharedPreferences?> build() async {
@@ -55,13 +54,6 @@ class SharedPreferencesController extends _$SharedPreferencesController {
     }
   }
 
-  void setRating(int val) {
-    rating = val;
-  }
-
-  int getRating() {
-    return rating;
-  }
 }
 
 class _RatingStore {
