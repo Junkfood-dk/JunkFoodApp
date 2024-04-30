@@ -1,30 +1,72 @@
+import 'dart:convert';
+
+import 'package:flutter/widgets.dart';
+import 'package:intl/intl.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:flutter_guid/flutter_guid.dart';
 part 'shared_preference_controller.g.dart';
 
-@riverpod 
+@riverpod
 class SharedPreferencesController extends _$SharedPreferencesController {
   SharedPreferences? prefs;
   @override
-  Future<SharedPreferences?> build() async{
+  Future<SharedPreferences?> build() async {
     prefs = await SharedPreferences.getInstance();
     return prefs;
   }
 
-  //If the user dos not have a a userId a new will be assigned and returned
-  Future<Guid?> setUserId() async{
-    var userId = prefs!.getString('userId');
-    if (userId != null) {
-      return Guid(userId);
+  void setUserRating(int dishId, int rating) async {
+    var dateRating = prefs!.getStringList(
+        DateFormat(DateFormat.YEAR_MONTH_DAY).format(DateTime.now()));
+    var save = <String>[];
+    var dishHasBeenUpdated = false;
+    if (dateRating != null) {
+      for (var json in dateRating) {
+        var userMap = jsonDecode(json) as Map<String, dynamic>;
+        var decoded = _RatingStore.fromJsonString(userMap);
+        if (decoded.dishId == dishId && decoded.rating != rating) {
+          // Make DB call to decoded.ratingId;
+          decoded.rating = rating;
+          dishHasBeenUpdated = true;
+        }
+        var encoded = jsonEncode(decoded);
+        save.add(encoded);
+      }
+      if (!dishHasBeenUpdated) {
+        save.add(jsonEncode(
+            _RatingStore(dishId: dishId, ratingId: 1, rating: rating)));
+      }
+      prefs!.setStringList(
+          DateFormat(DateFormat.YEAR_MONTH_DAY).format(DateTime.now()), save);
+      debugPrint(prefs!
+          .getStringList(
+              DateFormat(DateFormat.YEAR_MONTH_DAY).format(DateTime.now()))
+          .toString());
     } else {
-      var newId = Guid.newGuid;
-      prefs!.setString('userId', newId.toString());
-      return newId;
+      // Post to db get rating id back
+      prefs!.setStringList(
+          DateFormat(DateFormat.YEAR_MONTH_DAY).format(DateTime.now()),
+          <String>[
+            jsonEncode(
+                _RatingStore(dishId: dishId, ratingId: 1, rating: rating))
+          ]);
     }
   }
+}
 
-  void setUserRating(int rating) async{
-    prefs!.setInt('rating', rating);
-  }
+class _RatingStore {
+  int dishId;
+  int ratingId;
+  int rating;
+
+  _RatingStore(
+      {required this.dishId, required this.ratingId, required this.rating});
+
+  Map<String, dynamic> toJson() =>
+      {'dish_id': dishId, 'rating_id': ratingId, 'rating': rating};
+
+  _RatingStore.fromJsonString(Map<String, dynamic> json)
+      : dishId = json['dish_id'] as int,
+        ratingId = json['rating_id'] as int,
+        rating = json['rating'] as int;
 }
