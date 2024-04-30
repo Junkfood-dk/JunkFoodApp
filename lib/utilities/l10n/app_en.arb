@@ -83,6 +83,10 @@
   "@rateButtonText" : {
     "description" : "The text on the rate the dish button"
   },
+  "localeHelper" : "en",
+  "@localeHelper" : {
+    "description" : "The text on the rate the dish button"
+  },
   "ratingTitle" : "How did you like todays dish?",
   "@ratingTitle" : {
     "description" : "title for rating widget"

@@ -8,7 +8,6 @@ import 'package:userapp/ui/controllers/servingtime_controller.dart';
 import 'package:userapp/ui/widgets/dish_display_widget.dart';
 import 'package:userapp/ui/widgets/language_dropdown_widget.dart';
 import 'package:userapp/ui/widgets/no_dish_widget.dart';
-import 'package:userapp/utilities/theming/color_theme.dart';
 import 'package:userapp/utilities/widgets/comments_sheet.dart';
 import 'package:userapp/utilities/widgets/gradiant_wrapper.dart';
 import 'package:userapp/utilities/widgets/text_wrapper.dart';
@@ -18,14 +17,20 @@ class DishOfTheDayPage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    var time = DateTime.now();
+    var formattedDanish = DateFormat("EEEE \n d. MMMM", 'da_DK').format(time);
+    var formattedEnglish = DateFormat("EEEE \n d. MMMM").format(time);
     return Scaffold(
       appBar: AppBar(
-        title: Text(DateFormat("EEEE \n d. MMMM").format(DateTime.now())),
+        title: Text(AppLocalizations.of(context)!.localeHelper == "da"
+            ? formattedDanish.substring(0, 1).toUpperCase() +
+                formattedDanish.substring(1)
+            : formattedEnglish),
         centerTitle: false,
         actions: [
-          LanguageDropdownWidget(),
+          const LanguageDropdownWidget(),
           IconButton(
-            icon: primaryGradiantWidget(
+            icon: const PrimaryGradiantWidget(
               child: Icon(Icons.chat_bubble_outline),
             ),
             color: Theme.of(context).colorScheme.onBackground,
@@ -43,50 +48,61 @@ class DishOfTheDayPage extends ConsumerWidget {
               .read(dishOfTheDayControllerProvider.notifier)
               .refetchDishOfTheDay();
         },
-        child: ListView(
-          children: [
-            SizedBox(
-              height: 22,
-            ),
-            Center(
-                child: switch (ref.watch(servingtimeControllerProvider)) {
-              AsyncData(:final value) => !value
-                  ? switch (ref.watch(dishOfTheDayControllerProvider)) {
-                      AsyncData(:final value) => value.isNotEmpty
-                          ? FlutterCarousel(
-                              options: CarouselOptions(
-                                viewportFraction: 1,
-                                height:
-                                    MediaQuery.of(context).size.height * 0.6,
-                                showIndicator: true,
-                                slideIndicator: CircularSlideIndicator(),
+        child: Center(
+          child: ConstrainedBox(
+            constraints: const BoxConstraints(maxWidth: 650),
+            child: SingleChildScrollView(
+              physics: AlwaysScrollableScrollPhysics(),
+              child: Column(
+                children: [
+                  const SizedBox(
+                    height: 22,
+                  ),
+                  switch (ref.watch(servingtimeControllerProvider)) {
+                    AsyncData(:final value) => !value
+                        ? switch (ref.watch(dishOfTheDayControllerProvider)) {
+                            AsyncData(:final value) => value.isNotEmpty
+                                ? FlutterCarousel(
+                                    options: CarouselOptions(
+                                      viewportFraction: 1,
+                                      height:
+                                          MediaQuery.of(context).size.height *
+                                              0.8,
+                                      showIndicator: true,
+                                      slideIndicator: CircularSlideIndicator(),
+                                    ),
+                                    items: value.map((i) {
+                                      return DishDisplayWidget(dish: i);
+                                    }).toList())
+                                : const NoDishWidget(),
+                            AsyncError(:final error) => Text(error.toString()),
+                            _ => const CircularProgressIndicator()
+                          }
+                        : Column(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              
+                              Image.network(
+                                  'https://raw.githubusercontent.com/Junkfood-dk/JunkFoodApp/main/lib/resources/logo.png',
+                                  width: 200),
+                              const SizedBox(height: 20),
+                              BodyText(
+                                text: AppLocalizations.of(context)!
+                                    .servingHasEndedText,
+                                textAlign: TextAlign.center,
                               ),
-                              items: value.map((i) {
-                                return DishDisplayWidget(dish: i);
-                              }).toList())
-                          : const NoDishWidget(),
-                      AsyncError(:final error) => Text(error.toString()),
-                      _ => const CircularProgressIndicator()
-                    }
-                  : Column(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        SizedBox(height: MediaQuery.of(context).size.height * 0.15),
-                        Image.network(
-                            'https://raw.githubusercontent.com/Junkfood-dk/JunkFoodApp/main/lib/resources/logo.png',
-                            width: 200),
-                        const SizedBox(height: 20),
-                        BodyText(
-                          text:
-                              AppLocalizations.of(context)!.servingHasEndedText,
-                          textAlign: TextAlign.center,
-                        ),
-                      ],
-                    ),
-              AsyncError(:final error) => Text(error.toString()),
-              _ => const CircularProgressIndicator()
-            }),
-          ],
+                              SizedBox(
+                                  height: MediaQuery.of(context).size.height *
+                                      0.5),
+                            ],
+                          ),
+                    AsyncError(:final error) => Text(error.toString()),
+                    _ => const CircularProgressIndicator()
+                  },
+                ],
+              ),
+            ),
+          ),
         ),
       ),
     );
