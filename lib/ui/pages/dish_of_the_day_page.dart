@@ -31,14 +31,14 @@ class DishOfTheDayPage extends ConsumerWidget {
           const LanguageDropdownWidget(),
           IconButton(
             icon: Container(
-              decoration: const BoxDecoration(
-                color: Colors.white, 
+              decoration: BoxDecoration(
+                color: Theme.of(context).colorScheme.outline, 
                 shape: BoxShape.circle,
               ),
               padding: const EdgeInsets.all(8), 
-              child: const Icon(
+              child: Icon(
                 Icons.chat_bubble_outline,
-                color: Colors.black, 
+                color: Theme.of(context).colorScheme.background, 
               ),
             ),
             onPressed: () {
