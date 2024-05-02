@@ -59,7 +59,7 @@ class DishOfTheDayPage extends ConsumerWidget {
                     height: 22,
                   ),
                   switch (ref.watch(servingtimeControllerProvider)) {
-                    AsyncData(:final value) => !value
+                    AsyncData(:final value) => value
                         ? switch (ref.watch(dishOfTheDayControllerProvider)) {
                             AsyncData(:final value) => value.isNotEmpty
                                 ? FlutterCarousel(
