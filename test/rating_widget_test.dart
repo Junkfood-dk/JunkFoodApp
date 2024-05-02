@@ -9,6 +9,7 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:userapp/ui/widgets/dish_display_widget.dart';
 import 'package:userapp/ui/widgets/rating_widget.dart';
 import 'package:userapp/utilities/widgets/gradiant_button_widget.dart';
+import 'package:userapp/utilities/widgets/gradiant_wrapper.dart';
 
 @GenerateNiceMocks([MockSpec<DishModel>()])
 void main() {
@@ -70,7 +71,11 @@ void main() {
           supportedLocales: AppLocalizations.supportedLocales,
           home: RatingWidget(dish: dish)),
     )));
-
     
+     final RatingIconFinder = find.descendant(
+      of: find.byType(PrimaryGradiantWidget),
+      matching: find.byType(IconButton));
+
+      expect(RatingIconFinder, findsExactly(3));
   });
 }
