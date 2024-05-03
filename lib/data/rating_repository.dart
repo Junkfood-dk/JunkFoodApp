@@ -13,22 +13,30 @@ class RatingRepository implements IRatingRepository {
   RatingRepository({required this.database});
 
   @override
-  void postNewRating(int rating, int dish /*Guid user*/) async {
+  Future<int> postNewRating(int rating, int dish /*Guid user*/) async {
     final ratingToPost = RatingModel(rating: rating, dish_id: dish);
 
     try {
-      return await database
+      var response = await database
           .from("Ratings")
           .insert(ratingToPost.toJson())
-          .select()
-          .then((rows) => RatingModel.fromJson(rows[0]));
+          .select("id");
+      return response[0]["id"];
     } catch (error) {
       debugPrint("Error saving new rating: $error");
       throw Exception("Failed to save new rating: $error");
     }
   }
 
-  
+  @override
+  Future<int> updateRating(int ratingId, int rating, int dish) async {
+    var resposne = await database
+        .from("Ratings")
+        .update({"rating": rating})
+        .eq("id", ratingId)
+        .select();
+    return resposne[0]["id"];
+  }
 }
 
 @riverpod

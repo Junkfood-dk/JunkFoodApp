@@ -3,6 +3,7 @@ import 'package:flutter/widgets.dart';
 import 'package:intl/intl.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:userapp/data/rating_repository.dart';
 part 'shared_preference_controller.g.dart';
 
 @riverpod
@@ -26,7 +27,9 @@ class SharedPreferencesController extends _$SharedPreferencesController {
         if (decoded.dishId == dishId) {
           dishHasBeenUpdated = true;
           if (decoded.rating != rating) {
-            // Make DB call to decoded.ratingId;
+            ref
+                .read(ratingRepositoryProvider)
+                .updateRating(decoded.ratingId, rating, dishId);
             decoded.rating = rating;
           }
         }
@@ -44,16 +47,17 @@ class SharedPreferencesController extends _$SharedPreferencesController {
               DateFormat(DateFormat.YEAR_MONTH_DAY).format(DateTime.now()))
           .toString());
     } else {
-      // Post to db get rating id back
+      var ratingId = await ref
+          .read(ratingRepositoryProvider)
+          .postNewRating(rating, dishId);
       prefs!.setStringList(
           DateFormat(DateFormat.YEAR_MONTH_DAY).format(DateTime.now()),
           <String>[
-            jsonEncode(
-                _RatingStore(dishId: dishId, ratingId: 1, rating: rating))
+            jsonEncode(_RatingStore(
+                dishId: dishId, ratingId: ratingId, rating: rating))
           ]);
     }
   }
-
 }
 
 class _RatingStore {

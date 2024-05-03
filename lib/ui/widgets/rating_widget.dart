@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:userapp/data/rating_repository.dart';
 import 'package:userapp/domain/model/dish_model.dart';
 import 'package:userapp/ui/controllers/rating_controller.dart';
 import 'package:userapp/ui/controllers/shared_preference_controller.dart';
@@ -83,14 +82,8 @@ class RatingWidget extends ConsumerWidget {
               onPressed: ref.watch(ratingControllerProvider) == -1
                   ? null
                   : () {
-                      ref
-                          .read(ratingRepositoryProvider)
-                          .postNewRating(rating, dish.id);
                       prefs.setUserRating(
-                          dish.id,
-                          ref
-                              .watch(ratingControllerProvider.notifier)
-                              .getRating());
+                          dish.id, ref.watch(ratingControllerProvider));
                     }))
     ]);
   }

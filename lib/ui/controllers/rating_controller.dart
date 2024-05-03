@@ -12,8 +12,4 @@ class RatingController extends _$RatingController {
   void setRating(int rating) {
     state = rating;
   }
-
-  int getRating() {
-    return state;
-  }
 }
