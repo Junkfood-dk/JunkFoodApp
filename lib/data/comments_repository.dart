@@ -11,13 +11,12 @@ class CommentRepository implements ICommentRepository {
   CommentRepository({required this.database});
 
   @override
-  Future<void> postComment(String commentText, String name) async {
+  Future<void> postComment(String commentText) async {
     final date = DateTime.now().toIso8601String().split('T')[0]; // Gets the date part
     await database.from('Comments')
       .insert({
         'comment_text': commentText,
-        'comment_date': date,
-        'name' : name
+        'comment_date': date
       });
   }
 }

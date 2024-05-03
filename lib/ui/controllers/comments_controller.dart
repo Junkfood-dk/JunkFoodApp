@@ -11,7 +11,7 @@ class CommentController extends _$CommentController {
   }
 
   @override
-  Future<void> submitComment(String commentText, String name) async {
-    await ref.read(commentRepositoryProvider).postComment(commentText, name);
+  Future<void> submitComment(String commentText) async {
+    await ref.read(commentRepositoryProvider).postComment(commentText);
   }
 }

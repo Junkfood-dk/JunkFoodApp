@@ -6,7 +6,6 @@ import 'package:userapp/data/comments_repository.dart';
 class CommentPage extends ConsumerWidget {
   CommentPage({Key? key}) : super(key: key);
 
-  final TextEditingController _nameController = TextEditingController();
   final TextEditingController _commentController = TextEditingController();
 
   @override
@@ -21,18 +20,6 @@ class CommentPage extends ConsumerWidget {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             Text(AppLocalizations.of(context)!.commentPageParagraph),
-            const SizedBox(height: 15),
-            TextField(
-              controller: _nameController,
-              decoration: InputDecoration(
-                hintText: AppLocalizations.of(context)!.yourNameHintText,
-                border:
-                    OutlineInputBorder(borderRadius: BorderRadius.circular(16)),
-              ),
-              keyboardType: TextInputType.text,
-              maxLines: 2,
-              minLines: 1,
-            ),
             const SizedBox(height: 15),
             TextField(
               controller: _commentController,
@@ -55,12 +42,11 @@ class CommentPage extends ConsumerWidget {
               ),
               child: ElevatedButton(
                 onPressed: () async {
-                  final name = _nameController.text.trim();
                   final commentText = _commentController.text.trim();
-                  if (name.isEmpty || commentText.isEmpty) {
+                  if (commentText.isEmpty) {
                     ScaffoldMessenger.of(context).showSnackBar( SnackBar(
-                      content: const Text(
-                          "Both name and comment fields must be filled out"),
+                      content: Text(
+                          AppLocalizations.of(context)!.emptyCommentErrorMessage),
                       backgroundColor: Colors.redAccent,
                       action: SnackBarAction(
                         label: 'OK',
@@ -75,16 +61,15 @@ class CommentPage extends ConsumerWidget {
                     try {
                       await ref
                           .read(commentRepositoryProvider)
-                          .postComment(commentText, name);
-                      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-                        content: Text("Comment posted successfully!"),
+                          .postComment(commentText);
+                      ScaffoldMessenger.of(context).showSnackBar( SnackBar(
+                        content: Text(AppLocalizations.of(context)!.succesfulCommentSubmission),
                         duration: Duration(seconds: 2),
                       ));
-                      _nameController.clear();
                       _commentController.clear();
                     } catch (error) {
                       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                        content: Text("Failed to post comment: $error"),
+                        content: Text("${AppLocalizations.of(context)!.failedCommentSubmission}$error"),
                         duration: const Duration(seconds: 3),
                       ));
                     }

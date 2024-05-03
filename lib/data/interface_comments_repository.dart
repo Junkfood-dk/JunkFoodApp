@@ -1,3 +1,3 @@
 abstract class ICommentRepository {
-  Future<void> postComment(String commentText, String name);
+  Future<void> postComment(String commentText);
 }
