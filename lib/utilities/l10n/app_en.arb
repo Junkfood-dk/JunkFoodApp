@@ -75,7 +75,7 @@
   "@noDishType": {
     "description": "Display message for when no dishtype"
   },
-  "servingHasEndedText" : "Today's serving has ended, please check back tomorrow",
+  "servingHasEndedText" : "Today's serving has ended,\nplease check back tomorrow",
   "@servingHasEndedText" : {
     "description": "Text for today's dish serving is over"
   },
@@ -130,5 +130,17 @@
   "commentPageSubmitButton" : "Submit", 
   "@commentPageSubmitButton" : {
     "description": "text for submit button"
+  },
+  "changeRating" : "You have rated this dish, would you like to change your rating?", 
+  "@changeRating" : {
+    "description": "if user has rated once, but tries to rate again"
+  },
+  "yes" : "Yes", 
+  "@yes" : {
+    "description": "used for yes/no dialogs"
+  },
+  "no" : "No", 
+  "@no" : {
+    "description": "used for yes/no dialogs"
   }
 }
