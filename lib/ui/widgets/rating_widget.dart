@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:userapp/domain/model/dish_model.dart';
-import 'package:userapp/ui/controllers/shared_preference_controller.dart';
+import 'package:userapp/ui/controllers/dish_rating_controller.dart';
 import 'package:userapp/utilities/widgets/gradiant_button_widget.dart';
 import 'package:userapp/utilities/widgets/gradiant_wrapper.dart';
 import 'package:userapp/utilities/widgets/text_wrapper.dart';
@@ -14,7 +14,7 @@ class RatingWidget extends HookConsumerWidget {
   const RatingWidget({super.key, required this.dish});
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    var prefs = ref.watch(sharedPreferencesControllerProvider.notifier);
+    var prefs = ref.watch(dishRatingControllerProvider.notifier);
     var rating = useState(-1);
 
     return Column(children: [
@@ -40,7 +40,7 @@ class RatingWidget extends HookConsumerWidget {
         ),
         Opacity(
           // NEUTRAL BUTTON
-          opacity: (rating == -1 || rating == 1 ? 1 : 0.3),
+          opacity: (rating.value == -1 || rating.value == 1 ? 1 : 0.3),
           child: PrimaryGradiantWidget(
             child: IconButton(
               icon: Icon(Icons.sentiment_neutral_rounded,
@@ -52,7 +52,7 @@ class RatingWidget extends HookConsumerWidget {
           ),
         ), // HAPPY BUTTON
         Opacity(
-          opacity: (rating == -1 || rating == 2 ? 1 : 0.3),
+          opacity: (rating.value == -1 || rating.value == 2 ? 1 : 0.3),
           child: PrimaryGradiantWidget(
             child: IconButton(
               icon: Icon(Icons.sentiment_satisfied_alt_rounded,

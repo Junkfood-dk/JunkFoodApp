@@ -3,10 +3,11 @@ import 'package:intl/intl.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:userapp/data/rating_repository.dart';
-part 'shared_preference_controller.g.dart';
+
+part 'dish_rating_controller.g.dart';
 
 @riverpod
-class SharedPreferencesController extends _$SharedPreferencesController {
+class DishRatingController extends _$DishRatingController {
   SharedPreferences? prefs;
   @override
   Future<SharedPreferences?> build() async {
