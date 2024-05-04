@@ -20,6 +20,20 @@ class DishRatingController extends _$DishRatingController {
         .getStringList(DateFormat(DateFormat.YEAR_MONTH_DAY).format(date));
   }
 
+  Future<bool> isRatingForDishDifferent(int dishId, int rating) async {
+    var dateRating = await getRatingFromDay(DateTime.now());
+    if (dateRating != null) {
+      for (var json in dateRating) {
+        var userMap = jsonDecode(json) as Map<String, dynamic>;
+        var decoded = _RatingStore.fromJsonString(userMap);
+        if (decoded.dishId == dishId) {
+          return rating != decoded.rating;
+        }
+      }
+    }
+    return false;
+  }
+
   void saveRatingsForDay(List<String> ratingList, DateTime date) {
     prefs!.setStringList(
         DateFormat(DateFormat.YEAR_MONTH_DAY).format(DateTime.now()),

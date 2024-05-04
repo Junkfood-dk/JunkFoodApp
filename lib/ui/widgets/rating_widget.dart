@@ -14,7 +14,7 @@ class RatingWidget extends HookConsumerWidget {
   const RatingWidget({super.key, required this.dish});
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    var prefs = ref.watch(dishRatingControllerProvider.notifier);
+    var ratingController = ref.watch(dishRatingControllerProvider.notifier);
     var rating = useState(-1);
 
     return Column(children: [
@@ -69,19 +69,29 @@ class RatingWidget extends HookConsumerWidget {
           width: MediaQuery.of(context).size.width * 0.9,
           height: MediaQuery.of(context).size.height * 0.08,
           child: GradiantButton(
-              onPressed: rating.value == -1
-                  ? null
-                  : () {
-                      prefs.setUserRating(dish.id, rating.value);
-                    },
+              onPressed: () async {
+                var isRatingForDishDifferent = await ratingController
+                    .isRatingForDishDifferent(dish.id, rating.value);
+                debugPrint(isRatingForDishDifferent.toString());
+                if (isRatingForDishDifferent) {
+                  var wishToChange = await updateRating(context);
+                  if (wishToChange!) {
+                    ratingController.setUserRating(dish.id, rating.value);
+                    Navigator.pop(context);
+                  }
+                } else {
+                  ratingController.setUserRating(dish.id, rating.value);
+                  Navigator.pop(context);
+                }
+              },
               child: ButtonText(
                 text: AppLocalizations.of(context)!.ratingContinue,
               )))
     ]);
   }
 
-  Future<String?> updateRating(BuildContext context) {
-    return showDialog<String>(
+  Future<bool?> updateRating(BuildContext context) {
+    return showDialog<bool>(
       context: context,
       builder: (BuildContext context) => Dialog(
         child: Padding(
@@ -101,8 +111,8 @@ class RatingWidget extends HookConsumerWidget {
                     width: MediaQuery.of(context).size.width * 0.2,
                     child: OutlinedButton(
                         onPressed: () {
-                          Navigator.pop(
-                              context); // UPDATE THE RATING FUNCTIONALITY WILL GO HERE
+                          Navigator.pop(context,
+                              true); // UPDATE THE RATING FUNCTIONALITY WILL GO HERE
                         },
                         child: BodyText(
                           text: AppLocalizations.of(context)!.yes,
@@ -113,7 +123,8 @@ class RatingWidget extends HookConsumerWidget {
                     width: MediaQuery.of(context).size.width * 0.2,
                     child: GradiantButton(
                         onPressed: () {
-                          Navigator.pop(context); // GO BACK AND DO NOT UPDATE
+                          Navigator.pop(
+                              context, false); // GO BACK AND DO NOT UPDATE
                         },
                         child: BodyText(
                           text: AppLocalizations.of(context)!.no,
