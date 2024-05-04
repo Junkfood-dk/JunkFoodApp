@@ -63,6 +63,37 @@ class RatingWidget extends ConsumerWidget {
         )
       ]),
       SizedBox(height: MediaQuery.of(context).size.height * 0.1),
+      Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: <Widget>[
+          TextButton(
+            onPressed: () => showDialog<String>(
+              context: context,
+              builder: (BuildContext context) => Dialog(
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      const Text('You have already rated this dish. Do you want to change your rating?'),
+                      const SizedBox(height: 15),
+                      TextButton(
+                        onPressed: () {
+                          Navigator.pop(context);
+                        },
+                        child: const Text('Close'),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+            child: const Text('Placeholder Button'),
+          ),
+          const SizedBox(height: 10),
+        ],
+      ),
       Container(
           width: MediaQuery.of(context).size.width * 0.9,
           height: MediaQuery.of(context).size.height * 0.08,
