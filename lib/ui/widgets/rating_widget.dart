@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:userapp/data/rating_repository.dart';
 import 'package:userapp/domain/model/dish_model.dart';
 import 'package:userapp/ui/controllers/rating_controller.dart';
 import 'package:userapp/utilities/widgets/gradiant_button_widget.dart';
@@ -66,14 +65,14 @@ class RatingWidget extends ConsumerWidget {
       Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
-          //This functions should be integrated with the rating button
+          //This function should be integrated with the rating button for if rating exists
           //------------------------------------------
           TextButton(
             onPressed: () => showDialog<String>(
               context: context,
               builder: (BuildContext context) => Dialog(
                 child: Padding(
-                  padding: const EdgeInsets.all(8.0),
+                  padding: const EdgeInsets.all(15.0),
                   child: Column(
                     mainAxisSize: MainAxisSize.min,
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -82,25 +81,40 @@ class RatingWidget extends ConsumerWidget {
                           text: AppLocalizations.of(context)!.changeRating,
                           textAlign: TextAlign.center),
                       const SizedBox(height: 15),
-                      TextButton(
-                        onPressed: () {
-                          Navigator.pop(context); // UPDATE THE RATING FUNCTIONALITY WILL GO HERE
-                        },
-                        child: BodyText(text: AppLocalizations.of(context)!.yes,)
-                      ),
-                      TextButton(
-                        onPressed: () {
-                          Navigator.pop(context); // GO BACK AND DO NOT UPDATE
-                        },
-                        child: BodyText(
-                            text: AppLocalizations.of(context)!.no,) 
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Container(
+                            width: MediaQuery.of(context).size.width * 0.2,
+                            child: OutlinedButton(
+                                onPressed: () {
+                                  Navigator.pop(
+                                      context); // UPDATE THE RATING FUNCTIONALITY WILL GO HERE
+                                },
+                                child: BodyText(
+                                  text: AppLocalizations.of(context)!.yes,
+                                )),
+                          ),
+                          const SizedBox(width: 15),
+                          Container(
+                            width: MediaQuery.of(context).size.width * 0.2,
+                            child: GradiantButton(
+                                onPressed: () {
+                                  Navigator.pop(
+                                      context); // GO BACK AND DO NOT UPDATE
+                                },
+                                child: BodyText(
+                                  text: AppLocalizations.of(context)!.no,
+                                )),
+                          ),
+                        ],
                       ),
                     ],
                   ),
                 ),
               ),
             ),
-            child: const Text('Placeholder Button'), 
+            child: const Text('Placeholder Button'),
           ),
           //------------------------------------------
           const SizedBox(height: 10),
