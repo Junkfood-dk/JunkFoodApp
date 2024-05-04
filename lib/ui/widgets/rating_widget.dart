@@ -66,6 +66,8 @@ class RatingWidget extends ConsumerWidget {
       Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
+          //This functions should be integrated with the rating button
+          //------------------------------------------
           TextButton(
             onPressed: () => showDialog<String>(
               context: context,
@@ -76,21 +78,31 @@ class RatingWidget extends ConsumerWidget {
                     mainAxisSize: MainAxisSize.min,
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
-                      const Text('You have already rated this dish. Do you want to change your rating?'),
+                      BodyText(
+                          text: AppLocalizations.of(context)!.changeRating,
+                          textAlign: TextAlign.center),
                       const SizedBox(height: 15),
                       TextButton(
                         onPressed: () {
-                          Navigator.pop(context);
+                          Navigator.pop(context); // UPDATE THE RATING FUNCTIONALITY WILL GO HERE
                         },
-                        child: const Text('Close'),
+                        child: BodyText(text: AppLocalizations.of(context)!.yes,)
+                      ),
+                      TextButton(
+                        onPressed: () {
+                          Navigator.pop(context); // GO BACK AND DO NOT UPDATE
+                        },
+                        child: BodyText(
+                            text: AppLocalizations.of(context)!.no,) 
                       ),
                     ],
                   ),
                 ),
               ),
             ),
-            child: const Text('Placeholder Button'),
+            child: const Text('Placeholder Button'), 
           ),
+          //------------------------------------------
           const SizedBox(height: 10),
         ],
       ),
