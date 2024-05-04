@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:flutter/widgets.dart';
 import 'package:intl/intl.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -15,9 +14,19 @@ class SharedPreferencesController extends _$SharedPreferencesController {
     return prefs;
   }
 
+  Future<List<String>?> getRatingFromDay(DateTime date) async {
+    return prefs!
+        .getStringList(DateFormat(DateFormat.YEAR_MONTH_DAY).format(date));
+  }
+
+  void saveRatingsForDay(List<String> ratingList, DateTime date) {
+    prefs!.setStringList(
+        DateFormat(DateFormat.YEAR_MONTH_DAY).format(DateTime.now()),
+        ratingList);
+  }
+
   void setUserRating(int dishId, int rating) async {
-    var dateRating = prefs!.getStringList(
-        DateFormat(DateFormat.YEAR_MONTH_DAY).format(DateTime.now()));
+    var dateRating = await getRatingFromDay(DateTime.now());
     var save = <String>[];
     var dishHasBeenUpdated = false;
     if (dateRating != null) {
@@ -40,22 +49,15 @@ class SharedPreferencesController extends _$SharedPreferencesController {
         save.add(jsonEncode(
             _RatingStore(dishId: dishId, ratingId: 1, rating: rating)));
       }
-      prefs!.setStringList(
-          DateFormat(DateFormat.YEAR_MONTH_DAY).format(DateTime.now()), save);
-      debugPrint(prefs!
-          .getStringList(
-              DateFormat(DateFormat.YEAR_MONTH_DAY).format(DateTime.now()))
-          .toString());
+      saveRatingsForDay(save, DateTime.now());
     } else {
       var ratingId = await ref
           .read(ratingRepositoryProvider)
           .postNewRating(rating, dishId);
-      prefs!.setStringList(
-          DateFormat(DateFormat.YEAR_MONTH_DAY).format(DateTime.now()),
-          <String>[
-            jsonEncode(_RatingStore(
-                dishId: dishId, ratingId: ratingId, rating: rating))
-          ]);
+      saveRatingsForDay(<String>[
+        jsonEncode(
+            _RatingStore(dishId: dishId, ratingId: ratingId, rating: rating))
+      ], DateTime.now());
     }
   }
 }
