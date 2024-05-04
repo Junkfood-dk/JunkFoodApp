@@ -47,6 +47,7 @@ dependencies:
   gradient_elevated_button: ^0.0.8
   shared_preferences: ^2.2.3
   flutter_guid: ^0.3.1
+  flutter_hooks: ^0.20.5
 
 dev_dependencies:
   flutter_launcher_icons: "^0.13.1"

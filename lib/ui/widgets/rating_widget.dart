@@ -1,25 +1,21 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:userapp/domain/model/dish_model.dart';
-import 'package:userapp/ui/controllers/rating_controller.dart';
 import 'package:userapp/ui/controllers/shared_preference_controller.dart';
 import 'package:userapp/utilities/widgets/gradiant_button_widget.dart';
 import 'package:userapp/utilities/widgets/gradiant_wrapper.dart';
 import 'package:userapp/utilities/widgets/text_wrapper.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
-class RatingWidget extends ConsumerWidget {
+class RatingWidget extends HookConsumerWidget {
   final DishModel dish;
 
   const RatingWidget({super.key, required this.dish});
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     var prefs = ref.watch(sharedPreferencesControllerProvider.notifier);
-    var rating = ref.watch(ratingControllerProvider);
-
-    void setLocalRating(int rating) {
-      ref.watch(ratingControllerProvider.notifier).setRating(rating);
-    }
+    var rating = useState(-1);
 
     return Column(children: [
       SizedBox(height: MediaQuery.of(context).size.height * 0.06),
@@ -31,14 +27,13 @@ class RatingWidget extends ConsumerWidget {
       Row(mainAxisAlignment: MainAxisAlignment.center, children: [
         // SAD BUTTON
         Opacity(
-          opacity: (rating == -1 || rating == 0 ? 1 : 0.3),
+          opacity: (rating.value == -1 || rating.value == 0 ? 1 : 0.3),
           child: PrimaryGradiantWidget(
             child: IconButton(
               icon: Icon(Icons.sentiment_dissatisfied_rounded,
                   size: MediaQuery.of(context).size.height * 0.1),
               onPressed: () {
-                setLocalRating(0);
-                ref.read(ratingControllerProvider.notifier).setRating(0);
+                rating.value = 0;
               },
             ),
           ),
@@ -51,8 +46,7 @@ class RatingWidget extends ConsumerWidget {
               icon: Icon(Icons.sentiment_neutral_rounded,
                   size: MediaQuery.of(context).size.height * 0.1),
               onPressed: () {
-                setLocalRating(1);
-                ref.read(ratingControllerProvider.notifier).setRating(1);
+                rating.value = 1;
               },
             ),
           ),
@@ -64,27 +58,25 @@ class RatingWidget extends ConsumerWidget {
               icon: Icon(Icons.sentiment_satisfied_alt_rounded,
                   size: MediaQuery.of(context).size.height * 0.1),
               onPressed: () {
-                setLocalRating(2);
-                ref.read(ratingControllerProvider.notifier).setRating(2);
+                rating.value = 2;
               },
             ),
           ),
         )
       ]),
       SizedBox(height: MediaQuery.of(context).size.height * 0.1),
-      Container(
+      SizedBox(
           width: MediaQuery.of(context).size.width * 0.9,
           height: MediaQuery.of(context).size.height * 0.08,
           child: GradiantButton(
-              child: ButtonText(
-                text: AppLocalizations.of(context)!.ratingContinue,
-              ),
-              onPressed: ref.watch(ratingControllerProvider) == -1
+              onPressed: rating.value == -1
                   ? null
                   : () {
-                      prefs.setUserRating(
-                          dish.id, ref.watch(ratingControllerProvider));
-                    }))
+                      prefs.setUserRating(dish.id, rating.value);
+                    },
+              child: ButtonText(
+                text: AppLocalizations.of(context)!.ratingContinue,
+              )))
     ]);
   }
 }
