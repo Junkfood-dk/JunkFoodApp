@@ -62,78 +62,74 @@ class RatingWidget extends ConsumerWidget {
         )
       ]),
       SizedBox(height: MediaQuery.of(context).size.height * 0.1),
-      Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[
-          //This function should be integrated with the rating button for if rating exists
-          //------------------------------------------
-          TextButton(
-            onPressed: () => showDialog<String>(
-              context: context,
-              builder: (BuildContext context) => Dialog(
-                child: Padding(
-                  padding: const EdgeInsets.all(15.0),
-                  child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                      BodyText(
-                          text: AppLocalizations.of(context)!.changeRating,
-                          textAlign: TextAlign.center),
-                      const SizedBox(height: 15),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Container(
-                            width: MediaQuery.of(context).size.width * 0.2,
-                            child: OutlinedButton(
-                                onPressed: () {
-                                  Navigator.pop(
-                                      context); // UPDATE THE RATING FUNCTIONALITY WILL GO HERE
-                                },
-                                child: BodyText(
-                                  text: AppLocalizations.of(context)!.yes,
-                                )),
-                          ),
-                          const SizedBox(width: 15),
-                          Container(
-                            width: MediaQuery.of(context).size.width * 0.2,
-                            child: GradiantButton(
-                                onPressed: () {
-                                  Navigator.pop(
-                                      context); // GO BACK AND DO NOT UPDATE
-                                },
-                                child: BodyText(
-                                  text: AppLocalizations.of(context)!.no,
-                                )),
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-            ),
-            child: const Text('Placeholder Button'),
-          ),
-          //------------------------------------------
-          const SizedBox(height: 10),
-        ],
+      TextButton(
+        onPressed: () => updateRating(
+            context), //This function should be integrated with the rating button for if rating exists
+        child: const Text('Placeholder Button'),
       ),
+      const SizedBox(height: 10),
       Container(
           width: MediaQuery.of(context).size.width * 0.9,
           height: MediaQuery.of(context).size.height * 0.08,
           child: GradiantButton(
-              child: ButtonText(
-                text: AppLocalizations.of(context)!.ratingContinue,
-              ),
               onPressed: ref.watch(ratingControllerProvider) == -1
                   ? null
                   : () {
                       ref
                           .read(ratingControllerProvider.notifier)
                           .postRating(dish.id);
-                    }))
+                    },
+              child: ButtonText(
+                text: AppLocalizations.of(context)!.ratingContinue,
+              )))
     ]);
+  }
+
+  Future<String?> updateRating(BuildContext context) {
+    return showDialog<String>(
+      context: context,
+      builder: (BuildContext context) => Dialog(
+        child: Padding(
+          padding: const EdgeInsets.all(15.0),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              BodyText(
+                  text: AppLocalizations.of(context)!.changeRating,
+                  textAlign: TextAlign.center),
+              const SizedBox(height: 15),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Container(
+                    width: MediaQuery.of(context).size.width * 0.2,
+                    child: OutlinedButton(
+                        onPressed: () {
+                          Navigator.pop(
+                              context); // UPDATE THE RATING FUNCTIONALITY WILL GO HERE
+                        },
+                        child: BodyText(
+                          text: AppLocalizations.of(context)!.yes,
+                        )),
+                  ),
+                  const SizedBox(width: 15),
+                  Container(
+                    width: MediaQuery.of(context).size.width * 0.2,
+                    child: GradiantButton(
+                        onPressed: () {
+                          Navigator.pop(context); // GO BACK AND DO NOT UPDATE
+                        },
+                        child: BodyText(
+                          text: AppLocalizations.of(context)!.no,
+                        )),
+                  ),
+                ],
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
   }
 }
