@@ -47,7 +47,7 @@ void main() {
     expect(gradientButtonFinder, findsOneWidget);
   });
 
-  testWidgets('Clicking the rating button the rating button should display the rating widget',
+  testWidgets('The rating widget displays 3 icons for rating',
       (WidgetTester tester) async {
     final dish = DishModel(
       title: 'Test Dish',
