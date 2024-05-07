@@ -42,7 +42,7 @@ class DishOfTheDayPage extends ConsumerWidget {
             ),
             onPressed: () {
               Navigator.of(context).push(
-                MaterialPageRoute(builder: (context) => const CommentPage()),
+                MaterialPageRoute(builder: (context) => CommentPage()),
               );
             },
           ),

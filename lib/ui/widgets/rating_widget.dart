@@ -72,7 +72,6 @@ class RatingWidget extends HookConsumerWidget {
               onPressed: () async {
                 var isRatingForDishDifferent = await ratingController
                     .isRatingForDishDifferent(dish.id, rating.value);
-                debugPrint(isRatingForDishDifferent.toString());
                 if (isRatingForDishDifferent) {
                   var wishToChange = await updateRating(context);
                   if (wishToChange!) {

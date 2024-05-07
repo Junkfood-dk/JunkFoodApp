@@ -142,5 +142,17 @@
   "no" : "Nej", 
   "@no" : {
     "description": "used for yes/no dialogs"
+  },
+  "emptyCommentErrorMessage" : "Kommentarfeltet skal være udfyldt",
+  "@emptyCommentErrorMessage" : {
+    "description": "error message for when trying to submit an empty comment"
+  },
+  "succesfulCommentSubmission" : "Kommentar indsendt!",
+  "@succesfulCommentSubmission" : {
+    "description": "comment is submitted succesfully"
+  },
+  "failedCommentSubmission" : "Kommentar kunne ikke indsendes", 
+  "@failedCommentSubmission" : {
+    "description": "failed to submit comment"
   }
 }
