@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:userapp/data/comments_repository.dart';
+import 'package:userapp/ui/controllers/dish_of_the_day_controller.dart';
+import 'package:userapp/ui/pages/dish_of_the_day_page.dart';
+import 'package:userapp/ui/widgets/dish_display_widget.dart';
 
 class CommentPage extends ConsumerWidget {
   CommentPage({Key? key}) : super(key: key);
@@ -68,6 +71,7 @@ class CommentPage extends ConsumerWidget {
                         duration: Duration(seconds: 2),
                       ));
                       _commentController.clear();
+                      Navigator.of(context).push(MaterialPageRoute(builder: (context) => const DishOfTheDayPage()));
                     } catch (error) {
                       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                         content: Text("${AppLocalizations.of(context)!.failedCommentSubmission}$error"),
