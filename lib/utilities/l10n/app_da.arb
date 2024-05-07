@@ -131,6 +131,18 @@
   "@commentPageSubmitButton" : {
     "description": "text for submit button"
   },
+  "changeRating" : "Du har bedømt denne ret, vil du ændre din bedømmelse?", 
+  "@changeRating" : {
+    "description": "if user has rated once, but tries to rate again"
+  },
+  "yes" : "Ja", 
+  "@yes" : {
+    "description": "used for yes/no dialogs"
+  },
+  "no" : "Nej", 
+  "@no" : {
+    "description": "used for yes/no dialogs"
+  },
   "emptyCommentErrorMessage" : "Kommentarfeltet skal være udfyldt",
   "@emptyCommentErrorMessage" : {
     "description": "error message for when trying to submit an empty comment"

@@ -4,9 +4,10 @@
   },
   "cmake.configureOnOpen": true,
     "cSpell.words": [
-        "Componenet",
-        "supabase",
-        "userapp"
+      "Componenet",
+      "prefs",
+      "supabase",
+      "userapp"
     ],
   "deno.enablePaths": [
     "supabase/functions"

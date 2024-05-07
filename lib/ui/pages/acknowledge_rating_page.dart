@@ -47,10 +47,11 @@ class AcknowledgeRatingPage extends StatelessWidget {
               padding: const EdgeInsets.only(bottom: 20.0),
               child: ConstrainedBox(
                 constraints: BoxConstraints(
-                  maxWidth: MediaQuery.of(context).size.width * 0.8, // Maximum width based on screen width
-                  minWidth: 400,
-                  minHeight: 50 // No minimum width
-                ),
+                    maxWidth: MediaQuery.of(context).size.width *
+                        0.8, // Maximum width based on screen width
+                    minWidth: 400,
+                    minHeight: 50 // No minimum width
+                    ),
                 child: ElevatedButton(
                   onPressed: () {
                     // Button onPressed action
@@ -59,9 +60,11 @@ class AcknowledgeRatingPage extends StatelessWidget {
                     backgroundColor: colorTheme.background, // Background color
                     foregroundColor: colorTheme.onBackground, // Text color
                     side: BorderSide(color: colorTheme.outline),
-                     // Outline color
+                    // Outline color
                   ),
-                  child: BodyText(text: AppLocalizations.of(context)!.ratingAcknowledgeButton),
+                  child: BodyText(
+                      text: AppLocalizations.of(context)!
+                          .ratingAcknowledgeButton),
                 ),
               ),
             ),
@@ -69,6 +72,5 @@ class AcknowledgeRatingPage extends StatelessWidget {
         ],
       ),
     );
-
   }
 }

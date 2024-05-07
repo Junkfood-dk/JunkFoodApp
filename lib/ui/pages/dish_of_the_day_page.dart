@@ -9,7 +9,6 @@ import 'package:userapp/ui/widgets/dish_display_widget.dart';
 import 'package:userapp/ui/widgets/language_dropdown_widget.dart';
 import 'package:userapp/ui/widgets/no_dish_widget.dart';
 import 'package:userapp/utilities/widgets/comments_sheet.dart';
-import 'package:userapp/utilities/widgets/gradiant_wrapper.dart';
 import 'package:userapp/utilities/widgets/text_wrapper.dart';
 
 class DishOfTheDayPage extends ConsumerWidget {
@@ -32,13 +31,13 @@ class DishOfTheDayPage extends ConsumerWidget {
           IconButton(
             icon: Container(
               decoration: BoxDecoration(
-                color: Theme.of(context).colorScheme.outline, 
+                color: Theme.of(context).colorScheme.outline,
                 shape: BoxShape.circle,
               ),
-              padding: const EdgeInsets.all(8), 
+              padding: const EdgeInsets.all(8),
               child: Icon(
                 Icons.chat_bubble_outline,
-                color: Theme.of(context).colorScheme.background, 
+                color: Theme.of(context).colorScheme.background,
               ),
             ),
             onPressed: () {
@@ -77,7 +76,8 @@ class DishOfTheDayPage extends ConsumerWidget {
                                           MediaQuery.of(context).size.height *
                                               0.8,
                                       showIndicator: true,
-                                      slideIndicator: const CircularSlideIndicator(),
+                                      slideIndicator:
+                                          const CircularSlideIndicator(),
                                     ),
                                     items: value.map((i) {
                                       return DishDisplayWidget(dish: i);
@@ -89,7 +89,6 @@ class DishOfTheDayPage extends ConsumerWidget {
                         : Column(
                             mainAxisSize: MainAxisSize.min,
                             children: [
-                              
                               Image.network(
                                   'https://raw.githubusercontent.com/Junkfood-dk/JunkFoodApp/main/lib/resources/logo.png',
                                   width: 200),
@@ -100,8 +99,8 @@ class DishOfTheDayPage extends ConsumerWidget {
                                 textAlign: TextAlign.center,
                               ),
                               SizedBox(
-                                  height: MediaQuery.of(context).size.height *
-                                      0.5),
+                                  height:
+                                      MediaQuery.of(context).size.height * 0.5),
                             ],
                           ),
                     AsyncError(:final error) => Text(error.toString()),

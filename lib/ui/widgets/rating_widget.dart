@@ -1,20 +1,22 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:userapp/data/rating_repository.dart';
 import 'package:userapp/domain/model/dish_model.dart';
-import 'package:userapp/ui/controllers/rating_controller.dart';
+import 'package:userapp/ui/controllers/dish_rating_controller.dart';
 import 'package:userapp/utilities/widgets/gradiant_button_widget.dart';
 import 'package:userapp/utilities/widgets/gradiant_wrapper.dart';
 import 'package:userapp/utilities/widgets/text_wrapper.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
-class RatingWidget extends ConsumerWidget {
+class RatingWidget extends HookConsumerWidget {
   final DishModel dish;
 
   const RatingWidget({super.key, required this.dish});
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    var rating = ref.watch(ratingControllerProvider);
+    var ratingController = ref.watch(dishRatingControllerProvider.notifier);
+    var rating = useState(-1);
+
     return Column(children: [
       SizedBox(height: MediaQuery.of(context).size.height * 0.06),
       BodyBoldText(text: AppLocalizations.of(context)!.ratingTitle),
@@ -25,58 +27,114 @@ class RatingWidget extends ConsumerWidget {
       Row(mainAxisAlignment: MainAxisAlignment.center, children: [
         // SAD BUTTON
         Opacity(
-          opacity: (rating == -1 || rating == 0 ? 1 : 0.3),
+          opacity: (rating.value == -1 || rating.value == 0 ? 1 : 0.3),
           child: PrimaryGradiantWidget(
             child: IconButton(
               icon: Icon(Icons.sentiment_dissatisfied_rounded,
                   size: MediaQuery.of(context).size.height * 0.1),
               onPressed: () {
-                ref.read(ratingControllerProvider.notifier).changeRating(0);
+                rating.value = 0;
               },
             ),
           ),
         ),
         Opacity(
           // NEUTRAL BUTTON
-          opacity: (rating == -1 || rating == 1 ? 1 : 0.3),
+          opacity: (rating.value == -1 || rating.value == 1 ? 1 : 0.3),
           child: PrimaryGradiantWidget(
             child: IconButton(
               icon: Icon(Icons.sentiment_neutral_rounded,
                   size: MediaQuery.of(context).size.height * 0.1),
               onPressed: () {
-                ref.read(ratingControllerProvider.notifier).changeRating(1);
+                rating.value = 1;
               },
             ),
           ),
         ), // HAPPY BUTTON
         Opacity(
-          opacity: (rating == -1 || rating == 2 ? 1 : 0.3),
+          opacity: (rating.value == -1 || rating.value == 2 ? 1 : 0.3),
           child: PrimaryGradiantWidget(
             child: IconButton(
               icon: Icon(Icons.sentiment_satisfied_alt_rounded,
                   size: MediaQuery.of(context).size.height * 0.1),
               onPressed: () {
-                ref.read(ratingControllerProvider.notifier).changeRating(2);
+                rating.value = 2;
               },
             ),
           ),
         )
       ]),
       SizedBox(height: MediaQuery.of(context).size.height * 0.1),
-      Container(
+      SizedBox(
           width: MediaQuery.of(context).size.width * 0.9,
           height: MediaQuery.of(context).size.height * 0.08,
           child: GradiantButton(
+              onPressed: () async {
+                var isRatingForDishDifferent = await ratingController
+                    .isRatingForDishDifferent(dish.id, rating.value);
+                if (isRatingForDishDifferent) {
+                  var wishToChange = await updateRating(context);
+                  if (wishToChange!) {
+                    ratingController.setUserRating(dish.id, rating.value);
+                    Navigator.pop(context);
+                  }
+                } else {
+                  ratingController.setUserRating(dish.id, rating.value);
+                  Navigator.pop(context);
+                }
+              },
               child: ButtonText(
                 text: AppLocalizations.of(context)!.ratingContinue,
-              ),
-              onPressed: ref.watch(ratingControllerProvider) == -1
-                  ? null
-                  : () {
-                      ref
-                          .read(ratingControllerProvider.notifier)
-                          .postRating(dish.id);
-                    }))
+              )))
     ]);
+  }
+
+  Future<bool?> updateRating(BuildContext context) {
+    return showDialog<bool>(
+      context: context,
+      builder: (BuildContext context) => Dialog(
+        child: Padding(
+          padding: const EdgeInsets.all(15.0),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              BodyText(
+                  text: AppLocalizations.of(context)!.changeRating,
+                  textAlign: TextAlign.center),
+              const SizedBox(height: 15),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Container(
+                    width: MediaQuery.of(context).size.width * 0.2,
+                    child: OutlinedButton(
+                        onPressed: () {
+                          Navigator.pop(context,
+                              true); // UPDATE THE RATING FUNCTIONALITY WILL GO HERE
+                        },
+                        child: BodyText(
+                          text: AppLocalizations.of(context)!.yes,
+                        )),
+                  ),
+                  const SizedBox(width: 15),
+                  Container(
+                    width: MediaQuery.of(context).size.width * 0.2,
+                    child: GradiantButton(
+                        onPressed: () {
+                          Navigator.pop(
+                              context, false); // GO BACK AND DO NOT UPDATE
+                        },
+                        child: BodyText(
+                          text: AppLocalizations.of(context)!.no,
+                        )),
+                  ),
+                ],
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
   }
 }
