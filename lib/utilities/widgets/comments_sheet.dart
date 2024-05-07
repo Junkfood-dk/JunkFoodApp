@@ -29,6 +29,7 @@ class CommentPage extends ConsumerWidget {
                     OutlineInputBorder(borderRadius: BorderRadius.circular(16)),
               ),
               keyboardType: TextInputType.text,
+              maxLength: 500,
               maxLines: null,
               minLines: 1,
             ),
