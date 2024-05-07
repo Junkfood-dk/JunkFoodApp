@@ -130,5 +130,17 @@
   "commentPageSubmitButton" : "Submit", 
   "@commentPageSubmitButton" : {
     "description": "text for submit button"
+  },
+  "emptyCommentErrorMessage" : "Comment Field must be filled out",
+  "@emptyCommentErrorMessage" : {
+    "description": "error message for when trying to submit an empty comment"
+  },
+  "succesfulCommentSubmission" : "Comment posted successfully!",
+  "@succesfulCommentSubmission" : {
+    "description": "comment is submitted succesfully"
+  },
+  "failedCommentSubmission" : "Failed to post comment", 
+  "@failedCommentSubmission" : {
+    "description": "failed to submit comment"
   }
 }
