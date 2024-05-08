@@ -27,7 +27,10 @@ void main() {
     await tester.pumpWidget(ProviderScope(
         child: Consumer(
       builder: (context, ref, child) => MaterialApp(
-          locale: ref.watch(localeControllerProvider),
+          locale: switch (ref.watch(localeControllerProvider)) {
+            AsyncData(:final value) => value,
+            _ => null
+          },
           localizationsDelegates: const [
             AppLocalizations.delegate,
             GlobalMaterialLocalizations.delegate,
@@ -61,7 +64,10 @@ void main() {
     await tester.pumpWidget(ProviderScope(
         child: Consumer(
       builder: (context, ref, child) => MaterialApp(
-          locale: ref.watch(localeControllerProvider),
+          locale: switch (ref.watch(localeControllerProvider)) {
+            AsyncData(:final value) => value,
+            _ => null
+          },
           localizationsDelegates: const [
             AppLocalizations.delegate,
             GlobalMaterialLocalizations.delegate,
@@ -71,11 +77,11 @@ void main() {
           supportedLocales: AppLocalizations.supportedLocales,
           home: RatingWidget(dish: dish)),
     )));
-    
-     final RatingIconFinder = find.descendant(
-      of: find.byType(PrimaryGradiantWidget),
-      matching: find.byType(IconButton));
 
-      expect(RatingIconFinder, findsExactly(3));
+    final RatingIconFinder = find.descendant(
+        of: find.byType(PrimaryGradiantWidget),
+        matching: find.byType(IconButton));
+
+    expect(RatingIconFinder, findsExactly(3));
   });
 }

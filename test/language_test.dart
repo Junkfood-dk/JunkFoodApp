@@ -70,22 +70,26 @@ void main() {
   testWidgets('Language_dropdown_widget contains danish and english options',
       (WidgetTester tester) async {
     //Arrange
-    await tester.pumpWidget(ProviderScope(
-      child: Consumer(
-        builder: (BuildContext context, WidgetRef ref, Widget? child) => MaterialApp(
-                  title: 'User app',
-                  localizationsDelegates: const [
-                    AppLocalizations.delegate,
-                  ],
-                  supportedLocales: AppLocalizations.supportedLocales,
-                  locale: ref.watch(localeControllerProvider),
-                  debugShowCheckedModeBanner: false,
-                  home: const LanguageDropdownWidget(),
-                ),
+    await tester.pumpWidget(
+      ProviderScope(
+        child: Consumer(
+          builder: (BuildContext context, WidgetRef ref, Widget? child) =>
+              MaterialApp(
+            title: 'User app',
+            localizationsDelegates: const [
+              AppLocalizations.delegate,
+            ],
+            supportedLocales: AppLocalizations.supportedLocales,
+            locale: switch (ref.watch(localeControllerProvider)) {
+              AsyncData(:final value) => value,
+              _ => null
+            },
+            debugShowCheckedModeBanner: false,
+            home: const LanguageDropdownWidget(),
+          ),
+        ),
       ),
-    ),
     );
-        
 
     //Act
 
@@ -102,8 +106,7 @@ void main() {
   });
 
 //Test if locale changes when language is selected in dropdown-menu
-  testWidgets(
-      'Language_dropdown_widget changes locale when option is pressed',
+  testWidgets('Language_dropdown_widget changes locale when option is pressed',
       (WidgetTester tester) async {
     //Arrange
     await tester.pumpWidget(
@@ -119,7 +122,10 @@ void main() {
               GlobalCupertinoLocalizations.delegate,
             ],
             supportedLocales: AppLocalizations.supportedLocales,
-            locale: ref.watch(localeControllerProvider),
+            locale: switch (ref.watch(localeControllerProvider)) {
+              AsyncData(:final value) => value,
+              _ => null
+            },
             debugShowCheckedModeBanner: false,
             home: const LanguageDropdownWidget(),
           ),
@@ -128,28 +134,28 @@ void main() {
     );
 
     //Act
-    Locale? initialLocale =
-        Localizations.localeOf(tester.element(find.byType(LanguageDropdownWidget)));
+    Locale? initialLocale = Localizations.localeOf(
+        tester.element(find.byType(LanguageDropdownWidget)));
 
-    await tester
-        .tap(find.byType(LanguageDropdownWidget)); // Open the language dropdown.
+    await tester.tap(
+        find.byType(LanguageDropdownWidget)); // Open the language dropdown.
     await tester.pumpAndSettle();
 
     await tester.tap(find.text('Dansk'));
     await tester.pumpAndSettle();
 
-    Locale? localeAfterDanishIsPressed =
-        Localizations.localeOf(tester.element(find.byType(LanguageDropdownWidget)));
+    Locale? localeAfterDanishIsPressed = Localizations.localeOf(
+        tester.element(find.byType(LanguageDropdownWidget)));
 
-    await tester
-        .tap(find.byType(LanguageDropdownWidget)); // Open the language dropdown.
+    await tester.tap(
+        find.byType(LanguageDropdownWidget)); // Open the language dropdown.
     await tester.pumpAndSettle();
 
     await tester.tap(find.text('English'));
     await tester.pumpAndSettle();
 
-    Locale? localeAfterEnglishIsPressed =
-        Localizations.localeOf(tester.element(find.byType(LanguageDropdownWidget)));
+    Locale? localeAfterEnglishIsPressed = Localizations.localeOf(
+        tester.element(find.byType(LanguageDropdownWidget)));
 
     //Assert
     expect(initialLocale, equals(Locale('en')));
