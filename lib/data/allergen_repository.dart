@@ -1,5 +1,10 @@
+import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
+import 'package:userapp/data/database.dart';
 import 'package:userapp/data/interface_allergen_repository.dart';
+
+part 'allergen_repository.g.dart';
 
 class AllergenRepository implements IAllergenRepository {
   SupabaseClient database;
@@ -16,4 +21,9 @@ class AllergenRepository implements IAllergenRepository {
             .map((json) => json["Allergens"]["allergen_name"].toString())
             .toList());
   }
+}
+
+@riverpod
+IAllergenRepository allergenRepository(AllergenRepositoryRef ref) {
+  return AllergenRepository(database: ref.read(databaseProvider));
 }
