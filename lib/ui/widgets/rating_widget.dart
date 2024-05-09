@@ -69,7 +69,7 @@ class RatingWidget extends HookConsumerWidget {
           width: MediaQuery.of(context).size.width * 0.9,
           height: MediaQuery.of(context).size.height * 0.08,
           child: GradiantButton(
-              onPressed: () async {
+              onPressed: rating.value == -1 ? null : () async {
                 var isRatingForDishDifferent = await ratingController
                     .isRatingForDishDifferent(dish.id, rating.value);
                 if (isRatingForDishDifferent) {
