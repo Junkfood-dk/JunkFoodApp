@@ -7,7 +7,7 @@ part of 'dish_rating_controller.dart';
 // **************************************************************************
 
 String _$dishRatingControllerHash() =>
-    r'a563fa497f72b116cba089e9890fb3d1af86ef6d';
+    r'67d70d3e0a8bbc27f12bd774541f8e6d8fd331e3';
 
 /// See also [DishRatingController].
 @ProviderFor(DishRatingController)

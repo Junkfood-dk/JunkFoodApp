@@ -70,12 +70,18 @@ class RatingWidget extends HookConsumerWidget {
           width: MediaQuery.of(context).size.width * 0.9,
           height: MediaQuery.of(context).size.height * 0.08,
           child: GradiantButton(
+            
               onPressed: rating.value == -1 ? null : () async {
+                print('dish id: ${dish.id}');
+                print('rating valu: ${rating.value}');
+                print('her 0');
                 var isRatingForDishDifferent = await ratingController
                     .isRatingForDishDifferent(dish.id, rating.value);
                 if (isRatingForDishDifferent) {
+                  print('her 1');
                   var wishToChange = await updateRating(context);
                   if (wishToChange!) {
+                    print('her 2');
                     ratingController.setUserRating(dish.id, rating.value);
                     Navigator.of(context)
                               .pushReplacement(MaterialPageRoute(
@@ -83,12 +89,12 @@ class RatingWidget extends HookConsumerWidget {
                           ));
                   }
                 } else {
-                  print("fortsæt knap");
-                  ratingController.setUserRating(dish.id, rating.value);
+                  print('her 3');
+                  ratingController.setUserRating(dish.id, rating.value);    
+                  print('her 4');              
                   Navigator.of(context).pushReplacement(MaterialPageRoute(
                           builder: (context) => const AcknowledgeRatingPage(),
                         ));
-                  // Navigator.pop(context);
                 }
               },
               child: ButtonText(

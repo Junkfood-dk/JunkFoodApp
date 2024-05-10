@@ -21,6 +21,7 @@ class DishRatingController extends _$DishRatingController {
   }
 
   Future<bool> isRatingForDishDifferent(int dishId, int rating) async {
+    print('should not be here');
     var dateRating = await getRatingFromDay(DateTime.now());
     if (dateRating != null) {
       for (var json in dateRating) {
