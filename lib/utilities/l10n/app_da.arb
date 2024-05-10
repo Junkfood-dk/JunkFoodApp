@@ -154,5 +154,17 @@
   "failedCommentSubmission" : "Kommentar kunne ikke indsendes", 
   "@failedCommentSubmission" : {
     "description": "failed to submit comment"
+  },
+  "commentAcknowledgementTitle" : "Tak for din kommentar",
+  "@commentAcknowledgementTitle" : {
+    "description": "Title for comment acknowledgement page"
+  },
+  "commentAcknowledgementText" : "Din mening betyder meget for os",
+  "@commentAcknowledgementText" : {
+    "description": "Text for comment acknowledgement page"
+  },
+  "commentAcknowledgementButton" : "Tilbage til forsiden",
+  "@commentAcknowledgementButton" : {
+    "description": "Text for the button to navigate user back to the frontpage"
   }
 }
