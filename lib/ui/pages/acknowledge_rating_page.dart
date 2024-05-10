@@ -49,12 +49,11 @@ class AcknowledgeRatingPage extends StatelessWidget {
                 constraints: BoxConstraints(
                     maxWidth: MediaQuery.of(context).size.width *
                         0.8, // Maximum width based on screen width
-                    minWidth: 400,
                     minHeight: 50 // No minimum width
                     ),
                 child: ElevatedButton(
                   onPressed: () {
-                    // Button onPressed action
+                    Navigator.pop(context);
                   },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: colorTheme.background, // Background color
