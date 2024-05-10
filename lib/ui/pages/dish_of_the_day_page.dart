@@ -8,6 +8,7 @@ import 'package:userapp/ui/controllers/servingtime_controller.dart';
 import 'package:userapp/ui/widgets/dish_display_widget.dart';
 import 'package:userapp/ui/widgets/language_dropdown_widget.dart';
 import 'package:userapp/ui/widgets/no_dish_widget.dart';
+import 'package:userapp/ui/widgets/serving_ended_widget.dart';
 import 'package:userapp/utilities/widgets/comments_sheet.dart';
 import 'package:userapp/utilities/widgets/text_wrapper.dart';
 
@@ -86,23 +87,7 @@ class DishOfTheDayPage extends ConsumerWidget {
                             AsyncError(:final error) => Text(error.toString()),
                             _ => const CircularProgressIndicator()
                           }
-                        : Column(
-                            mainAxisSize: MainAxisSize.min,
-                            children: [
-                              Image.network(
-                                  'https://raw.githubusercontent.com/Junkfood-dk/JunkFoodApp/main/lib/resources/logo.png',
-                                  width: 200),
-                              const SizedBox(height: 20),
-                              BodyText(
-                                text: AppLocalizations.of(context)!
-                                    .servingHasEndedText,
-                                textAlign: TextAlign.center,
-                              ),
-                              SizedBox(
-                                  height:
-                                      MediaQuery.of(context).size.height * 0.5),
-                            ],
-                          ),
+                        : const ServingEndedWidget(),
                     AsyncError(:final error) => Text(error.toString()),
                     _ => const CircularProgressIndicator()
                   },
