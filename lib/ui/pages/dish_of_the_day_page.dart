@@ -10,7 +10,6 @@ import 'package:userapp/ui/widgets/language_dropdown_widget.dart';
 import 'package:userapp/ui/widgets/no_dish_widget.dart';
 import 'package:userapp/ui/widgets/serving_ended_widget.dart';
 import 'package:userapp/utilities/widgets/comments_sheet.dart';
-import 'package:userapp/utilities/widgets/text_wrapper.dart';
 
 class DishOfTheDayPage extends ConsumerWidget {
   const DishOfTheDayPage({super.key});
@@ -69,25 +68,27 @@ class DishOfTheDayPage extends ConsumerWidget {
                   switch (ref.watch(servingtimeControllerProvider)) {
                     AsyncData(:final value) => !value
                         ? switch (ref.watch(dishOfTheDayControllerProvider)) {
-                            AsyncData(:final value) => value.isNotEmpty
-                                ? FlutterCarousel(
-                                    options: CarouselOptions(
-                                      viewportFraction: 1,
-                                      height:
-                                          MediaQuery.of(context).size.height *
-                                              0.8,
-                                      showIndicator: true,
-                                      slideIndicator:
-                                          const CircularSlideIndicator(),
-                                    ),
-                                    items: value.map((i) {
-                                      return DishDisplayWidget(dish: i);
-                                    }).toList())
-                                : const NoDishWidget(),
+                            AsyncData(:final value) =>
+                              value.isNotEmpty //Dish has content
+                                  ? FlutterCarousel(
+                                      options: CarouselOptions(
+                                        viewportFraction: 1,
+                                        height:
+                                            MediaQuery.of(context).size.height *
+                                                0.8,
+                                        showIndicator: true,
+                                        slideIndicator:
+                                            const CircularSlideIndicator(),
+                                      ),
+                                      items: value.map((i) {
+                                        return DishDisplayWidget(dish: i);
+                                      }).toList())
+                                  : const NoDishWidget(), //NO DISH
                             AsyncError(:final error) => Text(error.toString()),
                             _ => const CircularProgressIndicator()
                           }
-                        : const ServingEndedWidget(),
+                        : Text(value
+                            .toString()) /* const ServingEndedWidget()*/, //ENDED
                     AsyncError(:final error) => Text(error.toString()),
                     _ => const CircularProgressIndicator()
                   },

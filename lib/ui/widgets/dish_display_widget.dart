@@ -85,7 +85,7 @@ class DishDisplayWidget extends HookConsumerWidget {
                                   ),
                           )
                         else
-                          Text(AppLocalizations.of(context)!.noTitle),
+                          Text(AppLocalizations.of(context)!.noTitle), 
                       ]),
                   SizedBox(
                     height: MediaQuery.of(context).size.width < 650
@@ -107,8 +107,8 @@ class DishDisplayWidget extends HookConsumerWidget {
                                     text: dish.description != ""
                                         ? dish.description
                                         : AppLocalizations.of(context)!
-                                            .noDescription),
-                                BodyBoldText(
+                                            .noDescription),  //FORMAT HERE?! Use flexible? https://stackoverflow.com/questions/51930754/flutter-wrapping-text
+                                BodyBoldText(                 //
                                   text:
                                       "${AppLocalizations.of(context)!.calories}:",
                                 ),
@@ -128,7 +128,7 @@ class DishDisplayWidget extends HookConsumerWidget {
                                             allergen == dish.allergens.last;
                                         return BodyText(
                                             text:
-                                                allergen + (!isLast ? " • " : ""));
+                                                allergen + (!isLast ? " • " : "")); 
                                       }).toList())
                                     : Text(
                                         AppLocalizations.of(context)!.noAllergens),
