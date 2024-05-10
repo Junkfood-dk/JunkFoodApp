@@ -155,7 +155,7 @@
   "@failedCommentSubmission" : {
     "description": "failed to submit comment"
   },
-  "commentAcknowledgementTitle" : "Tak for din kommentar",
+  "commentAcknowledgementTitle" : "Tak for din kommentar!",
   "@commentAcknowledgementTitle" : {
     "description": "Title for comment acknowledgement page"
   },
