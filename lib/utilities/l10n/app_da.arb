@@ -166,5 +166,9 @@
   "commentAcknowledgementButton" : "Tilbage til forsiden",
   "@commentAcknowledgementButton" : {
     "description": "Text for the button to navigate user back to the frontpage"
+  },
+  "sendUsMsgBtn" : "Send os en besked", 
+  "@sendUsMsgBtn" : {
+    "description": "Encouraging user to send a message"
   }
 }

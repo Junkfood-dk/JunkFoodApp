@@ -3,6 +3,7 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:userapp/domain/model/dish_model.dart';
 import 'package:userapp/ui/controllers/dish_rating_controller.dart';
+import 'package:userapp/ui/pages/acknowledge_rating_page.dart';
 import 'package:userapp/utilities/widgets/gradiant_button_widget.dart';
 import 'package:userapp/utilities/widgets/gradiant_wrapper.dart';
 import 'package:userapp/utilities/widgets/text_wrapper.dart';
@@ -76,11 +77,18 @@ class RatingWidget extends HookConsumerWidget {
                   var wishToChange = await updateRating(context);
                   if (wishToChange!) {
                     ratingController.setUserRating(dish.id, rating.value);
-                    Navigator.pop(context);
+                    Navigator.of(context)
+                              .pushReplacement(MaterialPageRoute(
+                            builder: (context) => const AcknowledgeRatingPage(),
+                          ));
                   }
                 } else {
+                  print("fortsæt knap");
                   ratingController.setUserRating(dish.id, rating.value);
-                  Navigator.pop(context);
+                  Navigator.of(context).pushReplacement(MaterialPageRoute(
+                          builder: (context) => const AcknowledgeRatingPage(),
+                        ));
+                  // Navigator.pop(context);
                 }
               },
               child: ButtonText(

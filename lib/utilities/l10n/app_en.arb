@@ -166,5 +166,9 @@
   "commentAcknowledgementButton" : "Return to homepage",
   "@commentAcknowledgementButton" : {
     "description": "Text for the button to navigate user back to the frontpage"
+  },
+  "sendUsMsgBtn" : "Send us a message", 
+  "@sendUsMsgBtn" : {
+    "description": "Encouraging user to send a message"
   }
 }
