@@ -47,7 +47,6 @@ class AcknowledgeCommentPage extends StatelessWidget {
                 child: ConstrainedBox(
                   constraints: BoxConstraints(
                     maxWidth: MediaQuery.of(context).size.width * 0.8,
-                    minWidth: 400,
                     minHeight: 50,
                   ),
                 child: ElevatedButton(
