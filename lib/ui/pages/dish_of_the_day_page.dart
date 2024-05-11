@@ -8,7 +8,6 @@ import 'package:userapp/ui/controllers/servingtime_controller.dart';
 import 'package:userapp/ui/widgets/dish_display_widget.dart';
 import 'package:userapp/ui/widgets/language_dropdown_widget.dart';
 import 'package:userapp/ui/widgets/no_dish_widget.dart';
-import 'package:userapp/ui/widgets/serving_ended_widget.dart';
 import 'package:userapp/utilities/widgets/comments_sheet.dart';
 
 class DishOfTheDayPage extends ConsumerWidget {

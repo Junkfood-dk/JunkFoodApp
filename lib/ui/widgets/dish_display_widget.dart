@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:userapp/domain/model/dish_model.dart';
@@ -10,7 +9,7 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 class DishDisplayWidget extends HookConsumerWidget {
   final DishModel dish;
 
-  const DishDisplayWidget({Key? key, required this.dish}) : super(key: key);
+  const DishDisplayWidget({super.key, required this.dish});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -102,46 +101,42 @@ class DishDisplayWidget extends HookConsumerWidget {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Container(
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                BodyText(
-                                  text: dish.description.isNotEmpty
-                                      ? dish.description
-                                      : AppLocalizations.of(context)!
-                                          .noDescription,
-                                ),
-                                BodyBoldText(
-                                  text:
-                                      "${AppLocalizations.of(context)!.calories}:",
-                                ),
-                                BodyText(
-                                  text: dish.calories > 0
-                                      ? "${dish.calories}"
-                                      : AppLocalizations.of(context)!
-                                          .noCalories,
-                                ),
-                                Divider(),
-                                BodyBoldText(
-                                  text:
-                                      "${AppLocalizations.of(context)!.allergens}:",
-                                ),
-                                dish.allergens.isNotEmpty
-                                    ? Row(
-                                        children:
-                                            dish.allergens.map((allergen) {
-                                          bool isLast =
-                                              allergen == dish.allergens.last;
-                                          return BodyText(
-                                              text: allergen +
-                                                  (!isLast ? " • " : ""));
-                                        }).toList(),
-                                      )
-                                    : Text(AppLocalizations.of(context)!
-                                        .noAllergens),
-                              ],
-                            ),
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              BodyText(
+                                text: dish.description.isNotEmpty
+                                    ? dish.description
+                                    : AppLocalizations.of(context)!
+                                        .noDescription,
+                              ),
+                              BodyBoldText(
+                                text:
+                                    "${AppLocalizations.of(context)!.calories}:",
+                              ),
+                              BodyText(
+                                text: dish.calories > 0
+                                    ? "${dish.calories}"
+                                    : AppLocalizations.of(context)!.noCalories,
+                              ),
+                              const Divider(),
+                              BodyBoldText(
+                                text:
+                                    "${AppLocalizations.of(context)!.allergens}:",
+                              ),
+                              dish.allergens.isNotEmpty
+                                  ? Row(
+                                      children: dish.allergens.map((allergen) {
+                                        bool isLast =
+                                            allergen == dish.allergens.last;
+                                        return BodyText(
+                                            text: allergen +
+                                                (!isLast ? " • " : ""));
+                                      }).toList(),
+                                    )
+                                  : Text(AppLocalizations.of(context)!
+                                      .noAllergens),
+                            ],
                           ),
                         ],
                       ),
