@@ -95,8 +95,7 @@ class DishDisplayWidget extends HookConsumerWidget {
                         ? MediaQuery.of(context).size.width * ((9 / 16) * 0.2)
                         : 650 * ((9 / 16) * 0.2),
                   ),
-                  FittedBox(
-                    child: Container(
+                  Container(
                       margin: EdgeInsets.only(left: 16, right: 16),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -141,7 +140,7 @@ class DishDisplayWidget extends HookConsumerWidget {
                         ],
                       ),
                     ),
-                  ),
+                
                 ],
               ),
             ),
