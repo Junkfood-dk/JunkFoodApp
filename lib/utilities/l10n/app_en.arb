@@ -154,5 +154,9 @@
   "failedCommentSubmission" : "Failed to post comment", 
   "@failedCommentSubmission" : {
     "description": "failed to submit comment"
+  },
+  "sendUsMsgBtn" : "Send us a message", 
+  "@sendUsMsgBtn" : {
+    "description": "Encouraging user to send a message"
   }
 }
