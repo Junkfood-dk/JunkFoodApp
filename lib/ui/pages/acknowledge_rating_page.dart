@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:userapp/utilities/theming/color_theme.dart';
+import 'package:userapp/utilities/widgets/comments_sheet.dart';
+import 'package:userapp/utilities/widgets/gradiant_button_widget.dart';
 import 'package:userapp/utilities/widgets/text_wrapper.dart';
 
 class AcknowledgeRatingPage extends StatelessWidget {
@@ -40,35 +42,54 @@ class AcknowledgeRatingPage extends StatelessWidget {
             text: AppLocalizations.of(context)!.ratingAcknowledgeText,
             textAlign: TextAlign.center,
           ),
+
           Expanded(child: Container()),
           Align(
             alignment: Alignment.bottomCenter,
-            child: Padding(
-              padding: const EdgeInsets.only(bottom: 20.0),
-              child: ConstrainedBox(
-                constraints: BoxConstraints(
-                  maxWidth: MediaQuery.of(context).size.width * 0.8, // Maximum width based on screen width
-                  minWidth: 400,
-                  minHeight: 50 // No minimum width
-                ),
-                child: ElevatedButton(
-                  onPressed: () {
-                    // Button onPressed action
-                  },
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: colorTheme.background, // Background color
-                    foregroundColor: colorTheme.onBackground, // Text color
-                    side: BorderSide(color: colorTheme.outline),
-                     // Outline color
+            child: Column(children: [
+              Padding(
+                padding: const EdgeInsets.only(bottom: 15.0),
+                child: SizedBox(
+                    width: MediaQuery.of(context).size.width * 0.9,
+                    height: MediaQuery.of(context).size.height * 0.08,
+                    child: GradiantButton(
+                        onPressed: () async {
+                          await Navigator.of(context).push(
+                            MaterialPageRoute(
+                                builder: (context) => CommentPage()),
+                          );
+                          Navigator.pop(context);
+                        },
+                        child: ButtonText(
+                          text: AppLocalizations.of(context)!.sendUsMsgBtn,
+                        ))),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(bottom: 20.0),
+                child: SizedBox(
+                    width: MediaQuery.of(context).size.width * 0.9,
+                    height: MediaQuery.of(context).size.height * 0.08, 
+                  child: ElevatedButton(
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor:
+                          colorTheme.background, // Background color
+                      foregroundColor: colorTheme.onBackground, // Text color
+                      side: BorderSide(color: colorTheme.outline),
+                      // Outline color
+                    ),
+                    child: ButtonText(
+                        text: AppLocalizations.of(context)!
+                            .ratingAcknowledgeButton),
                   ),
-                  child: BodyText(text: AppLocalizations.of(context)!.ratingAcknowledgeButton),
                 ),
               ),
-            ),
+            ]),
           ),
         ],
       ),
     );
-
   }
 }

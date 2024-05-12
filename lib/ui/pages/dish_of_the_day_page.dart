@@ -9,7 +9,7 @@ import 'package:userapp/ui/widgets/dish_display_widget.dart';
 import 'package:userapp/ui/widgets/language_dropdown_widget.dart';
 import 'package:userapp/ui/widgets/no_dish_widget.dart';
 import 'package:userapp/utilities/widgets/comments_sheet.dart';
-import 'package:userapp/utilities/widgets/gradiant_wrapper.dart';
+import 'package:userapp/utilities/widgets/text_wrapper.dart';
 
 class DishOfTheDayPage extends ConsumerWidget {
   const DishOfTheDayPage({super.key});
@@ -29,13 +29,21 @@ class DishOfTheDayPage extends ConsumerWidget {
         actions: [
           const LanguageDropdownWidget(),
           IconButton(
-            icon: const PrimaryGradiantWidget(
-              child: Icon(Icons.chat_bubble_outline),
+            icon: Container(
+              decoration: BoxDecoration(
+                color: Theme.of(context).colorScheme.outline,
+                shape: BoxShape.circle,
+              ),
+              padding: const EdgeInsets.all(8),
+              child: Icon(
+                Icons.chat_bubble_outline,
+                color: Theme.of(context).colorScheme.background,
+              ),
             ),
-            color: Theme.of(context).colorScheme.onBackground,
             onPressed: () {
               Navigator.of(context).push(
-                  MaterialPageRoute(builder: (context) => const CommentPage()));
+                MaterialPageRoute(builder: (context) => CommentPage()),
+              );
             },
           ),
         ],
@@ -82,11 +90,17 @@ class DishOfTheDayPage extends ConsumerWidget {
                             mainAxisSize: MainAxisSize.min,
                             children: [
                               Image.network(
-                                  "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTRuVuPxx1Ez15siEcgCMlOZ6nU4E6xzjsNe8QmRIUOJA&s",
+                                  'https://raw.githubusercontent.com/Junkfood-dk/JunkFoodApp/main/lib/resources/logo.png',
                                   width: 200),
                               const SizedBox(height: 20),
-                              Text(AppLocalizations.of(context)!
-                                  .servingHasEndedText),
+                              BodyText(
+                                text: AppLocalizations.of(context)!
+                                    .servingHasEndedText,
+                                textAlign: TextAlign.center,
+                              ),
+                              SizedBox(
+                                  height:
+                                      MediaQuery.of(context).size.height * 0.5),
                             ],
                           ),
                     AsyncError(:final error) => Text(error.toString()),

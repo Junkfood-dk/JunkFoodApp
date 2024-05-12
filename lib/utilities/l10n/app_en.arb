@@ -75,7 +75,7 @@
   "@noDishType": {
     "description": "Display message for when no dishtype"
   },
-  "servingHasEndedText" : "Today's serving has ended, please check back tomorrow",
+  "servingHasEndedText" : "Today's serving has ended,\nplease check back tomorrow",
   "@servingHasEndedText" : {
     "description": "Text for today's dish serving is over"
   },
@@ -130,5 +130,45 @@
   "commentPageSubmitButton" : "Submit", 
   "@commentPageSubmitButton" : {
     "description": "text for submit button"
+  },
+  "changeRating" : "You have rated this dish, would you like to change your rating?", 
+  "@changeRating" : {
+    "description": "if user has rated once, but tries to rate again"
+  },
+  "yes" : "Yes", 
+  "@yes" : {
+    "description": "used for yes/no dialogs"
+  },
+  "no" : "No", 
+  "@no" : {
+    "description": "used for yes/no dialogs"
+  },
+  "emptyCommentErrorMessage" : "Comment Field must be filled out",
+  "@emptyCommentErrorMessage" : {
+    "description": "error message for when trying to submit an empty comment"
+  },
+  "succesfulCommentSubmission" : "Comment posted successfully!",
+  "@succesfulCommentSubmission" : {
+    "description": "comment is submitted succesfully"
+  },
+  "failedCommentSubmission" : "Failed to post comment", 
+  "@failedCommentSubmission" : {
+    "description": "failed to submit comment"
+  },
+  "commentAcknowledgementTitle" : "Thank you for your comment!",
+  "@commentAcknowledgementTitle" : {
+    "description": "Title for comment acknowledgement page"
+  },
+  "commentAcknowledgementText" : "Your opinion means a lot to us",
+  "@commentAcknowledgementText" : {
+    "description": "Text for comment acknowledgement page"
+  },
+  "commentAcknowledgementButton" : "Return to homepage",
+  "@commentAcknowledgementButton" : {
+    "description": "Text for the button to navigate user back to the frontpage"
+  },
+  "sendUsMsgBtn" : "Send us a message", 
+  "@sendUsMsgBtn" : {
+    "description": "Encouraging user to send a message"
   }
 }

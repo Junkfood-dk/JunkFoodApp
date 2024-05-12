@@ -75,7 +75,7 @@
   "@noDishType": {
     "description": "Display message for when no dishtype"
   },
-  "servingHasEndedText" : "Servering af dagens ret er slut, vend tilbage i morgen",
+  "servingHasEndedText" : "Servering af dagens ret er slut,\nvend tilbage i morgen",
   "@servingHasEndedText" : {
     "description" : "Text for today's dish serving is over"
   },
@@ -130,5 +130,45 @@
   "commentPageSubmitButton" : "Indsend", 
   "@commentPageSubmitButton" : {
     "description": "text for submit button"
+  },
+  "changeRating" : "Du har bedømt denne ret, vil du ændre din bedømmelse?", 
+  "@changeRating" : {
+    "description": "if user has rated once, but tries to rate again"
+  },
+  "yes" : "Ja", 
+  "@yes" : {
+    "description": "used for yes/no dialogs"
+  },
+  "no" : "Nej", 
+  "@no" : {
+    "description": "used for yes/no dialogs"
+  },
+  "emptyCommentErrorMessage" : "Kommentarfeltet skal være udfyldt",
+  "@emptyCommentErrorMessage" : {
+    "description": "error message for when trying to submit an empty comment"
+  },
+  "succesfulCommentSubmission" : "Kommentar indsendt!",
+  "@succesfulCommentSubmission" : {
+    "description": "comment is submitted succesfully"
+  },
+  "failedCommentSubmission" : "Kommentar kunne ikke indsendes", 
+  "@failedCommentSubmission" : {
+    "description": "failed to submit comment"
+  },
+  "commentAcknowledgementTitle" : "Tak for din kommentar!",
+  "@commentAcknowledgementTitle" : {
+    "description": "Title for comment acknowledgement page"
+  },
+  "commentAcknowledgementText" : "Din mening betyder meget for os",
+  "@commentAcknowledgementText" : {
+    "description": "Text for comment acknowledgement page"
+  },
+  "commentAcknowledgementButton" : "Tilbage til forsiden",
+  "@commentAcknowledgementButton" : {
+    "description": "Text for the button to navigate user back to the frontpage"
+  },
+  "sendUsMsgBtn" : "Send os en besked", 
+  "@sendUsMsgBtn" : {
+    "description": "Encouraging user to send a message"
   }
 }

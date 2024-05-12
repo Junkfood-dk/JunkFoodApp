@@ -1,25 +1,26 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'dish_repository.dart';
+part of 'comments_controller.dart';
 
 // **************************************************************************
 // RiverpodGenerator
 // **************************************************************************
 
-String _$dishRepositoryHash() => r'045d7a84dd6c8ff49f23c550fc938c72f0a02496';
+String _$commentControllerHash() => r'54a038432c460fe4066243fb0febe8fd76e66cb6';
 
-/// See also [dishRepository].
-@ProviderFor(dishRepository)
-final dishRepositoryProvider = AutoDisposeProvider<IDishRepository>.internal(
-  dishRepository,
-  name: r'dishRepositoryProvider',
+/// See also [CommentController].
+@ProviderFor(CommentController)
+final commentControllerProvider =
+    AutoDisposeAsyncNotifierProvider<CommentController, void>.internal(
+  CommentController.new,
+  name: r'commentControllerProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
       ? null
-      : _$dishRepositoryHash,
+      : _$commentControllerHash,
   dependencies: null,
   allTransitiveDependencies: null,
 );
 
-typedef DishRepositoryRef = AutoDisposeProviderRef<IDishRepository>;
+typedef _$CommentController = AutoDisposeAsyncNotifier<void>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member

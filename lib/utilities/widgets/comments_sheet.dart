@@ -1,11 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:userapp/data/comments_repository.dart';
+import 'package:userapp/ui/controllers/dish_of_the_day_controller.dart';
+import 'package:userapp/ui/pages/acknowledge_comment_page.dart';
+import 'package:userapp/ui/pages/dish_of_the_day_page.dart';
+import 'package:userapp/ui/widgets/dish_display_widget.dart';
 
-class CommentPage extends StatelessWidget {
-  const CommentPage({Key? key}) : super(key: key);
+class CommentPage extends ConsumerWidget {
+  CommentPage({Key? key}) : super(key: key);
+
+  final TextEditingController _commentController = TextEditingController();
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
       appBar: AppBar(
         title: Text(AppLocalizations.of(context)!.commentHeading),
@@ -18,27 +26,18 @@ class CommentPage extends StatelessWidget {
             Text(AppLocalizations.of(context)!.commentPageParagraph),
             const SizedBox(height: 15),
             TextField(
-              decoration: InputDecoration(
-                hintText: AppLocalizations.of(context)!.yourNameHintText,
-                border:
-                    OutlineInputBorder(borderRadius: BorderRadius.circular(16)),
-              ),
-              keyboardType: TextInputType.text,
-              maxLines: 2,
-              minLines: 1,
-            ),
-            SizedBox(height: 15),
-            TextField(
+              controller: _commentController,
               decoration: InputDecoration(
                 hintText: AppLocalizations.of(context)!.writeCommentText,
                 border:
                     OutlineInputBorder(borderRadius: BorderRadius.circular(16)),
               ),
               keyboardType: TextInputType.text,
+              maxLength: 500,
               maxLines: null,
               minLines: 1,
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             // Gradient button
             Container(
               width: double.infinity,
@@ -47,8 +46,40 @@ class CommentPage extends StatelessWidget {
                 borderRadius: BorderRadius.circular(16),
               ),
               child: ElevatedButton(
-                onPressed: () {
-                  // Logic to handle comment submission
+                onPressed: () async {
+                  final commentText = _commentController.text.trim();
+                  if (commentText.isEmpty) {
+                    ScaffoldMessenger.of(context).showSnackBar( SnackBar(
+                      content: Text(
+                          AppLocalizations.of(context)!.emptyCommentErrorMessage),
+                      backgroundColor: Colors.redAccent,
+                      action: SnackBarAction(
+                        label: 'OK',
+                        textColor: Colors.white,
+                        onPressed: () {},
+                      ),
+                      duration: const Duration(seconds: 3), 
+                      behavior: SnackBarBehavior
+                          .floating, 
+                    ));
+                  } else {
+                    try {
+                      await ref
+                          .read(commentRepositoryProvider)
+                          .postComment(commentText);
+                      ScaffoldMessenger.of(context).showSnackBar( SnackBar(
+                        content: Text(AppLocalizations.of(context)!.succesfulCommentSubmission),
+                        duration: Duration(seconds: 2),
+                      ));
+                      _commentController.clear();
+                      Navigator.of(context).push(MaterialPageRoute(builder: (context) => const AcknowledgeCommentPage()));
+                    } catch (error) {
+                      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                        content: Text("${AppLocalizations.of(context)!.failedCommentSubmission}$error"),
+                        duration: const Duration(seconds: 3),
+                      ));
+                    }
+                  }
                 },
                 style: ElevatedButton.styleFrom(
                   padding: EdgeInsets.zero,
@@ -60,7 +91,7 @@ class CommentPage extends StatelessWidget {
                 ),
                 child: Ink(
                   decoration: BoxDecoration(
-                    gradient: LinearGradient(
+                    gradient: const LinearGradient(
                       begin: Alignment.centerLeft,
                       end: Alignment.centerRight,
                       colors: [
@@ -73,12 +104,12 @@ class CommentPage extends StatelessWidget {
                   ),
                   child: Container(
                     alignment: Alignment.center,
-                    constraints: BoxConstraints(
+                    constraints: const BoxConstraints(
                         minWidth: double.infinity, minHeight: 50.0),
                     child: Text(
                       AppLocalizations.of(context)!.commentPageSubmitButton,
                       textAlign: TextAlign.center,
-                      style: TextStyle(color: Colors.white),
+                      style: const TextStyle(color: Colors.white),
                     ),
                   ),
                 ),
