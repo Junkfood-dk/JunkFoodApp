@@ -1,20 +1,17 @@
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/widgets.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:userapp/domain/model/dish_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:userapp/domain/model/dish_model.dart';
 import 'package:userapp/ui/widgets/rating_widget.dart';
 import 'package:userapp/utilities/widgets/gradiant_button_widget.dart';
 import 'package:userapp/utilities/widgets/text_wrapper.dart';
 
-class DishDisplayWidget extends HookConsumerWidget {
+class DishDisplayWidget extends StatelessWidget {
   final DishModel dish;
 
   const DishDisplayWidget({super.key, required this.dish});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  Widget build(BuildContext context) {
     return Column(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
@@ -41,6 +38,8 @@ class DishDisplayWidget extends HookConsumerWidget {
                         child: Image.network(dish.imageUrl, fit: BoxFit.cover,
                             errorBuilder: (context, error, stackTrace) {
                           // Display placeholder or error message when image loading fails
+                          print(error.toString());
+
                           return Container(
                             color: Colors.grey, // Placeholder color
                             child: const Center(
@@ -89,46 +88,39 @@ class DishDisplayWidget extends HookConsumerWidget {
               ),
               FittedBox(
                 child: Container(
-                  margin: EdgeInsets.only(left: 16, right: 16),
+                  margin: const EdgeInsets.only(left: 16, right: 16),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Container(
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            BodyText(
-                                text: dish.description != ""
-                                    ? dish.description
-                                    : AppLocalizations.of(context)!
-                                        .noDescription),
-                            BodyBoldText(
-                              text:
-                                  "${AppLocalizations.of(context)!.calories}:",
-                            ),
-                            BodyText(
-                                text: dish.calories > 0
-                                    ? "${dish.calories}"
-                                    : AppLocalizations.of(context)!.noCalories),
-                            Divider(),
-                            BodyBoldText(
-                              text:
-                                  "${AppLocalizations.of(context)!.allergens}:",
-                            ),
-                            dish.allergens.isNotEmpty
-                                ? Row(
-                                    children: dish.allergens.map((allergen) {
-                                    bool isLast =
-                                        allergen == dish.allergens.last;
-                                    return BodyText(
-                                        text:
-                                            allergen + (!isLast ? " • " : ""));
-                                  }).toList())
-                                : Text(
-                                    AppLocalizations.of(context)!.noAllergens),
-                          ],
-                        ),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          BodyText(
+                              text: dish.description != ""
+                                  ? dish.description
+                                  : AppLocalizations.of(context)!
+                                      .noDescription),
+                          BodyBoldText(
+                            text: "${AppLocalizations.of(context)!.calories}:",
+                          ),
+                          BodyText(
+                              text: dish.calories > 0
+                                  ? "${dish.calories}"
+                                  : AppLocalizations.of(context)!.noCalories),
+                          const Divider(),
+                          BodyBoldText(
+                            text: "${AppLocalizations.of(context)!.allergens}:",
+                          ),
+                          dish.allergens.isNotEmpty
+                              ? Row(
+                                  children: dish.allergens.map((allergen) {
+                                  bool isLast = allergen == dish.allergens.last;
+                                  return BodyText(
+                                      text: allergen + (!isLast ? " • " : ""));
+                                }).toList())
+                              : Text(AppLocalizations.of(context)!.noAllergens),
+                        ],
                       ),
                     ],
                   ),
@@ -139,7 +131,7 @@ class DishDisplayWidget extends HookConsumerWidget {
         ),
         Column(
           children: [
-            Container(
+            SizedBox(
                 width: MediaQuery.of(context).size.width * 0.9,
                 height: MediaQuery.of(context).size.height * 0.08,
                 child: GradiantButton(
@@ -149,7 +141,7 @@ class DishDisplayWidget extends HookConsumerWidget {
                       showModalBottomSheet<void>(
                           context: context,
                           builder: (BuildContext context) {
-                            return Container(child: RatingWidget(dish: dish));
+                            return RatingWidget(dish: dish);
                           });
                     })),
             SizedBox(

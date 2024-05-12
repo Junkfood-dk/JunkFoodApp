@@ -39,7 +39,7 @@ class MyApp extends ConsumerWidget {
       supportedLocales: AppLocalizations.supportedLocales,
       locale: ref.watch(localeControllerProvider),
       debugShowCheckedModeBanner: false,
-      home: DishOfTheDayPage(),
+      home: const DishOfTheDayPage(),
     );
   }
 }
