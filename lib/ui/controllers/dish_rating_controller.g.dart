@@ -7,12 +7,12 @@ part of 'dish_rating_controller.dart';
 // **************************************************************************
 
 String _$dishRatingControllerHash() =>
-    r'a563fa497f72b116cba089e9890fb3d1af86ef6d';
+    r'581a4caf9b83c4029386385d9adb74310fdb7fc1';
 
 /// See also [DishRatingController].
 @ProviderFor(DishRatingController)
-final dishRatingControllerProvider = AutoDisposeAsyncNotifierProvider<
-    DishRatingController, SharedPreferences?>.internal(
+final dishRatingControllerProvider =
+    AutoDisposeNotifierProvider<DishRatingController, List<String>?>.internal(
   DishRatingController.new,
   name: r'dishRatingControllerProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
@@ -22,6 +22,6 @@ final dishRatingControllerProvider = AutoDisposeAsyncNotifierProvider<
   allTransitiveDependencies: null,
 );
 
-typedef _$DishRatingController = AutoDisposeAsyncNotifier<SharedPreferences?>;
+typedef _$DishRatingController = AutoDisposeNotifier<List<String>?>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member
