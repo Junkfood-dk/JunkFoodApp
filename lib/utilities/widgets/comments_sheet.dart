@@ -5,7 +5,6 @@ import 'package:userapp/data/comments_repository.dart';
 import 'package:userapp/ui/controllers/dish_of_the_day_controller.dart';
 import 'package:userapp/ui/pages/acknowledge_comment_page.dart';
 import 'package:userapp/ui/pages/dish_of_the_day_page.dart';
-import 'package:userapp/ui/widgets/dish_display_widget.dart';
 
 class CommentPage extends ConsumerWidget {
   CommentPage({Key? key}) : super(key: key);
@@ -49,33 +48,34 @@ class CommentPage extends ConsumerWidget {
                 onPressed: () async {
                   final commentText = _commentController.text.trim();
                   if (commentText.isEmpty) {
-                    ScaffoldMessenger.of(context).showSnackBar( SnackBar(
-                      content: Text(
-                          AppLocalizations.of(context)!.emptyCommentErrorMessage),
+                    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                      content: Text(AppLocalizations.of(context)!
+                          .emptyCommentErrorMessage),
                       backgroundColor: Colors.redAccent,
                       action: SnackBarAction(
                         label: 'OK',
                         textColor: Colors.white,
                         onPressed: () {},
                       ),
-                      duration: const Duration(seconds: 3), 
-                      behavior: SnackBarBehavior
-                          .floating, 
+                      duration: const Duration(seconds: 3),
+                      behavior: SnackBarBehavior.floating,
                     ));
                   } else {
                     try {
                       await ref
                           .read(commentRepositoryProvider)
                           .postComment(commentText);
-                      ScaffoldMessenger.of(context).showSnackBar( SnackBar(
-                        content: Text(AppLocalizations.of(context)!.succesfulCommentSubmission),
+                      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                        content: Text(AppLocalizations.of(context)!
+                            .succesfulCommentSubmission),
                         duration: Duration(seconds: 2),
                       ));
                       _commentController.clear();
                       Navigator.of(context).push(MaterialPageRoute(builder: (context) => const AcknowledgeCommentPage()));
                     } catch (error) {
                       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                        content: Text("${AppLocalizations.of(context)!.failedCommentSubmission}$error"),
+                        content: Text(
+                            "${AppLocalizations.of(context)!.failedCommentSubmission}$error"),
                         duration: const Duration(seconds: 3),
                       ));
                     }
