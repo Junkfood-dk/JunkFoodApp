@@ -37,7 +37,10 @@ class MyApp extends ConsumerWidget {
         GlobalCupertinoLocalizations.delegate,
       ],
       supportedLocales: AppLocalizations.supportedLocales,
-      locale: ref.watch(localeControllerProvider),
+      locale: switch (ref.watch(localeControllerProvider)) {
+        AsyncData(:final value) => value,
+        _ => null
+      },
       debugShowCheckedModeBanner: false,
       home: DishOfTheDayPage(),
     );

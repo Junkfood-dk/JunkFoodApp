@@ -1,27 +1,33 @@
 import 'dart:convert';
 import 'package:intl/intl.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+import 'package:userapp/data/local_rating_storage_repository.dart';
 import 'package:userapp/data/rating_repository.dart';
 
 part 'dish_rating_controller.g.dart';
 
 @riverpod
 class DishRatingController extends _$DishRatingController {
-  SharedPreferences? prefs;
   @override
-  Future<SharedPreferences?> build() async {
-    prefs = await SharedPreferences.getInstance();
-    return prefs;
-  }
-
-  Future<List<String>?> getRatingFromDay(DateTime date) async {
-    return prefs!
-        .getStringList(DateFormat(DateFormat.YEAR_MONTH_DAY).format(date));
+  List<String>? build() {
+    var localStorageRepo = ref.watch(localRatingStorageRepositoryProvider);
+    List<String>? dateRating = [];
+    switch (localStorageRepo) {
+      case (AsyncData(:final value)):
+        dateRating = value.getRatingForDay(
+            DateFormat(DateFormat.YEAR_MONTH_DAY).format(DateTime.now()));
+    }
+    return dateRating;
   }
 
   Future<bool> isRatingForDishDifferent(int dishId, int rating) async {
-    var dateRating = await getRatingFromDay(DateTime.now());
+    var localStorageRepo = ref.watch(localRatingStorageRepositoryProvider);
+    List<String>? dateRating;
+    switch (localStorageRepo) {
+      case (AsyncData(:final value)):
+        dateRating = value.getRatingForDay(
+            DateFormat(DateFormat.YEAR_MONTH_DAY).format(DateTime.now()));
+    }
     if (dateRating != null) {
       for (var json in dateRating) {
         var userMap = jsonDecode(json) as Map<String, dynamic>;
@@ -34,14 +40,13 @@ class DishRatingController extends _$DishRatingController {
     return false;
   }
 
-  void saveRatingsForDay(List<String> ratingList, DateTime date) {
-    prefs!.setStringList(
-        DateFormat(DateFormat.YEAR_MONTH_DAY).format(DateTime.now()),
-        ratingList);
-  }
-
   void setUserRating(int dishId, int rating) async {
-    var dateRating = await getRatingFromDay(DateTime.now());
+    var localStorageRepo = ref.watch(localRatingStorageRepositoryProvider);
+    List<String>? dateRating; 
+    switch (localStorageRepo) {
+      case (AsyncData(:final value)):
+        dateRating = value.getRatingForDay(DateFormat(DateFormat.YEAR_MONTH_DAY).format(DateTime.now()));
+    }
     var save = <String>[];
     var dishHasBeenUpdated = false;
     if (dateRating != null) {
@@ -64,15 +69,24 @@ class DishRatingController extends _$DishRatingController {
         save.add(jsonEncode(
             _RatingStore(dishId: dishId, ratingId: 1, rating: rating)));
       }
-      saveRatingsForDay(save, DateTime.now());
+      switch (localStorageRepo) {
+        case (AsyncData(:final value)):
+          value.saveRatingForDay(
+              DateFormat(DateFormat.YEAR_MONTH_DAY).format(DateTime.now()), save);
+      }
     } else {
       var ratingId = await ref
           .read(ratingRepositoryProvider)
           .postNewRating(rating, dishId);
-      saveRatingsForDay(<String>[
-        jsonEncode(
-            _RatingStore(dishId: dishId, ratingId: ratingId, rating: rating))
-      ], DateTime.now());
+      switch (localStorageRepo) {
+        case (AsyncData(:final value)):
+          value.saveRatingForDay(
+              DateFormat(DateFormat.YEAR_MONTH_DAY).format(DateTime.now()),
+              <String>[
+                jsonEncode(_RatingStore(
+                    dishId: dishId, ratingId: ratingId, rating: rating))
+              ]);
+      }
     }
   }
 }

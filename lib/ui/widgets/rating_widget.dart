@@ -83,7 +83,6 @@ class RatingWidget extends HookConsumerWidget {
                           ));
                   }
                 } else {
-                  print("fortsæt knap");
                   ratingController.setUserRating(dish.id, rating.value);
                   Navigator.of(context).pushReplacement(MaterialPageRoute(
                           builder: (context) => const AcknowledgeRatingPage(),
