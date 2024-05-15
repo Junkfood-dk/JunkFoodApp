@@ -41,8 +41,11 @@ class DishOfTheDayPage extends ConsumerWidget {
               ),
             ),
             onPressed: () {
-              Navigator.of(context).push(
-                MaterialPageRoute(builder: (context) => CommentPage()),
+              showModalBottomSheet<void>(
+                context: context,
+                builder: (BuildContext context) {
+                  return CommentPage();
+                }
               );
             },
           ),

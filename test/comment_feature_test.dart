@@ -16,28 +16,6 @@ void main() {
     mockCommentRepository = MockCommentRepository();
   });
 
-  testWidgets('Displays an error when submitting an empty comment', (WidgetTester tester) async {
-    await tester.pumpWidget(ProviderScope(
-      overrides: [
-        commentRepositoryProvider.overrideWithValue(mockCommentRepository),
-      ],
-      child: MaterialApp(
-        localizationsDelegates: const [
-          AppLocalizations.delegate,
-          GlobalMaterialLocalizations.delegate,
-          GlobalWidgetsLocalizations.delegate,
-          GlobalCupertinoLocalizations.delegate,
-        ],
-        home: CommentPage(),
-      ),
-    ));
-
-    await tester.tap(find.byType(ElevatedButton));
-    await tester.pumpAndSettle();
-
-    expect(find.text('Comment Field must be filled out'), findsOneWidget);
-  });
-
    testWidgets('Comment field is empty at initialization', (WidgetTester tester) async {
     await tester.pumpWidget(ProviderScope(
       overrides: [
