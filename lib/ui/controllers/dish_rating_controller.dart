@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:userapp/data/local_rating_storage_repository.dart';
@@ -42,10 +43,11 @@ class DishRatingController extends _$DishRatingController {
 
   void setUserRating(int dishId, int rating) async {
     var localStorageRepo = ref.watch(localRatingStorageRepositoryProvider);
-    List<String>? dateRating; 
+    List<String>? dateRating;
     switch (localStorageRepo) {
       case (AsyncData(:final value)):
-        dateRating = value.getRatingForDay(DateFormat(DateFormat.YEAR_MONTH_DAY).format(DateTime.now()));
+        dateRating = value.getRatingForDay(
+            DateFormat(DateFormat.YEAR_MONTH_DAY).format(DateTime.now()));
     }
     var save = <String>[];
     var dishHasBeenUpdated = false;
@@ -53,6 +55,11 @@ class DishRatingController extends _$DishRatingController {
       for (var json in dateRating) {
         var userMap = jsonDecode(json) as Map<String, dynamic>;
         var decoded = _RatingStore.fromJsonString(userMap);
+        debugPrint(decoded.dishId.toString() +
+            " " +
+            decoded.ratingId.toString() +
+            " " +
+            decoded.rating.toString());
         if (decoded.dishId == dishId) {
           dishHasBeenUpdated = true;
           if (decoded.rating != rating) {
@@ -66,13 +73,17 @@ class DishRatingController extends _$DishRatingController {
         save.add(encoded);
       }
       if (!dishHasBeenUpdated) {
+        var ratingId = await ref
+            .read(ratingRepositoryProvider)
+            .postNewRating(rating, dishId);
         save.add(jsonEncode(
-            _RatingStore(dishId: dishId, ratingId: 1, rating: rating)));
+            _RatingStore(dishId: dishId, ratingId: ratingId, rating: rating)));
       }
       switch (localStorageRepo) {
         case (AsyncData(:final value)):
           value.saveRatingForDay(
-              DateFormat(DateFormat.YEAR_MONTH_DAY).format(DateTime.now()), save);
+              DateFormat(DateFormat.YEAR_MONTH_DAY).format(DateTime.now()),
+              save);
       }
     } else {
       var ratingId = await ref
