@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:junkfood/ui/widgets/logo_image.dart';
 import 'package:junkfood/utilities/theming/color_theme.dart';
 import 'package:junkfood/utilities/widgets/comments_sheet.dart';
 import 'package:junkfood/utilities/widgets/gradiant_button_widget.dart';
@@ -17,22 +18,7 @@ class AcknowledgeRatingPage extends StatelessWidget {
             MainAxisAlignment.center, // Center content horizontally
         children: [
           SizedBox(height: MediaQuery.of(context).size.height * 0.1),
-          Image.network(
-              'https://raw.githubusercontent.com/Junkfood-dk/JunkFoodApp/main/lib/resources/logo.png',
-              width: 200.0,
-              height: 200.0, errorBuilder: (context, error, stackTrace) {
-            // Display placeholder or error message when image loading fails
-            return Container(
-              color: Colors.grey, // Placeholder color
-              child: Center(
-                child: Icon(
-                  Icons.error_outline,
-                  color: colorTheme.error, // Error icon color
-                  size: 48.0,
-                ),
-              ),
-            );
-          }),
+          const LogoImage(),
           const SizedBox(height: 10.0), // Spacing
           TitleLargeText(
             text: AppLocalizations.of(context)!.ratingAcknowledgeTitle,
@@ -74,9 +60,8 @@ class AcknowledgeRatingPage extends StatelessWidget {
                       Navigator.pop(context);
                     },
                     style: ElevatedButton.styleFrom(
-                      backgroundColor:
-                          colorTheme.background, // Background color
-                      foregroundColor: colorTheme.onBackground, // Text color
+                      backgroundColor: colorTheme.surface, // Background color
+                      foregroundColor: colorTheme.onSurface, // Text color
                       side: BorderSide(color: colorTheme.outline),
                       // Outline color
                     ),

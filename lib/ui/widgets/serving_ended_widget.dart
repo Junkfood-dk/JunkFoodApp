@@ -1,4 +1,5 @@
 import 'package:flutter/widgets.dart';
+import 'package:junkfood/ui/widgets/logo_image.dart';
 import 'package:junkfood/utilities/widgets/text_wrapper.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
@@ -10,9 +11,7 @@ class ServingEndedWidget extends StatelessWidget {
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
-        Image.network(
-            'https://raw.githubusercontent.com/Junkfood-dk/JunkFoodApp/main/lib/resources/logo.png',
-            width: 200),
+        const LogoImage(),
         const SizedBox(height: 20),
         BodyText(
           text: AppLocalizations.of(context)!.servingHasEndedText,

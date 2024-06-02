@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:junkfood/ui/pages/dish_of_the_day_page.dart';
+import 'package:junkfood/ui/widgets/logo_image.dart';
 import 'package:junkfood/utilities/theming/color_theme.dart';
 import 'package:junkfood/utilities/widgets/text_wrapper.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -14,21 +15,7 @@ class AcknowledgeCommentPage extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           SizedBox(height: MediaQuery.of(context).size.height * 0.1),
-          Image.network(
-              'https://raw.githubusercontent.com/Junkfood-dk/JunkFoodApp/main/lib/resources/logo.png',
-              width: 200.0,
-              height: 200.0, errorBuilder: (context, error, stackTrace) {
-            return Container(
-              color: Colors.grey,
-              child: Center(
-                child: Icon(
-                  Icons.error_outline,
-                  color: colorTheme.error,
-                  size: 48.0,
-                ),
-              ),
-            );
-          }),
+          const LogoImage(),
           const SizedBox(height: 10.0),
           TitleLargeText(
             text: AppLocalizations.of(context)!.commentAcknowledgementTitle,
@@ -54,8 +41,8 @@ class AcknowledgeCommentPage extends StatelessWidget {
                         builder: (context) => const DishOfTheDayPage()));
                   },
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: colorTheme.background,
-                    foregroundColor: colorTheme.onBackground,
+                    backgroundColor: colorTheme.surface,
+                    foregroundColor: colorTheme.onSurface,
                     side: BorderSide(color: colorTheme.outline),
                   ),
                   child: BodyText(
