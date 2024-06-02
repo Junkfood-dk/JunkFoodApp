@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:junkfood/data/local_rating_storage_repository.dart';
@@ -54,6 +55,11 @@ class DishRatingController extends _$DishRatingController {
       for (var json in dateRating) {
         var userMap = jsonDecode(json) as Map<String, dynamic>;
         var decoded = _RatingStore.fromJsonString(userMap);
+        debugPrint(decoded.dishId.toString() +
+            " " +
+            decoded.ratingId.toString() +
+            " " +
+            decoded.rating.toString());
         if (decoded.dishId == dishId) {
           dishHasBeenUpdated = true;
           if (decoded.rating != rating) {
@@ -67,8 +73,11 @@ class DishRatingController extends _$DishRatingController {
         save.add(encoded);
       }
       if (!dishHasBeenUpdated) {
+        var ratingId = await ref
+            .read(ratingRepositoryProvider)
+            .postNewRating(rating, dishId);
         save.add(jsonEncode(
-            _RatingStore(dishId: dishId, ratingId: 1, rating: rating)));
+            _RatingStore(dishId: dishId, ratingId: ratingId, rating: rating)));
       }
       switch (localStorageRepo) {
         case (AsyncData(:final value)):
