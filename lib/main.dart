@@ -3,11 +3,11 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:userapp/ui/controllers/locale_controller.dart';
-import 'package:userapp/ui/pages/dish_of_the_day_page.dart';
-import 'package:userapp/utilities/Constants.dart';
-import 'package:userapp/utilities/theming/text_theming.dart';
-import 'package:userapp/utilities/theming/color_theme.dart';
+import 'package:junkfood/ui/controllers/locale_controller.dart';
+import 'package:junkfood/ui/pages/dish_of_the_day_page.dart';
+import 'package:junkfood/utilities/Constants.dart';
+import 'package:junkfood/utilities/theming/text_theming.dart';
+import 'package:junkfood/utilities/theming/color_theme.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized(); //Create Database reference
@@ -24,7 +24,7 @@ class MyApp extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return MaterialApp(
-      title: 'User App',
+      title: 'Junkfood',
       theme: ThemeData(
         colorScheme: colorTheme,
         textTheme: appTextTheme,
@@ -42,7 +42,7 @@ class MyApp extends ConsumerWidget {
         _ => null
       },
       debugShowCheckedModeBanner: false,
-      home: DishOfTheDayPage(),
+      home: const DishOfTheDayPage(),
     );
   }
 }

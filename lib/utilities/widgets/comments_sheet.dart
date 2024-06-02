@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:userapp/data/comments_repository.dart';
-import 'package:userapp/ui/pages/acknowledge_comment_page.dart';
+import 'package:junkfood/data/comments_repository.dart';
+import 'package:junkfood/ui/pages/acknowledge_comment_page.dart';
+import 'package:junkfood/utilities/widgets/text_wrapper.dart';
 
 final commentTextProvider = StateProvider<String>((ref) => '');
 
 class CommentPage extends ConsumerWidget {
-  CommentPage({Key? key}) : super(key: key);
+  CommentPage({super.key});
 
   final TextEditingController _commentController = TextEditingController();
 
@@ -53,7 +54,7 @@ class CommentPage extends ConsumerWidget {
                 opacity: isSubmitEnabled ? 1.0 : 0.5,
                 child: Container(
                   width: double.infinity,
-                  height: 50.0,
+                  height: 48.0,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(16),
                   ),
@@ -96,10 +97,9 @@ class CommentPage extends ConsumerWidget {
                         alignment: Alignment.center,
                         constraints: const BoxConstraints(
                             minWidth: double.infinity, minHeight: 50.0),
-                        child: Text(
-                          AppLocalizations.of(context)!.commentPageSubmitButton,
-                          textAlign: TextAlign.center,
-                          style: const TextStyle(color: Colors.white),
+                        child: ButtonText(
+                          text: AppLocalizations.of(context)!
+                              .commentPageSubmitButton,
                         ),
                       ),
                     ),

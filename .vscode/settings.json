@@ -7,7 +7,7 @@
       "Componenet",
       "prefs",
       "supabase",
-      "userapp"
+      "Junkfood"
     ],
   "deno.enablePaths": [
     "supabase/functions"

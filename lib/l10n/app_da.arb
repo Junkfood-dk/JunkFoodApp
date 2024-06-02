@@ -1,4 +1,5 @@
 {
+  "@@locale": "da",
   "homePageTitle": "Startside",
   "@homePageTitle": {
     "description": "This is the title banner of the Homepage"
