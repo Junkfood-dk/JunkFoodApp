@@ -17,37 +17,30 @@ class DishOfTheDayPage extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     var time = DateTime.now();
-    var formattedDanish = DateFormat("EEEE \n d. MMMM", 'da_DK').format(time);
-    var formattedEnglish = DateFormat("EEEE \n d. MMMM").format(time);
+    var formattedDanish = DateFormat("EEEE d. MMMM", 'da_DK').format(time);
+    var formattedEnglish = DateFormat("EEEE d. MMMM").format(time);
     return Scaffold(
       appBar: AppBar(
+        leading: const LanguageDropdownWidget(),
         title: Text(AppLocalizations.of(context)!.localeHelper == "da"
             ? formattedDanish.substring(0, 1).toUpperCase() +
                 formattedDanish.substring(1)
             : formattedEnglish),
-        centerTitle: false,
+        centerTitle: true,
         actions: [
-          const LanguageDropdownWidget(),
           IconButton(
-            icon: Container(
-              decoration: BoxDecoration(
-                color: Theme.of(context).colorScheme.outline,
-                shape: BoxShape.circle,
-              ),
-              padding: const EdgeInsets.all(8),
-              child: Icon(
-                Icons.chat_bubble_outline,
-                color: Theme.of(context).colorScheme.background,
-              ),
+            icon: Icon(
+              Icons.chat_bubble_outline,
+              color: Theme.of(context).colorScheme.primary,
             ),
             onPressed: () {
               showModalBottomSheet<void>(
-                context: context,
-                builder: (BuildContext context) {
-                  return CommentPage();
-                }
-              );
+                  context: context,
+                  builder: (BuildContext context) {
+                    return CommentPage();
+                  });
             },
+            padding: const EdgeInsets.only(right: 16.0),
           ),
         ],
         automaticallyImplyLeading: false,
