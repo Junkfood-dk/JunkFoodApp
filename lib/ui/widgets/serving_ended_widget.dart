@@ -1,5 +1,5 @@
 import 'package:flutter/widgets.dart';
-import 'package:userapp/utilities/widgets/text_wrapper.dart';
+import 'package:junkfood/utilities/widgets/text_wrapper.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class ServingEndedWidget extends StatelessWidget {

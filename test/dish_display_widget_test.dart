@@ -1,10 +1,10 @@
 import 'package:flutter_carousel_widget/flutter_carousel_widget.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:userapp/domain/model/dish_model.dart';
+import 'package:junkfood/domain/model/dish_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:userapp/ui/widgets/dish_display_widget.dart';
+import 'package:junkfood/ui/widgets/dish_display_widget.dart';
 
 void main() {
 //Test if locale changes when language is selected in dropdown-menu

@@ -1,8 +1,8 @@
 import 'dart:convert';
 import 'package:intl/intl.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
-import 'package:userapp/data/local_rating_storage_repository.dart';
-import 'package:userapp/data/rating_repository.dart';
+import 'package:junkfood/data/local_rating_storage_repository.dart';
+import 'package:junkfood/data/rating_repository.dart';
 
 part 'dish_rating_controller.g.dart';
 
@@ -42,10 +42,11 @@ class DishRatingController extends _$DishRatingController {
 
   void setUserRating(int dishId, int rating) async {
     var localStorageRepo = ref.watch(localRatingStorageRepositoryProvider);
-    List<String>? dateRating; 
+    List<String>? dateRating;
     switch (localStorageRepo) {
       case (AsyncData(:final value)):
-        dateRating = value.getRatingForDay(DateFormat(DateFormat.YEAR_MONTH_DAY).format(DateTime.now()));
+        dateRating = value.getRatingForDay(
+            DateFormat(DateFormat.YEAR_MONTH_DAY).format(DateTime.now()));
     }
     var save = <String>[];
     var dishHasBeenUpdated = false;
@@ -72,7 +73,8 @@ class DishRatingController extends _$DishRatingController {
       switch (localStorageRepo) {
         case (AsyncData(:final value)):
           value.saveRatingForDay(
-              DateFormat(DateFormat.YEAR_MONTH_DAY).format(DateTime.now()), save);
+              DateFormat(DateFormat.YEAR_MONTH_DAY).format(DateTime.now()),
+              save);
       }
     } else {
       var ratingId = await ref

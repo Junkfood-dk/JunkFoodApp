@@ -1,6 +1,6 @@
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:userapp/data/interface_local_rating_storage_repository.dart';
+import 'package:junkfood/data/interface_local_rating_storage_repository.dart';
 
 part 'local_rating_storage_repository.g.dart';
 

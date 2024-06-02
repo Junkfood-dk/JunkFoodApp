@@ -1,11 +1,11 @@
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:userapp/domain/model/language_model.dart';
+import 'package:junkfood/domain/model/language_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:userapp/ui/controllers/locale_controller.dart';
-import 'package:userapp/ui/widgets/language_dropdown_widget.dart';
+import 'package:junkfood/ui/controllers/locale_controller.dart';
+import 'package:junkfood/ui/widgets/language_dropdown_widget.dart';
 
 void main() {
   test('English is present in language list', () {
@@ -158,8 +158,8 @@ void main() {
         tester.element(find.byType(LanguageDropdownWidget)));
 
     //Assert
-    expect(initialLocale, equals(Locale('en')));
-    expect(localeAfterDanishIsPressed, equals(Locale('da')));
-    expect(localeAfterEnglishIsPressed, equals(Locale('en')));
+    expect(initialLocale, equals(const Locale('en')));
+    expect(localeAfterDanishIsPressed, equals(const Locale('da')));
+    expect(localeAfterEnglishIsPressed, equals(const Locale('en')));
   });
 }

@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:userapp/utilities/theming/color_theme.dart';
-import 'package:userapp/utilities/widgets/comments_sheet.dart';
-import 'package:userapp/utilities/widgets/gradiant_button_widget.dart';
-import 'package:userapp/utilities/widgets/text_wrapper.dart';
+import 'package:junkfood/utilities/theming/color_theme.dart';
+import 'package:junkfood/utilities/widgets/comments_sheet.dart';
+import 'package:junkfood/utilities/widgets/gradiant_button_widget.dart';
+import 'package:junkfood/utilities/widgets/text_wrapper.dart';
 
 class AcknowledgeRatingPage extends StatelessWidget {
   const AcknowledgeRatingPage({super.key});
@@ -67,8 +67,8 @@ class AcknowledgeRatingPage extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.only(bottom: 20.0),
                 child: SizedBox(
-                    width: MediaQuery.of(context).size.width * 0.9,
-                    height: MediaQuery.of(context).size.height * 0.08, 
+                  width: MediaQuery.of(context).size.width * 0.9,
+                  height: MediaQuery.of(context).size.height * 0.08,
                   child: ElevatedButton(
                     onPressed: () {
                       Navigator.pop(context);

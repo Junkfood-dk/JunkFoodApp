@@ -1,8 +1,8 @@
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
-import 'package:userapp/data/database.dart';
-import 'package:userapp/data/interface_allergen_repository.dart';
+import 'package:junkfood/data/database.dart';
+import 'package:junkfood/data/interface_allergen_repository.dart';
 
 part 'allergen_repository.g.dart';
 

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:userapp/domain/model/language_model.dart';
-import 'package:userapp/ui/controllers/locale_controller.dart';
-import 'package:userapp/utilities/widgets/gradiant_wrapper.dart';
+import 'package:junkfood/domain/model/language_model.dart';
+import 'package:junkfood/ui/controllers/locale_controller.dart';
+import 'package:junkfood/utilities/widgets/gradiant_wrapper.dart';
 
 class LanguageDropdownWidget extends ConsumerWidget {
   const LanguageDropdownWidget({super.key});

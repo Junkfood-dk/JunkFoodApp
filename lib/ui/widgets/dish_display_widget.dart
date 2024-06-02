@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:userapp/domain/model/dish_model.dart';
-import 'package:userapp/ui/widgets/rating_widget.dart';
-import 'package:userapp/utilities/widgets/gradiant_button_widget.dart';
-import 'package:userapp/utilities/widgets/text_wrapper.dart';
+import 'package:junkfood/domain/model/dish_model.dart';
+import 'package:junkfood/ui/widgets/rating_widget.dart';
+import 'package:junkfood/utilities/widgets/gradiant_button_widget.dart';
+import 'package:junkfood/utilities/widgets/text_wrapper.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class DishDisplayWidget extends StatelessWidget {
@@ -12,7 +11,7 @@ class DishDisplayWidget extends StatelessWidget {
   const DishDisplayWidget({super.key, required this.dish});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  Widget build(BuildContext context) {
     return Column(
       children: [
         Expanded(
@@ -155,9 +154,7 @@ class DishDisplayWidget extends StatelessWidget {
               showModalBottomSheet<void>(
                 context: context,
                 builder: (BuildContext context) {
-                  return Container(
-                    child: RatingWidget(dish: dish),
-                  );
+                  return RatingWidget(dish: dish);
                 },
               );
             },

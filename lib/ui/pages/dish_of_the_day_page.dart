@@ -3,13 +3,13 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:intl/intl.dart';
-import 'package:userapp/ui/controllers/dish_of_the_day_controller.dart';
-import 'package:userapp/ui/controllers/servingtime_controller.dart';
-import 'package:userapp/ui/widgets/dish_display_widget.dart';
-import 'package:userapp/ui/widgets/language_dropdown_widget.dart';
-import 'package:userapp/ui/widgets/no_dish_widget.dart';
-import 'package:userapp/ui/widgets/serving_ended_widget.dart';
-import 'package:userapp/utilities/widgets/comments_sheet.dart';
+import 'package:junkfood/ui/controllers/dish_of_the_day_controller.dart';
+import 'package:junkfood/ui/controllers/servingtime_controller.dart';
+import 'package:junkfood/ui/widgets/dish_display_widget.dart';
+import 'package:junkfood/ui/widgets/language_dropdown_widget.dart';
+import 'package:junkfood/ui/widgets/no_dish_widget.dart';
+import 'package:junkfood/ui/widgets/serving_ended_widget.dart';
+import 'package:junkfood/utilities/widgets/comments_sheet.dart';
 
 class DishOfTheDayPage extends ConsumerWidget {
   const DishOfTheDayPage({super.key});
@@ -87,7 +87,7 @@ class DishOfTheDayPage extends ConsumerWidget {
                             AsyncError(:final error) => Text(error.toString()),
                             _ => const CircularProgressIndicator()
                           }
-                        :  const ServingEndedWidget(), //ENDED
+                        : const ServingEndedWidget(), //ENDED
                     AsyncError(:final error) => Text(error.toString()),
                     _ => const CircularProgressIndicator()
                   },

@@ -4,15 +4,15 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
-import 'package:userapp/data/rating_repository.dart';
-import 'package:userapp/domain/model/dish_model.dart';
-import 'package:userapp/ui/controllers/locale_controller.dart';
+import 'package:junkfood/data/rating_repository.dart';
+import 'package:junkfood/domain/model/dish_model.dart';
+import 'package:junkfood/ui/controllers/locale_controller.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:userapp/ui/pages/acknowledge_rating_page.dart';
-import 'package:userapp/ui/pages/dish_of_the_day_page.dart';
-import 'package:userapp/ui/widgets/rating_widget.dart';
-import 'package:userapp/utilities/widgets/gradiant_button_widget.dart';
-import 'package:userapp/utilities/widgets/gradiant_wrapper.dart';
+import 'package:junkfood/ui/pages/acknowledge_rating_page.dart';
+import 'package:junkfood/ui/pages/dish_of_the_day_page.dart';
+import 'package:junkfood/ui/widgets/rating_widget.dart';
+import 'package:junkfood/utilities/widgets/gradiant_button_widget.dart';
+import 'package:junkfood/utilities/widgets/gradiant_wrapper.dart';
 
 import 'acknowledge_rating_page_test.mocks.dart';
 
@@ -71,5 +71,4 @@ void main() {
     await tester.pumpAndSettle();
     expect(find.byType(AcknowledgeRatingPage), findsOneWidget);
   });
-
 }

@@ -1,8 +1,8 @@
-# userapp
+# Junkfood
 
 A new Flutter project.
 
-## Getting Started 
+## Getting Started
 
 JunkFood is awersome.
 
@@ -20,15 +20,15 @@ samples, guidance on mobile development, and a full API reference.
 
 # Commit template
 
-git commit -m"<commitmessage>
+git commit -m"
 
 <description>
 
-Co-authored-by: Omar <omse@itu.dk>
-Co-authored-by: Markus <mbrh@itu.dk>
-Co-authored-by: Lukas <lupa@itu.dk>
-Co-authored-by: Jonas <kram@itu.dk>
-Co-authored-by: Johan <jsbe@itu.dk>
-Co-authored-by: Lauritz <lana@itu.dk>
-Co-authored by: Allan <asia@itu.dk>" 
+Co-authored-by: Omar <mailto:omse@itu.dk>
+Co-authored-by: Markus <mailto:mbrh@itu.dk>
+Co-authored-by: Lukas <mailto:lupa@itu.dk>
+Co-authored-by: Jonas <mailto:kram@itu.dk>
+Co-authored-by: Johan <mailto:jsbe@itu.dk>
+Co-authored-by: Lauritz <mailto:lana@itu.dk>
+Co-authored by: Allan <mailto:asia@itu.dk>"
 

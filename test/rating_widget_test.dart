@@ -3,13 +3,13 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:mockito/annotations.dart';
-import 'package:userapp/domain/model/dish_model.dart';
-import 'package:userapp/ui/controllers/locale_controller.dart';
+import 'package:junkfood/domain/model/dish_model.dart';
+import 'package:junkfood/ui/controllers/locale_controller.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:userapp/ui/widgets/dish_display_widget.dart';
-import 'package:userapp/ui/widgets/rating_widget.dart';
-import 'package:userapp/utilities/widgets/gradiant_button_widget.dart';
-import 'package:userapp/utilities/widgets/gradiant_wrapper.dart';
+import 'package:junkfood/ui/widgets/dish_display_widget.dart';
+import 'package:junkfood/ui/widgets/rating_widget.dart';
+import 'package:junkfood/utilities/widgets/gradiant_button_widget.dart';
+import 'package:junkfood/utilities/widgets/gradiant_wrapper.dart';
 
 @GenerateNiceMocks([MockSpec<DishModel>()])
 void main() {
