@@ -75,7 +75,7 @@ void main() {
         child: Consumer(
           builder: (BuildContext context, WidgetRef ref, Widget? child) =>
               MaterialApp(
-            title: 'User app',
+            title: 'Junkfood',
             localizationsDelegates: const [
               AppLocalizations.delegate,
             ],
@@ -114,7 +114,7 @@ void main() {
         child: Consumer(
           builder: (BuildContext context, WidgetRef ref, Widget? child) =>
               MaterialApp(
-            title: 'User app',
+            title: 'Junkfood',
             localizationsDelegates: const [
               AppLocalizations.delegate,
               GlobalMaterialLocalizations.delegate,

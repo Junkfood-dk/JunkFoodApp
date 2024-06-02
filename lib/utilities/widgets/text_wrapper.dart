@@ -9,14 +9,13 @@ class DisplayLargeText extends StatelessWidget {
   final TextOverflow? overflow;
 
   const DisplayLargeText(
-      {Key? key,
+      {super.key,
       required this.text,
       this.style,
       this.textAlign,
       this.maxLines,
       this.scaler,
-      this.overflow})
-      : super(key: key);
+      this.overflow});
 
   @override
   Widget build(BuildContext context) {
@@ -39,13 +38,13 @@ class DisplayMediumText extends StatelessWidget {
   final int? maxLines;
 
   const DisplayMediumText({
-    Key? key,
+    super.key,
     required this.text,
     this.style,
     this.maxLines,
     this.overflow,
     this.textAlign,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -65,11 +64,11 @@ class TitleLargeText extends StatelessWidget {
   final TextAlign? textAlign;
 
   const TitleLargeText({
-    Key? key,
+    super.key,
     required this.text,
     this.style,
     this.textAlign,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -87,11 +86,11 @@ class ButtonText extends StatelessWidget {
   final TextAlign? textAlign;
 
   const ButtonText({
-    Key? key,
+    super.key,
     required this.text,
     this.style,
     this.textAlign,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -111,13 +110,13 @@ class BodyText extends StatelessWidget {
   final TextOverflow? overflow;
 
   const BodyText({
-    Key? key,
+    super.key,
     required this.text,
     this.style,
     this.textAlign,
     this.overflow,
     this.maxLines,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -139,13 +138,13 @@ class BodyBoldText extends StatelessWidget {
   final TextOverflow? overflow;
 
   const BodyBoldText({
-    Key? key,
+    super.key,
     required this.text,
     this.style,
     this.maxLines,
     this.overflow,
     this.textAlign,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

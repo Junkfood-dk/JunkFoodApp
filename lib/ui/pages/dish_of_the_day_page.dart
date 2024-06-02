@@ -16,9 +16,10 @@ class DishOfTheDayPage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    var time = DateTime.now();
-    var formattedDanish = DateFormat("EEEE d. MMMM", 'da_DK').format(time);
-    var formattedEnglish = DateFormat("EEEE d. MMMM").format(time);
+    final time = DateTime.now();
+    final formattedDanish = DateFormat("EEEE d. MMMM", 'da_DK').format(time);
+    final formattedEnglish = DateFormat("EEEE d. MMMM").format(time);
+
     return Scaffold(
       appBar: AppBar(
         leading: const LanguageDropdownWidget(),
@@ -54,41 +55,32 @@ class DishOfTheDayPage extends ConsumerWidget {
         child: Center(
           child: ConstrainedBox(
             constraints: const BoxConstraints(maxWidth: 650),
-            child: SingleChildScrollView(
-              physics: const AlwaysScrollableScrollPhysics(),
-              child: Column(
-                children: [
-                  const SizedBox(
-                    height: 22,
-                  ),
-                  switch (ref.watch(servingtimeControllerProvider)) {
-                    AsyncData(:final value) => !value
-                        ? switch (ref.watch(dishOfTheDayControllerProvider)) {
-                            AsyncData(:final value) =>
-                              value.isNotEmpty //Dish has content
-                                  ? FlutterCarousel(
-                                      options: CarouselOptions(
-                                        viewportFraction: 1,
-                                        height:
-                                            MediaQuery.of(context).size.height *
-                                                0.8,
-                                        showIndicator: true,
-                                        slideIndicator:
-                                            const CircularSlideIndicator(),
-                                      ),
-                                      items: value.map((i) {
-                                        return DishDisplayWidget(dish: i);
-                                      }).toList())
-                                  : const NoDishWidget(), //NO DISH
-                            AsyncError(:final error) => Text(error.toString()),
-                            _ => const CircularProgressIndicator()
-                          }
-                        : const ServingEndedWidget(), //ENDED
-                    AsyncError(:final error) => Text(error.toString()),
-                    _ => const CircularProgressIndicator()
-                  },
-                ],
-              ),
+            child: Align(
+              alignment: Alignment.topCenter,
+              child: switch (ref.watch(servingtimeControllerProvider)) {
+                AsyncData(:final value) => !value
+                    ? switch (ref.watch(dishOfTheDayControllerProvider)) {
+                        AsyncData(:final value) =>
+                          value.isNotEmpty //Dish has content
+                              ? FlutterCarousel(
+                                  options: CarouselOptions(
+                                    viewportFraction: 1,
+                                    height: MediaQuery.of(context).size.height,
+                                    showIndicator: true,
+                                    slideIndicator:
+                                        const CircularSlideIndicator(),
+                                  ),
+                                  items: value.map((i) {
+                                    return DishDisplayWidget(dish: i);
+                                  }).toList())
+                              : const NoDishWidget(), //NO DISH
+                        AsyncError(:final error) => Text(error.toString()),
+                        _ => const Center(child: CircularProgressIndicator())
+                      }
+                    : const ServingEndedWidget(), //ENDED
+                AsyncError(:final error) => Text(error.toString()),
+                _ => const Center(child: CircularProgressIndicator())
+              },
             ),
           ),
         ),

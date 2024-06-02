@@ -67,34 +67,40 @@ class RatingWidget extends HookConsumerWidget {
       ]),
       SizedBox(height: MediaQuery.of(context).size.height * 0.1),
       SizedBox(
-          width: MediaQuery.of(context).size.width * 0.9,
-          height: MediaQuery.of(context).size.height * 0.08,
-          child: GradiantButton(
-              onPressed: rating.value == -1
-                  ? null
-                  : () async {
-                      var isRatingForDishDifferent = await ratingController
-                          .isRatingForDishDifferent(dish.id, rating.value);
-                      if (isRatingForDishDifferent) {
-                        var wishToChange = await updateRating(context);
-                        if (wishToChange!) {
+          width: MediaQuery.of(context).size.width * 0.8,
+          height: 48.0,
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16.0),
+            child: GradiantButton(
+                onPressed: rating.value == -1
+                    ? null
+                    : () async {
+                        var isRatingForDishDifferent = await ratingController
+                            .isRatingForDishDifferent(dish.id, rating.value);
+                        if (isRatingForDishDifferent) {
+                          var wishToChange = await updateRating(context);
+                          if (wishToChange!) {
+                            ratingController.setUserRating(
+                                dish.id, rating.value);
+                            Navigator.of(context)
+                                .pushReplacement(MaterialPageRoute(
+                              builder: (context) =>
+                                  const AcknowledgeRatingPage(),
+                            ));
+                          }
+                        } else {
                           ratingController.setUserRating(dish.id, rating.value);
                           Navigator.of(context)
                               .pushReplacement(MaterialPageRoute(
                             builder: (context) => const AcknowledgeRatingPage(),
                           ));
+                          // Navigator.pop(context);
                         }
-                      } else {
-                        ratingController.setUserRating(dish.id, rating.value);
-                        Navigator.of(context).pushReplacement(MaterialPageRoute(
-                          builder: (context) => const AcknowledgeRatingPage(),
-                        ));
-                        // Navigator.pop(context);
-                      }
-                    },
-              child: ButtonText(
-                text: AppLocalizations.of(context)!.ratingContinue,
-              )))
+                      },
+                child: ButtonText(
+                  text: AppLocalizations.of(context)!.ratingContinue,
+                )),
+          ))
     ]);
   }
 

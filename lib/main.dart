@@ -24,7 +24,7 @@ class MyApp extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return MaterialApp(
-      title: 'User App',
+      title: 'Junkfood',
       theme: ThemeData(
         colorScheme: colorTheme,
         textTheme: appTextTheme,

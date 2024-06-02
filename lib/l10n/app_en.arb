@@ -1,4 +1,5 @@
 {
+  "@@locale": "en",
   "homePageTitle": "Homepage",
   "@homePageTitle": {
     "description": "This is the title banner of the Homepage"

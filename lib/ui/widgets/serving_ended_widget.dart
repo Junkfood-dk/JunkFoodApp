@@ -8,17 +8,20 @@ class ServingEndedWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        const LogoImage(),
-        const SizedBox(height: 20),
-        BodyText(
-          text: AppLocalizations.of(context)!.servingHasEndedText,
-          textAlign: TextAlign.center,
+    return Center(
+      child: SingleChildScrollView(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: [
+            const LogoImage(),
+            const SizedBox(height: 24.0),
+            BodyText(
+              text: AppLocalizations.of(context)!.servingHasEndedText,
+              textAlign: TextAlign.center,
+            ),
+          ],
         ),
-        SizedBox(height: MediaQuery.of(context).size.height * 0.5),
-      ],
+      ),
     );
   }
 }
