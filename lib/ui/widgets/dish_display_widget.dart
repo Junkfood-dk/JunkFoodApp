@@ -40,20 +40,29 @@ class DishDisplayWidget extends StatelessWidget {
               ),
             ),
             if (dish.title.isNotEmpty)
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                child: Align(
-                    alignment: Alignment.bottomLeft,
-                    child: DisplayMediumText(
-                      text: dish.title,
-                      maxLines: 2,
-                      overflow: TextOverflow.ellipsis,
-                    )),
+              Align(
+                alignment: Alignment.bottomLeft,
+                child: Opacity(
+                  opacity: 0.5,
+                  child: Container(
+                    width: double.infinity,
+                    color: Colors.black,
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 6.0),
+                      child: DisplayMediumText(
+                        text: dish.title,
+                        maxLines: 2,
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                    ),
+                  ),
+                ),
               )
             else
               Text(AppLocalizations.of(context)!.noTitle),
           ],
         ),
+        const SizedBox(height: 8.0),
         Expanded(
           child: SingleChildScrollView(
             child: Container(
@@ -98,7 +107,7 @@ class DishDisplayWidget extends StatelessWidget {
           ),
         ),
         Padding(
-          padding: const EdgeInsets.symmetric(vertical: 24.0),
+          padding: const EdgeInsets.symmetric(vertical: 48.0),
           child: Center(
             child: SizedBox(
               width: MediaQuery.of(context).size.width * 0.9,

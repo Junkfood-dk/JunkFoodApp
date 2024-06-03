@@ -52,37 +52,43 @@ class DishOfTheDayPage extends ConsumerWidget {
               .read(dishOfTheDayControllerProvider.notifier)
               .refetchDishOfTheDay();
         },
-        child: Center(
-          child: ConstrainedBox(
-            constraints: const BoxConstraints(maxWidth: 650),
-            child: Align(
-              alignment: Alignment.topCenter,
-              child: switch (ref.watch(servingtimeControllerProvider)) {
-                AsyncData(:final value) => !value
-                    ? switch (ref.watch(dishOfTheDayControllerProvider)) {
-                        AsyncData(:final value) =>
-                          value.isNotEmpty //Dish has content
-                              ? FlutterCarousel(
-                                  options: CarouselOptions(
-                                    viewportFraction: 1,
-                                    height: MediaQuery.of(context).size.height,
-                                    showIndicator: true,
-                                    slideIndicator:
-                                        const CircularSlideIndicator(),
-                                  ),
-                                  items: value.map((i) {
-                                    return DishDisplayWidget(dish: i);
-                                  }).toList())
-                              : const NoDishWidget(), //NO DISH
-                        AsyncError(:final error) => Text(error.toString()),
-                        _ => const Center(child: CircularProgressIndicator())
-                      }
-                    : const ServingEndedWidget(), //ENDED
-                AsyncError(:final error) => Text(error.toString()),
-                _ => const Center(child: CircularProgressIndicator())
-              },
+        child: ListView(
+          children: [
+            Center(
+              child: ConstrainedBox(
+                constraints: const BoxConstraints(maxWidth: 650),
+                child: Align(
+                  alignment: Alignment.topCenter,
+                  child: switch (ref.watch(servingtimeControllerProvider)) {
+                    AsyncData(:final value) => !value
+                        ? switch (ref.watch(dishOfTheDayControllerProvider)) {
+                            AsyncData(:final value) => value.isNotEmpty
+                                ? FlutterCarousel(
+                                    options: CarouselOptions(
+                                      viewportFraction: 1,
+                                      height:
+                                          MediaQuery.of(context).size.height *
+                                              0.92,
+                                      showIndicator: true,
+                                      slideIndicator:
+                                          const CircularSlideIndicator(),
+                                    ),
+                                    items: value.map((i) {
+                                      return DishDisplayWidget(dish: i);
+                                    }).toList())
+                                : const NoDishWidget(), //NO DISH
+                            AsyncError(:final error) => Text(error.toString()),
+                            _ =>
+                              const Center(child: CircularProgressIndicator())
+                          }
+                        : const ServingEndedWidget(), //ENDED
+                    AsyncError(:final error) => Text(error.toString()),
+                    _ => const Center(child: CircularProgressIndicator())
+                  },
+                ),
+              ),
             ),
-          ),
+          ],
         ),
       ),
     );
