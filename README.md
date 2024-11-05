@@ -1,8 +1,9 @@
 # userapp
 
-A new Flutter project.
+# Don't forget to run the following when developing to rebuild riverpod providers
+dart run build_runner watch -d
 
-## Getting Started 
+## Getting Started
 
 JunkFood is awersome.
 
@@ -24,11 +25,11 @@ git commit -m"<commitmessage>
 
 <description>
 
-Co-authored-by: Omar <omse@itu.dk>
-Co-authored-by: Markus <mbrh@itu.dk>
-Co-authored-by: Lukas <lupa@itu.dk>
-Co-authored-by: Jonas <kram@itu.dk>
-Co-authored-by: Johan <jsbe@itu.dk>
-Co-authored-by: Lauritz <lana@itu.dk>
-Co-authored by: Allan <asia@itu.dk>" 
+Co-authored-by: Omar <mailto:omse@itu.dk>
+Co-authored-by: Markus <mailto:mbrh@itu.dk>
+Co-authored-by: Lukas <mailto:lupa@itu.dk>
+Co-authored-by: Jonas <mailto:kram@itu.dk>
+Co-authored-by: Johan <mailto:jsbe@itu.dk>
+Co-authored-by: Lauritz <mailto:lana@itu.dk>
+Co-authored by: Allan <mailto:asia@itu.dk>"
 

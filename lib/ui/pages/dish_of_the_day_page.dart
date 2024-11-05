@@ -17,17 +17,17 @@ class DishOfTheDayPage extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     var time = DateTime.now();
-    var formattedDanish = DateFormat("EEEE \n d. MMMM", 'da_DK').format(time);
-    var formattedEnglish = DateFormat("EEEE \n d. MMMM").format(time);
+    var formattedDanish = DateFormat("EEEE d. MMMM", 'da_DK').format(time);
+    var formattedEnglish = DateFormat("EEEE d. MMMM").format(time);
     return Scaffold(
       appBar: AppBar(
         title: Text(AppLocalizations.of(context)!.localeHelper == "da"
             ? formattedDanish.substring(0, 1).toUpperCase() +
                 formattedDanish.substring(1)
             : formattedEnglish),
-        centerTitle: false,
+        centerTitle: true,
+        leading: const LanguageDropdownWidget(),
         actions: [
-          const LanguageDropdownWidget(),
           IconButton(
             icon: Container(
               decoration: BoxDecoration(
@@ -42,11 +42,10 @@ class DishOfTheDayPage extends ConsumerWidget {
             ),
             onPressed: () {
               showModalBottomSheet<void>(
-                context: context,
-                builder: (BuildContext context) {
-                  return CommentPage();
-                }
-              );
+                  context: context,
+                  builder: (BuildContext context) {
+                    return CommentPage();
+                  });
             },
           ),
         ],
@@ -90,7 +89,7 @@ class DishOfTheDayPage extends ConsumerWidget {
                             AsyncError(:final error) => Text(error.toString()),
                             _ => const CircularProgressIndicator()
                           }
-                        :  const ServingEndedWidget(), //ENDED
+                        : const ServingEndedWidget(), //ENDED
                     AsyncError(:final error) => Text(error.toString()),
                     _ => const CircularProgressIndicator()
                   },
