@@ -4,7 +4,7 @@ A new Flutter project.
 
 ## Getting Started
 
-JunkFood is awersome.
+JunkFood is awesome.
 
 This project is a starting point for a Flutter application.
 
