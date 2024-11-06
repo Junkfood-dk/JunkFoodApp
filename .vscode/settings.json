@@ -3,15 +3,16 @@
     "editor.defaultFormatter": "denoland.vscode-deno"
   },
   "cmake.configureOnOpen": true,
-    "cSpell.words": [
-      "Componenet",
-      "prefs",
-      "supabase",
-      "Junkfood"
-    ],
+  "cSpell.words": [
+    "Componenet",
+    "prefs",
+    "supabase",
+    "Junkfood"
+  ],
   "deno.enablePaths": [
     "supabase/functions"
   ],
   "deno.lint": true,
-  "deno.unstable": true
+  "deno.unstable": true,
+  "dart.flutterSdkPath": ".fvm/versions/3.24.4"
 }
