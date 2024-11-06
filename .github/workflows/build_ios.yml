@@ -17,22 +17,12 @@ jobs:
         run: flutter pub get
       - name: build iOS app
         run: flutter build ios --release --no-codesign
-      - name: release
-        uses: actions/create-release@v1
-        id: create_release
+      - uses: "marvinpinto/action-automatic-releases@latest"
         with:
-          draft: false
-          prerelease: false
-          release_name: ${{ github.ref }}
-          tag_name: ${{ github.ref }}
-        env:
-          GITHUB_TOKEN: ${{ github.token }}
-      - name: upload iOS artifact
-        uses: actions/upload-release-asset@v1
-        env:
-          GITHUB_TOKEN: ${{ github.token }}
-        with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: build/ios/iphoneos/Runner.app
-          asset_name: Runner.app
-          asset_content_type: application/gzip
+          repo_token: "${{ secrets.GITHUB_TOKEN }}"
+          automatic_release_tag: "latest"
+          prerelease: true
+          title: "Development Build"
+          files: |
+            LICENSE.txt
+            *.app
