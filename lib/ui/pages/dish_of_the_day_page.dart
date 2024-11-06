@@ -21,37 +21,40 @@ class DishOfTheDayPage extends ConsumerWidget {
     final formattedEnglish = DateFormat("EEEE \nd. MMMM").format(time);
 
     return Scaffold(
-      appBar: AppBar(
-        leading: const LanguageDropdownWidget(),
-        title: Padding(
-          padding: const EdgeInsets.only(bottom: 4.0),
-          child: Text(
-            AppLocalizations.of(context)!.localeHelper == "da"
-                ? formattedDanish.substring(0, 1).toUpperCase() +
-                    formattedDanish.substring(1)
-                : formattedEnglish,
-            textAlign: TextAlign.center,
-            //style: Theme.of(context).textTheme.bodyMedium,
-          ),
-        ),
-        centerTitle: true,
-        actions: [
-          IconButton(
-            icon: Icon(
-              Icons.chat_bubble_outline,
-              color: Theme.of(context).colorScheme.primary,
+      appBar: PreferredSize(
+        preferredSize: const Size.fromHeight(kToolbarHeight + 10),
+        child: AppBar(
+          leading: const LanguageDropdownWidget(),
+          title: Padding(
+            padding: const EdgeInsets.symmetric(vertical: 5.0),
+            child: Text(
+              AppLocalizations.of(context)!.localeHelper == "da"
+                  ? formattedDanish.substring(0, 1).toUpperCase() +
+                      formattedDanish.substring(1)
+                  : formattedEnglish,
+              textAlign: TextAlign.center,
+              //style: Theme.of(context).textTheme.bodyMedium,
             ),
-            onPressed: () {
-              showModalBottomSheet<void>(
-                  context: context,
-                  builder: (BuildContext context) {
-                    return CommentPage();
-                  });
-            },
-            padding: const EdgeInsets.only(right: 16.0),
           ),
-        ],
-        automaticallyImplyLeading: false,
+          centerTitle: true,
+          actions: [
+            IconButton(
+              icon: Icon(
+                Icons.chat_bubble_outline,
+                color: Theme.of(context).colorScheme.primary,
+              ),
+              onPressed: () {
+                showModalBottomSheet<void>(
+                    context: context,
+                    builder: (BuildContext context) {
+                      return CommentPage();
+                    });
+              },
+              padding: const EdgeInsets.only(right: 16.0),
+            ),
+          ],
+          automaticallyImplyLeading: false,
+        ),
       ),
       body: RefreshIndicator(
         onRefresh: () async {
