@@ -37,6 +37,7 @@ class DishOfTheDayPage extends ConsumerWidget {
             onPressed: () {
               showModalBottomSheet<void>(
                   context: context,
+                  isScrollControlled: true,
                   builder: (BuildContext context) {
                     return CommentPage();
                   });
