@@ -1,7 +1,7 @@
 on:
-  pull_request:
-    branches:
-      - release
+  push:
+    tags:
+      - '*'
 
 jobs:
   build:
@@ -13,5 +13,16 @@ jobs:
         uses: subosito/flutter-action@v2
         with:
           channel: stable
-      - run: flutter pub get
-      - run: flutter build ios --release --no-codesign
+      - name: get dependencies
+        run: flutter pub get
+      - name: build iOS app
+        run: flutter build ios --release --no-codesign
+      - uses: "marvinpinto/action-automatic-releases@latest"
+        with:
+          repo_token: "${{ secrets.GITHUB_TOKEN }}"
+          automatic_release_tag: "latest"
+          prerelease: true
+          title: "Development Build"
+          files: |
+            LICENSE.txt
+            *.app
