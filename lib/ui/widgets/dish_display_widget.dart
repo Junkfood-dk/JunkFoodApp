@@ -12,6 +12,11 @@ class DishDisplayWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final titleStyle = Theme.of(context).textTheme.displayMedium?.copyWith(
+          color: Colors.white,
+          fontWeight: FontWeight.w700,
+        );
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -19,41 +24,43 @@ class DishDisplayWidget extends StatelessWidget {
           clipBehavior: Clip.none,
           alignment: Alignment.bottomLeft,
           children: [
-            AspectRatio(
-              aspectRatio: 16 / 9,
-              child: Image.network(
-                dish.imageUrl,
-                fit: BoxFit.cover,
-                errorBuilder: (context, error, stackTrace) {
-                  // TODO: Add dummy image...
-                  return Container(
-                    color: Colors.grey,
-                    child: const Center(
-                      child: Icon(
-                        Icons.error_outline,
-                        color: Colors.red,
-                        size: 48.0,
-                      ),
-                    ),
-                  );
-                },
-              ),
+            Column(
+              children: [
+                AspectRatio(
+                  aspectRatio: 4 / 3,
+                  child: Image.network(
+                    dish.imageUrl,
+                    fit: BoxFit.cover,
+                    errorBuilder: (context, error, stackTrace) {
+                      // TODO: Add dummy image...
+                      return Container(
+                        color: Colors.grey,
+                        child: const Center(
+                          child: Icon(
+                            Icons.error_outline,
+                            color: Colors.red,
+                            size: 48.0,
+                          ),
+                        ),
+                      );
+                    },
+                  ),
+                ),
+                SizedBox(height: (titleStyle?.fontSize ?? 0) + 2),
+              ],
             ),
             if (dish.title.isNotEmpty)
               Align(
                 alignment: Alignment.bottomLeft,
-                child: Opacity(
-                  opacity: 0.5,
-                  child: Container(
-                    width: double.infinity,
-                    color: Colors.black,
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 6.0),
-                      child: DisplayMediumText(
-                        text: dish.title,
-                        maxLines: 2,
-                        overflow: TextOverflow.ellipsis,
-                      ),
+                child: SizedBox(
+                  width: double.infinity,
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 6.0),
+                    child: DisplayMediumText(
+                      text: dish.title,
+                      maxLines: 2,
+                      overflow: TextOverflow.ellipsis,
+                      style: titleStyle,
                     ),
                   ),
                 ),
@@ -107,7 +114,7 @@ class DishDisplayWidget extends StatelessWidget {
           ),
         ),
         Padding(
-          padding: const EdgeInsets.symmetric(vertical: 48.0),
+          padding: const EdgeInsets.only(bottom: 48.0, top: 8.0),
           child: Center(
             child: SizedBox(
               width: MediaQuery.of(context).size.width * 0.9,

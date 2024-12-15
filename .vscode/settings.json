@@ -1,6 +1,6 @@
 {
   "[typescript]": {
-    "editor.defaultFormatter": "denoland.vscode-deno"
+    "editor.defaultFormatter": "Dart-Code.flutter"
   },
   "cmake.configureOnOpen": true,
   "cSpell.words": [
@@ -14,5 +14,5 @@
   ],
   "deno.lint": true,
   "deno.unstable": true,
-  "dart.flutterSdkPath": ".fvm/versions/3.24.4"
+  "dart.flutterSdkPath": "/Users/e138206/flutter-sdks/flutter"
 }
