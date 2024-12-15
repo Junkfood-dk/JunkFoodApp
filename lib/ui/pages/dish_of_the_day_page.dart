@@ -63,44 +63,38 @@ class DishOfTheDayPage extends ConsumerWidget {
               .refetchDishOfTheDay();
         },
         child: SingleChildScrollView(
-          child: ConstrainedBox(
-            constraints: const BoxConstraints(maxWidth: 650),
-            child: Align(
-              alignment: Alignment.topCenter,
-              child: switch (ref.watch(servingtimeControllerProvider)) {
-                AsyncData(:final value) => !value
-                    ? switch (ref.watch(dishOfTheDayControllerProvider)) {
-                        AsyncData(:final value) => value.isNotEmpty
-                            ? Padding(
-                                padding: EdgeInsets.only(
-                                  bottom:
-                                      MediaQuery.paddingOf(context).bottom,
-                                ),
-                                child: FlutterCarousel(
-                                    options: FlutterCarouselOptions(
-                                      viewportFraction: 1,
-                                      height: MediaQuery.of(context)
-                                              .size
-                                              .height -
-                                          (MediaQuery.paddingOf(context).top +
-                                              MediaQuery.paddingOf(context)
-                                                  .bottom +
-                                              kToolbarHeight),
-                                      showIndicator: true,
-                                    ),
-                                    items: value.map((i) {
-                                      return DishDisplayWidget(dish: i);
-                                    }).toList()),
-                              )
-                            : const NoDishWidget(), //NO DISH
-                        AsyncError(:final error) => Text(error.toString()),
-                        _ => const Center(child: CircularProgressIndicator())
-                      }
-                    : const ServingEndedWidget(), //ENDED
-                AsyncError(:final error) => Text(error.toString()),
-                _ => const Center(child: CircularProgressIndicator())
-              },
-            ),
+          child: Align(
+            alignment: Alignment.topCenter,
+            child: switch (ref.watch(servingtimeControllerProvider)) {
+              AsyncData(:final value) => !value
+                  ? switch (ref.watch(dishOfTheDayControllerProvider)) {
+                      AsyncData(:final value) => value.isNotEmpty
+                          ? Padding(
+                              padding: EdgeInsets.only(
+                                bottom: MediaQuery.paddingOf(context).bottom,
+                              ),
+                              child: FlutterCarousel(
+                                  options: FlutterCarouselOptions(
+                                    viewportFraction: 1,
+                                    height: MediaQuery.of(context).size.height -
+                                        (MediaQuery.paddingOf(context).top +
+                                            MediaQuery.paddingOf(context)
+                                                .bottom +
+                                            kToolbarHeight),
+                                    showIndicator: true,
+                                  ),
+                                  items: value.map((i) {
+                                    return DishDisplayWidget(dish: i);
+                                  }).toList()),
+                            )
+                          : const NoDishWidget(), //NO DISH
+                      AsyncError(:final error) => Text(error.toString()),
+                      _ => const Center(child: CircularProgressIndicator())
+                    }
+                  : const ServingEndedWidget(), //ENDED
+              AsyncError(:final error) => Text(error.toString()),
+              _ => const Center(child: CircularProgressIndicator())
+            },
           ),
         ),
       ),
