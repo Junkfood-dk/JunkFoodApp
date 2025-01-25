@@ -1,6 +1,6 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:userapp/ui/controllers/servingtime_controller.dart';
+import 'package:junkfood/ui/controllers/servingtime_controller.dart';
 
 ProviderContainer createContainer({
   ProviderContainer? parent,

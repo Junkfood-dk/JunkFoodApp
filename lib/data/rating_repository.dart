@@ -1,9 +1,9 @@
 import 'package:flutter/foundation.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
-import 'package:userapp/data/database.dart';
-import 'package:userapp/data/interface_rating_repository.dart';
-import 'package:userapp/domain/model/rating_model.dart';
+import 'package:junkfood/data/database.dart';
+import 'package:junkfood/data/interface_rating_repository.dart';
+import 'package:junkfood/domain/model/rating_model.dart';
 
 part 'rating_repository.g.dart';
 

@@ -1,4 +1,4 @@
-# userapp
+# Junkfood
 
 # Don't forget to run the following when developing to rebuild riverpod providers
 dart run build_runner watch -d
@@ -21,7 +21,7 @@ samples, guidance on mobile development, and a full API reference.
 
 # Commit template
 
-git commit -m"<commitmessage>
+git commit -m"
 
 <description>
 

@@ -2,8 +2,8 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
-import 'package:userapp/data/local_rating_storage_repository.dart';
-import 'package:userapp/data/rating_repository.dart';
+import 'package:junkfood/data/local_rating_storage_repository.dart';
+import 'package:junkfood/data/rating_repository.dart';
 
 part 'dish_rating_controller.g.dart';
 

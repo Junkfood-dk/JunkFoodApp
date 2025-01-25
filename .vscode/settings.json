@@ -1,17 +1,17 @@
 {
   "[typescript]": {
-    "editor.defaultFormatter": "denoland.vscode-deno"
+    "editor.defaultFormatter": "Dart-Code.flutter"
   },
   "cmake.configureOnOpen": true,
-    "cSpell.words": [
-      "Componenet",
-      "prefs",
-      "supabase",
-      "userapp"
-    ],
+  "cSpell.words": [
+    "Componenet",
+    "prefs",
+    "supabase",
+    "Junkfood"
+  ],
   "deno.enablePaths": [
     "supabase/functions"
   ],
   "deno.lint": true,
-  "deno.unstable": true
+  "deno.unstable": true,
 }

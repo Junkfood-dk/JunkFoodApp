@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:userapp/domain/model/dish_model.dart';
-import 'package:userapp/ui/controllers/dish_rating_controller.dart';
-import 'package:userapp/ui/pages/acknowledge_rating_page.dart';
-import 'package:userapp/utilities/widgets/gradiant_button_widget.dart';
-import 'package:userapp/utilities/widgets/gradiant_wrapper.dart';
-import 'package:userapp/utilities/widgets/text_wrapper.dart';
+import 'package:junkfood/domain/model/dish_model.dart';
+import 'package:junkfood/ui/controllers/dish_rating_controller.dart';
+import 'package:junkfood/ui/pages/acknowledge_rating_page.dart';
+import 'package:junkfood/utilities/widgets/gradiant_button_widget.dart';
+import 'package:junkfood/utilities/widgets/gradiant_wrapper.dart';
+import 'package:junkfood/utilities/widgets/text_wrapper.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class RatingWidget extends HookConsumerWidget {
@@ -67,32 +67,40 @@ class RatingWidget extends HookConsumerWidget {
       ]),
       SizedBox(height: MediaQuery.of(context).size.height * 0.1),
       SizedBox(
-          width: MediaQuery.of(context).size.width * 0.9,
-          height: MediaQuery.of(context).size.height * 0.08,
-          child: GradiantButton(
-              onPressed: rating.value == -1 ? null : () async {
-                var isRatingForDishDifferent = await ratingController
-                    .isRatingForDishDifferent(dish.id, rating.value);
-                if (isRatingForDishDifferent) {
-                  var wishToChange = await updateRating(context);
-                  if (wishToChange!) {
-                    ratingController.setUserRating(dish.id, rating.value);
-                    Navigator.of(context)
+          width: MediaQuery.of(context).size.width * 0.8,
+          height: 48.0,
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16.0),
+            child: GradiantButton(
+                onPressed: rating.value == -1
+                    ? null
+                    : () async {
+                        var isRatingForDishDifferent = await ratingController
+                            .isRatingForDishDifferent(dish.id, rating.value);
+                        if (isRatingForDishDifferent) {
+                          var wishToChange = await updateRating(context);
+                          if (wishToChange!) {
+                            ratingController.setUserRating(
+                                dish.id, rating.value);
+                            Navigator.of(context)
+                                .pushReplacement(MaterialPageRoute(
+                              builder: (context) =>
+                                  const AcknowledgeRatingPage(),
+                            ));
+                          }
+                        } else {
+                          ratingController.setUserRating(dish.id, rating.value);
+                          Navigator.of(context)
                               .pushReplacement(MaterialPageRoute(
                             builder: (context) => const AcknowledgeRatingPage(),
                           ));
-                  }
-                } else {
-                  ratingController.setUserRating(dish.id, rating.value);
-                  Navigator.of(context).pushReplacement(MaterialPageRoute(
-                          builder: (context) => const AcknowledgeRatingPage(),
-                        ));
-                  // Navigator.pop(context);
-                }
-              },
-              child: ButtonText(
-                text: AppLocalizations.of(context)!.ratingContinue,
-              )))
+                          // Navigator.pop(context);
+                        }
+                      },
+                child: ButtonText(
+                  text: AppLocalizations.of(context)!.ratingContinue,
+                )),
+          ))
     ]);
   }
 
@@ -113,7 +121,7 @@ class RatingWidget extends HookConsumerWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Container(
+                  SizedBox(
                     width: MediaQuery.of(context).size.width * 0.2,
                     child: OutlinedButton(
                         onPressed: () {
@@ -125,7 +133,7 @@ class RatingWidget extends HookConsumerWidget {
                         )),
                   ),
                   const SizedBox(width: 15),
-                  Container(
+                  SizedBox(
                     width: MediaQuery.of(context).size.width * 0.2,
                     child: GradiantButton(
                         onPressed: () {
