@@ -1,10 +1,11 @@
 # Junkfood
 
-A new Flutter project.
+# Don't forget to run the following when developing to rebuild riverpod providers
+dart run build_runner watch -d
 
 ## Getting Started
 
-JunkFood is awersome.
+JunkFood is awesome.
 
 This project is a starting point for a Flutter application.
 
