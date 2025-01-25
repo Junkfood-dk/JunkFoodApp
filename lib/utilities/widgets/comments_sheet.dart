@@ -20,43 +20,56 @@ class CommentPage extends ConsumerWidget {
       ref.read(commentTextProvider.notifier).state = _commentController.text;
     });
 
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(AppLocalizations.of(context)!.commentHeading),
-        automaticallyImplyLeading: false,
-      ),
-      body: Container(
-        padding: const EdgeInsets.all(16),
+    return AnimatedPadding(
+      duration: const Duration(milliseconds: 300),
+      curve: Curves.easeOut,
+      padding:
+          EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
+      child: Container(
+        // Set the height constraint of the modal to 80% of screen height
         constraints: BoxConstraints(
           maxHeight: MediaQuery.of(context).size.height * 0.8,
         ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            Text(AppLocalizations.of(context)!.commentPageParagraph),
-            const SizedBox(height: 15),
-            TextField(
-              controller: _commentController,
-              decoration: InputDecoration(
-                hintText: AppLocalizations.of(context)!.writeCommentText,
-                border:
-                    OutlineInputBorder(borderRadius: BorderRadius.circular(16)),
-              ),
-              keyboardType: TextInputType.text,
-              maxLength: 500,
-              maxLines: null,
-              minLines: 1,
+        child: Column(mainAxisSize: MainAxisSize.min, children: [
+          AppBar(
+            title: Text(AppLocalizations.of(context)!.commentHeading),
+            automaticallyImplyLeading: false,
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                Text(
+                  AppLocalizations.of(context)!.commentPageParagraph,
+                  textAlign: TextAlign.start,
+                ),
+                const SizedBox(height: 15),
+                TextField(
+                  controller: _commentController,
+                  decoration: InputDecoration(
+                    hintText: AppLocalizations.of(context)!.writeCommentText,
+                    border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(16)),
+                  ),
+                  keyboardType: TextInputType.text,
+                  maxLength: 500,
+                  maxLines: null,
+                  minLines: 1,
+                  autofocus: true,
+                ),
+                const SizedBox(height: 20),
+                // Gradient button with opacity adjustment
+              ],
             ),
-            const SizedBox(height: 20),
-            // Gradient button with opacity adjustment
-            Opacity(
+          ),
+          Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Opacity(
               opacity: isSubmitEnabled ? 1.0 : 0.5,
-              child: Container(
+              child: SizedBox(
                 width: double.infinity,
                 height: 48.0,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(16),
-                ),
                 child: ElevatedButton(
                   onPressed: isSubmitEnabled
                       ? () async {
@@ -105,8 +118,8 @@ class CommentPage extends ConsumerWidget {
                 ),
               ),
             ),
-          ],
-        ),
+          ),
+        ]),
       ),
     );
   }
