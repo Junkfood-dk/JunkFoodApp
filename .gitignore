@@ -42,10 +42,7 @@ app.*.map.json
 /android/app/profile
 /android/app/release
 
-.vscode/launch.json
-pubspec.lock
-ios/Podfile.lock
-
+.vscode/
 
 # FVM Version Cache
 .fvm/

@@ -1,6 +1,7 @@
 # Junkfood
 
-A new Flutter project.
+# Don't forget to run the following when developing to rebuild riverpod providers
+dart run build_runner watch -d
 
 ## Getting Started
 

@@ -1,4 +1,7 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
+import 'package:flutter/foundation.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -8,9 +11,18 @@ import 'package:junkfood/ui/pages/dish_of_the_day_page.dart';
 import 'package:junkfood/utilities/Constants.dart';
 import 'package:junkfood/utilities/theming/text_theming.dart';
 import 'package:junkfood/utilities/theming/color_theme.dart';
+import 'utilities/http/http_certificate_override_debug.dart'
+    if (dart.library.html) 'utilities/http/http_certificate_override_stub.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized(); //Create Database reference
+
+  if (kDebugMode) {
+    // This will ignore all invalid or self signed certificates.
+    // It should NOT go into production!
+    HttpOverrides.global = HttpCertificateOverrides();
+  }
+
   await Supabase.initialize(
     url: Constants.supabaseUrl,
     anonKey: Constants.supabaseAnonKey,
