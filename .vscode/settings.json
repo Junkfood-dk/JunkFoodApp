@@ -14,5 +14,4 @@
   ],
   "deno.lint": true,
   "deno.unstable": true,
-  "dart.flutterSdkPath": "/Users/e138206/flutter-sdks/flutter"
 }

@@ -7,7 +7,7 @@ part of 'dish_rating_controller.dart';
 // **************************************************************************
 
 String _$dishRatingControllerHash() =>
-    r'581a4caf9b83c4029386385d9adb74310fdb7fc1';
+    r'9adb60ed019478321aaff03485fdc6bf5afdecb6';
 
 /// See also [DishRatingController].
 @ProviderFor(DishRatingController)
@@ -24,4 +24,4 @@ final dishRatingControllerProvider =
 
 typedef _$DishRatingController = AutoDisposeNotifier<List<String>?>;
 // ignore_for_file: type=lint
-// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member
+// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package

@@ -21,40 +21,35 @@ class DishOfTheDayPage extends ConsumerWidget {
     final formattedEnglish = DateFormat("EEEE \nd. MMMM").format(time);
 
     return Scaffold(
-      appBar: PreferredSize(
-        preferredSize: const Size.fromHeight(kToolbarHeight + 10),
-        child: AppBar(
-          leading: const LanguageDropdownWidget(),
-          title: Padding(
-            padding: const EdgeInsets.symmetric(vertical: 5.0),
-            child: Text(
-              AppLocalizations.of(context)!.localeHelper == "da"
-                  ? formattedDanish.substring(0, 1).toUpperCase() +
-                      formattedDanish.substring(1)
-                  : formattedEnglish,
-              textAlign: TextAlign.center,
-              //style: Theme.of(context).textTheme.bodyMedium,
-            ),
-          ),
-          centerTitle: true,
-          actions: [
-            IconButton(
-              icon: Icon(
-                Icons.chat_bubble_outline,
-                color: Theme.of(context).colorScheme.primary,
+      appBar: AppBar(
+        title: Text(AppLocalizations.of(context)!.localeHelper == "da"
+            ? formattedDanish.substring(0, 1).toUpperCase() +
+                formattedDanish.substring(1)
+            : formattedEnglish),
+        actions: [
+          IconButton(
+            icon: Container(
+              decoration: BoxDecoration(
+                color: Theme.of(context).colorScheme.outline,
+                shape: BoxShape.circle,
               ),
-              onPressed: () {
-                showModalBottomSheet<void>(
-                    context: context,
-                    builder: (BuildContext context) {
-                      return CommentPage();
-                    });
-              },
-              padding: const EdgeInsets.only(right: 16.0),
+              padding: const EdgeInsets.all(8),
+              child: Icon(
+                Icons.chat_bubble_outline,
+                color: Theme.of(context).colorScheme.surface,
+              ),
             ),
-          ],
-          automaticallyImplyLeading: false,
-        ),
+            onPressed: () {
+              showModalBottomSheet<void>(
+                  context: context,
+                  builder: (BuildContext context) {
+                    return CommentPage();
+                  });
+            },
+          ),
+          const LanguageDropdownWidget(),
+        ],
+        automaticallyImplyLeading: false,
       ),
       body: RefreshIndicator(
         onRefresh: () async {
@@ -62,39 +57,41 @@ class DishOfTheDayPage extends ConsumerWidget {
               .read(dishOfTheDayControllerProvider.notifier)
               .refetchDishOfTheDay();
         },
-        child: SingleChildScrollView(
-          child: Align(
-            alignment: Alignment.topCenter,
-            child: switch (ref.watch(servingtimeControllerProvider)) {
-              AsyncData(:final value) => !value
-                  ? switch (ref.watch(dishOfTheDayControllerProvider)) {
-                      AsyncData(:final value) => value.isNotEmpty
-                          ? Padding(
-                              padding: EdgeInsets.only(
-                                bottom: MediaQuery.paddingOf(context).bottom,
-                              ),
-                              child: FlutterCarousel(
-                                  options: FlutterCarouselOptions(
-                                    viewportFraction: 1,
-                                    height: MediaQuery.of(context).size.height -
-                                        (MediaQuery.paddingOf(context).top +
-                                            MediaQuery.paddingOf(context)
-                                                .bottom +
-                                            kToolbarHeight),
-                                    showIndicator: true,
-                                  ),
-                                  items: value.map((i) {
-                                    return DishDisplayWidget(dish: i);
-                                  }).toList()),
-                            )
-                          : const NoDishWidget(), //NO DISH
-                      AsyncError(:final error) => Text(error.toString()),
-                      _ => const Center(child: CircularProgressIndicator())
-                    }
-                  : const ServingEndedWidget(), //ENDED
-              AsyncError(:final error) => Text(error.toString()),
-              _ => const Center(child: CircularProgressIndicator())
-            },
+        child: Center(
+          child: ConstrainedBox(
+            constraints: const BoxConstraints(maxWidth: 650),
+            child: SingleChildScrollView(
+              physics: const AlwaysScrollableScrollPhysics(),
+              child: Column(
+                children: [
+                  switch (ref.watch(servingtimeControllerProvider)) {
+                    AsyncData(:final value) => !value
+                        ? switch (ref.watch(dishOfTheDayControllerProvider)) {
+                            AsyncData(:final value) => value
+                                    .isNotEmpty //Dish has content
+                                ? FlutterCarousel(
+                                    options: FlutterCarouselOptions(
+                                      viewportFraction: 1,
+                                      height:
+                                          MediaQuery.of(context).size.height *
+                                              0.8,
+                                      showIndicator: true,
+                                      slideIndicator: CircularSlideIndicator(),
+                                    ),
+                                    items: value.map((i) {
+                                      return DishDisplayWidget(dish: i);
+                                    }).toList())
+                                : const NoDishWidget(), //NO DISH
+                            AsyncError(:final error) => Text(error.toString()),
+                            _ => const CircularProgressIndicator()
+                          }
+                        : const ServingEndedWidget(), //ENDED
+                    AsyncError(:final error) => Text(error.toString()),
+                    _ => const CircularProgressIndicator()
+                  },
+                ],
+              ),
+            ),
           ),
         ),
       ),
