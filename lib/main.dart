@@ -15,7 +15,7 @@ import 'utilities/http/http_certificate_override_debug.dart'
     if (dart.library.html) 'utilities/http/http_certificate_override_stub.dart';
 
 Future<void> main() async {
-  WidgetsFlutterBinding.ensureInitialized(); //Create Database reference
+  WidgetsFlutterBinding.ensureInitialized();
 
   if (kDebugMode) {
     // This will ignore all invalid or self signed certificates.
@@ -27,6 +27,7 @@ Future<void> main() async {
     url: Constants.supabaseUrl,
     anonKey: Constants.supabaseAnonKey,
   );
+
   runApp(const ProviderScope(child: MyApp()));
 }
 

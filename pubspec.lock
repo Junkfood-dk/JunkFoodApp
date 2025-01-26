@@ -466,14 +466,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.11.0"
-  gradient_elevated_button:
-    dependency: "direct main"
-    description:
-      name: gradient_elevated_button
-      sha256: d3b656b25541e9ce458c38d7c4bd51e81b7fc0f11623ec7e1b4f6d048d75cc33
-      url: "https://pub.dev"
-    source: hosted
-    version: "1.0.0"
   graphs:
     dependency: transitive
     description:
