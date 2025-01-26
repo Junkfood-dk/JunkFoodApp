@@ -1,15 +1,23 @@
-import 'package:flutter_carousel_widget/flutter_carousel_widget.dart';
+import 'dart:io';
+import 'package:flutter/foundation.dart';
+
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:intl/intl.dart';
+import 'package:junkfood/ui/controllers/dish_controller.dart';
 import 'package:junkfood/ui/controllers/dish_of_the_day_controller.dart';
 import 'package:junkfood/ui/controllers/servingtime_controller.dart';
 import 'package:junkfood/ui/widgets/dish_display_widget.dart';
 import 'package:junkfood/ui/widgets/language_dropdown_widget.dart';
 import 'package:junkfood/ui/widgets/no_dish_widget.dart';
+import 'package:junkfood/ui/widgets/rating_widget.dart';
 import 'package:junkfood/ui/widgets/serving_ended_widget.dart';
 import 'package:junkfood/utilities/widgets/comments_sheet.dart';
+import 'package:junkfood/utilities/widgets/gradiant_button_widget.dart';
+import 'package:junkfood/utilities/widgets/text_wrapper.dart';
+
+import '../../domain/model/dish_model.dart';
 
 class DishOfTheDayPage extends ConsumerWidget {
   const DishOfTheDayPage({super.key});
@@ -19,6 +27,8 @@ class DishOfTheDayPage extends ConsumerWidget {
     final time = DateTime.now();
     final formattedDanish = DateFormat('EEEE \nd. MMMM', 'da_DK').format(time);
     final formattedEnglish = DateFormat('EEEE \nd. MMMM').format(time);
+    final double height = MediaQuery.sizeOf(context).height;
+    final CarouselController controller = CarouselController();
 
     return Scaffold(
       appBar: AppBar(
@@ -61,43 +71,62 @@ class DishOfTheDayPage extends ConsumerWidget {
               .read(dishOfTheDayControllerProvider.notifier)
               .refetchDishOfTheDay();
         },
-        child: Center(
-          child: ConstrainedBox(
-            constraints: const BoxConstraints(maxWidth: 650),
-            child: SingleChildScrollView(
-              physics: const AlwaysScrollableScrollPhysics(),
-              child: Column(
-                children: [
-                  switch (ref.watch(servingtimeControllerProvider)) {
-                    AsyncData(:final value) => !value
-                        ? switch (ref.watch(dishOfTheDayControllerProvider)) {
-                            AsyncData(:final value) => value
-                                    .isNotEmpty //Dish has content
-                                ? FlutterCarousel(
-                                    options: FlutterCarouselOptions(
-                                      viewportFraction: 1,
-                                      height:
-                                          MediaQuery.of(context).size.height *
-                                              0.8,
-                                      showIndicator: true,
-                                      slideIndicator: CircularSlideIndicator(),
-                                    ),
-                                    items: value.map((i) {
-                                      return DishDisplayWidget(dish: i);
+        child: Padding(
+          padding: const EdgeInsets.symmetric(vertical: 16.0),
+          child: switch (ref.watch(servingtimeControllerProvider)) {
+            AsyncData(:final value) => !value
+                ? switch (ref.watch(dishOfTheDayControllerProvider)) {
+                    AsyncData(:final value) =>
+                      value.isNotEmpty //Dish has content
+                          ? Column(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: [
+                                Expanded(
+                                  child: CarouselView(
+                                    controller: controller,
+                                    itemExtent: 800.0,
+                                    itemSnapping: true,
+                                    children: value.map((DishModel dish) {
+                                      return DishDisplayWidget(dish: dish);
                                     }).toList(),
-                                  )
-                                : const NoDishWidget(), //NO DISH
-                            AsyncError(:final error) => Text(error.toString()),
-                            _ => const CircularProgressIndicator()
-                          }
-                        : const ServingEndedWidget(), //ENDED
+                                  ),
+                                ),
+                                Center(
+                                  child: SizedBox(
+                                    width:
+                                        MediaQuery.of(context).size.width * 0.9,
+                                    height: 48.0,
+                                    child: GradiantButton(
+                                      child: ButtonText(
+                                        text: AppLocalizations.of(context)!
+                                            .rateButtonText,
+                                      ),
+                                      onPressed: () {
+                                        showModalBottomSheet<void>(
+                                          context: context,
+                                          builder: (BuildContext context) {
+                                            final dish = ref.watch(
+                                              dishControllerProvider,
+                                            );
+                                            return dish != null
+                                                ? RatingWidget(dish: dish)
+                                                : const SizedBox.shrink();
+                                          },
+                                        );
+                                      },
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            )
+                          : const NoDishWidget(), //NO DISH
                     AsyncError(:final error) => Text(error.toString()),
                     _ => const CircularProgressIndicator()
-                  },
-                ],
-              ),
-            ),
-          ),
+                  }
+                : const ServingEndedWidget(), //ENDED
+            AsyncError(:final error) => Text(error.toString()),
+            _ => const CircularProgressIndicator()
+          },
         ),
       ),
     );
