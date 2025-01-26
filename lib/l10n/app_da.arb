@@ -24,7 +24,7 @@
   "@dishOfTheDay": {
     "description": "Title of the dish of the day page"
   },
-  "allergens": "Allergener",
+  "allergens": "Vær opmærksom, hvis du ikke tåler:",
   "@allergens": {
     "description": "Display of allergens title"
   },
@@ -35,30 +35,6 @@
   "noDishText": "Dagens ret er ikke offentliggjort endnu. Tjek siden senere.",
   "@noDishText": {
     "description": "Text to show when no dish for todays date has been posted"
-  },
-  "calories": "Kalorier",
-  "@calories": {
-    "description": "Calories info on dish page"
-  },
-  "mainCourse": "Hovedret",
-  "@mainCourse": {
-    "description": "Main course dish type."
-  },
-  "dessert": "Dessert",
-  "@dessert": {
-    "description": "Dessert dish type."
-  },
-  "dishOfTheDay": "Dagens ret",
-  "@dishOfTheDay": {
-    "description": "Title of the dish of the day page"
-  },
-  "allergens": "Allergener",
-  "@allergens": {
-    "description": "Display of allergens title"
-  },
-  "noAllergens": "Ingen allergener",
-  "@noAllergens": {
-    "description": "Display message for when no allergens"
   },
   "noDescription": "Ingen beskrivelse",
   "@noDescription": {
@@ -101,7 +77,7 @@
     "description" : "Title for the page that acknowlegde the user for spending their time on rating the dish"
   },
   "ratingAcknowledgeText" : "Du er altid velkommen til at sende os en besked.\nDin mening betyder meget for os",
-  "@ratingAcknowledgeTitle" : {
+  "@ratingAcknowledgeText" : {
     "description" : "Text for the page that acknowlegde the user for spending their time on rating the dish"
   },
   "ratingAcknowledgeButton" : "Tilbage til forsiden",
@@ -171,5 +147,6 @@
   "sendUsMsgBtn" : "Send os en besked", 
   "@sendUsMsgBtn" : {
     "description": "Encouraging user to send a message"
-  }
+  },
+  "dishContents": "Retten består af:"
 }

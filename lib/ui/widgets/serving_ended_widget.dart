@@ -1,4 +1,4 @@
-import 'package:flutter/widgets.dart';
+import 'package:flutter/material.dart';
 import 'package:junkfood/ui/widgets/logo_image.dart';
 import 'package:junkfood/utilities/widgets/text_wrapper.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -17,6 +17,7 @@ class ServingEndedWidget extends StatelessWidget {
             const SizedBox(height: 24.0),
             BodyText(
               text: AppLocalizations.of(context)!.servingHasEndedText,
+              style: Theme.of(context).textTheme.headlineMedium,
               textAlign: TextAlign.center,
             ),
           ],

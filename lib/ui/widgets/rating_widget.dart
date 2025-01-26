@@ -18,68 +18,79 @@ class RatingWidget extends HookConsumerWidget {
     var ratingController = ref.watch(dishRatingControllerProvider.notifier);
     var rating = useState(-1);
 
-    return Column(children: [
-      SizedBox(height: MediaQuery.of(context).size.height * 0.06),
-      BodyBoldText(text: AppLocalizations.of(context)!.ratingTitle),
-      BodyText(
-          text: AppLocalizations.of(context)!.ratingFeedback,
-          textAlign: TextAlign.center),
-      SizedBox(height: MediaQuery.of(context).size.height * 0.05),
-      Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-        // SAD BUTTON
-        Opacity(
-          opacity: (rating.value == -1 || rating.value == 0 ? 1 : 0.3),
-          child: PrimaryGradiantWidget(
-            child: IconButton(
-              icon: Icon(Icons.sentiment_dissatisfied_rounded,
-                  size: MediaQuery.of(context).size.height * 0.1),
-              onPressed: () {
-                rating.value = 0;
-              },
+    return Padding(
+      padding: const EdgeInsets.all(16.0),
+      child: Column(children: [
+        SizedBox(height: MediaQuery.of(context).size.height * 0.06),
+        BodyBoldText(text: AppLocalizations.of(context)!.ratingTitle),
+        BodyText(
+            text: AppLocalizations.of(context)!.ratingFeedback,
+            textAlign: TextAlign.center),
+        SizedBox(height: MediaQuery.of(context).size.height * 0.05),
+        Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+          // SAD BUTTON
+          Opacity(
+            opacity: (rating.value == -1 || rating.value == 0 ? 1 : 0.3),
+            child: PrimaryGradiantWidget(
+              child: IconButton(
+                icon: Icon(Icons.sentiment_dissatisfied_rounded,
+                    size: MediaQuery.of(context).size.height * 0.1),
+                onPressed: () {
+                  rating.value = 0;
+                },
+              ),
             ),
           ),
-        ),
-        Opacity(
-          // NEUTRAL BUTTON
-          opacity: (rating.value == -1 || rating.value == 1 ? 1 : 0.3),
-          child: PrimaryGradiantWidget(
-            child: IconButton(
-              icon: Icon(Icons.sentiment_neutral_rounded,
-                  size: MediaQuery.of(context).size.height * 0.1),
-              onPressed: () {
-                rating.value = 1;
-              },
+          Opacity(
+            // NEUTRAL BUTTON
+            opacity: (rating.value == -1 || rating.value == 1 ? 1 : 0.3),
+            child: PrimaryGradiantWidget(
+              child: IconButton(
+                icon: Icon(Icons.sentiment_neutral_rounded,
+                    size: MediaQuery.of(context).size.height * 0.1),
+                onPressed: () {
+                  rating.value = 1;
+                },
+              ),
             ),
-          ),
-        ), // HAPPY BUTTON
-        Opacity(
-          opacity: (rating.value == -1 || rating.value == 2 ? 1 : 0.3),
-          child: PrimaryGradiantWidget(
-            child: IconButton(
-              icon: Icon(Icons.sentiment_satisfied_alt_rounded,
-                  size: MediaQuery.of(context).size.height * 0.1),
-              onPressed: () {
-                rating.value = 2;
-              },
+          ), // HAPPY BUTTON
+          Opacity(
+            opacity: (rating.value == -1 || rating.value == 2 ? 1 : 0.3),
+            child: PrimaryGradiantWidget(
+              child: IconButton(
+                icon: Icon(Icons.sentiment_satisfied_alt_rounded,
+                    size: MediaQuery.of(context).size.height * 0.1),
+                onPressed: () {
+                  rating.value = 2;
+                },
+              ),
             ),
-          ),
-        )
-      ]),
-      SizedBox(height: MediaQuery.of(context).size.height * 0.1),
-      SizedBox(
-          width: MediaQuery.of(context).size.width * 0.8,
-          height: 48.0,
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16.0),
-            child: GradiantButton(
-                onPressed: rating.value == -1
-                    ? null
-                    : () async {
-                        var isRatingForDishDifferent = await ratingController
-                            .isRatingForDishDifferent(dish.id, rating.value);
-                        if (isRatingForDishDifferent) {
-                          var wishToChange = await updateRating(context);
-                          if (wishToChange!) {
+          )
+        ]),
+        SizedBox(height: MediaQuery.of(context).size.height * 0.1),
+        SizedBox(
+            width: MediaQuery.of(context).size.width * 0.8,
+            height: 48.0,
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16.0),
+              child: GradiantButton(
+                  onPressed: rating.value == -1
+                      ? null
+                      : () async {
+                          var isRatingForDishDifferent = await ratingController
+                              .isRatingForDishDifferent(dish.id, rating.value);
+                          if (isRatingForDishDifferent) {
+                            var wishToChange = await updateRating(context);
+                            if (wishToChange!) {
+                              ratingController.setUserRating(
+                                  dish.id, rating.value);
+                              Navigator.of(context)
+                                  .pushReplacement(MaterialPageRoute(
+                                builder: (context) =>
+                                    const AcknowledgeRatingPage(),
+                              ));
+                            }
+                          } else {
                             ratingController.setUserRating(
                                 dish.id, rating.value);
                             Navigator.of(context)
@@ -87,21 +98,15 @@ class RatingWidget extends HookConsumerWidget {
                               builder: (context) =>
                                   const AcknowledgeRatingPage(),
                             ));
+                            // Navigator.pop(context);
                           }
-                        } else {
-                          ratingController.setUserRating(dish.id, rating.value);
-                          Navigator.of(context)
-                              .pushReplacement(MaterialPageRoute(
-                            builder: (context) => const AcknowledgeRatingPage(),
-                          ));
-                          // Navigator.pop(context);
-                        }
-                      },
-                child: ButtonText(
-                  text: AppLocalizations.of(context)!.ratingContinue,
-                )),
-          ))
-    ]);
+                        },
+                  child: ButtonText(
+                    text: AppLocalizations.of(context)!.ratingContinue,
+                  )),
+            ))
+      ]),
+    );
   }
 
   Future<bool?> updateRating(BuildContext context) {
