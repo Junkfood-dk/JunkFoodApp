@@ -48,6 +48,9 @@ class DishOfTheDayPageState extends State<DishOfTheDayPage>
         if (!dishOfTheDayState.hasValue) {
           return const Center(child: CircularProgressIndicator());
         }
+        if (dishOfTheDayState.hasValue && dishOfTheDayState.value!.isEmpty) {
+          return const Center(child: NoDishWidget());
+        }
 
         tabController?.dispose();
 
@@ -90,98 +93,85 @@ class DishOfTheDayPageState extends State<DishOfTheDayPage>
               const LanguageDropdownWidget(),
             ],
             automaticallyImplyLeading: false,
-            bottom: PreferredSize(
-              preferredSize: const Size.fromHeight(50.0),
-              child: Center(
-                child: TabBar(
-                  controller: tabController,
-                  dividerColor: Colors.transparent,
-                  dividerHeight: 0.0,
-                  indicator: const BoxDecoration(
-                    shape: BoxShape.circle,
-                    color: Color(0xFFE52E42),
-                  ),
-                  tabs: dishOfTheDayState.value!.map((DishModel dish) {
-                    return Tab(
-                      child: SizedBox(
-                        width: 8.0,
-                        child: Container(
-                          decoration: BoxDecoration(
-                            shape: BoxShape.circle,
-                            border: Border.all(
-                              color: Colors.grey.shade700,
-                            ),
-                          ),
+            bottom: dishOfTheDayState.value!.length > 1
+                ? PreferredSize(
+                    preferredSize: const Size.fromHeight(50.0),
+                    child: Center(
+                      child: TabBar(
+                        controller: tabController,
+                        dividerColor: Colors.transparent,
+                        dividerHeight: 0.0,
+                        indicator: const BoxDecoration(
+                          shape: BoxShape.circle,
+                          color: Color(0xFFE52E42),
                         ),
+                        tabs: dishOfTheDayState.value!.map((DishModel dish) {
+                          return Tab(
+                            child: SizedBox(
+                              width: 8.0,
+                              child: Container(
+                                decoration: BoxDecoration(
+                                  shape: BoxShape.circle,
+                                  border: Border.all(
+                                    color: Colors.grey.shade700,
+                                  ),
+                                ),
+                              ),
+                            ),
+                          );
+                        }).toList(),
                       ),
-                    );
-                  }).toList(),
-                ),
-              ),
-            ),
+                    ),
+                  )
+                : null,
           ),
           body: Padding(
-            padding: const EdgeInsets.only(bottom: 16.0),
-            child: Consumer(
-              builder: (BuildContext context, WidgetRef ref, Widget? child) {
-                return switch (ref.watch(servingtimeControllerProvider)) {
-                  AsyncData(:final value) => !value
-                      ? switch (ref.watch(dishOfTheDayControllerProvider)) {
-                          AsyncData(:final value) =>
-                            value.isNotEmpty //Dish has content
-                                ? Column(
-                                    mainAxisAlignment: MainAxisAlignment.start,
-                                    children: [
-                                      Expanded(
-                                        child: TabBarView(
-                                          controller: tabController,
-                                          children: value.map((DishModel dish) {
-                                            return DishDisplayWidget(
-                                              dish: dish,
-                                            );
-                                          }).toList(),
-                                        ),
-                                      ),
-                                      Padding(
-                                        padding: const EdgeInsets.only(
-                                          bottom: 8.0,
-                                        ),
-                                        child: GradiantButton(
-                                          child: ButtonText(
-                                            text: AppLocalizations.of(context)!
-                                                .rateButtonText,
-                                          ),
-                                          onPressed: () {
-                                            showModalBottomSheet<void>(
-                                              context: context,
-                                              isScrollControlled: true,
-                                              builder: (BuildContext context) {
-                                                final dish = ref.watch(
-                                                  dishControllerProvider,
-                                                );
-                                                return SingleChildScrollView(
-                                                  child: dish != null
-                                                      ? RatingWidget(
-                                                          dish: dish,
-                                                        )
-                                                      : const SizedBox.shrink(),
-                                                );
-                                              },
-                                            );
-                                          },
-                                        ),
-                                      ),
-                                    ],
+            padding: EdgeInsets.only(
+              top: dishOfTheDayState.value!.length == 1 ? 16.0 : 0.0,
+              bottom: 16.0,
+            ),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                Expanded(
+                  child: TabBarView(
+                    controller: tabController,
+                    children: dishOfTheDayState.value!.map((DishModel dish) {
+                      return DishDisplayWidget(
+                        dish: dish,
+                      );
+                    }).toList(),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(
+                    bottom: 8.0,
+                  ),
+                  child: GradiantButton(
+                    child: ButtonText(
+                      text: AppLocalizations.of(context)!.rateButtonText,
+                    ),
+                    onPressed: () {
+                      showModalBottomSheet<void>(
+                        context: context,
+                        isScrollControlled: true,
+                        builder: (BuildContext context) {
+                          final dish = ref.watch(
+                            dishControllerProvider,
+                          );
+                          return SingleChildScrollView(
+                            child: dish != null
+                                ? RatingWidget(
+                                    dish: dish,
                                   )
-                                : const Center(child: NoDishWidget()), //NO DISH
-                          AsyncError(:final error) => Text(error.toString()),
-                          _ => const Center(child: CircularProgressIndicator())
-                        }
-                      : const Center(child: ServingEndedWidget()), //ENDED
-                  AsyncError(:final error) => Text(error.toString()),
-                  _ => const Center(child: CircularProgressIndicator())
-                };
-              },
+                                : const SizedBox.shrink(),
+                          );
+                        },
+                      );
+                    },
+                  ),
+                ),
+              ],
             ),
           ),
         );
