@@ -8,19 +8,21 @@ class ServingEndedWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: SingleChildScrollView(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: [
-            const LogoImage(),
-            const SizedBox(height: 24.0),
-            BodyText(
-              text: AppLocalizations.of(context)!.servingHasEndedText,
-              style: Theme.of(context).textTheme.headlineMedium,
-              textAlign: TextAlign.center,
-            ),
-          ],
+    return Scaffold(
+      body: Center(
+        child: SingleChildScrollView(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+              const LogoImage(),
+              const SizedBox(height: 24.0),
+              BodyText(
+                text: AppLocalizations.of(context)!.servingHasEndedText,
+                style: Theme.of(context).textTheme.headlineMedium,
+                textAlign: TextAlign.center,
+              ),
+            ],
+          ),
         ),
       ),
     );

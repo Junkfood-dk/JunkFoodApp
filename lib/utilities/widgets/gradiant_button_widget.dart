@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
 class GradiantButton extends StatelessWidget {
   final Widget child;
   final VoidCallback? onPressed;
+  final double? width;
 
   const GradiantButton({
     super.key,
     required this.child,
     required this.onPressed,
+    this.width,
   });
 
   @override
@@ -16,6 +17,10 @@ class GradiantButton extends StatelessWidget {
     return Opacity(
       opacity: onPressed == null ? 0.3 : 1,
       child: Container(
+        width: width ?? MediaQuery.of(context).size.width * 0.9,
+        constraints: const BoxConstraints(
+          minHeight: 48.0,
+        ),
         decoration: BoxDecoration(
           gradient: const LinearGradient(
             colors: [

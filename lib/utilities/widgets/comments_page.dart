@@ -56,31 +56,26 @@ class CommentsPage extends ConsumerWidget {
               ),
               Opacity(
                 opacity: isSubmitEnabled ? 1.0 : 0.5,
-                child: SizedBox(
-                  width: double.infinity,
-                  height: 48.0,
-                  child: GradiantButton(
-                    onPressed: isSubmitEnabled
-                        ? () async {
-                            final commentText = _commentController.text.trim();
-                            final navigator = Navigator.of(context);
-                            await ref
-                                .read(commentRepositoryProvider)
-                                .postComment(commentText);
-                            _commentController.clear();
-                            ref.read(commentTextProvider.notifier).state = '';
-                            navigator.push(
-                              MaterialPageRoute(
-                                builder: (context) =>
-                                    const AcknowledgeCommentPage(),
-                              ),
-                            );
-                          }
-                        : null,
-                    child: ButtonText(
-                      text:
-                          AppLocalizations.of(context)!.commentPageSubmitButton,
-                    ),
+                child: GradiantButton(
+                  onPressed: isSubmitEnabled
+                      ? () async {
+                          final commentText = _commentController.text.trim();
+                          final navigator = Navigator.of(context);
+                          await ref
+                              .read(commentRepositoryProvider)
+                              .postComment(commentText);
+                          _commentController.clear();
+                          ref.read(commentTextProvider.notifier).state = '';
+                          navigator.push(
+                            MaterialPageRoute(
+                              builder: (context) =>
+                                  const AcknowledgeCommentPage(),
+                            ),
+                          );
+                        }
+                      : null,
+                  child: ButtonText(
+                    text: AppLocalizations.of(context)!.commentPageSubmitButton,
                   ),
                 ),
               ),

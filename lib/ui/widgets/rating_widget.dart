@@ -80,36 +80,32 @@ class RatingWidget extends HookConsumerWidget {
             ],
           ),
           SizedBoxExt.sizedBoxHeight24,
-          SizedBox(
-            width: MediaQuery.of(context).size.width * 0.8,
-            height: 48.0,
-            child: GradiantButton(
-              onPressed: rating.value == -1
-                  ? null
-                  : () async {
-                      final navigator = Navigator.of(context);
-                      final isRatingForDishDifferent = ratingController
-                          .isRatingForDishDifferent(dish.id, rating.value);
-                      bool? wishToChange = true;
-                      if (isRatingForDishDifferent) {
-                        wishToChange = await updateRating(context);
-                      }
-                      if (!isRatingForDishDifferent || (wishToChange ?? true)) {
-                        ratingController.setUserRating(
-                          dish.id,
-                          rating.value,
-                        );
+          GradiantButton(
+            onPressed: rating.value == -1
+                ? null
+                : () async {
+                    final navigator = Navigator.of(context);
+                    final isRatingForDishDifferent = ratingController
+                        .isRatingForDishDifferent(dish.id, rating.value);
+                    bool? wishToChange = true;
+                    if (isRatingForDishDifferent) {
+                      wishToChange = await updateRating(context);
+                    }
+                    if (!isRatingForDishDifferent || (wishToChange ?? true)) {
+                      ratingController.setUserRating(
+                        dish.id,
+                        rating.value,
+                      );
 
-                        navigator.pushReplacement(
-                          MaterialPageRoute(
-                            builder: (context) => const AcknowledgeRatingPage(),
-                          ),
-                        );
-                      }
-                    },
-              child: ButtonText(
-                text: AppLocalizations.of(context)!.ratingContinue,
-              ),
+                      navigator.pushReplacement(
+                        MaterialPageRoute(
+                          builder: (context) => const AcknowledgeRatingPage(),
+                        ),
+                      );
+                    }
+                  },
+            child: ButtonText(
+              text: AppLocalizations.of(context)!.ratingContinue,
             ),
           ),
           SizedBoxExt.sizedBoxHeight8,
@@ -151,18 +147,16 @@ class RatingWidget extends HookConsumerWidget {
                     ),
                   ),
                   const SizedBox(width: 15),
-                  SizedBox(
+                  GradiantButton(
                     width: MediaQuery.of(context).size.width * 0.2,
-                    child: GradiantButton(
-                      onPressed: () {
-                        Navigator.pop(
-                          context,
-                          false,
-                        ); // GO BACK AND DO NOT UPDATE
-                      },
-                      child: BodyText(
-                        text: AppLocalizations.of(context)!.no,
-                      ),
+                    onPressed: () {
+                      Navigator.pop(
+                        context,
+                        false,
+                      ); // GO BACK AND DO NOT UPDATE
+                    },
+                    child: BodyText(
+                      text: AppLocalizations.of(context)!.no,
                     ),
                   ),
                 ],
