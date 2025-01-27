@@ -1,10 +1,9 @@
-
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'servingtime_controller.g.dart';
 
 @riverpod
-class ServingtimeController extends _$ServingtimeController{
+class ServingtimeController extends _$ServingtimeController {
   @override
   FutureOr<bool> build() {
     return hasServiceEnded(DateTime.now());
@@ -19,5 +18,4 @@ class ServingtimeController extends _$ServingtimeController{
     final endTime = DateTime(time.year, time.month, time.day, 24, 00);
     return time.isAfter(startTime) && time.isBefore(endTime);
   }
-
 }

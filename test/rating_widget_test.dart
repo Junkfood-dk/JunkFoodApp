@@ -6,9 +6,7 @@ import 'package:mockito/annotations.dart';
 import 'package:junkfood/domain/model/dish_model.dart';
 import 'package:junkfood/ui/controllers/locale_controller.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:junkfood/ui/widgets/dish_display_widget.dart';
 import 'package:junkfood/ui/widgets/rating_widget.dart';
-import 'package:junkfood/utilities/widgets/gradiant_button_widget.dart';
 import 'package:junkfood/utilities/widgets/gradiant_wrapper.dart';
 
 @GenerateNiceMocks([MockSpec<DishModel>()])
@@ -24,27 +22,32 @@ void main() {
       dishTypeName: 'Test Dish Type',
       allergens: ['Test Allergen 1', 'Test Allergen 2'],
     );
-    await tester.pumpWidget(ProviderScope(
+    await tester.pumpWidget(
+      ProviderScope(
         child: Consumer(
-      builder: (context, ref, child) => MaterialApp(
-          locale: switch (ref.watch(localeControllerProvider)) {
-            AsyncData(:final value) => value,
-            _ => null
-          },
-          localizationsDelegates: const [
-            AppLocalizations.delegate,
-            GlobalMaterialLocalizations.delegate,
-            GlobalWidgetsLocalizations.delegate,
-            GlobalCupertinoLocalizations.delegate,
-          ],
-          supportedLocales: AppLocalizations.supportedLocales,
-          home: RatingWidget(dish: dish)),
-    )));
+          builder: (context, ref, child) => MaterialApp(
+            locale: switch (ref.watch(localeControllerProvider)) {
+              AsyncData(:final value) => value,
+              _ => null
+            },
+            localizationsDelegates: const [
+              AppLocalizations.delegate,
+              GlobalMaterialLocalizations.delegate,
+              GlobalWidgetsLocalizations.delegate,
+              GlobalCupertinoLocalizations.delegate,
+            ],
+            supportedLocales: AppLocalizations.supportedLocales,
+            home: RatingWidget(dish: dish),
+          ),
+        ),
+      ),
+    );
 
-    final RatingIconFinder = find.descendant(
-        of: find.byType(PrimaryGradiantWidget),
-        matching: find.byType(IconButton));
+    final ratingIconFinder = find.descendant(
+      of: find.byType(PrimaryGradiantWidget),
+      matching: find.byType(IconButton),
+    );
 
-    expect(RatingIconFinder, findsExactly(3));
+    expect(ratingIconFinder, findsExactly(3));
   });
 }
