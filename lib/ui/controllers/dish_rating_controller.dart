@@ -16,18 +16,20 @@ class DishRatingController extends _$DishRatingController {
     switch (localStorageRepo) {
       case (AsyncData(:final value)):
         dateRating = value.getRatingForDay(
-            DateFormat(DateFormat.YEAR_MONTH_DAY).format(DateTime.now()));
+          DateFormat(DateFormat.YEAR_MONTH_DAY).format(DateTime.now()),
+        );
     }
     return dateRating;
   }
 
-  Future<bool> isRatingForDishDifferent(int dishId, int rating) async {
+  bool isRatingForDishDifferent(int dishId, int rating) {
     var localStorageRepo = ref.watch(localRatingStorageRepositoryProvider);
     List<String>? dateRating;
     switch (localStorageRepo) {
       case (AsyncData(:final value)):
         dateRating = value.getRatingForDay(
-            DateFormat(DateFormat.YEAR_MONTH_DAY).format(DateTime.now()));
+          DateFormat(DateFormat.YEAR_MONTH_DAY).format(DateTime.now()),
+        );
     }
     if (dateRating != null) {
       for (var json in dateRating) {
@@ -47,7 +49,8 @@ class DishRatingController extends _$DishRatingController {
     switch (localStorageRepo) {
       case (AsyncData(:final value)):
         dateRating = value.getRatingForDay(
-            DateFormat(DateFormat.YEAR_MONTH_DAY).format(DateTime.now()));
+          DateFormat(DateFormat.YEAR_MONTH_DAY).format(DateTime.now()),
+        );
     }
     var save = <String>[];
     var dishHasBeenUpdated = false;
@@ -55,11 +58,9 @@ class DishRatingController extends _$DishRatingController {
       for (var json in dateRating) {
         var userMap = jsonDecode(json) as Map<String, dynamic>;
         var decoded = _RatingStore.fromJsonString(userMap);
-        debugPrint(decoded.dishId.toString() +
-            " " +
-            decoded.ratingId.toString() +
-            " " +
-            decoded.rating.toString());
+        debugPrint(
+          '${decoded.dishId} ${decoded.ratingId} ${decoded.rating}',
+        );
         if (decoded.dishId == dishId) {
           dishHasBeenUpdated = true;
           if (decoded.rating != rating) {
@@ -76,14 +77,18 @@ class DishRatingController extends _$DishRatingController {
         var ratingId = await ref
             .read(ratingRepositoryProvider)
             .postNewRating(rating, dishId);
-        save.add(jsonEncode(
-            _RatingStore(dishId: dishId, ratingId: ratingId, rating: rating)));
+        save.add(
+          jsonEncode(
+            _RatingStore(dishId: dishId, ratingId: ratingId, rating: rating),
+          ),
+        );
       }
       switch (localStorageRepo) {
         case (AsyncData(:final value)):
           value.saveRatingForDay(
-              DateFormat(DateFormat.YEAR_MONTH_DAY).format(DateTime.now()),
-              save);
+            DateFormat(DateFormat.YEAR_MONTH_DAY).format(DateTime.now()),
+            save,
+          );
       }
     } else {
       var ratingId = await ref
@@ -94,8 +99,13 @@ class DishRatingController extends _$DishRatingController {
           value.saveRatingForDay(
               DateFormat(DateFormat.YEAR_MONTH_DAY).format(DateTime.now()),
               <String>[
-                jsonEncode(_RatingStore(
-                    dishId: dishId, ratingId: ratingId, rating: rating))
+                jsonEncode(
+                  _RatingStore(
+                    dishId: dishId,
+                    ratingId: ratingId,
+                    rating: rating,
+                  ),
+                ),
               ]);
       }
     }
@@ -107,8 +117,11 @@ class _RatingStore {
   int ratingId;
   int rating;
 
-  _RatingStore(
-      {required this.dishId, required this.ratingId, required this.rating});
+  _RatingStore({
+    required this.dishId,
+    required this.ratingId,
+    required this.rating,
+  });
 
   Map<String, dynamic> toJson() =>
       {'dish_id': dishId, 'rating_id': ratingId, 'rating': rating};

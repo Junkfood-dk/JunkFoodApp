@@ -13,7 +13,7 @@ import 'package:junkfood/ui/widgets/language_dropdown_widget.dart';
 import 'package:junkfood/ui/widgets/no_dish_widget.dart';
 import 'package:junkfood/ui/widgets/rating_widget.dart';
 import 'package:junkfood/ui/widgets/serving_ended_widget.dart';
-import 'package:junkfood/utilities/widgets/comments_sheet.dart';
+import 'package:junkfood/utilities/widgets/comments_page.dart';
 import 'package:junkfood/utilities/widgets/gradiant_button_widget.dart';
 import 'package:junkfood/utilities/widgets/text_wrapper.dart';
 
@@ -27,7 +27,6 @@ class DishOfTheDayPage extends ConsumerWidget {
     final time = DateTime.now();
     final formattedDanish = DateFormat('EEEE \nd. MMMM', 'da_DK').format(time);
     final formattedEnglish = DateFormat('EEEE \nd. MMMM').format(time);
-    final double height = MediaQuery.sizeOf(context).height;
     final CarouselController controller = CarouselController();
 
     return Scaffold(
@@ -51,14 +50,14 @@ class DishOfTheDayPage extends ConsumerWidget {
                 color: Theme.of(context).colorScheme.surface,
               ),
             ),
-            onPressed: () {
-              showModalBottomSheet<void>(
-                context: context,
-                isScrollControlled: true,
-                builder: (BuildContext context) {
-                  return CommentPage();
-                },
+            onPressed: () async {
+              final navigator = Navigator.of(context);
+              await navigator.push(
+                MaterialPageRoute(
+                  builder: (context) => CommentsPage(),
+                ),
               );
+              navigator.pop();
             },
           ),
           const LanguageDropdownWidget(),
@@ -91,7 +90,8 @@ class DishOfTheDayPage extends ConsumerWidget {
                                     }).toList(),
                                   ),
                                 ),
-                                Center(
+                                Padding(
+                                  padding: const EdgeInsets.only(bottom: 8.0),
                                   child: SizedBox(
                                     width:
                                         MediaQuery.of(context).size.width * 0.9,
@@ -104,13 +104,16 @@ class DishOfTheDayPage extends ConsumerWidget {
                                       onPressed: () {
                                         showModalBottomSheet<void>(
                                           context: context,
+                                          isScrollControlled: true,
                                           builder: (BuildContext context) {
                                             final dish = ref.watch(
                                               dishControllerProvider,
                                             );
-                                            return dish != null
-                                                ? RatingWidget(dish: dish)
-                                                : const SizedBox.shrink();
+                                            return SingleChildScrollView(
+                                              child: dish != null
+                                                  ? RatingWidget(dish: dish)
+                                                  : const SizedBox.shrink(),
+                                            );
                                           },
                                         );
                                       },
@@ -119,13 +122,13 @@ class DishOfTheDayPage extends ConsumerWidget {
                                 ),
                               ],
                             )
-                          : const NoDishWidget(), //NO DISH
+                          : const Center(child: NoDishWidget()), //NO DISH
                     AsyncError(:final error) => Text(error.toString()),
-                    _ => const CircularProgressIndicator()
+                    _ => const Center(child: CircularProgressIndicator())
                   }
-                : const ServingEndedWidget(), //ENDED
+                : const Center(child: ServingEndedWidget()), //ENDED
             AsyncError(:final error) => Text(error.toString()),
-            _ => const CircularProgressIndicator()
+            _ => const Center(child: CircularProgressIndicator())
           },
         ),
       ),

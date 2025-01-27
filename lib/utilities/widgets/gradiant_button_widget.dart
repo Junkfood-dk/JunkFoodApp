@@ -26,7 +26,7 @@ class GradiantButton extends StatelessWidget {
             begin: Alignment.centerLeft,
             end: Alignment.centerRight,
           ),
-          borderRadius: BorderRadius.circular(25.0),
+          borderRadius: BorderRadius.circular(50.0),
         ),
         child: ElevatedButton(
           onPressed: onPressed,
@@ -34,7 +34,7 @@ class GradiantButton extends StatelessWidget {
             backgroundColor: Colors.transparent,
             shadowColor: Colors.transparent,
             shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(25.0),
+              borderRadius: BorderRadius.circular(50.0),
             ),
           ),
           child: child,
