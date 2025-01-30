@@ -41,7 +41,6 @@ class DishDisplayWidget extends ConsumerWidget {
                 dish.imageUrl,
                 fit: BoxFit.cover,
                 errorBuilder: (context, error, stackTrace) {
-                  // TODO: Add dummy image...
                   return Container(
                     color: Colors.grey,
                     child: const Center(
@@ -73,52 +72,50 @@ class DishDisplayWidget extends ConsumerWidget {
               ),
             ],
           ),
-          Expanded(
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 8.0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisSize: MainAxisSize.max,
-                children: [
-                  SizedBoxExt.sizedBoxHeight16,
-                  BodyBoldText(
-                    text: AppLocalizations.of(context)!.dishContents,
-                  ),
-                  SizedBoxExt.sizedBoxHeight8,
-                  ButtonText(
-                    text: dish.description.isNotEmpty
-                        ? dish.description
-                        : AppLocalizations.of(context)!.noDescription,
-                  ),
-                  SizedBoxExt.sizedBoxHeight8,
-                  const Divider(
-                    color: Colors.grey,
-                  ),
-                  BodyBoldText(
-                    text: AppLocalizations.of(context)!.calories,
-                  ),
-                  BodyText(
-                    text: dish.calories > 0
-                        ? '${dish.calories}'
-                        : AppLocalizations.of(context)!.noCalories,
-                  ),
-                  SizedBoxExt.sizedBoxHeight8,
-                  BodyBoldText(
-                    text: AppLocalizations.of(context)!.allergens,
-                  ),
-                  SizedBoxExt.sizedBoxHeight8,
-                  dish.allergens.isNotEmpty
-                      ? Row(
-                          children: dish.allergens.map((allergen) {
-                            bool isLast = allergen == dish.allergens.last;
-                            return BodyText(
-                              text: allergen + (!isLast ? ' • ' : ''),
-                            );
-                          }).toList(),
-                        )
-                      : Text(AppLocalizations.of(context)!.noAllergens),
-                ],
-              ),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 8.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisSize: MainAxisSize.max,
+              children: [
+                SizedBoxExt.sizedBoxHeight16,
+                BodyBoldText(
+                  text: AppLocalizations.of(context)!.dishContents,
+                ),
+                SizedBoxExt.sizedBoxHeight8,
+                ButtonText(
+                  text: dish.description.isNotEmpty
+                      ? dish.description
+                      : AppLocalizations.of(context)!.noDescription,
+                ),
+                SizedBoxExt.sizedBoxHeight8,
+                const Divider(
+                  color: Colors.grey,
+                ),
+                BodyBoldText(
+                  text: AppLocalizations.of(context)!.calories,
+                ),
+                BodyText(
+                  text: dish.calories > 0
+                      ? '${dish.calories}'
+                      : AppLocalizations.of(context)!.noCalories,
+                ),
+                SizedBoxExt.sizedBoxHeight8,
+                BodyBoldText(
+                  text: AppLocalizations.of(context)!.allergens,
+                ),
+                SizedBoxExt.sizedBoxHeight8,
+                dish.allergens.isNotEmpty
+                    ? Row(
+                        children: dish.allergens.map((allergen) {
+                          bool isLast = allergen == dish.allergens.last;
+                          return BodyText(
+                            text: allergen + (!isLast ? ' • ' : ''),
+                          );
+                        }).toList(),
+                      )
+                    : Text(AppLocalizations.of(context)!.noAllergens),
+              ],
             ),
           ),
         ],
