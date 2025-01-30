@@ -125,53 +125,61 @@ class DishOfTheDayPageState extends State<DishOfTheDayPage>
                   )
                 : null,
           ),
-          body: Padding(
-            padding: EdgeInsets.only(
-              top: dishOfTheDayState.value!.length == 1 ? 16.0 : 0.0,
-              bottom: 16.0,
-            ),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                Expanded(
-                  child: TabBarView(
-                    controller: tabController,
-                    children: dishOfTheDayState.value!.map((DishModel dish) {
-                      return DishDisplayWidget(
-                        dish: dish,
-                      );
-                    }).toList(),
-                  ),
+          body: Center(
+            child: ConstrainedBox(
+              constraints: const BoxConstraints(
+                maxWidth: 600.0,
+              ),
+              child: Padding(
+                padding: EdgeInsets.only(
+                  top: dishOfTheDayState.value!.length == 1 ? 16.0 : 0.0,
+                  bottom: 16.0,
                 ),
-                Padding(
-                  padding: const EdgeInsets.only(
-                    bottom: 8.0,
-                  ),
-                  child: GradiantButton(
-                    child: ButtonText(
-                      text: AppLocalizations.of(context)!.rateButtonText,
-                    ),
-                    onPressed: () {
-                      showModalBottomSheet<void>(
-                        context: context,
-                        isScrollControlled: true,
-                        builder: (BuildContext context) {
-                          final dish = ref.watch(
-                            dishControllerProvider,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    Expanded(
+                      child: TabBarView(
+                        controller: tabController,
+                        children:
+                            dishOfTheDayState.value!.map((DishModel dish) {
+                          return DishDisplayWidget(
+                            dish: dish,
                           );
-                          return SingleChildScrollView(
-                            child: dish != null
-                                ? RatingWidget(
-                                    dish: dish,
-                                  )
-                                : const SizedBox.shrink(),
+                        }).toList(),
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(
+                        bottom: 8.0,
+                      ),
+                      child: GradiantButton(
+                        child: ButtonText(
+                          text: AppLocalizations.of(context)!.rateButtonText,
+                        ),
+                        onPressed: () {
+                          showModalBottomSheet<void>(
+                            context: context,
+                            isScrollControlled: true,
+                            builder: (BuildContext context) {
+                              final dish = ref.watch(
+                                dishControllerProvider,
+                              );
+                              return SingleChildScrollView(
+                                child: dish != null
+                                    ? RatingWidget(
+                                        dish: dish,
+                                      )
+                                    : const SizedBox.shrink(),
+                              );
+                            },
                           );
                         },
-                      );
-                    },
-                  ),
+                      ),
+                    ),
+                  ],
                 ),
-              ],
+              ),
             ),
           ),
         );
