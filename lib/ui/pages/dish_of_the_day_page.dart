@@ -10,7 +10,7 @@ import 'package:junkfood/ui/widgets/language_dropdown_widget.dart';
 import 'package:junkfood/ui/widgets/no_dish_widget.dart';
 import 'package:junkfood/ui/widgets/rating_widget.dart';
 import 'package:junkfood/ui/widgets/serving_ended_widget.dart';
-import 'package:junkfood/utilities/widgets/comments_page.dart';
+import 'package:junkfood/ui/pages/comments_page.dart';
 import 'package:junkfood/utilities/widgets/gradiant_button_widget.dart';
 import 'package:junkfood/utilities/widgets/text_wrapper.dart';
 
@@ -87,7 +87,6 @@ class DishOfTheDayPageState extends State<DishOfTheDayPage>
                       builder: (context) => CommentsPage(),
                     ),
                   );
-                  navigator.pop();
                 },
               ),
               const LanguageDropdownWidget(),
