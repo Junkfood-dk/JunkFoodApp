@@ -148,15 +148,23 @@ class DishOfTheDayPageState extends State<DishOfTheDayPage>
                         }).toList(),
                       ),
                     ),
-                    Padding(
-                      padding: const EdgeInsets.only(
-                        bottom: 8.0,
+                    SafeArea(
+                      minimum: const EdgeInsets.only(
+                        bottom: 24.0,
+                        left: 16.0,
+                        right: 16.0,
                       ),
-                      child: GradiantButton(
-                        child: ButtonText(
-                          text: AppLocalizations.of(context)!.rateButtonText,
+                      child: Padding(
+                        padding: const EdgeInsets.only(
+                          bottom: 24.0,
+                          left: 16.0,
+                          right: 16.0,
                         ),
-                        onPressed: () {
+                          child: GradiantButton(
+                            child: ButtonText(
+                              text: AppLocalizations.of(context)!.rateButtonText,
+                            ),
+                            onPressed: () {
                           showModalBottomSheet<void>(
                             context: context,
                             isScrollControlled: true,
