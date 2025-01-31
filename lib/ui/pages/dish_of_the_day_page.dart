@@ -153,13 +153,14 @@ class DishOfTheDayPageState extends State<DishOfTheDayPage>
                         bottom: 8.0,
                       ),
                       child: SafeArea(
-                        top: false,
-                        minimum: const EdgeInsets.only(bottom: 8.0),
-                        child: GradiantButton(
-                          child: ButtonText(
-                            text: AppLocalizations.of(context)!.rateButtonText,
-                          ),
-                          onPressed: () {
+                        minimum: const EdgeInsets.all(16.0),
+                        child: Padding(
+                          padding: const EdgeInsets.only(bottom: 16.0),
+                          child: GradiantButton(
+                            child: ButtonText(
+                              text: AppLocalizations.of(context)!.rateButtonText,
+                            ),
+                            onPressed: () {
                           showModalBottomSheet<void>(
                             context: context,
                             isScrollControlled: true,
