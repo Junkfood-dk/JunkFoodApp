@@ -8,18 +8,20 @@ class NoDishWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: SingleChildScrollView(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            const LogoImage(),
-            const SizedBox(height: 10.0), // Spacing
-            BodyText(
-              text: AppLocalizations.of(context)!.noDishText,
-              textAlign: TextAlign.center,
-            ),
-          ],
+    return Material(
+      child: Center(
+        child: Padding(
+          padding: const EdgeInsets.all(32.0),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              const LogoImage(),
+              TitleLargeText(
+                text: AppLocalizations.of(context)!.noDishText,
+                textAlign: TextAlign.center,
+              ),
+            ],
+          ),
         ),
       ),
     );
