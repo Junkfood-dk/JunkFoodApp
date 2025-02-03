@@ -7,7 +7,7 @@ part of 'dish_of_the_day_controller.dart';
 // **************************************************************************
 
 String _$dishOfTheDayControllerHash() =>
-    r'd7877cb0b0a49fdfaf03a146aa128badb5345b08';
+    r'ae024a7412d2974614e00724ad77c4a7cc7dde09';
 
 /// See also [DishOfTheDayController].
 @ProviderFor(DishOfTheDayController)
@@ -24,4 +24,4 @@ final dishOfTheDayControllerProvider = AutoDisposeAsyncNotifierProvider<
 
 typedef _$DishOfTheDayController = AutoDisposeAsyncNotifier<List<DishModel>>;
 // ignore_for_file: type=lint
-// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member
+// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package

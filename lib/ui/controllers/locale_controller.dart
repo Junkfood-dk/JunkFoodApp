@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_single_quotes
+
 import 'package:flutter/material.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:junkfood/data/local_locale_storage_repository.dart';
@@ -12,7 +14,7 @@ class LocaleController extends _$LocaleController {
     var localStorageRepo = ref.watch(localLocaleStorageRepositoryProvider);
     switch (localStorageRepo) {
       case (AsyncData(:final value)):
-        locale = value.getLocale("locale");
+        locale = value.getLocale('locale');
     }
     return locale != null ? Locale(locale) : null;
   }
