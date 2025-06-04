@@ -2,13 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:junkfood/domain/model/dish_model.dart';
+import 'package:junkfood/l10n/app_localizations.dart';
 import 'package:junkfood/ui/controllers/dish_rating_controller.dart';
 import 'package:junkfood/ui/pages/acknowledge_rating_page.dart';
 import 'package:junkfood/utilities/widgets/gradiant_button_widget.dart';
 import 'package:junkfood/utilities/widgets/gradiant_wrapper.dart';
 import 'package:junkfood/utilities/widgets/sized_box_ext.dart';
 import 'package:junkfood/utilities/widgets/text_wrapper.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class RatingWidget extends HookConsumerWidget {
   final DishModel dish;

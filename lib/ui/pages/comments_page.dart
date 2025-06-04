@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:junkfood/data/comments_repository.dart';
+import 'package:junkfood/l10n/app_localizations.dart';
 import 'package:junkfood/ui/pages/acknowledge_comment_page.dart';
 import 'package:junkfood/utilities/theming/color_theme.dart';
 import 'package:junkfood/utilities/widgets/gradiant_button_widget.dart';

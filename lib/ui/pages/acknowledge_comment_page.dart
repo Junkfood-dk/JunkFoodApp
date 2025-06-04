@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:junkfood/l10n/app_localizations.dart';
 import 'package:junkfood/ui/pages/dish_of_the_day_page.dart';
 import 'package:junkfood/ui/widgets/logo_image.dart';
 import 'package:junkfood/utilities/theming/color_theme.dart';
 import 'package:junkfood/utilities/widgets/text_wrapper.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class AcknowledgeCommentPage extends StatelessWidget {
   const AcknowledgeCommentPage({super.key});
@@ -37,8 +37,11 @@ class AcknowledgeCommentPage extends StatelessWidget {
                 ),
                 child: ElevatedButton(
                   onPressed: () {
-                    Navigator.of(context).push(MaterialPageRoute(
-                        builder: (context) => const DishOfTheDayPage()));
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (context) => const DishOfTheDayPage(),
+                      ),
+                    );
                   },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: colorTheme.surface,
@@ -52,7 +55,7 @@ class AcknowledgeCommentPage extends StatelessWidget {
                 ),
               ),
             ),
-          )
+          ),
         ],
       ),
     );

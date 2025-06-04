@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:junkfood/l10n/app_localizations.dart';
 
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:junkfood/ui/widgets/logo_image.dart';
 import 'package:junkfood/utilities/theming/color_theme.dart';
 import 'package:junkfood/ui/pages/comments_page.dart';

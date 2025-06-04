@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:junkfood/l10n/app_localizations.dart';
 import 'package:junkfood/ui/controllers/dish_of_the_day_controller.dart';
 import 'package:junkfood/ui/widgets/logo_image.dart';
 import 'package:junkfood/utilities/widgets/sized_box_ext.dart';

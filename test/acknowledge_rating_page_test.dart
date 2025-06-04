@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:junkfood/l10n/app_localizations.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:junkfood/data/rating_repository.dart';
@@ -11,7 +12,6 @@ import 'package:junkfood/ui/pages/acknowledge_rating_page.dart';
 import 'package:junkfood/ui/widgets/rating_widget.dart';
 import 'package:junkfood/utilities/widgets/gradiant_button_widget.dart';
 import 'package:junkfood/utilities/widgets/gradiant_wrapper.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import 'acknowledge_rating_page_test.mocks.dart';
 
@@ -35,29 +35,34 @@ void main() {
         .thenAnswer((realInvocation) => Future(() => 1));
     when(mockRatingRepository.updateRating(1, 1, 0))
         .thenAnswer((realInvocation) => Future(() => 1));
-    await tester.pumpWidget(ProviderScope(
+    await tester.pumpWidget(
+      ProviderScope(
         overrides: [
           ratingRepositoryProvider.overrideWithValue(mockRatingRepository),
         ],
         child: Consumer(
           builder: (context, ref, child) => MaterialApp(
-              locale: switch (ref.watch(localeControllerProvider)) {
-                AsyncData(:final value) => value,
-                _ => null
-              },
-              localizationsDelegates: const [
-                AppLocalizations.delegate,
-                GlobalMaterialLocalizations.delegate,
-                GlobalWidgetsLocalizations.delegate,
-                GlobalCupertinoLocalizations.delegate,
-              ],
-              supportedLocales: AppLocalizations.supportedLocales,
-              home: RatingWidget(dish: dish)),
-        )));
+            locale: switch (ref.watch(localeControllerProvider)) {
+              AsyncData(:final value) => value,
+              _ => null
+            },
+            localizationsDelegates: const [
+              AppLocalizations.delegate,
+              GlobalMaterialLocalizations.delegate,
+              GlobalWidgetsLocalizations.delegate,
+              GlobalCupertinoLocalizations.delegate,
+            ],
+            supportedLocales: AppLocalizations.supportedLocales,
+            home: RatingWidget(dish: dish),
+          ),
+        ),
+      ),
+    );
 
     final ratingIconFinder = find.descendant(
-        of: find.byType(PrimaryGradiantWidget),
-        matching: find.byType(IconButton));
+      of: find.byType(PrimaryGradiantWidget),
+      matching: find.byType(IconButton),
+    );
 
     final firstRatingIcon = ratingIconFinder.first;
     await tester.tap(firstRatingIcon);

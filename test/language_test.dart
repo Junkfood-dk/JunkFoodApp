@@ -3,7 +3,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:junkfood/domain/model/language_model.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:junkfood/l10n/app_localizations.dart';
 import 'package:junkfood/ui/controllers/locale_controller.dart';
 import 'package:junkfood/ui/widgets/language_dropdown_widget.dart';
 
@@ -135,27 +135,32 @@ void main() {
 
     //Act
     Locale? initialLocale = Localizations.localeOf(
-        tester.element(find.byType(LanguageDropdownWidget)));
+      tester.element(find.byType(LanguageDropdownWidget)),
+    );
 
     await tester.tap(
-        find.byType(LanguageDropdownWidget)); // Open the language dropdown.
+      find.byType(LanguageDropdownWidget),
+    ); // Open the language dropdown.
     await tester.pumpAndSettle();
 
     await tester.tap(find.text('Dansk'));
     await tester.pumpAndSettle();
 
     Locale? localeAfterDanishIsPressed = Localizations.localeOf(
-        tester.element(find.byType(LanguageDropdownWidget)));
+      tester.element(find.byType(LanguageDropdownWidget)),
+    );
 
     await tester.tap(
-        find.byType(LanguageDropdownWidget)); // Open the language dropdown.
+      find.byType(LanguageDropdownWidget),
+    ); // Open the language dropdown.
     await tester.pumpAndSettle();
 
     await tester.tap(find.text('English'));
     await tester.pumpAndSettle();
 
     Locale? localeAfterEnglishIsPressed = Localizations.localeOf(
-        tester.element(find.byType(LanguageDropdownWidget)));
+      tester.element(find.byType(LanguageDropdownWidget)),
+    );
 
     //Assert
     expect(initialLocale, equals(const Locale('en')));

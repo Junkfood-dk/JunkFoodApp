@@ -8,7 +8,6 @@ class CommentController extends _$CommentController {
   @override
   Future<void> build() async {}
 
-  @override
   Future<void> submitComment(String commentText) async {
     await ref.read(commentRepositoryProvider).postComment(commentText);
   }

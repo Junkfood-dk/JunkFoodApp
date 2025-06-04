@@ -1,7 +1,7 @@
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:intl/intl.dart';
+import 'package:junkfood/l10n/app_localizations.dart';
 import 'package:junkfood/ui/controllers/dish_controller.dart';
 import 'package:junkfood/ui/controllers/dish_of_the_day_controller.dart';
 import 'package:junkfood/ui/controllers/servingtime_controller.dart';

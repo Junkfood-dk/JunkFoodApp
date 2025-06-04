@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:junkfood/l10n/app_localizations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:junkfood/data/comments_repository.dart';
 import 'package:junkfood/ui/pages/comments_page.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class MockCommentRepository extends Mock implements CommentRepository {}
 
