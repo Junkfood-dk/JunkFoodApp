@@ -102,17 +102,17 @@ class DishDisplayWidget extends ConsumerWidget {
                       : AppLocalizations.of(context)!.noDescription,
                 ),
                 SizedBoxExt.sizedBoxHeight8,
-                const Divider(
-                  color: Colors.grey,
-                ),
-                BodyBoldText(
-                  text: AppLocalizations.of(context)!.calories,
-                ),
-                BodyText(
-                  text: dish.calories > 0
-                      ? '${dish.calories}'
-                      : AppLocalizations.of(context)!.noCalories,
-                ),
+                if (dish.calories > 0) ...[
+                  const Divider(
+                    color: Colors.grey,
+                  ),
+                  BodyBoldText(
+                    text: AppLocalizations.of(context)!.calories,
+                  ),
+                  BodyText(
+                    text: '${dish.calories}',
+                  ),
+                ],
                 SizedBoxExt.sizedBoxHeight8,
                 BodyBoldText(
                   text: AppLocalizations.of(context)!.allergens,
