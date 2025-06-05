@@ -27,7 +27,7 @@ void main() {
     //Act
     var result = container
         .read(servingtimeControllerProvider.notifier)
-        .hasServiceEnded(DateTime(2024, 4, 10, 21, 0));
+        .hasServiceEnded(DateTime(2024, 4, 10, 2, 1));
     //Assert
     expect(result, isTrue);
   });
@@ -38,7 +38,7 @@ void main() {
     //Act
     var result = container
         .read(servingtimeControllerProvider.notifier)
-        .hasServiceEnded(DateTime(2024, 4, 10, 20, 58));
+        .hasServiceEnded(DateTime(2024, 4, 10, 1, 58));
     //Assert
     expect(result, isFalse);
   });

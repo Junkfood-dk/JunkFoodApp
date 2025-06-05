@@ -45,21 +45,29 @@ class DishDisplayWidget extends ConsumerWidget {
           Stack(
             alignment: Alignment.bottomLeft,
             children: [
-              Image.network(
-                dish.imageUrl,
-                fit: BoxFit.cover,
-                errorBuilder: (context, error, stackTrace) {
-                  return Container(
-                    color: Colors.grey,
-                    child: const Center(
-                      child: Icon(
-                        Icons.error_outline,
-                        color: Colors.red,
-                        size: 48.0,
+              ConstrainedBox(
+                constraints: BoxConstraints(
+                  maxHeight: MediaQuery.sizeOf(context).height * 0.5,
+                  maxWidth: MediaQuery.sizeOf(context).width,
+                ),
+                child: Image.network(
+                  dish.imageUrl,
+                  width: double.infinity,
+                  height: double.infinity,
+                  fit: BoxFit.fill,
+                  errorBuilder: (context, error, stackTrace) {
+                    return Container(
+                      color: Colors.grey,
+                      child: const Center(
+                        child: Icon(
+                          Icons.error_outline,
+                          color: Colors.red,
+                          size: 48.0,
+                        ),
                       ),
-                    ),
-                  );
-                },
+                    );
+                  },
+                ),
               ),
               Align(
                 alignment: Alignment.bottomLeft,
@@ -92,10 +100,6 @@ class DishDisplayWidget extends ConsumerWidget {
               mainAxisSize: MainAxisSize.max,
               children: [
                 SizedBoxExt.sizedBoxHeight16,
-                BodyBoldText(
-                  text: AppLocalizations.of(context)!.dishContents,
-                ),
-                SizedBoxExt.sizedBoxHeight8,
                 ButtonText(
                   text: dish.description.isNotEmpty
                       ? dish.description
@@ -128,6 +132,7 @@ class DishDisplayWidget extends ConsumerWidget {
                         }).toList(),
                       )
                     : Text(AppLocalizations.of(context)!.noAllergens),
+                SizedBoxExt.sizedBoxHeight16,
               ],
             ),
           ),

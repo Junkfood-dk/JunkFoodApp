@@ -16,8 +16,7 @@ void main() {
     );
 
     // Act
-    final textFinder =
-        find.text('Todays menu is not ready yet. Please check back later.');
+    final textFinder = find.text('Todays menu will be available at 13:00');
 
     // Assert
     expect(textFinder, findsOneWidget);
