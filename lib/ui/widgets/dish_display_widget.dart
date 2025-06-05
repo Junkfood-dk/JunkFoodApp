@@ -45,29 +45,21 @@ class DishDisplayWidget extends ConsumerWidget {
           Stack(
             alignment: Alignment.bottomLeft,
             children: [
-              ConstrainedBox(
-                constraints: BoxConstraints(
-                  maxHeight: MediaQuery.sizeOf(context).height * 0.5,
-                  maxWidth: MediaQuery.sizeOf(context).width,
-                ),
-                child: Image.network(
-                  dish.imageUrl,
-                  width: double.infinity,
-                  height: double.infinity,
-                  fit: BoxFit.fill,
-                  errorBuilder: (context, error, stackTrace) {
-                    return Container(
-                      color: Colors.grey,
-                      child: const Center(
-                        child: Icon(
-                          Icons.error_outline,
-                          color: Colors.red,
-                          size: 48.0,
-                        ),
+              Image.network(
+                dish.imageUrl,
+                fit: BoxFit.fill,
+                errorBuilder: (context, error, stackTrace) {
+                  return Container(
+                    color: Colors.grey,
+                    child: const Center(
+                      child: Icon(
+                        Icons.error_outline,
+                        color: Colors.red,
+                        size: 48.0,
                       ),
-                    );
-                  },
-                ),
+                    ),
+                  );
+                },
               ),
               Align(
                 alignment: Alignment.bottomLeft,
@@ -132,7 +124,7 @@ class DishDisplayWidget extends ConsumerWidget {
                         }).toList(),
                       )
                     : Text(AppLocalizations.of(context)!.noAllergens),
-                SizedBoxExt.sizedBoxHeight16,
+                SizedBoxExt.sizedBoxHeight24,
               ],
             ),
           ),
