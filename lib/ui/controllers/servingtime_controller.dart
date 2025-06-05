@@ -13,9 +13,8 @@ class ServingtimeController extends _$ServingtimeController {
     state = AsyncData(hasServiceEnded(DateTime.now()));
   }
 
+  /// If time is after 24:00 (midnight), but before 02:00 AM, the service has ended.
   bool hasServiceEnded(DateTime time) {
-    final startTime = DateTime(time.year, time.month, time.day, 20, 59);
-    final endTime = DateTime(time.year, time.month, time.day, 24, 00);
-    return time.isAfter(startTime) && time.isBefore(endTime);
+    return time.hour >= 2 && time.hour <= 7;
   }
 }
