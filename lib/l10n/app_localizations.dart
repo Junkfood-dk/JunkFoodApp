@@ -113,7 +113,7 @@ abstract class AppLocalizations {
   /// Display of allergens title
   ///
   /// In en, this message translates to:
-  /// **'Be aware if you don\'t support:'**
+  /// **'Allergens'**
   String get allergens;
 
   /// Display message for when no allergens

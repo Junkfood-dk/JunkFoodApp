@@ -15,7 +15,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get punchText => 'You have punched the button this many times:';
 
   @override
-  String get allergens => 'Be aware if you don\'t support:';
+  String get allergens => 'Allergens';
 
   @override
   String get noAllergens => 'No allergens';

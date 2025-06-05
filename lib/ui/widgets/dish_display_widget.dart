@@ -101,8 +101,8 @@ class DishDisplayWidget extends ConsumerWidget {
                       ? dish.description
                       : AppLocalizations.of(context)!.noDescription,
                 ),
-                SizedBoxExt.sizedBoxHeight8,
                 if (dish.calories > 0) ...[
+                  SizedBoxExt.sizedBoxHeight8,
                   const Divider(
                     color: Colors.grey,
                   ),

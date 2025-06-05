@@ -8,7 +8,7 @@
   "@punchText": {
     "description": "The text in the middle, describing how many times you have punched the button"
   },
-  "allergens": "Be aware if you don't support:",
+  "allergens": "Allergens",
   "@allergens": {
     "description": "Display of allergens title"
   },

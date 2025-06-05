@@ -24,7 +24,7 @@
   "@dishOfTheDay": {
     "description": "Title of the dish of the day page"
   },
-  "allergens": "Vær opmærksom, hvis du ikke tåler:",
+  "allergens": "Allergener",
   "@allergens": {
     "description": "Display of allergens title"
   },
