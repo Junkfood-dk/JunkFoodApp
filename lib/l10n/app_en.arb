@@ -16,7 +16,7 @@
   "@noAllergens": {
     "description": "Display message for when no allergens"
   },
-   "noDishText": "Todays menu is not ready yet. Please check back later.",
+   "noDishText": "Todays menu will be available at 13:00",
   "@noDishText": {
     "description": "Text to show when no dish for todays date has been posted"
   },

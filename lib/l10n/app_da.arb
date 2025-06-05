@@ -32,7 +32,7 @@
   "@noAllergens": {
     "description": "Display message for when no allergens"
   },
-  "noDishText": "Dagens ret er ikke offentliggjort endnu. Tjek siden senere.",
+  "noDishText": "Dagens ret vises kl. 13:00",
   "@noDishText": {
     "description": "Text to show when no dish for todays date has been posted"
   },

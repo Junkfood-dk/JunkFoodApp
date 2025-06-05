@@ -21,8 +21,7 @@ class AppLocalizationsDa extends AppLocalizations {
   String get noAllergens => 'Ingen allergener';
 
   @override
-  String get noDishText =>
-      'Dagens ret er ikke offentliggjort endnu. Tjek siden senere.';
+  String get noDishText => 'Dagens ret vises kl. 13:00';
 
   @override
   String get calories => 'Kalorier';

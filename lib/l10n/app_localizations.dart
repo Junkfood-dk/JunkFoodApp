@@ -125,7 +125,7 @@ abstract class AppLocalizations {
   /// Text to show when no dish for todays date has been posted
   ///
   /// In en, this message translates to:
-  /// **'Todays menu is not ready yet. Please check back later.'**
+  /// **'Todays menu will be available at 13:00'**
   String get noDishText;
 
   /// Calories info on dish page

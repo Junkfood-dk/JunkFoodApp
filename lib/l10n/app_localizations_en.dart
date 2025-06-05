@@ -21,8 +21,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get noAllergens => 'No allergens';
 
   @override
-  String get noDishText =>
-      'Todays menu is not ready yet. Please check back later.';
+  String get noDishText => 'Todays menu will be available at 13:00';
 
   @override
   String get calories => 'Calories';
