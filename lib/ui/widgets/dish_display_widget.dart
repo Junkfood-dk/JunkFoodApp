@@ -31,10 +31,6 @@ class DishDisplayWidget extends ConsumerWidget {
     final title = dish.title.isNotEmpty
         ? dish.title
         : AppLocalizations.of(context)!.noTitle;
-    final space = title.indexOf(' ');
-    final hasSubtitle = space > 0;
-    final header1 = hasSubtitle ? title.substring(0, space) : title;
-    final header2 = hasSubtitle ? title.substring(space) : '';
 
     return RefreshIndicator(
       onRefresh: () async {
@@ -63,13 +59,23 @@ class DishDisplayWidget extends ConsumerWidget {
               ),
               Align(
                 alignment: Alignment.bottomLeft,
-                child: SizedBox(
+                child: Container(
+                  decoration: const BoxDecoration(
+                    gradient: LinearGradient(
+                      begin: Alignment.topCenter,
+                      end: Alignment.bottomCenter,
+                      colors: [
+                        Colors.transparent,
+                        Colors.black,
+                      ],
+                    ),
+                  ),
                   width: double.infinity,
                   child: Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 6.0),
                     child: DisplayMediumText(
-                      text: header1,
-                      maxLines: 1,
+                      text: title,
+                      maxLines: 5,
                       overflow: TextOverflow.ellipsis,
                       style: titleStyle,
                     ),
@@ -78,13 +84,6 @@ class DishDisplayWidget extends ConsumerWidget {
               ),
             ],
           ),
-          if (hasSubtitle)
-            DisplayMediumText(
-              text: header2,
-              maxLines: 1,
-              overflow: TextOverflow.ellipsis,
-              style: titleStyle,
-            ),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 8.0),
             child: Column(
