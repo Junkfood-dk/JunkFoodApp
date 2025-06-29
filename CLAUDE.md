@@ -4,7 +4,9 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-JunkFoodApp is a Flutter application for displaying daily dishes from Junkfood restaurant. The app shows the dish of the day with nutritional information, allows users to rate dishes and leave comments, and supports multiple languages (Danish and English).
+JunkFoodApp is a Flutter application for displaying daily dishes from Junkfood, a non-profit organization in Copenhagen that provides free, nutritious evening meals to homeless and vulnerable people. Founded during COVID-19 by Michelin-star chef Rasmus Munk, Junkfood serves meals using donated surplus food to "gadens folk" (people on the street), having served over 313,500 meals targeting Copenhagen's 1,387 people living on the streets.
+
+The app shows the dish of the day with nutritional information, allows users to rate dishes and leave comments, and supports multiple languages (Danish and English).
 
 ## Architecture
 
