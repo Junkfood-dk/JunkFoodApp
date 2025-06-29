@@ -11,37 +11,56 @@ The app shows the dish of the day with nutritional information, allows users to 
 ## Architecture
 
 ### Clean Architecture Pattern
+
 The project follows clean architecture with clear separation of concerns:
 
 - **Domain Layer** (`lib/domain/`): Contains business models and core entities
-  - `model/dish_model.dart`: Core dish entity with JSON serialization
-  - `model/rating_model.dart`: Rating system model
-  - `model/language_model.dart`: Localization model
+
+   - `model/dish_model.dart`: Core dish entity with JSON serialization
+   - `model/rating_model.dart`: Rating system model
+   - `model/language_model.dart`: Localization model
 
 - **Data Layer** (`lib/data/`): Repository pattern with interface abstraction
-  - Interfaces define contracts (`interface_*_repository.dart`)
-  - Implementations handle Supabase API calls and local storage
-  - Generated Riverpod providers (`.g.dart` files)
+
+   - Interfaces define contracts (`interface_*_repository.dart`)
+   - Implementations handle Supabase API calls and local storage
+   - Generated Riverpod providers (`.g.dart` files)
 
 - **UI Layer** (`lib/ui/`): Presentation logic with Riverpod state management
-  - `controllers/`: Riverpod-based state controllers with async data handling
-  - `pages/`: Screen-level components (dish display, comments, ratings)
-  - `widgets/`: Reusable UI components
+
+   - `controllers/`: Riverpod-based state controllers with async data handling
+   - `pages/`: Screen-level components (dish display, comments, ratings)
+   - `widgets/`: Reusable UI components
 
 ### State Management
+
 Uses **Riverpod** with code generation:
+
 - Controllers use `@riverpod` annotations
 - Async providers handle data fetching and caching
 - Consumer widgets react to state changes
 
 ### Backend Integration
+
 - **Supabase** for backend services (database, authentication)
 - Environment variables for configuration (`Constants.dart`)
 - Repository pattern abstracts data sources
 
+### Flutter code generation
+
+- Always generate code using modern Dart features and null safety.
+- Strictly follow Effective Dart style guidelines.
+- When asked to create a widget, create a `StatelessWidget` unless state is explicitly required or requested, then use `StatefulWidget`.
+- Include basic DartDoc comments explaining the widget's purpose.
+- Automatically import `package:flutter/material.dart`.
+- Keep widgets focused on a single responsibility.
+- If relevant, use standard Flutter widgets (Container, Column, Row, Text, etc.) unless a specific custom approach is requested.
+- Do not use external packages unless requested
+
 ## Development Commands
 
 ### Code Generation
+
 ```bash
 # Watch mode for continuous generation (essential for development)
 dart run build_runner watch -d
@@ -51,6 +70,7 @@ dart run build_runner build --delete-conflicting-outputs
 ```
 
 ### Testing
+
 ```bash
 # Run all tests
 flutter test
@@ -63,6 +83,7 @@ flutter test --coverage
 ```
 
 ### Code Quality
+
 ```bash
 # Static analysis
 flutter analyze
@@ -75,6 +96,7 @@ flutter pub deps
 ```
 
 ### Building
+
 ```bash
 # Build for Android
 flutter build apk
@@ -87,6 +109,7 @@ flutter build web
 ```
 
 ### Running
+
 ```bash
 # Run on connected device
 flutter run
@@ -98,25 +121,28 @@ flutter run --dart-define=SUPABASE_URL=your_url --dart-define=SUPABASE_ANON_KEY=
 ## Configuration
 
 ### Environment Variables
+
 Set via `--dart-define` flags or environment:
+
 - `SUPABASE_URL`: Supabase project URL
 - `SUPABASE_ANON_KEY`: Supabase anonymous key
 
 ### Localization
+
 - Supports Danish (`da`) and English (`en`)
 - ARB files in `lib/l10n/`
 - Generated localization classes
 
 ## Key Dependencies
 
-- **flutter_riverpod**: State management and dependency injection
-- **supabase_flutter**: Backend integration
-- **flutter_hooks**: Reactive programming utilities
-- **build_runner**: Code generation tooling
+- __flutter_riverpod__: State management and dependency injection
+- __supabase_flutter__: Backend integration
+- __flutter_hooks__: Reactive programming utilities
+- __build_runner__: Code generation tooling
 
 ## Development Workflow
 
-1. Always run `dart run build_runner watch -d` when developing
+1. Always run `dart run build_runner watch -d` when creating or updating Riverpod providers
 2. Use Riverpod providers for dependency injection
 3. Follow repository pattern for data access
 4. Implement proper error handling in async operations
@@ -125,6 +151,7 @@ Set via `--dart-define` flags or environment:
 ## Database Schema
 
 The app connects to a Supabase database with tables for:
+
 - Dishes (title, description, calories, images)
 - DishTypes (main, alternative, dessert)
 - Allergens and dish associations
@@ -134,6 +161,7 @@ The app connects to a Supabase database with tables for:
 ## Testing
 
 Test files use mockito for mocking dependencies. Key test patterns:
+
 - Widget testing with `flutter_test`
 - Mocked repositories and controllers
 - Golden file testing for UI consistency
