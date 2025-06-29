@@ -1,3 +1,4 @@
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:junkfood/data/database.dart';
@@ -25,6 +26,6 @@ class AllergenRepository implements IAllergenRepository {
 }
 
 @riverpod
-IAllergenRepository allergenRepository(AllergenRepositoryRef ref) {
+IAllergenRepository allergenRepository(Ref ref) {
   return AllergenRepository(database: ref.read(databaseProvider));
 }

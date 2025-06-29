@@ -1,3 +1,4 @@
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:junkfood/data/interface_local_locale_storage_repository.dart';
@@ -16,13 +17,14 @@ class LocalLocaleStorageRepository implements ILocalLocaleStorageRepository {
 
   @override
   void saveLocale(String locale) {
-    localStorage.setString("locale", locale);
+    localStorage.setString('locale', locale);
   }
 }
 
 @riverpod
 Future<ILocalLocaleStorageRepository> localLocaleStorageRepository(
-    LocalLocaleStorageRepositoryRef ref) async {
+  Ref ref,
+) async {
   var sharedPref = await SharedPreferences.getInstance();
   return LocalLocaleStorageRepository(localStorage: sharedPref);
 }

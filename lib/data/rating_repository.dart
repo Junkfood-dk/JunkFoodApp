@@ -1,4 +1,4 @@
-import 'package:flutter/foundation.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:junkfood/data/database.dart';
@@ -18,28 +18,27 @@ class RatingRepository implements IRatingRepository {
 
     try {
       var response = await database
-          .from("Ratings")
+          .from('Ratings')
           .insert(ratingToPost.toJson())
-          .select("id");
-      return response[0]["id"];
+          .select('id');
+      return response[0]['id'];
     } catch (error) {
-      debugPrint("Error saving new rating: $error");
-      throw Exception("Failed to save new rating: $error");
+      throw Exception('Failed to save new rating: $error');
     }
   }
 
   @override
   Future<int> updateRating(int ratingId, int rating, int dish) async {
     var resposne = await database
-        .from("Ratings")
-        .update({"rating": rating})
-        .eq("id", ratingId)
+        .from('Ratings')
+        .update({'rating': rating})
+        .eq('id', ratingId)
         .select();
-    return resposne[0]["id"];
+    return resposne[0]['id'];
   }
 }
 
 @riverpod
-IRatingRepository ratingRepository(RatingRepositoryRef ref) {
+IRatingRepository ratingRepository(Ref ref) {
   return RatingRepository(database: ref.read(databaseProvider));
 }

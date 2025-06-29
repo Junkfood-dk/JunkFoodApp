@@ -1,3 +1,4 @@
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:junkfood/data/interface_local_rating_storage_repository.dart';
@@ -22,7 +23,8 @@ class LocalRatingStorageRepository implements ILocalRatingStorageRepository {
 
 @riverpod
 Future<ILocalRatingStorageRepository> localRatingStorageRepository(
-    LocalRatingStorageRepositoryRef ref) async {
+  Ref ref,
+) async {
   var sharedPref = await SharedPreferences.getInstance();
   return LocalRatingStorageRepository(localStorage: sharedPref);
 }

@@ -1,3 +1,4 @@
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:junkfood/data/database.dart';
@@ -21,6 +22,6 @@ class CommentRepository implements ICommentRepository {
 }
 
 @riverpod
-ICommentRepository commentRepository(CommentRepositoryRef ref) {
+ICommentRepository commentRepository(Ref ref) {
   return CommentRepository(database: ref.read(databaseProvider));
 }

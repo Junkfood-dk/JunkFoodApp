@@ -1,3 +1,4 @@
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:junkfood/data/allergen_repository.dart';
@@ -46,7 +47,7 @@ class DishRepository implements IDishRepository {
 }
 
 @riverpod
-IDishRepository dishRepository(DishRepositoryRef ref) {
+IDishRepository dishRepository(Ref ref) {
   return DishRepository(
     database: ref.read(databaseProvider),
     allergenRepo: ref.read(allergenRepositoryProvider),
