@@ -8,7 +8,7 @@ import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:junkfood/ui/controllers/locale_controller.dart';
 import 'package:junkfood/ui/pages/dish_of_the_day_page.dart';
-import 'package:junkfood/utilities/constants-ren.dart';
+import 'package:junkfood/utilities/constants.dart';
 import 'package:junkfood/utilities/theming/text_theming.dart';
 import 'package:junkfood/utilities/theming/color_theme.dart';
 import 'utilities/http/http_certificate_override_debug.dart'
