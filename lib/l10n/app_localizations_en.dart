@@ -126,4 +126,13 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get dishContents => 'The dish contains:';
+
+  @override
+  String get languageEnglish => 'English';
+
+  @override
+  String get languageDanish => 'Dansk';
+
+  @override
+  String get appTitle => 'Junkfood';
 }

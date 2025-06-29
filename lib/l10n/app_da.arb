@@ -148,5 +148,20 @@
   "@sendUsMsgBtn" : {
     "description": "Encouraging user to send a message"
   },
-  "dishContents": "Retten består af:"
+  "dishContents": "Retten består af:",
+  "@dishContents": {
+    "description": "Text indicating what allergens the dish contains"
+  },
+  "languageEnglish": "English",
+  "@languageEnglish": {
+    "description": "Name of English language in language selector"
+  },
+  "languageDanish": "Dansk",
+  "@languageDanish": {
+    "description": "Name of Danish language in language selector"
+  },
+  "appTitle": "Junkfood",
+  "@appTitle": {
+    "description": "Application title"
+  }
 }

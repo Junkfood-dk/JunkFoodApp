@@ -320,11 +320,29 @@ abstract class AppLocalizations {
   /// **'Send us a message'**
   String get sendUsMsgBtn;
 
-  /// No description provided for @dishContents.
+  /// Text indicating what allergens the dish contains
   ///
   /// In en, this message translates to:
   /// **'The dish contains:'**
   String get dishContents;
+
+  /// Name of English language in language selector
+  ///
+  /// In en, this message translates to:
+  /// **'English'**
+  String get languageEnglish;
+
+  /// Name of Danish language in language selector
+  ///
+  /// In en, this message translates to:
+  /// **'Dansk'**
+  String get languageDanish;
+
+  /// Application title
+  ///
+  /// In en, this message translates to:
+  /// **'Junkfood'**
+  String get appTitle;
 }
 
 class _AppLocalizationsDelegate
