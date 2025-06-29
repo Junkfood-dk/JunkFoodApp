@@ -8,14 +8,15 @@ class DisplayLargeText extends StatelessWidget {
   final TextScaler? scaler;
   final TextOverflow? overflow;
 
-  const DisplayLargeText(
-      {super.key,
-      required this.text,
-      this.style,
-      this.textAlign,
-      this.maxLines,
-      this.scaler,
-      this.overflow});
+  const DisplayLargeText({
+    super.key,
+    required this.text,
+    this.style,
+    this.textAlign,
+    this.maxLines,
+    this.scaler,
+    this.overflow,
+  });
 
   @override
   Widget build(BuildContext context) {

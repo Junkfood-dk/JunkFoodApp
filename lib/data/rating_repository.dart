@@ -14,7 +14,7 @@ class RatingRepository implements IRatingRepository {
 
   @override
   Future<int> postNewRating(int rating, int dish /*Guid user*/) async {
-    final ratingToPost = RatingModel(rating: rating, dish_id: dish);
+    final ratingToPost = RatingModel(rating: rating, dishId: dish);
 
     try {
       var response = await database

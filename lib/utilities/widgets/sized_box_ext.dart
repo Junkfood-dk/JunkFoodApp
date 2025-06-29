@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 
-// TODO: Use const paddings/sizes...
-
 const _sizedBoxHeight8 = SizedBox(height: 8.0);
 const _sizedBoxHeight16 = SizedBox(height: 16.0);
 const _sizedBoxHeight12 = SizedBox(height: 12.0);
