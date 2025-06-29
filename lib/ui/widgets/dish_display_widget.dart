@@ -41,21 +41,25 @@ class DishDisplayWidget extends ConsumerWidget {
           Stack(
             alignment: Alignment.bottomLeft,
             children: [
-              Image.network(
-                dish.imageUrl,
-                fit: BoxFit.fill,
-                errorBuilder: (context, error, stackTrace) {
-                  return Container(
-                    color: Colors.grey,
-                    child: const Center(
-                      child: Icon(
-                        Icons.error_outline,
-                        color: Colors.red,
-                        size: 48.0,
+              SizedBox(
+                width: double.infinity,
+                height: 450,
+                child: Image.network(
+                  dish.imageUrl,
+                  fit: BoxFit.cover,
+                  errorBuilder: (context, error, stackTrace) {
+                    return Container(
+                      color: Colors.grey,
+                      child: const Center(
+                        child: Icon(
+                          Icons.error_outline,
+                          color: Colors.red,
+                          size: 48.0,
+                        ),
                       ),
-                    ),
-                  );
-                },
+                    );
+                  },
+                ),
               ),
               Align(
                 alignment: Alignment.bottomLeft,
