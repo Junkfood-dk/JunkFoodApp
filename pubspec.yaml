@@ -2,7 +2,7 @@ name: junkfood
 description: 'Junkfood User App'
 publish_to: 'none'
 
-version: 1.0.0+1
+version: 1.0.3+1
 
 environment:
   sdk: '>=3.3.0 <4.0.0'
