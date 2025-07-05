@@ -7,7 +7,7 @@ part of 'allergen_repository.dart';
 // **************************************************************************
 
 String _$allergenRepositoryHash() =>
-    r'b8f754c6248519609c2eb767525416387ada1e24';
+    r'ac573dc204e77cd2aeeb1edcfbe441c5fdcc3771';
 
 /// See also [allergenRepository].
 @ProviderFor(allergenRepository)

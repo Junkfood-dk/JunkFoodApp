@@ -1,16 +1,17 @@
+import 'package:flutter/foundation.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:junkfood/l10n/app_localizations.dart';
+import 'package:junkfood/providers/date_provider.dart';
+import 'package:junkfood/providers/desktop_web_provider.dart';
 import 'package:junkfood/ui/controllers/dish_controller.dart';
 import 'package:junkfood/ui/controllers/dish_of_the_day_controller.dart';
-import 'package:junkfood/ui/controllers/servingtime_controller.dart';
 import 'package:junkfood/ui/widgets/dish_display_widget.dart';
 import 'package:junkfood/ui/widgets/language_dropdown_widget.dart';
-import 'package:junkfood/ui/widgets/no_dish_widget.dart';
 import 'package:junkfood/ui/widgets/rating_widget.dart';
-import 'package:junkfood/ui/widgets/serving_ended_widget.dart';
 import 'package:junkfood/ui/pages/comments_page.dart';
+import 'package:junkfood/utilities/widgets/datetime/date_bar_small.dart';
 import 'package:junkfood/utilities/widgets/gradiant_button_widget.dart';
 import 'package:junkfood/utilities/widgets/text_wrapper.dart';
 
@@ -30,23 +31,12 @@ class _DishOfTheDayPageState extends ConsumerState<DishOfTheDayPage>
 
   @override
   Widget build(BuildContext context) {
-    final time = DateTime.now();
+    final time = ref.watch(dateProviderProvider);
     final formattedDanish = DateFormat('EEEE \nd. MMMM', 'da_DK').format(time);
     final formattedEnglish = DateFormat('EEEE \nd. MMMM').format(time);
 
     final dishOfTheDayState = ref.watch(dishOfTheDayControllerProvider);
-    if (!dishOfTheDayState.hasValue) {
-      return const Center(child: CircularProgressIndicator());
-    }
-    if (dishOfTheDayState.hasValue && dishOfTheDayState.value!.isEmpty) {
-      return const Center(child: NoDishWidget());
-    }
-
-    final servingTimeState = ref.watch(servingtimeControllerProvider.notifier);
-    final servingHasEnded = servingTimeState.hasServiceEnded(time);
-    if (servingHasEnded) {
-      return const Center(child: ServingEndedWidget());
-    }
+    final isWeb = ref.read(isDesktopWebProvider);
 
     tabController?.dispose();
 
@@ -57,12 +47,14 @@ class _DishOfTheDayPageState extends ConsumerState<DishOfTheDayPage>
 
     return Scaffold(
       appBar: AppBar(
-        title: ButtonText(
-          text: AppLocalizations.of(context)!.localeHelper == 'da'
-              ? formattedDanish.substring(0, 1).toUpperCase() +
-                  formattedDanish.substring(1)
-              : formattedEnglish,
-        ),
+        title: isWeb
+            ? const DateBarSmall()
+            : ButtonText(
+                text: AppLocalizations.of(context)!.localeHelper == 'da'
+                    ? formattedDanish.substring(0, 1).toUpperCase() +
+                        formattedDanish.substring(1)
+                    : formattedEnglish,
+              ),
         actions: [
           IconButton(
             icon: Container(
@@ -91,31 +83,35 @@ class _DishOfTheDayPageState extends ConsumerState<DishOfTheDayPage>
         bottom: dishOfTheDayState.value!.length > 1
             ? PreferredSize(
                 preferredSize: const Size.fromHeight(50.0),
-                child: Center(
-                  child: TabBar(
-                    controller: tabController,
-                    dividerColor: Colors.transparent,
-                    dividerHeight: 0.0,
-                    indicator: const BoxDecoration(
-                      shape: BoxShape.circle,
-                      color: Color(0xFFE52E42),
-                    ),
-                    tabs: dishOfTheDayState.value!.map((DishModel dish) {
-                      return Tab(
-                        child: SizedBox(
-                          width: 8.0,
-                          child: Container(
-                            decoration: BoxDecoration(
-                              shape: BoxShape.circle,
-                              border: Border.all(
-                                color: Colors.grey.shade700,
+                child: Column(
+                  children: [
+                    Center(
+                      child: TabBar(
+                        controller: tabController,
+                        dividerColor: Colors.transparent,
+                        dividerHeight: 0.0,
+                        indicator: const BoxDecoration(
+                          shape: BoxShape.circle,
+                          color: Color(0xFFE52E42),
+                        ),
+                        tabs: dishOfTheDayState.value!.map((DishModel dish) {
+                          return Tab(
+                            child: SizedBox(
+                              width: 8.0,
+                              child: Container(
+                                decoration: BoxDecoration(
+                                  shape: BoxShape.circle,
+                                  border: Border.all(
+                                    color: Colors.grey.shade700,
+                                  ),
+                                ),
                               ),
                             ),
-                          ),
-                        ),
-                      );
-                    }).toList(),
-                  ),
+                          );
+                        }).toList(),
+                      ),
+                    ),
+                  ],
                 ),
               )
             : null,

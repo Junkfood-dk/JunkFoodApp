@@ -3,7 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:junkfood/l10n/app_localizations.dart';
 import 'package:junkfood/ui/controllers/dish_of_the_day_controller.dart';
 import 'package:junkfood/ui/widgets/logo_image.dart';
-import 'package:junkfood/utilities/widgets/sized_box_ext.dart';
+import 'package:junkfood/extensions/sized_box_ext.dart';
 import 'package:junkfood/utilities/widgets/text_wrapper.dart';
 
 class ServingEndedWidget extends ConsumerWidget {
@@ -20,7 +20,8 @@ class ServingEndedWidget extends ConsumerWidget {
                 .read(dishOfTheDayControllerProvider.notifier)
                 .refetchDishOfTheDay();
           },
-          child: ListView(
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
             children: [
               SizedBoxExt.sizedBoxHeight24,
               const LogoImage(),

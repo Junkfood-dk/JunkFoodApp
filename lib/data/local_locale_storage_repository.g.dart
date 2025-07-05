@@ -7,7 +7,7 @@ part of 'local_locale_storage_repository.dart';
 // **************************************************************************
 
 String _$localLocaleStorageRepositoryHash() =>
-    r'9d6cc6a4bbecd36bcd9625999859acc336c3d9eb';
+    r'd0ee09e63ded6aaf454d9b1b897ca6b2b7e749c0';
 
 /// See also [localLocaleStorageRepository].
 @ProviderFor(localLocaleStorageRepository)

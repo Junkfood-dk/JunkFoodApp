@@ -6,7 +6,7 @@ part of 'rating_repository.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$ratingRepositoryHash() => r'005314b321cb919b4b6d7eb27b296c746dc5bfb5';
+String _$ratingRepositoryHash() => r'35ab6014992a1172ff2121a982e17e42f8004e03';
 
 /// See also [ratingRepository].
 @ProviderFor(ratingRepository)

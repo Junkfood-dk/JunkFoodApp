@@ -4,6 +4,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:junkfood/l10n/app_localizations.dart';
+import 'package:junkfood/providers/date_provider.dart';
+import 'package:junkfood/providers/desktop_web_provider.dart';
+import 'package:junkfood/ui/controllers/dish_of_the_day_controller.dart';
+import 'package:junkfood/ui/controllers/servingtime_controller.dart';
+import 'package:junkfood/ui/widgets/no_dish_widget.dart';
+import 'package:junkfood/ui/widgets/serving_ended_widget.dart';
+import 'package:junkfood/utilities/widgets/datetime/date_bar_small.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:junkfood/ui/controllers/locale_controller.dart';
@@ -28,7 +35,9 @@ Future<void> main() async {
     anonKey: Constants.supabaseAnonKey,
   );
 
-  runApp(const ProviderScope(child: MyApp()));
+  runApp(const ProviderScope(
+    child: MyApp(),
+  ));
 }
 
 class MyApp extends ConsumerWidget {
@@ -36,6 +45,13 @@ class MyApp extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final time = ref.watch(dateProviderProvider);
+    final servingTimeState = ref.watch(servingtimeControllerProvider.notifier);
+    final servingHasEnded = servingTimeState.hasServiceEnded(time);
+
+    final dishOfTheDayState = ref.watch(dishOfTheDayControllerProvider);
+    final isWeb = ref.read(isDesktopWebProvider);
+
     return MaterialApp(
       title: 'Junkfood',
       theme: ThemeData(
@@ -55,7 +71,50 @@ class MyApp extends ConsumerWidget {
         _ => null
       },
       debugShowCheckedModeBanner: false,
-      home: const DishOfTheDayPage(),
+      home: LayoutBuilder(
+        builder: (context, constraints) {
+          if (dishOfTheDayState.hasValue &&
+              dishOfTheDayState.value!.isNotEmpty) {
+            return const DishOfTheDayPage();
+          }
+
+          if (isWeb) {
+            return Scaffold(
+              body: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  if (dishOfTheDayState.hasValue) const DateBarSmall(),
+                  mainWidget(
+                    servingHasEnded,
+                    dishOfTheDayState.hasValue &&
+                        dishOfTheDayState.value!.isNotEmpty,
+                    !dishOfTheDayState.hasValue,
+                  ),
+                ],
+              ),
+            );
+          }
+
+          return mainWidget(
+            servingHasEnded,
+            dishOfTheDayState.hasValue && dishOfTheDayState.value!.isNotEmpty,
+            !dishOfTheDayState.hasValue,
+          );
+        },
+      ),
     );
+  }
+
+  Widget mainWidget(
+    bool servingHasEnded,
+    bool hasDishOfTheDay,
+    bool isLoading,
+  ) {
+    if (isLoading) return const Center(child: CircularProgressIndicator());
+    if (servingHasEnded) return const ServingEndedWidget();
+    if (!hasDishOfTheDay) return const Center(child: NoDishWidget());
+    return const DishOfTheDayPage();
   }
 }

@@ -7,7 +7,7 @@ part of 'local_rating_storage_repository.dart';
 // **************************************************************************
 
 String _$localRatingStorageRepositoryHash() =>
-    r'6373e98437fcc60404abc580670ef735e5383230';
+    r'5482f6282d3b92db18269e33c078c5572d049f08';
 
 /// See also [localRatingStorageRepository].
 @ProviderFor(localRatingStorageRepository)

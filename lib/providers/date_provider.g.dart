@@ -1,26 +1,25 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'database.dart';
+part of 'date_provider.dart';
 
 // **************************************************************************
 // RiverpodGenerator
 // **************************************************************************
 
-String _$databaseHash() => r'11ae8bf761a2333dc4913b8b5f2c7f1762489aab';
+String _$dateProviderHash() => r'43b4d2834b086d82772e2b7662a0c3b7e4b91d6a';
 
-/// See also [database].
-@ProviderFor(database)
-final databaseProvider = AutoDisposeProvider<SupabaseClient>.internal(
-  database,
-  name: r'databaseProvider',
+/// See also [DateProvider].
+@ProviderFor(DateProvider)
+final dateProviderProvider =
+    AutoDisposeNotifierProvider<DateProvider, DateTime>.internal(
+  DateProvider.new,
+  name: r'dateProviderProvider',
   debugGetCreateSourceHash:
-      const bool.fromEnvironment('dart.vm.product') ? null : _$databaseHash,
+      const bool.fromEnvironment('dart.vm.product') ? null : _$dateProviderHash,
   dependencies: null,
   allTransitiveDependencies: null,
 );
 
-@Deprecated('Will be removed in 3.0. Use Ref instead')
-// ignore: unused_element
-typedef DatabaseRef = AutoDisposeProviderRef<SupabaseClient>;
+typedef _$DateProvider = AutoDisposeNotifier<DateTime>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package

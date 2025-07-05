@@ -5,7 +5,7 @@ import 'package:junkfood/l10n/app_localizations.dart';
 import 'package:junkfood/ui/pages/acknowledge_comment_page.dart';
 import 'package:junkfood/utilities/theming/color_theme.dart';
 import 'package:junkfood/utilities/widgets/gradiant_button_widget.dart';
-import 'package:junkfood/utilities/widgets/sized_box_ext.dart';
+import 'package:junkfood/extensions/sized_box_ext.dart';
 import 'package:junkfood/utilities/widgets/text_wrapper.dart';
 
 final commentTextProvider = StateProvider<String>((ref) => '');
