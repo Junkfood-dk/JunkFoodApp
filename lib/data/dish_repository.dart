@@ -17,13 +17,18 @@ class DishRepository implements IDishRepository {
 
   @override
   Future<List<DishModel>> fetchDishOfTheDay() async {
-    //Fetch the dishes thats matches todays date from the database
+    return fetchDishOfDay(DateTime.now());
+  }
+
+  @override
+  Future<List<DishModel>> fetchDishOfDay(DateTime date) async {
+    //Fetch the dishes thats matches the specified date from the database
     final List<Map<String, dynamic>> result = await database
         .from('Dish_Schedule')
         .select(
           'Dishes(id, title, description, calories, Dish_type(id, dish_type), image)',
         )
-        .filter('date', 'eq', DateTime.now().toIso8601String())
+        .filter('date', 'eq', date.toIso8601String())
         .then(
           (response) => response
               .map<Map<String, dynamic>>(
