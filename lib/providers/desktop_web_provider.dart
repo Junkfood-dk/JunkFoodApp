@@ -1,25 +1,24 @@
-import 'package:flutter/foundation.dart';
-
 import 'package:flutter_riverpod/flutter_riverpod.dart'; // Import Riverpod
 
-/// Determines if the Flutter app is running in a web browser and
-/// if the URL contains the query parameter 'desktop=true'.
-///
-/// Returns `true` if both conditions are met, otherwise returns `false`.
-bool _isWebAndDesktopMode() {
-  if (kIsWeb) {
-    // kIsWeb is true, so we are in a web browser.
-    // Now check the URL for 'desktop=true'.
-    final Uri uri = Uri.base;
-    return uri.queryParameters.containsKey('desktop') &&
-        uri.queryParameters['desktop'] == 'true';
-  }
-  // Not running on the web, so desktop mode for web is irrelevant.
-  return false;
-}
+const double _desktopBreakpoint = 800.0;
 
-/// A Riverpod provider that exposes whether the app is running in web
-/// and has 'desktop=true' in its URL query parameters.
-final isDesktopWebProvider = Provider<bool>((ref) {
-  return _isWebAndDesktopMode();
+/// A provider that holds the current width of the application from [MediaQuery.sizeOf(context)].
+///
+/// This provider should be overridden in the widget tree (e.g., in `MaterialApp`)
+/// to provide the actual screen width.
+final screenWidthProvider = Provider<double>((ref) {
+  // Default/placeholder value. This should always be overridden.
+  return 0.0;
 });
+
+/// A Riverpod provider that determines if the app should display a desktop-like
+/// layout based on the current screen width from [screenWidthProvider].
+///
+/// It watches `screenWidthProvider` and recalculates whenever the width changes.
+final isDesktopLayoutProvider = Provider<bool>(
+  (ref) {
+    final double currentWidth = ref.watch(screenWidthProvider);
+    return currentWidth >= _desktopBreakpoint;
+  },
+  dependencies: [screenWidthProvider],
+);

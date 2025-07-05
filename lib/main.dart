@@ -35,9 +35,26 @@ Future<void> main() async {
     anonKey: Constants.supabaseAnonKey,
   );
 
-  runApp(const ProviderScope(
-    child: MyApp(),
-  ));
+  runApp(
+    ProviderScope(
+      child: Builder(
+        // Builder is used here to get a BuildContext to access MediaQuery.sizeOf(context).width
+        builder: (context) {
+          // Override the screenWidthProvider with the actual screen width.
+          // Using MediaQuery.sizeOf(context).width directly ensures that
+          // only changes to the width (not other MediaQueryData properties)
+          // will trigger a rebuild of the provider and subsequent dependents.
+          return ProviderScope(
+            overrides: [
+              screenWidthProvider
+                  .overrideWithValue(MediaQuery.sizeOf(context).width),
+            ],
+            child: const MyApp(),
+          );
+        },
+      ),
+    ),
+  );
 }
 
 class MyApp extends ConsumerWidget {
@@ -50,7 +67,6 @@ class MyApp extends ConsumerWidget {
     final servingHasEnded = servingTimeState.hasServiceEnded(time);
 
     final dishOfTheDayState = ref.watch(dishOfTheDayControllerProvider);
-    final isWeb = ref.read(isDesktopWebProvider);
 
     return MaterialApp(
       title: 'Junkfood',
@@ -78,29 +94,36 @@ class MyApp extends ConsumerWidget {
             return const DishOfTheDayPage();
           }
 
-          if (isWeb) {
-            return Scaffold(
-              body: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  if (dishOfTheDayState.hasValue) const DateBarSmall(),
-                  mainWidget(
-                    servingHasEnded,
-                    dishOfTheDayState.hasValue &&
-                        dishOfTheDayState.value!.isNotEmpty,
-                    !dishOfTheDayState.hasValue,
-                  ),
-                ],
-              ),
-            );
-          }
+          return Consumer(
+            builder: (context, ref, child) {
+              final bool isDesktop = ref.watch(isDesktopLayoutProvider);
 
-          return mainWidget(
-            servingHasEnded,
-            dishOfTheDayState.hasValue && dishOfTheDayState.value!.isNotEmpty,
-            !dishOfTheDayState.hasValue,
+              if (isDesktop) {
+                return Scaffold(
+                  body: Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      if (dishOfTheDayState.hasValue) const DateBarSmall(),
+                      mainWidget(
+                        servingHasEnded,
+                        dishOfTheDayState.hasValue &&
+                            dishOfTheDayState.value!.isNotEmpty,
+                        !dishOfTheDayState.hasValue,
+                      ),
+                    ],
+                  ),
+                );
+              }
+
+              return mainWidget(
+                servingHasEnded,
+                dishOfTheDayState.hasValue &&
+                    dishOfTheDayState.value!.isNotEmpty,
+                !dishOfTheDayState.hasValue,
+              );
+            },
           );
         },
       ),

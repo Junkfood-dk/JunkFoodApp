@@ -36,7 +36,6 @@ class _DishOfTheDayPageState extends ConsumerState<DishOfTheDayPage>
     final formattedEnglish = DateFormat('EEEE \nd. MMMM').format(time);
 
     final dishOfTheDayState = ref.watch(dishOfTheDayControllerProvider);
-    final isWeb = ref.read(isDesktopWebProvider);
 
     tabController?.dispose();
 
@@ -47,14 +46,19 @@ class _DishOfTheDayPageState extends ConsumerState<DishOfTheDayPage>
 
     return Scaffold(
       appBar: AppBar(
-        title: isWeb
-            ? const DateBarSmall()
-            : ButtonText(
-                text: AppLocalizations.of(context)!.localeHelper == 'da'
-                    ? formattedDanish.substring(0, 1).toUpperCase() +
-                        formattedDanish.substring(1)
-                    : formattedEnglish,
-              ),
+        title: Consumer(
+          builder: (context, ref, child) {
+            final bool isDesktop = ref.watch(isDesktopLayoutProvider);
+            return isDesktop
+                ? const DateBarSmall()
+                : ButtonText(
+                    text: AppLocalizations.of(context)!.localeHelper == 'da'
+                        ? formattedDanish.substring(0, 1).toUpperCase() +
+                            formattedDanish.substring(1)
+                        : formattedEnglish,
+                  );
+          },
+        ),
         actions: [
           IconButton(
             icon: Container(
