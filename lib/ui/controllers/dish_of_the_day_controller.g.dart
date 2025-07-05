@@ -7,7 +7,7 @@ part of 'dish_of_the_day_controller.dart';
 // **************************************************************************
 
 String _$dishOfTheDayControllerHash() =>
-    r'ae024a7412d2974614e00724ad77c4a7cc7dde09';
+    r'6903358807a35eab6eba1324f82e5595441ab654';
 
 /// See also [DishOfTheDayController].
 @ProviderFor(DishOfTheDayController)
