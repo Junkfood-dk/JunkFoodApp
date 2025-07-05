@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart'; // Import Riverpod
 
 const double _desktopBreakpoint = 800.0;
@@ -17,6 +18,9 @@ final screenWidthProvider = Provider<double>((ref) {
 /// It watches `screenWidthProvider` and recalculates whenever the width changes.
 final isDesktopLayoutProvider = Provider<bool>(
   (ref) {
+    // Only consider desktop layout on web platforms
+    if (!kIsWeb) return false;
+    
     final double currentWidth = ref.watch(screenWidthProvider);
     return currentWidth >= _desktopBreakpoint;
   },

@@ -45,10 +45,12 @@ Future<void> main() async {
           // only changes to the width (not other MediaQueryData properties)
           // will trigger a rebuild of the provider and subsequent dependents.
           return ProviderScope(
-            overrides: [
-              screenWidthProvider
-                  .overrideWithValue(MediaQuery.sizeOf(context).width),
-            ],
+            overrides: kIsWeb
+                ? [
+                    screenWidthProvider
+                        .overrideWithValue(MediaQuery.sizeOf(context).width),
+                  ]
+                : [],
             child: const MyApp(),
           );
         },
