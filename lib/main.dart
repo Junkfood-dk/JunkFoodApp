@@ -102,28 +102,25 @@ class MyApp extends ConsumerWidget {
 
               if (isDesktop) {
                 return Scaffold(
-                  body: Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      if (dishOfTheDayState.hasValue) const DateBarSmall(),
-                      mainWidget(
-                        servingHasEnded,
-                        dishOfTheDayState.hasValue &&
-                            dishOfTheDayState.value!.isNotEmpty,
-                        !dishOfTheDayState.hasValue,
-                      ),
-                    ],
+                  appBar: AppBar(
+                    title: const DateBarSmall(),
+                  ),
+                  body: Center(
+                    child: mainWidget(
+                      servingHasEnded,
+                      !dishOfTheDayState.hasValue,
+                    ),
                   ),
                 );
               }
 
-              return mainWidget(
-                servingHasEnded,
-                dishOfTheDayState.hasValue &&
-                    dishOfTheDayState.value!.isNotEmpty,
-                !dishOfTheDayState.hasValue,
+              return Scaffold(
+                body: Center(
+                  child: mainWidget(
+                    servingHasEnded,
+                    !dishOfTheDayState.hasValue,
+                  ),
+                ),
               );
             },
           );
@@ -134,12 +131,10 @@ class MyApp extends ConsumerWidget {
 
   Widget mainWidget(
     bool servingHasEnded,
-    bool hasDishOfTheDay,
     bool isLoading,
   ) {
     if (isLoading) return const Center(child: CircularProgressIndicator());
     if (servingHasEnded) return const ServingEndedWidget();
-    if (!hasDishOfTheDay) return const Center(child: NoDishWidget());
-    return const DishOfTheDayPage();
+    return const NoDishWidget();
   }
 }
