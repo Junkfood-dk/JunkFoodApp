@@ -21,7 +21,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get noAllergens => 'No allergens';
 
   @override
-  String get noDishText => 'Todays menu will be available at 13:00';
+  String get noDishText => 'Today\'s menu will be available at 13:00';
 
   @override
   String get calories => 'Calories';
@@ -49,27 +49,26 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get servingHasEndedText =>
-      'Today\'s serving has ended,\nplease check back tomorrow';
+      'Yesterday\'s serving has ended.\nToday\'s menu will be available at 13:00.';
 
   @override
-  String get rateButtonText => 'Rate this dish';
+  String get rateButtonText => 'Rate today\'s dish';
 
   @override
   String get localeHelper => 'en';
 
   @override
-  String get ratingTitle => 'How did you like todays dish?';
+  String get ratingTitle => 'How was your meal today?';
 
   @override
-  String get ratingFeedback =>
-      'With your feedback, we become wiser about whether the dish should be served again.';
+  String get ratingFeedback => 'Help us choose the favorites of the future!';
 
   @override
   String get ratingAcknowledgeTitle => 'Thank you for rating!';
 
   @override
   String get ratingAcknowledgeText =>
-      'You are always welcome to send us a message.\nYour opinion means a lot to us';
+      'You are always welcome to send us a message.\nYour opinion means a lot to us.';
 
   @override
   String get ratingAcknowledgeButton => 'Return to homepage';
@@ -91,7 +90,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get writeCommentText => 'Write your feedback here';
 
   @override
-  String get commentPageSubmitButton => 'Submit';
+  String get commentPageSubmitButton => 'Send feedback';
 
   @override
   String get changeRating =>

@@ -52,11 +52,11 @@
   "@noDishType": {
     "description": "Display message for when no dishtype"
   },
-  "servingHasEndedText" : "Servering af dagens ret er slut,\nvend tilbage i morgen",
+  "servingHasEndedText" : "Servering af gårsdagens ret er slut.\nDagens ret vises kl. 13:00.",
   "@servingHasEndedText" : {
     "description" : "Text for today's dish serving is over"
   },
-  "rateButtonText" : "Bedøm denne ret",
+  "rateButtonText" : "Bedøm dagens ret",
   "@rateButtonText" : {
     "description" : "The text on the rate the dish button"
   },
@@ -64,11 +64,11 @@
   "@localeHelper" : {
     "description" : "The text on the rate the dish button"
   },
-  "ratingTitle" : "Hvordan smagte dagens ret?",
+  "ratingTitle" : "Hvordan var dagens ret?",
   "@ratingTitle" : {
     "description" : "title for rating widget"
   },
-  "ratingFeedback" : "Med din feedback, bliver vi klogere på om retten skal serveres igen.",
+  "ratingFeedback" : "Hjælp os med at vælge fremtidens favoritter!",
   "@ratingFeedback" : {
     "description" : "feedback text for rating widget"
   },
@@ -88,11 +88,11 @@
   "@ratingContinue" : {
     "description" : "Text to submit the rating"
   },
-  "commentHeading" : "Vi vil gerne høre fra dig",
+  "commentHeading" : "Send os en besked her",
   "@commentHeading" : {
     "description": "heading for comment page"
   },
-  "commentPageParagraph": "Har du en idé til, hvad vi kunne lave til dagen måltid? Eller måske noget andet, du gerne vil dele med os? Uanset om det er ris eller ros, eller et særligt ønske, dagens ret på dine fødselsdag mm., vil vi elske at høre dine tanker. Du er altid velkommen til at sende os en besked. Din mening betyder meget for os!",
+  "commentPageParagraph": "Har du en idé til dagens ret? Et særligt ønske - eller måske en fødselsdag på vej? Uanset om du har ris, ros eller bare noget på hjerte, betyder din mening meget for os. Vi glæder os til at høre fra dig!",
   "@commentPageParagraph": {
     "description": "paragraph for comment page"
   },
@@ -100,15 +100,15 @@
   "@yourNameHintText" : {
     "description": "hint text for inputting name in comment page"
   },
-  "writeCommentText" : "Skriv din feedback her",
+  "writeCommentText" : "Skriv din besked her",
   "@writeCommentText" : {
     "description": "hint text for inputting the actual comment in comment page"
   },
-  "commentPageSubmitButton" : "Indsend", 
+  "commentPageSubmitButton" : "Send besked", 
   "@commentPageSubmitButton" : {
     "description": "text for submit button"
   },
-  "changeRating" : "Du har bedømt denne ret, vil du ændre din bedømmelse?", 
+  "changeRating" : "Du har bedømt dagens ret. Vil du ændre din bedømmelse?", 
   "@changeRating" : {
     "description": "if user has rated once, but tries to rate again"
   },

@@ -16,9 +16,9 @@
   "@noAllergens": {
     "description": "Display message for when no allergens"
   },
-   "noDishText": "Todays menu will be available at 13:00",
+   "noDishText": "Today's menu will be available at 13:00",
   "@noDishText": {
-    "description": "Text to show when no dish for todays date has been posted"
+    "description": "Text to show when no dish for today's date has been posted"
   },
   "calories": "Calories",
   "@calories": {
@@ -52,11 +52,11 @@
   "@noDishType": {
     "description": "Display message for when no dishtype"
   },
-  "servingHasEndedText" : "Today's serving has ended,\nplease check back tomorrow",
+  "servingHasEndedText" : "Yesterday's serving has ended.\nToday's menu will be available at 13:00.",
   "@servingHasEndedText" : {
     "description": "Text for today's dish serving is over"
   },
-  "rateButtonText" : "Rate this dish",
+  "rateButtonText" : "Rate today's dish",
   "@rateButtonText" : {
     "description" : "The text on the rate the dish button"
   },
@@ -64,11 +64,11 @@
   "@localeHelper" : {
     "description" : "The text on the rate the dish button"
   },
-  "ratingTitle" : "How did you like todays dish?",
+  "ratingTitle" : "How was your meal today?",
   "@ratingTitle" : {
     "description" : "title for rating widget"
   },
-  "ratingFeedback" : "With your feedback, we become wiser about whether the dish should be served again.",
+  "ratingFeedback" : "Help us choose the favorites of the future!",
   "@ratingFeedback" : {
     "description" : "feedback text for rating widget"
   },
@@ -76,7 +76,7 @@
   "@ratingAcknowledgeTitle" : {
     "description" : "Title for the page that acknowlegde the user for spending their time on rating the dish"
   },
-  "ratingAcknowledgeText" : "You are always welcome to send us a message.\nYour opinion means a lot to us",
+  "ratingAcknowledgeText" : "You are always welcome to send us a message.\nYour opinion means a lot to us.",
   "@ratingAcknowledgeText" : {
     "description" : "Text for the page that acknowlegde the user for spending their time on rating the dish"
   },
@@ -104,7 +104,7 @@
   "@writeCommentText" : {
     "description": "hint text for inputting the actual comment in comment page"
   }, 
-  "commentPageSubmitButton" : "Submit", 
+  "commentPageSubmitButton" : "Send feedback", 
   "@commentPageSubmitButton" : {
     "description": "text for submit button"
   },

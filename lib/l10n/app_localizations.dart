@@ -122,10 +122,10 @@ abstract class AppLocalizations {
   /// **'No allergens'**
   String get noAllergens;
 
-  /// Text to show when no dish for todays date has been posted
+  /// Text to show when no dish for today's date has been posted
   ///
   /// In en, this message translates to:
-  /// **'Todays menu will be available at 13:00'**
+  /// **'Today\'s menu will be available at 13:00'**
   String get noDishText;
 
   /// Calories info on dish page
@@ -179,13 +179,13 @@ abstract class AppLocalizations {
   /// Text for today's dish serving is over
   ///
   /// In en, this message translates to:
-  /// **'Today\'s serving has ended,\nplease check back tomorrow'**
+  /// **'Yesterday\'s serving has ended.\nToday\'s menu will be available at 13:00.'**
   String get servingHasEndedText;
 
   /// The text on the rate the dish button
   ///
   /// In en, this message translates to:
-  /// **'Rate this dish'**
+  /// **'Rate today\'s dish'**
   String get rateButtonText;
 
   /// The text on the rate the dish button
@@ -197,13 +197,13 @@ abstract class AppLocalizations {
   /// title for rating widget
   ///
   /// In en, this message translates to:
-  /// **'How did you like todays dish?'**
+  /// **'How was your meal today?'**
   String get ratingTitle;
 
   /// feedback text for rating widget
   ///
   /// In en, this message translates to:
-  /// **'With your feedback, we become wiser about whether the dish should be served again.'**
+  /// **'Help us choose the favorites of the future!'**
   String get ratingFeedback;
 
   /// Title for the page that acknowlegde the user for spending their time on rating the dish
@@ -215,7 +215,7 @@ abstract class AppLocalizations {
   /// Text for the page that acknowlegde the user for spending their time on rating the dish
   ///
   /// In en, this message translates to:
-  /// **'You are always welcome to send us a message.\nYour opinion means a lot to us'**
+  /// **'You are always welcome to send us a message.\nYour opinion means a lot to us.'**
   String get ratingAcknowledgeText;
 
   /// Text for the button to navigate user back to the frontpage
@@ -257,7 +257,7 @@ abstract class AppLocalizations {
   /// text for submit button
   ///
   /// In en, this message translates to:
-  /// **'Submit'**
+  /// **'Send feedback'**
   String get commentPageSubmitButton;
 
   /// if user has rated once, but tries to rate again

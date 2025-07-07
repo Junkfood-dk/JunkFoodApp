@@ -49,20 +49,19 @@ class AppLocalizationsDa extends AppLocalizations {
 
   @override
   String get servingHasEndedText =>
-      'Servering af dagens ret er slut,\nvend tilbage i morgen';
+      'Servering af gårsdagens ret er slut.\nDagens ret vises kl. 13:00.';
 
   @override
-  String get rateButtonText => 'Bedøm denne ret';
+  String get rateButtonText => 'Bedøm dagens ret';
 
   @override
   String get localeHelper => 'da';
 
   @override
-  String get ratingTitle => 'Hvordan smagte dagens ret?';
+  String get ratingTitle => 'Hvordan var dagens ret?';
 
   @override
-  String get ratingFeedback =>
-      'Med din feedback, bliver vi klogere på om retten skal serveres igen.';
+  String get ratingFeedback => 'Hjælp os med at vælge fremtidens favoritter!';
 
   @override
   String get ratingAcknowledgeTitle => 'Tak for din bedømmelse!';
@@ -78,24 +77,24 @@ class AppLocalizationsDa extends AppLocalizations {
   String get ratingContinue => 'Fortsæt';
 
   @override
-  String get commentHeading => 'Vi vil gerne høre fra dig';
+  String get commentHeading => 'Send os en besked her';
 
   @override
   String get commentPageParagraph =>
-      'Har du en idé til, hvad vi kunne lave til dagen måltid? Eller måske noget andet, du gerne vil dele med os? Uanset om det er ris eller ros, eller et særligt ønske, dagens ret på dine fødselsdag mm., vil vi elske at høre dine tanker. Du er altid velkommen til at sende os en besked. Din mening betyder meget for os!';
+      'Har du en idé til dagens ret? Et særligt ønske - eller måske en fødselsdag på vej? Uanset om du har ris, ros eller bare noget på hjerte, betyder din mening meget for os. Vi glæder os til at høre fra dig!';
 
   @override
   String get yourNameHintText => 'Dit navn';
 
   @override
-  String get writeCommentText => 'Skriv din feedback her';
+  String get writeCommentText => 'Skriv din besked her';
 
   @override
-  String get commentPageSubmitButton => 'Indsend';
+  String get commentPageSubmitButton => 'Send besked';
 
   @override
   String get changeRating =>
-      'Du har bedømt denne ret, vil du ændre din bedømmelse?';
+      'Du har bedømt dagens ret. Vil du ændre din bedømmelse?';
 
   @override
   String get yes => 'Ja';
