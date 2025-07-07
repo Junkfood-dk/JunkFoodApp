@@ -7,7 +7,7 @@ part of 'servingtime_controller.dart';
 // **************************************************************************
 
 String _$servingtimeControllerHash() =>
-    r'94a87f4753d423eea14f77c6c6c3cbe48718bc09';
+    r'5f991d3502e03c7f8cca577e43c3913bf974bdf3';
 
 /// See also [ServingtimeController].
 @ProviderFor(ServingtimeController)
