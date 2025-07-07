@@ -31,8 +31,8 @@ class _DishOfTheDayPageState extends ConsumerState<DishOfTheDayPage>
   @override
   Widget build(BuildContext context) {
     final time = ref.watch(dateProviderProvider);
-    final formattedDanish = DateFormat('EEEE \nd. MMMM', 'da_DK').format(time);
-    final formattedEnglish = DateFormat('EEEE \nd. MMMM').format(time);
+    final formattedDanish = DateFormat('EEEE d. MMMM', 'da_DK').format(time);
+    final formattedEnglish = DateFormat('EEEE d. MMMM').format(time);
 
     final dishOfTheDayState = ref.watch(dishOfTheDayControllerProvider);
 
