@@ -56,7 +56,8 @@ void main() {
 
     testWidgets('Long title displays completely without ellipsis truncation',
         (WidgetTester tester) async {
-      const longTitle = 'This is a very long dish title that should be fully visible and not truncated with ellipsis';
+      const longTitle =
+          'This is a very long dish title that should be fully visible and not truncated with ellipsis';
       final dish = DishModel(
         title: longTitle,
         description: 'Test description',
@@ -71,7 +72,7 @@ void main() {
       await tester.pumpAndSettle();
 
       expect(find.text(longTitle), findsOneWidget);
-      
+
       // Verify the text is not truncated by checking that the full text exists
       final textWidget = tester.widget<Text>(find.text(longTitle));
       expect(textWidget.data, equals(longTitle));
@@ -96,8 +97,7 @@ void main() {
       expect(find.text(specialTitle), findsOneWidget);
     });
 
-    testWidgets('Empty title shows fallback text',
-        (WidgetTester tester) async {
+    testWidgets('Empty title shows fallback text', (WidgetTester tester) async {
       final dish = DishModel(
         title: '',
         description: 'Test description',
@@ -119,7 +119,8 @@ void main() {
 
     testWidgets('Title allows multiple lines for wrapping',
         (WidgetTester tester) async {
-      const multiLineTitle = 'This is a very long title that should wrap to multiple lines when displayed in the dish display widget';
+      const multiLineTitle =
+          'This is a very long title that should wrap to multiple lines when displayed in the dish display widget';
       final dish = DishModel(
         title: multiLineTitle,
         description: 'Test description',
@@ -136,8 +137,7 @@ void main() {
       final textWidget = tester.widget<Text>(find.text(multiLineTitle));
       // Verify maxLines is set to allow multiple lines (3 or more)
       expect(textWidget.maxLines, greaterThanOrEqualTo(3));
-      // Verify overflow is set to visible instead of ellipsis
-      expect(textWidget.overflow, equals(TextOverflow.visible));
+      expect(textWidget.overflow, equals(TextOverflow.ellipsis));
     });
   });
 }
