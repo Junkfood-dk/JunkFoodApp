@@ -4,18 +4,24 @@ import 'package:junkfood/extensions/string_ext.dart';
 void main() {
   group('StringExtensions toSentenceCase', () {
     test('converts all caps to sentence case', () {
-      expect('GRILLED CHICKEN WITH VEGETABLES'.toSentenceCase(),
-          'Grilled chicken with vegetables',);
+      expect(
+        'GRILLED CHICKEN WITH VEGETABLES'.toSentenceCase(),
+        'Grilled chicken with vegetables',
+      );
     });
 
     test('converts title case to sentence case', () {
-      expect('Grilled Chicken With Vegetables'.toSentenceCase(),
-          'Grilled chicken with vegetables',);
+      expect(
+        'Grilled Chicken With Vegetables'.toSentenceCase(),
+        'Grilled chicken with vegetables',
+      );
     });
 
     test('converts lowercase to sentence case', () {
-      expect('grilled chicken with vegetables'.toSentenceCase(),
-          'Grilled chicken with vegetables',);
+      expect(
+        'grilled chicken with vegetables'.toSentenceCase(),
+        'Grilled chicken with vegetables',
+      );
     });
 
     test('handles single word titles', () {
@@ -62,14 +68,21 @@ void main() {
     });
 
     test('preserves formatting for already correct sentence case', () {
-      expect('Grilled chicken with vegetables'.toSentenceCase(),
-          'Grilled chicken with vegetables');
+      expect(
+        'Grilled chicken with vegetables'.toSentenceCase(),
+        'Grilled chicken with vegetables',
+      );
     });
 
     test('handles very long titles', () {
-      const longTitle = 'THIS IS A VERY LONG DISH TITLE THAT CONTAINS MANY WORDS AND SHOULD BE HANDLED CORRECTLY BY THE SENTENCE CASE FUNCTION';
-      const expected = 'This is a very long dish title that contains many words and should be handled correctly by the sentence case function';
-      expect(longTitle.toSentenceCase(), expected,);
+      const longTitle =
+          'THIS IS A VERY LONG DISH TITLE THAT CONTAINS MANY WORDS AND SHOULD BE HANDLED CORRECTLY BY THE SENTENCE CASE FUNCTION';
+      const expected =
+          'This is a very long dish title that contains many words and should be handled correctly by the sentence case function';
+      expect(
+        longTitle.toSentenceCase(),
+        expected,
+      );
     });
   });
 }

@@ -2,7 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:junkfood/l10n/app_localizations.dart';
 import 'package:junkfood/providers/date_provider.dart';
 import 'package:junkfood/providers/desktop_web_provider.dart';

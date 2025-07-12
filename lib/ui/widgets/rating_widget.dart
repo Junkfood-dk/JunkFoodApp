@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:junkfood/domain/model/dish_model.dart';
 import 'package:junkfood/l10n/app_localizations.dart';
 import 'package:junkfood/ui/controllers/dish_rating_controller.dart';
@@ -10,7 +10,7 @@ import 'package:junkfood/utilities/widgets/gradiant_wrapper.dart';
 import 'package:junkfood/extensions/sized_box_ext.dart';
 import 'package:junkfood/utilities/widgets/text_wrapper.dart';
 
-class RatingWidget extends HookConsumerWidget {
+class RatingWidget extends ConsumerWidget {
   final DishModel dish;
 
   const RatingWidget({super.key, required this.dish});
