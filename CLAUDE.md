@@ -137,7 +137,6 @@ Set via `--dart-define` flags or environment:
 
 - __flutter_riverpod__: State management and dependency injection
 - __supabase_flutter__: Backend integration
-- __flutter_hooks__: Reactive programming utilities
 - __build_runner__: Code generation tooling
 
 ## Development Workflow
