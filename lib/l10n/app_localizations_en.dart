@@ -77,11 +77,11 @@ class AppLocalizationsEn extends AppLocalizations {
   String get ratingContinue => 'Continue';
 
   @override
-  String get commentHeading => 'We want to hear from you';
+  String get commentHeading => 'We\'d love to hear from you!';
 
   @override
   String get commentPageParagraph =>
-      'Do you have an idea for what could be today\'s dish? Or maybe something else you woud like to share with us? Whether it\'s praise or feedback, or a special request, dish of the day for your birthday, etc., we would love to hear your thoughts. You are always welcome to send us a message. Your opionion means a lot to us! ';
+      'Do you have an idea for today\'s dish? A special request - or maybe a birthday coming up? Whether it’s feedback, suggestions, or just something on your mind, your opinion matters to us. Send us a message here - we can’t wait to hear from you!';
 
   @override
   String get yourNameHintText => 'Your name';
