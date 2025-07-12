@@ -233,13 +233,13 @@ abstract class AppLocalizations {
   /// heading for comment page
   ///
   /// In en, this message translates to:
-  /// **'We want to hear from you'**
+  /// **'We\'d love to hear from you!'**
   String get commentHeading;
 
   /// paragraph for comment page
   ///
   /// In en, this message translates to:
-  /// **'Do you have an idea for what could be today\'s dish? Or maybe something else you woud like to share with us? Whether it\'s praise or feedback, or a special request, dish of the day for your birthday, etc., we would love to hear your thoughts. You are always welcome to send us a message. Your opionion means a lot to us! '**
+  /// **'Do you have an idea for today\'s dish? A special request - or maybe a birthday coming up? Whether it’s feedback, suggestions, or just something on your mind, your opinion matters to us. Send us a message here - we can’t wait to hear from you!'**
   String get commentPageParagraph;
 
   /// hint text for inputting name in comment page
