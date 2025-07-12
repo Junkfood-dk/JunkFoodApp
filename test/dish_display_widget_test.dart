@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:junkfood/domain/model/dish_model.dart';
 import 'package:junkfood/l10n/app_localizations.dart';
 import 'package:junkfood/ui/controllers/locale_controller.dart';
@@ -72,7 +72,8 @@ void main() {
       await tester.pumpAndSettle();
 
       // The title should be displayed in sentence case
-      const expectedLongTitle = 'This is a very long dish title that should be fully visible and not truncated with ellipsis';
+      const expectedLongTitle =
+          'This is a very long dish title that should be fully visible and not truncated with ellipsis';
       expect(find.text(expectedLongTitle), findsOneWidget);
 
       // Verify the text is not truncated by checking that the full text exists
@@ -97,7 +98,8 @@ void main() {
       await tester.pumpAndSettle();
 
       // The title should be displayed in sentence case
-      const expectedTitle = 'Delicious café français 🍽️ & spätzle with åccénts';
+      const expectedTitle =
+          'Delicious café français 🍽️ & spätzle with åccénts';
       expect(find.text(expectedTitle), findsOneWidget);
     });
 
