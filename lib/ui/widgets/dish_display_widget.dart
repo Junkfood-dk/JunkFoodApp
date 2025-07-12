@@ -5,6 +5,7 @@ import 'package:junkfood/l10n/app_localizations.dart';
 import 'package:junkfood/ui/controllers/dish_controller.dart';
 import 'package:junkfood/ui/controllers/dish_of_the_day_controller.dart';
 import 'package:junkfood/extensions/sized_box_ext.dart';
+import 'package:junkfood/extensions/string_ext.dart';
 import 'package:junkfood/utilities/widgets/text_wrapper.dart';
 
 class DishDisplayWidget extends ConsumerWidget {
@@ -29,7 +30,7 @@ class DishDisplayWidget extends ConsumerWidget {
     });
 
     final title = dish.title.isNotEmpty
-        ? dish.title
+        ? dish.title.toSentenceCase()
         : AppLocalizations.of(context)!.noTitle;
 
     return RefreshIndicator(

@@ -71,11 +71,13 @@ void main() {
       await tester.pumpWidget(createTestWidget(dish));
       await tester.pumpAndSettle();
 
-      expect(find.text(longTitle), findsOneWidget);
+      // The title should be displayed in sentence case
+      const expectedLongTitle = 'This is a very long dish title that should be fully visible and not truncated with ellipsis';
+      expect(find.text(expectedLongTitle), findsOneWidget);
 
       // Verify the text is not truncated by checking that the full text exists
-      final textWidget = tester.widget<Text>(find.text(longTitle));
-      expect(textWidget.data, equals(longTitle));
+      final textWidget = tester.widget<Text>(find.text(expectedLongTitle));
+      expect(textWidget.data, equals(expectedLongTitle));
     });
 
     testWidgets('Title with special characters and emojis displays correctly',
@@ -94,7 +96,9 @@ void main() {
       await tester.pumpWidget(createTestWidget(dish));
       await tester.pumpAndSettle();
 
-      expect(find.text(specialTitle), findsOneWidget);
+      // The title should be displayed in sentence case
+      const expectedTitle = 'Delicious café français 🍽️ & spätzle with åccénts';
+      expect(find.text(expectedTitle), findsOneWidget);
     });
 
     testWidgets('Empty title shows fallback text', (WidgetTester tester) async {
