@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:junkfood/l10n/app_localizations.dart';
+import 'package:string_cache/string_cache.dart';
 
 import 'package:junkfood/ui/widgets/logo_image.dart';
 import 'package:junkfood/utilities/theming/color_theme.dart';
@@ -25,11 +25,11 @@ class AcknowledgeRatingPage extends StatelessWidget {
                 children: [
                   const LogoImage(),
                   TitleLargeText(
-                    text: AppLocalizations.of(context)!.ratingAcknowledgeTitle,
+                    text: SupabaseLocalizations.of(context)!.ratingAcknowledgeTitle,
                     textAlign: TextAlign.center,
                   ),
                   BodyText(
-                    text: AppLocalizations.of(context)!.ratingAcknowledgeText,
+                    text: SupabaseLocalizations.of(context)!.ratingAcknowledgeText,
                     textAlign: TextAlign.center,
                   ),
                 ],
@@ -52,7 +52,7 @@ class AcknowledgeRatingPage extends StatelessWidget {
                       navigator.pop();
                     },
                     child: ButtonText(
-                      text: AppLocalizations.of(context)!.sendUsMsgBtn,
+                      text: SupabaseLocalizations.of(context)!.sendUsMsgBtn,
                     ),
                   ),
                 ),
@@ -72,7 +72,7 @@ class AcknowledgeRatingPage extends StatelessWidget {
                     ),
                     child: ButtonText(
                       text:
-                          AppLocalizations.of(context)!.ratingAcknowledgeButton,
+                          SupabaseLocalizations.of(context)!.ratingAcknowledgeButton,
                     ),
                   ),
                 ),

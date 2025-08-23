@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:junkfood/domain/model/dish_model.dart';
-import 'package:junkfood/l10n/app_localizations.dart';
+import 'package:string_cache/string_cache.dart';
 import 'package:junkfood/ui/controllers/dish_controller.dart';
 import 'package:junkfood/ui/controllers/dish_of_the_day_controller.dart';
 import 'package:junkfood/extensions/sized_box_ext.dart';
@@ -31,7 +31,7 @@ class DishDisplayWidget extends ConsumerWidget {
 
     final title = dish.title.isNotEmpty
         ? dish.title.toSentenceCase()
-        : AppLocalizations.of(context)!.noTitle;
+        : SupabaseLocalizations.of(context)!.noTitle;
 
     return RefreshIndicator(
       onRefresh: () async {
@@ -99,7 +99,7 @@ class DishDisplayWidget extends ConsumerWidget {
                 ButtonText(
                   text: dish.description.isNotEmpty
                       ? dish.description
-                      : AppLocalizations.of(context)!.noDescription,
+                      : SupabaseLocalizations.of(context)!.noDescription,
                 ),
                 if (dish.calories > 0) ...[
                   SizedBoxExt.sizedBoxHeight8,
@@ -107,7 +107,7 @@ class DishDisplayWidget extends ConsumerWidget {
                     color: Colors.grey,
                   ),
                   BodyBoldText(
-                    text: AppLocalizations.of(context)!.calories,
+                    text: SupabaseLocalizations.of(context)!.calories,
                   ),
                   BodyText(
                     text: '${dish.calories}',
@@ -115,7 +115,7 @@ class DishDisplayWidget extends ConsumerWidget {
                 ],
                 SizedBoxExt.sizedBoxHeight8,
                 BodyBoldText(
-                  text: AppLocalizations.of(context)!.allergens,
+                  text: SupabaseLocalizations.of(context)!.allergens,
                 ),
                 SizedBoxExt.sizedBoxHeight8,
                 dish.allergens.isNotEmpty
@@ -127,7 +127,7 @@ class DishDisplayWidget extends ConsumerWidget {
                           );
                         }).toList(),
                       )
-                    : Text(AppLocalizations.of(context)!.noAllergens),
+                    : Text(SupabaseLocalizations.of(context)!.noAllergens),
                 SizedBoxExt.sizedBoxHeight24,
               ],
             ),
