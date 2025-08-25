@@ -7,7 +7,7 @@ part of 'string_fetcher_repository.dart';
 // **************************************************************************
 
 String _$stringFetcherRepositoryHash() =>
-    r'a3a99214ce3330ec70d8afe7c59c5da1946e9485';
+    r'c4d1063351839df67303c265921d05b6dd121585';
 
 /// Riverpod provider for StringFetcherRepository
 ///

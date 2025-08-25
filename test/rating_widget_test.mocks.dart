@@ -133,6 +133,24 @@ class MockDishModel extends _i1.Mock implements _i2.DishModel {
       );
 
   @override
+  set titleEn(String? _titleEn) => super.noSuchMethod(
+        Invocation.setter(
+          #titleEn,
+          _titleEn,
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  set descriptionEn(String? _descriptionEn) => super.noSuchMethod(
+        Invocation.setter(
+          #descriptionEn,
+          _descriptionEn,
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
   set calories(int? _calories) => super.noSuchMethod(
         Invocation.setter(
           #calories,
@@ -186,4 +204,48 @@ class MockDishModel extends _i1.Mock implements _i2.DishModel {
         returnValue: <String, dynamic>{},
         returnValueForMissingStub: <String, dynamic>{},
       ) as Map<String, dynamic>);
+
+  @override
+  String getTitleForLanguage(String? languageCode) => (super.noSuchMethod(
+        Invocation.method(
+          #getTitleForLanguage,
+          [languageCode],
+        ),
+        returnValue: _i3.dummyValue<String>(
+          this,
+          Invocation.method(
+            #getTitleForLanguage,
+            [languageCode],
+          ),
+        ),
+        returnValueForMissingStub: _i3.dummyValue<String>(
+          this,
+          Invocation.method(
+            #getTitleForLanguage,
+            [languageCode],
+          ),
+        ),
+      ) as String);
+
+  @override
+  String getDescriptionForLanguage(String? languageCode) => (super.noSuchMethod(
+        Invocation.method(
+          #getDescriptionForLanguage,
+          [languageCode],
+        ),
+        returnValue: _i3.dummyValue<String>(
+          this,
+          Invocation.method(
+            #getDescriptionForLanguage,
+            [languageCode],
+          ),
+        ),
+        returnValueForMissingStub: _i3.dummyValue<String>(
+          this,
+          Invocation.method(
+            #getDescriptionForLanguage,
+            [languageCode],
+          ),
+        ),
+      ) as String);
 }

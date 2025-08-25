@@ -6,7 +6,7 @@ part of 'string_controller.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$stringControllerHash() => r'c041d619ac7ff982b8299eec12142397616d99e1';
+String _$stringControllerHash() => r'8f67323cee9fbb6f0214717e375269fa2b0086f4';
 
 /// Controller for managing string loading from Supabase and caching
 ///

@@ -4,6 +4,7 @@ import 'package:junkfood/domain/model/dish_model.dart';
 import 'package:string_cache/string_cache.dart';
 import 'package:junkfood/ui/controllers/dish_controller.dart';
 import 'package:junkfood/ui/controllers/dish_of_the_day_controller.dart';
+import 'package:junkfood/ui/controllers/locale_controller.dart';
 import 'package:junkfood/extensions/sized_box_ext.dart';
 import 'package:junkfood/extensions/string_ext.dart';
 import 'package:junkfood/utilities/widgets/text_wrapper.dart';
@@ -29,8 +30,16 @@ class DishDisplayWidget extends ConsumerWidget {
           .set(dish);
     });
 
-    final title = dish.title.isNotEmpty
-        ? dish.title.toSentenceCase()
+    // Get current language code
+    final localeAsync = ref.watch(localeControllerProvider);
+    final languageCode = localeAsync.when(
+      data: (locale) => locale?.languageCode ?? 'da',
+      loading: () => 'da',
+      error: (_, __) => 'da',
+    );
+
+    final title = dish.getTitleForLanguage(languageCode).isNotEmpty
+        ? dish.getTitleForLanguage(languageCode).toSentenceCase()
         : SupabaseLocalizations.of(context)!.noTitle;
 
     return RefreshIndicator(
@@ -97,8 +106,8 @@ class DishDisplayWidget extends ConsumerWidget {
               children: [
                 SizedBoxExt.sizedBoxHeight16,
                 ButtonText(
-                  text: dish.description.isNotEmpty
-                      ? dish.description
+                  text: dish.getDescriptionForLanguage(languageCode).isNotEmpty
+                      ? dish.getDescriptionForLanguage(languageCode)
                       : SupabaseLocalizations.of(context)!.noDescription,
                 ),
                 if (dish.calories > 0) ...[
