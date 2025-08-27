@@ -4,10 +4,6 @@
   "@homePageTitle": {
     "description": "This is the title banner of the Homepage"
   },
-  "punchText": "Du har slået knappen så mange gange:",
-  "@punchText": {
-    "description": "The text in the middle, describing how many times you have punched the button"
-  },
   "calories": "Kalorier",
   "@calories": {
     "description": "Calories info on dish page"

@@ -25,7 +25,7 @@ class DishRepository implements IDishRepository {
     final List<Map<String, dynamic>> result = await database
         .from('Dish_Schedule')
         .select(
-          'Dishes(id, title, description, calories, Dish_type(id, dish_type), image)',
+          'Dishes(id, title, description, title_en, description_en, calories, Dish_type(id, dish_type), image)',
         )
         .filter('date', 'eq', date.toIso8601String())
         .then(
@@ -64,7 +64,7 @@ class DishRepository implements IDishRepository {
     final List<Map<String, dynamic>> result = await database
         .from('Dish_Schedule')
         .select(
-          'Dishes(id, title, description, calories, Dish_type(id, dish_type), image)',
+          'Dishes(id, title, description, title_en, description_en, calories, Dish_type(id, dish_type), image)',
         )
         .filter('date', 'eq', date.toIso8601String())
         .then(

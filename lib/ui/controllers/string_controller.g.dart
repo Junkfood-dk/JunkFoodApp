@@ -1,27 +1,28 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'dish_of_the_day_controller.dart';
+part of 'string_controller.dart';
 
 // **************************************************************************
 // RiverpodGenerator
 // **************************************************************************
 
-String _$dishOfTheDayControllerHash() =>
-    r'3f4f9802dd9f4b95a57c600267c70cb0d66760df';
+String _$stringControllerHash() => r'8f67323cee9fbb6f0214717e375269fa2b0086f4';
 
-/// See also [DishOfTheDayController].
-@ProviderFor(DishOfTheDayController)
-final dishOfTheDayControllerProvider = AutoDisposeAsyncNotifierProvider<
-    DishOfTheDayController, List<DishModel>>.internal(
-  DishOfTheDayController.new,
-  name: r'dishOfTheDayControllerProvider',
+/// Controller for managing string loading from Supabase and caching
+///
+/// Copied from [StringController].
+@ProviderFor(StringController)
+final stringControllerProvider =
+    AutoDisposeAsyncNotifierProvider<StringController, bool>.internal(
+  StringController.new,
+  name: r'stringControllerProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
       ? null
-      : _$dishOfTheDayControllerHash,
+      : _$stringControllerHash,
   dependencies: null,
   allTransitiveDependencies: null,
 );
 
-typedef _$DishOfTheDayController = AutoDisposeAsyncNotifier<List<DishModel>>;
+typedef _$StringController = AutoDisposeAsyncNotifier<bool>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package

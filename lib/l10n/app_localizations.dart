@@ -104,12 +104,6 @@ abstract class AppLocalizations {
   /// **'Homepage'**
   String get homePageTitle;
 
-  /// The text in the middle, describing how many times you have punched the button
-  ///
-  /// In en, this message translates to:
-  /// **'You have punched the button this many times:'**
-  String get punchText;
-
   /// Display of allergens title
   ///
   /// In en, this message translates to:

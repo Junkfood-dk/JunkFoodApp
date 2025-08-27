@@ -1,7 +1,7 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:junkfood/l10n/app_localizations.dart';
+import 'package:string_cache/string_cache.dart';
 import 'package:junkfood/providers/date_provider.dart';
 import 'package:junkfood/providers/desktop_web_provider.dart';
 import 'package:junkfood/ui/controllers/dish_controller.dart';
@@ -51,7 +51,7 @@ class _DishOfTheDayPageState extends ConsumerState<DishOfTheDayPage>
             return isDesktop
                 ? const DateBarSmall()
                 : ButtonText(
-                    text: AppLocalizations.of(context)!.localeHelper == 'da'
+                    text: SupabaseLocalizations.of(context)!.localeHelper == 'da'
                         ? formattedDanish.substring(0, 1).toUpperCase() +
                             formattedDanish.substring(1)
                         : formattedEnglish,
@@ -151,7 +151,7 @@ class _DishOfTheDayPageState extends ConsumerState<DishOfTheDayPage>
                     ),
                     child: GradiantButton(
                       child: ButtonText(
-                        text: AppLocalizations.of(context)!.rateButtonText,
+                        text: SupabaseLocalizations.of(context)!.rateButtonText,
                       ),
                       onPressed: () {
                         showModalBottomSheet<void>(

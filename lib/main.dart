@@ -3,7 +3,8 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:junkfood/l10n/app_localizations.dart';
+import 'package:junkfood/ui/controllers/string_controller.dart';
+import 'package:string_cache/string_cache.dart';
 import 'package:junkfood/providers/date_provider.dart';
 import 'package:junkfood/providers/desktop_web_provider.dart';
 import 'package:junkfood/ui/controllers/dish_of_the_day_controller.dart';
@@ -33,6 +34,9 @@ Future<void> main() async {
   await Supabase.initialize(
     url: Constants.supabaseUrl,
     anonKey: Constants.supabaseAnonKey,
+    authOptions: const FlutterAuthClientOptions(
+      authFlowType: AuthFlowType.pkce,
+    ),
   );
 
   runApp(
@@ -69,6 +73,7 @@ class MyApp extends ConsumerWidget {
     final servingHasEnded = servingTimeState.hasServiceEnded(time);
 
     final dishOfTheDayState = ref.watch(dishOfTheDayControllerProvider);
+    final stringControllerState = ref.watch(stringControllerProvider);
 
     return MaterialApp(
       title: 'Junkfood',
@@ -78,12 +83,12 @@ class MyApp extends ConsumerWidget {
         useMaterial3: true,
       ),
       localizationsDelegates: const [
-        AppLocalizations.delegate,
+        SupabaseLocalizations.delegate,
         GlobalMaterialLocalizations.delegate,
         GlobalWidgetsLocalizations.delegate,
         GlobalCupertinoLocalizations.delegate,
       ],
-      supportedLocales: AppLocalizations.supportedLocales,
+      supportedLocales: SupabaseLocalizations.supportedLocales,
       locale: switch (ref.watch(localeControllerProvider)) {
         AsyncData(:final value) => value,
         _ => null
@@ -91,36 +96,91 @@ class MyApp extends ConsumerWidget {
       debugShowCheckedModeBanner: false,
       home: LayoutBuilder(
         builder: (context, constraints) {
-          if (dishOfTheDayState.hasValue &&
-              dishOfTheDayState.value!.isNotEmpty) {
-            return const DishOfTheDayPage();
-          }
-
-          return Consumer(
-            builder: (context, ref, child) {
-              final bool isDesktop = ref.watch(isDesktopLayoutProvider);
-
-              if (isDesktop) {
-                return Scaffold(
-                  appBar: AppBar(
-                    title: const DateBarSmall(),
-                  ),
+          // Check string loading state first
+          return stringControllerState.when(
+            loading: () => const Scaffold(
+              body: Center(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    CircularProgressIndicator(),
+                    SizedBox(height: 16),
+                    Text('Loading translations...'),
+                  ],
+                ),
+              ),
+            ),
+            error: (error, stackTrace) => Scaffold(
+              body: Center(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    const Icon(Icons.error_outline, size: 64, color: Colors.red),
+                    const SizedBox(height: 16),
+                    const Text('Failed to load translations'),
+                    const SizedBox(height: 8),
+                    Text('$error', textAlign: TextAlign.center),
+                    const SizedBox(height: 16),
+                    ElevatedButton(
+                      onPressed: () {
+                        ref.read(stringControllerProvider.notifier).refreshStrings();
+                      },
+                      child: const Text('Retry'),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            data: (stringsLoaded) {
+              // Only proceed with normal app flow if strings loaded successfully
+              if (!stringsLoaded) {
+                return const Scaffold(
                   body: Center(
-                    child: mainWidget(
-                      servingHasEnded,
-                      !dishOfTheDayState.hasValue,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Icon(Icons.warning, size: 64, color: Colors.orange),
+                        SizedBox(height: 16),
+                        Text('Using fallback translations'),
+                      ],
                     ),
                   ),
                 );
               }
 
-              return Scaffold(
-                body: Center(
-                  child: mainWidget(
-                    servingHasEnded,
-                    !dishOfTheDayState.hasValue,
-                  ),
-                ),
+              // Normal app flow continues here
+              if (dishOfTheDayState.hasValue &&
+                  dishOfTheDayState.value!.isNotEmpty) {
+                return const DishOfTheDayPage();
+              }
+
+              return Consumer(
+                builder: (context, ref, child) {
+                  final bool isDesktop = ref.watch(isDesktopLayoutProvider);
+
+                  if (isDesktop) {
+                    return Scaffold(
+                      appBar: AppBar(
+                        title: const DateBarSmall(),
+                      ),
+                      body: Center(
+                        child: mainWidget(
+                          servingHasEnded,
+                          !dishOfTheDayState.hasValue,
+                        ),
+                      ),
+                    );
+                  }
+
+                  return Scaffold(
+                    body: Center(
+                      child: mainWidget(
+                        servingHasEnded,
+                        !dishOfTheDayState.hasValue,
+                      ),
+                    ),
+                  );
+                },
               );
             },
           );

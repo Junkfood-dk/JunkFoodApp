@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:junkfood/domain/model/language_model.dart';
-import 'package:junkfood/l10n/app_localizations.dart';
+import 'package:string_cache/string_cache.dart';
 import 'package:junkfood/ui/controllers/locale_controller.dart';
 import 'package:junkfood/utilities/widgets/gradiant_wrapper.dart';
 
@@ -18,7 +18,7 @@ class LanguageDropdownWidget extends ConsumerWidget {
       },
       icon: const PrimaryGradiantWidget(child: Icon(Icons.language)),
       itemBuilder: (BuildContext context) {
-        final localizations = AppLocalizations.of(context)!;
+        final localizations = SupabaseLocalizations.of(context)!;
         List<PopupMenuEntry<Language>> menuItems =
             Language.languageList().map((e) {
           String localizedName;

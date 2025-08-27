@@ -12,9 +12,6 @@ class AppLocalizationsDa extends AppLocalizations {
   String get homePageTitle => 'Startside';
 
   @override
-  String get punchText => 'Du har slået knappen så mange gange:';
-
-  @override
   String get allergens => 'Allergener';
 
   @override

@@ -3,7 +3,6 @@
 // Do not manually edit this file.
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'package:junkfood/domain/model/allergen_model.dart' as _i4;
 import 'package:junkfood/domain/model/dish_model.dart' as _i2;
 import 'package:mockito/mockito.dart' as _i1;
 import 'package:mockito/src/dummies.dart' as _i3;
@@ -106,12 +105,6 @@ class MockDishModel extends _i1.Mock implements _i2.DishModel {
         returnValueForMissingStub: <String>[],
       ) as List<String>);
 
-  List<_i4.AllergenModel> get allergenModels => (super.noSuchMethod(
-        Invocation.getter(#allergenModels),
-        returnValue: <_i4.AllergenModel>[],
-        returnValueForMissingStub: <_i4.AllergenModel>[],
-      ) as List<_i4.AllergenModel>);
-
   @override
   set id(int? _id) => super.noSuchMethod(
         Invocation.setter(
@@ -135,6 +128,24 @@ class MockDishModel extends _i1.Mock implements _i2.DishModel {
         Invocation.setter(
           #description,
           _description,
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  set titleEn(String? _titleEn) => super.noSuchMethod(
+        Invocation.setter(
+          #titleEn,
+          _titleEn,
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  set descriptionEn(String? _descriptionEn) => super.noSuchMethod(
+        Invocation.setter(
+          #descriptionEn,
+          _descriptionEn,
         ),
         returnValueForMissingStub: null,
       );
@@ -184,15 +195,6 @@ class MockDishModel extends _i1.Mock implements _i2.DishModel {
         returnValueForMissingStub: null,
       );
 
-  set allergenModels(List<_i4.AllergenModel>? _allergenModels) =>
-      super.noSuchMethod(
-        Invocation.setter(
-          #allergenModels,
-          _allergenModels,
-        ),
-        returnValueForMissingStub: null,
-      );
-
   @override
   Map<String, dynamic> toJson() => (super.noSuchMethod(
         Invocation.method(
@@ -203,13 +205,47 @@ class MockDishModel extends _i1.Mock implements _i2.DishModel {
         returnValueForMissingStub: <String, dynamic>{},
       ) as Map<String, dynamic>);
 
-  List<String> getAllergenNamesForLanguage(String? languageCode) =>
-      (super.noSuchMethod(
+  @override
+  String getTitleForLanguage(String? languageCode) => (super.noSuchMethod(
         Invocation.method(
-          #getAllergenNamesForLanguage,
+          #getTitleForLanguage,
           [languageCode],
         ),
-        returnValue: <String>[],
-        returnValueForMissingStub: <String>[],
-      ) as List<String>);
+        returnValue: _i3.dummyValue<String>(
+          this,
+          Invocation.method(
+            #getTitleForLanguage,
+            [languageCode],
+          ),
+        ),
+        returnValueForMissingStub: _i3.dummyValue<String>(
+          this,
+          Invocation.method(
+            #getTitleForLanguage,
+            [languageCode],
+          ),
+        ),
+      ) as String);
+
+  @override
+  String getDescriptionForLanguage(String? languageCode) => (super.noSuchMethod(
+        Invocation.method(
+          #getDescriptionForLanguage,
+          [languageCode],
+        ),
+        returnValue: _i3.dummyValue<String>(
+          this,
+          Invocation.method(
+            #getDescriptionForLanguage,
+            [languageCode],
+          ),
+        ),
+        returnValueForMissingStub: _i3.dummyValue<String>(
+          this,
+          Invocation.method(
+            #getDescriptionForLanguage,
+            [languageCode],
+          ),
+        ),
+      ) as String);
 }

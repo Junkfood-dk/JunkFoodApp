@@ -21,6 +21,8 @@ dependencies:
   shared_preferences: ^2.2.3
   supabase_auth_ui: ^0.5.5
   supabase_flutter: ^2.9.1
+  string_cache:
+    path: ./string_cache
 
 dev_dependencies:
   flutter_test:

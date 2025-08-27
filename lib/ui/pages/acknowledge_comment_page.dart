@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:junkfood/l10n/app_localizations.dart';
+import 'package:string_cache/string_cache.dart';
 import 'package:junkfood/ui/pages/dish_of_the_day_page.dart';
 import 'package:junkfood/ui/widgets/logo_image.dart';
 import 'package:junkfood/utilities/theming/color_theme.dart';
@@ -18,11 +18,11 @@ class AcknowledgeCommentPage extends StatelessWidget {
           const LogoImage(),
           const SizedBox(height: 10.0),
           TitleLargeText(
-            text: AppLocalizations.of(context)!.commentAcknowledgementTitle,
+            text: SupabaseLocalizations.of(context)!.commentAcknowledgementTitle,
             textAlign: TextAlign.center,
           ),
           BodyText(
-            text: AppLocalizations.of(context)!.commentAcknowledgementText,
+            text: SupabaseLocalizations.of(context)!.commentAcknowledgementText,
             textAlign: TextAlign.center,
           ),
           Expanded(child: Container()),
@@ -49,7 +49,7 @@ class AcknowledgeCommentPage extends StatelessWidget {
                     side: BorderSide(color: colorTheme.outline),
                   ),
                   child: BodyText(
-                    text: AppLocalizations.of(context)!
+                    text: SupabaseLocalizations.of(context)!
                         .commentAcknowledgementButton,
                   ),
                 ),

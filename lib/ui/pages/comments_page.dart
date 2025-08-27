@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:junkfood/data/comments_repository.dart';
-import 'package:junkfood/l10n/app_localizations.dart';
+import 'package:string_cache/string_cache.dart';
 import 'package:junkfood/ui/pages/acknowledge_comment_page.dart';
 import 'package:junkfood/utilities/theming/color_theme.dart';
 import 'package:junkfood/utilities/widgets/gradiant_button_widget.dart';
@@ -33,19 +33,19 @@ class CommentsPage extends ConsumerWidget {
             children: [
               AppBar(
                 title: TitleLargeText(
-                  text: AppLocalizations.of(context)!.commentHeading,
+                  text: SupabaseLocalizations.of(context)!.commentHeading,
                 ),
                 automaticallyImplyLeading: false,
               ),
               BodyText(
-                text: AppLocalizations.of(context)!.commentPageParagraph,
+                text: SupabaseLocalizations.of(context)!.commentPageParagraph,
                 textAlign: TextAlign.start,
               ),
               const SizedBox(height: 15),
               TextField(
                 controller: _commentController,
                 decoration: InputDecoration(
-                  hintText: AppLocalizations.of(context)!.writeCommentText,
+                  hintText: SupabaseLocalizations.of(context)!.writeCommentText,
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(16),
                   ),
@@ -77,7 +77,7 @@ class CommentsPage extends ConsumerWidget {
                         }
                       : null,
                   child: ButtonText(
-                    text: AppLocalizations.of(context)!.commentPageSubmitButton,
+                    text: SupabaseLocalizations.of(context)!.commentPageSubmitButton,
                   ),
                 ),
               ),
@@ -95,7 +95,7 @@ class CommentsPage extends ConsumerWidget {
                     side: BorderSide(color: colorTheme.outline),
                   ),
                   child: ButtonText(
-                    text: AppLocalizations.of(context)!.ratingAcknowledgeButton,
+                    text: SupabaseLocalizations.of(context)!.ratingAcknowledgeButton,
                   ),
                 ),
               ),

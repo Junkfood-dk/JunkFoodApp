@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:junkfood/domain/model/dish_model.dart';
-import 'package:junkfood/l10n/app_localizations.dart';
+import 'package:string_cache/string_cache.dart';
 import 'package:junkfood/ui/controllers/dish_rating_controller.dart';
 import 'package:junkfood/ui/pages/acknowledge_rating_page.dart';
 import 'package:junkfood/utilities/widgets/gradiant_button_widget.dart';
@@ -30,9 +30,9 @@ class _RatingWidgetState extends ConsumerState<RatingWidget> {
       child: Column(
         children: [
           SizedBoxExt.sizedBoxHeight24,
-          BodyBoldText(text: AppLocalizations.of(context)!.ratingTitle),
+          BodyBoldText(text: SupabaseLocalizations.of(context)!.ratingTitle),
           BodyText(
-            text: AppLocalizations.of(context)!.ratingFeedback,
+            text: SupabaseLocalizations.of(context)!.ratingFeedback,
             textAlign: TextAlign.center,
           ),
           SizedBoxExt.sizedBoxHeight24,
@@ -117,7 +117,7 @@ class _RatingWidgetState extends ConsumerState<RatingWidget> {
                     }
                   },
             child: ButtonText(
-              text: AppLocalizations.of(context)!.ratingContinue,
+              text: SupabaseLocalizations.of(context)!.ratingContinue,
             ),
           ),
           SizedBoxExt.sizedBoxHeight8,
@@ -137,7 +137,7 @@ class _RatingWidgetState extends ConsumerState<RatingWidget> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               BodyText(
-                text: AppLocalizations.of(context)!.changeRating,
+                text: SupabaseLocalizations.of(context)!.changeRating,
                 textAlign: TextAlign.center,
               ),
               const SizedBox(height: 15),
@@ -154,7 +154,7 @@ class _RatingWidgetState extends ConsumerState<RatingWidget> {
                         ); // UPDATE THE RATING FUNCTIONALITY WILL GO HERE
                       },
                       child: BodyText(
-                        text: AppLocalizations.of(context)!.yes,
+                        text: SupabaseLocalizations.of(context)!.yes,
                       ),
                     ),
                   ),
@@ -168,7 +168,7 @@ class _RatingWidgetState extends ConsumerState<RatingWidget> {
                       ); // GO BACK AND DO NOT UPDATE
                     },
                     child: BodyText(
-                      text: AppLocalizations.of(context)!.no,
+                      text: SupabaseLocalizations.of(context)!.no,
                     ),
                   ),
                 ],

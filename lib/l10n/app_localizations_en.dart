@@ -12,9 +12,6 @@ class AppLocalizationsEn extends AppLocalizations {
   String get homePageTitle => 'Homepage';
 
   @override
-  String get punchText => 'You have punched the button this many times:';
-
-  @override
   String get allergens => 'Allergens';
 
   @override
