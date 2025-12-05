@@ -9,9 +9,9 @@ import 'package:junkfood/providers/date_provider.dart';
 import 'package:junkfood/providers/desktop_web_provider.dart';
 import 'package:junkfood/ui/controllers/dish_of_the_day_controller.dart';
 import 'package:junkfood/ui/controllers/servingtime_controller.dart';
-import 'package:junkfood/ui/widgets/no_dish_widget.dart';
+import 'package:junkfood/ui/controllers/settings_controller.dart';
 import 'package:junkfood/ui/widgets/serving_ended_widget.dart';
-import 'package:junkfood/utilities/widgets/datetime/date_bar_small.dart';
+import 'package:junkfood/ui/widgets/no_dish_widget.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:junkfood/ui/controllers/locale_controller.dart';
@@ -74,6 +74,7 @@ class MyApp extends ConsumerWidget {
 
     final dishOfTheDayState = ref.watch(dishOfTheDayControllerProvider);
     final stringControllerState = ref.watch(stringControllerProvider);
+    final settingsState = ref.watch(settingsControllerProvider);
 
     return MaterialApp(
       title: 'Junkfood',
@@ -115,7 +116,11 @@ class MyApp extends ConsumerWidget {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    const Icon(Icons.error_outline, size: 64, color: Colors.red),
+                    const Icon(
+                      Icons.error_outline,
+                      size: 64,
+                      color: Colors.red,
+                    ),
                     const SizedBox(height: 16),
                     const Text('Failed to load translations'),
                     const SizedBox(height: 8),
@@ -123,7 +128,9 @@ class MyApp extends ConsumerWidget {
                     const SizedBox(height: 16),
                     ElevatedButton(
                       onPressed: () {
-                        ref.read(stringControllerProvider.notifier).refreshStrings();
+                        ref
+                            .read(stringControllerProvider.notifier)
+                            .refreshStrings();
                       },
                       child: const Text('Retry'),
                     ),
@@ -132,23 +139,8 @@ class MyApp extends ConsumerWidget {
               ),
             ),
             data: (stringsLoaded) {
-              // Only proceed with normal app flow if strings loaded successfully
-              if (!stringsLoaded) {
-                return const Scaffold(
-                  body: Center(
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Icon(Icons.warning, size: 64, color: Colors.orange),
-                        SizedBox(height: 16),
-                        Text('Using fallback translations'),
-                      ],
-                    ),
-                  ),
-                );
-              }
-
-              // Normal app flow continues here
+              // Continue with normal app flow regardless of whether strings loaded
+              // from Supabase or using fallback translations
               if (dishOfTheDayState.hasValue &&
                   dishOfTheDayState.value!.isNotEmpty) {
                 return const DishOfTheDayPage();
@@ -160,13 +152,11 @@ class MyApp extends ConsumerWidget {
 
                   if (isDesktop) {
                     return Scaffold(
-                      appBar: AppBar(
-                        title: const DateBarSmall(),
-                      ),
                       body: Center(
                         child: mainWidget(
                           servingHasEnded,
                           !dishOfTheDayState.hasValue,
+                          settingsState,
                         ),
                       ),
                     );
@@ -177,6 +167,7 @@ class MyApp extends ConsumerWidget {
                       child: mainWidget(
                         servingHasEnded,
                         !dishOfTheDayState.hasValue,
+                        settingsState,
                       ),
                     ),
                   );
@@ -192,9 +183,22 @@ class MyApp extends ConsumerWidget {
   Widget mainWidget(
     bool servingHasEnded,
     bool isLoading,
+    AsyncValue<bool> settingsState,
   ) {
-    if (isLoading) return const Center(child: CircularProgressIndicator());
-    if (servingHasEnded) return const ServingEndedWidget();
-    return const NoDishWidget();
+    // if (isLoading) return const Center(child: CircularProgressIndicator());
+    // if (servingHasEnded) return const ServingEndedWidget();
+
+    // Check settings to determine which widget to show
+    return settingsState.when(
+      loading: () => const Center(child: CircularProgressIndicator()),
+      error: (error, stack) =>
+          const DishOfTheDayPage(), // Fallback to dish page on error
+      data: (showNoDishMessage) {
+        if (showNoDishMessage) {
+          return const NoDishWidget();
+        }
+        return const DishOfTheDayPage();
+      },
+    );
   }
 }

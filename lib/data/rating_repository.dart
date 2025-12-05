@@ -8,7 +8,7 @@ import 'package:junkfood/domain/model/rating_model.dart';
 part 'rating_repository.g.dart';
 
 class RatingRepository implements IRatingRepository {
-  SupabaseClient database;
+  final SupabaseClient database;
 
   RatingRepository({required this.database});
 

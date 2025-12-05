@@ -27,6 +27,45 @@ class _DishOfTheDayPageState extends ConsumerState<DishOfTheDayPage>
     with TickerProviderStateMixin {
   TabController? tabController;
   int index = 0;
+  bool _hasCheckedInitialDate = false;
+
+  @override
+  void initState() {
+    super.initState();
+
+    // After the first frame is rendered, check if we need to go back to yesterday
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      final bool isDesktop = ref.watch(isDesktopLayoutProvider);
+      if (!isDesktop) {
+        if (!_hasCheckedInitialDate) {
+          _checkAndAdjustDate();
+          _hasCheckedInitialDate = true;
+        }
+      }
+    });
+  }
+
+  void _checkAndAdjustDate() {
+    final dishOfTheDayState = ref.read(dishOfTheDayControllerProvider);
+    final time = ref.read(dateProviderProvider);
+
+    // Check if we have no dishes
+    final hasDish =
+        dishOfTheDayState.hasValue && dishOfTheDayState.value!.isNotEmpty;
+
+    if (!hasDish) {
+      // Check if we're still on today's date
+      final now = DateTime.now();
+      final isToday = time.year == now.year &&
+          time.month == now.month &&
+          time.day == now.day;
+
+      if (isToday) {
+        // Go back to yesterday
+        ref.read(dateProviderProvider.notifier).previousDay();
+      }
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -51,10 +90,11 @@ class _DishOfTheDayPageState extends ConsumerState<DishOfTheDayPage>
             return isDesktop
                 ? const DateBarSmall()
                 : ButtonText(
-                    text: SupabaseLocalizations.of(context)!.localeHelper == 'da'
-                        ? formattedDanish.substring(0, 1).toUpperCase() +
-                            formattedDanish.substring(1)
-                        : formattedEnglish,
+                    text:
+                        SupabaseLocalizations.of(context)!.localeHelper == 'da'
+                            ? formattedDanish.substring(0, 1).toUpperCase() +
+                                formattedDanish.substring(1)
+                            : formattedEnglish,
                   );
           },
         ),
