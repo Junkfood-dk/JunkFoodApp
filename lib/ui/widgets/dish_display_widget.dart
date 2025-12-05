@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:junkfood/domain/model/dish_model.dart';
 import 'package:string_cache/string_cache.dart';
+import 'package:junkfood/providers/date_provider.dart';
 import 'package:junkfood/ui/controllers/dish_controller.dart';
 import 'package:junkfood/ui/controllers/dish_of_the_day_controller.dart';
 import 'package:junkfood/ui/controllers/locale_controller.dart';
@@ -42,6 +43,15 @@ class DishDisplayWidget extends ConsumerWidget {
         ? dish.getTitleForLanguage(languageCode).toSentenceCase()
         : SupabaseLocalizations.of(context)!.noTitle;
 
+    // Check if we're showing yesterday's dish
+    final selectedDate = ref.watch(dateProviderProvider);
+    final now = DateTime.now();
+    final yesterday = DateTime(now.year, now.month, now.day).subtract(const Duration(days: 1));
+    final selectedDateOnly = DateTime(selectedDate.year, selectedDate.month, selectedDate.day);
+    final isYesterday = selectedDateOnly.year == yesterday.year &&
+        selectedDateOnly.month == yesterday.month &&
+        selectedDateOnly.day == yesterday.day;
+
     return RefreshIndicator(
       onRefresh: () async {
         ref.read(dishOfTheDayControllerProvider.notifier).refetchDishOfTheDay();
@@ -71,6 +81,36 @@ class DishDisplayWidget extends ConsumerWidget {
                   },
                 ),
               ),
+              if (isYesterday)
+                Positioned(
+                  top: 0,
+                  left: 0,
+                  right: 0,
+                  child: Container(
+                    decoration: const BoxDecoration(
+                      gradient: LinearGradient(
+                        begin: Alignment.topCenter,
+                        end: Alignment.bottomCenter,
+                        colors: [
+                          Colors.black,
+                          Colors.transparent,
+                        ],
+                      ),
+                    ),
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 6.0,
+                        vertical: 12.0,
+                      ),
+                      child: ButtonText(
+                        text: SupabaseLocalizations.of(context)!.yesterdaysDish,
+                        style: titleStyle?.copyWith(
+                          fontSize: 24,
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
               Align(
                 alignment: Alignment.bottomLeft,
                 child: Container(

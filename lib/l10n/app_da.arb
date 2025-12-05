@@ -159,5 +159,9 @@
   "appTitle": "Junkfood",
   "@appTitle": {
     "description": "Application title"
+  },
+  "yesterdaysDish": "Gårsdagens ret",
+  "@yesterdaysDish": {
+    "description": "Label shown when displaying yesterday's dish instead of today's"
   }
 }

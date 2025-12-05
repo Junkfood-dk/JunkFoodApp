@@ -337,6 +337,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Junkfood'**
   String get appTitle;
+
+  /// Label shown when displaying yesterday's dish instead of today's
+  ///
+  /// In en, this message translates to:
+  /// **'Yesterday\'s dish'**
+  String get yesterdaysDish;
 }
 
 class _AppLocalizationsDelegate

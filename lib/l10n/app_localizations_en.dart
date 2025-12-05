@@ -131,4 +131,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get appTitle => 'Junkfood';
+
+  @override
+  String get yesterdaysDish => 'Yesterday\'s dish';
 }

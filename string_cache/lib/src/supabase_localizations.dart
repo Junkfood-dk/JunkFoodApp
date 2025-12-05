@@ -157,6 +157,9 @@ abstract class SupabaseLocalizations {
 
   /// Application title
   String get appTitle;
+
+  /// Label shown when displaying yesterday's dish instead of today's
+  String get yesterdaysDish;
 }
 
 class _SupabaseLocalizationsDelegate extends LocalizationsDelegate<SupabaseLocalizations> {

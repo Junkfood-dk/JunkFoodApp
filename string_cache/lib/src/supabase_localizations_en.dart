@@ -157,4 +157,7 @@ class SupabaseLocalizationsEn extends SupabaseLocalizations {
 
   @override
   String get appTitle => _getString('appTitle', 'Junkfood');
+
+  @override
+  String get yesterdaysDish => _getString('yesterdaysDish', 'Yesterday\'s dish');
 }

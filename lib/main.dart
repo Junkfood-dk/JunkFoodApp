@@ -185,8 +185,8 @@ class MyApp extends ConsumerWidget {
     bool isLoading,
     AsyncValue<bool> settingsState,
   ) {
-    // if (isLoading) return const Center(child: CircularProgressIndicator());
-    // if (servingHasEnded) return const ServingEndedWidget();
+    if (isLoading) return const Center(child: CircularProgressIndicator());
+    if (servingHasEnded) return const ServingEndedWidget();
 
     // Check settings to determine which widget to show
     return settingsState.when(

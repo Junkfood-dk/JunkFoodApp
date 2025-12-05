@@ -131,4 +131,7 @@ class AppLocalizationsDa extends AppLocalizations {
 
   @override
   String get appTitle => 'Junkfood';
+
+  @override
+  String get yesterdaysDish => 'Gårsdagens ret';
 }
