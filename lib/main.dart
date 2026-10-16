@@ -5,12 +5,9 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:junkfood/ui/controllers/string_controller.dart';
 import 'package:string_cache/string_cache.dart';
-import 'package:junkfood/providers/date_provider.dart';
 import 'package:junkfood/providers/desktop_web_provider.dart';
 import 'package:junkfood/ui/controllers/dish_of_the_day_controller.dart';
-import 'package:junkfood/ui/controllers/servingtime_controller.dart';
 import 'package:junkfood/ui/controllers/settings_controller.dart';
-import 'package:junkfood/ui/widgets/serving_ended_widget.dart';
 import 'package:junkfood/ui/widgets/no_dish_widget.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -68,10 +65,6 @@ class MyApp extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final time = ref.watch(dateProviderProvider);
-    final servingTimeState = ref.watch(servingtimeControllerProvider.notifier);
-    final servingHasEnded = servingTimeState.hasServiceEnded(time);
-
     final dishOfTheDayState = ref.watch(dishOfTheDayControllerProvider);
     final stringControllerState = ref.watch(stringControllerProvider);
     final settingsState = ref.watch(settingsControllerProvider);
@@ -154,7 +147,6 @@ class MyApp extends ConsumerWidget {
                     return Scaffold(
                       body: Center(
                         child: mainWidget(
-                          servingHasEnded,
                           !dishOfTheDayState.hasValue,
                           settingsState,
                         ),
@@ -165,7 +157,6 @@ class MyApp extends ConsumerWidget {
                   return Scaffold(
                     body: Center(
                       child: mainWidget(
-                        servingHasEnded,
                         !dishOfTheDayState.hasValue,
                         settingsState,
                       ),
@@ -181,12 +172,10 @@ class MyApp extends ConsumerWidget {
   }
 
   Widget mainWidget(
-    bool servingHasEnded,
     bool isLoading,
     AsyncValue<bool> settingsState,
   ) {
     if (isLoading) return const Center(child: CircularProgressIndicator());
-    if (servingHasEnded) return const ServingEndedWidget();
 
     // Check settings to determine which widget to show
     return settingsState.when(

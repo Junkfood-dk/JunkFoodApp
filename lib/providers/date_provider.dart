@@ -2,11 +2,24 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'date_provider.g.dart';
 
+/// The hour at which a new serving day begins.
+///
+/// Serving at some locations continues past midnight, so before this hour
+/// the previous day's menu is shown.
+const servingDayStartHour = 4;
+
+/// Returns the serving day for [now], which is the previous day before
+/// [servingDayStartHour].
+DateTime servingDay(DateTime now) {
+  if (now.hour >= servingDayStartHour) return now;
+  return DateTime(now.year, now.month, now.day - 1, now.hour, now.minute);
+}
+
 @riverpod
 class DateProvider extends _$DateProvider {
   @override
   DateTime build() {
-    return DateTime.now();
+    return servingDay(DateTime.now());
   }
 
   void nextDay() {
@@ -22,6 +35,6 @@ class DateProvider extends _$DateProvider {
   }
 
   void resetToToday() {
-    state = DateTime.now();
+    state = servingDay(DateTime.now());
   }
 }
