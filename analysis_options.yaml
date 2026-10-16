@@ -36,3 +36,8 @@ analyzer:
   exclude:
     - 'lib/utilities/l10n/*'
     - '**/*.g.dart'
+    - build/**
+    - android/**
+    - ios/**
+    - web/**
+    - macos/**
