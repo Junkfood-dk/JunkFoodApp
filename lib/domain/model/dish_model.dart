@@ -45,7 +45,7 @@ class DishModel {
       titleEn: input['title_en'],
       descriptionEn: input['description_en'],
       calories: input['calories'] ?? 0,
-      imageUrl: input.containsKey('image') ? input['image'] : '',
+      imageUrl: input.containsKey('image') ? input['image'] ?? '' : '',
       dishTypeName:
           input['Dish_type'] != null ? input['Dish_type']['dish_type'] : '',
       dishTypeId: input['Dish_type'] != null ? input['Dish_type']['id'] : -1,
@@ -62,7 +62,9 @@ class DishModel {
 
   /// Returns the description in the specified language, falling back to Danish if English is not available
   String getDescriptionForLanguage(String languageCode) {
-    if (languageCode == 'en' && descriptionEn != null && descriptionEn!.isNotEmpty) {
+    if (languageCode == 'en' &&
+        descriptionEn != null &&
+        descriptionEn!.isNotEmpty) {
       return descriptionEn!;
     }
     return description;
